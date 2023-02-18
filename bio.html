@@ -1,156 +1,133 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-<meta charset="utf-8">
-<title>[ Hajaj | Short Biography ]</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Font Awesome Icons -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
-
-<!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-<script src="js/html5shiv.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]-->
-
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/menucollapse.js"></script>
-<script type="text/javascript" src="js/arrow78.js"></script>
-<script type="text/javascript" src="js/custom.js"></script>
-
-<body id="page-top" class="index">
-
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"  data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-            <button id="button2" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <span><a href="#"><img border="0" width="170" src="images/csucy.png"/></a></span>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Home<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                    <li><a href="index.html#intro">Introduction</a></li>
-                        <li><a href="bio.html">Short Biography</a></li>
-                        <li><a href="cv.html">CV (Web)</a></li>
-                        <li><a target="_blank" href="hajaj.pdf">CV (PDF)</a></li>
-                    </ul>
-                </li>
-                <li class="page-scroll">
-                <a href="index.html#news">News</a>
-                </li>
-                <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Publications<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                    <li><a onclick="javascript:reset_menus();$('#tab-3-content').show();" href="index.html#publications">Selected</a></li>
-                        <li><a href="publications/">All</a></li>
-                    </ul>
-                </li>
-                <li class="page-scroll">
-                    <a href="talks/">Talks</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="index.html#courses">Courses</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="index.html#awards">Awards</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="index.html#service">Service</a>
-                </li>
-                <li class="page-scroll">
-                <a href="index.html#advising">Advising</a>
-                </li>
-                <li class="page-scroll">
-                    <a target="_blank" href="http://dmsl.cs.ucy.ac.cy/projects.php">Grants</a>
-                </li>
-
-                <li class="page-scroll">
-                    <a href="index.html#contact">Contact</a>
-                </li>
-                <li class="page-scroll">
-                    <a onclick="$('#bs-example-navbar-collapse-2').toggle();">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-
-        <!-- search box submenu -->
-        <div class="collapse" id="bs-example-navbar-collapse-2">
-            <gcse:search></gcse:search>
-        </div>
-
-    </div><!-- /.container-fluid -->
-</nav>
-
-<section>
-    <!-- Place this tag where you want the search results to render -->
-    <gcse:searchresults-only></gcse:searchresults-only>
-</section>
-
-<section id="tree" style="margin-top:50px">
+  <head>
+    <title>Chen Hajaj - Bio</title>
+    <style>
+      body {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+      }
+      
+      h1 {
+        margin: 0;
+        font-size: 48px;
+      }
+      
+      h2 {
+        margin: 0;
+        font-size: 24px;
+      }
+      
+      p {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+      
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      
+      li {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+      .card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 20px;
+        width: calc(33.33% - 40px);
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+      }
+      
+      .card h3 {
+        margin-top: 0;
+        font-size: 24px;
+      }
+      
+      .card p {
+        margin-bottom: 0;
+      }
+      
+      .card a {
+        color: #0077cc;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Chen Hajaj</h1>
+        <h2>Assistant Professor, Department of Industrial Engineering and Management, Bar-Ilan University</h2>
+      </div>
+    </header>
     <div class="container">
-        <a href="index.html">Hajaj</a> > Short Biography
-    </div>
-</section>
+      <div class="card">
+        <h3>Research Interests</h3>
+        <ul>
+          <li>Machine Learning</li>
+          <li>Game Theory</li>
+          <li>Cybersecurity</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Education</h3>
+        <ul>
+          <li>Ph.D. (Computer Science), Bar-Ilan University</li>
+          <li>M.Sc. (Electrical Engineering), Bar-Ilan University</li>
+          <li>B.Sc. (Computer Engineering), Bar-Ilan University</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Professional Experience</h3>
+        <p>Faculty member, Department of Industrial Engineering and Management, Bar-Ilan University (2018-present)</p>
+        <p>Faculty member, School of Computer Science, Bar-Ilan University (2018-present)</p>
+        <p>Head, Data Science and Artificial Intelligence Research Center, Bar-Ilan University (2020-present)</p>
+<p>Member, Ariel Cyber Innovation Center, Ariel University (2019-present)</p>
+<p>Postdoctoral fellow, Vanderbilt University (2016-2018)</p>
+</div>
+<div class="card">
+<h3>Selected Publications</h3>
+<ul>
+<li><a href="#">Encrypted Traffic Classification using Machine Learning Techniques</a></li>
+<li><a href="#">Adversarial Artificial Intelligence: A Survey of Attack Techniques and Defense Mechanisms</a></li>
+<li><a href="#">Personalized Medicine using Data Science-based Methods</a></li>
+</ul>
+</div>
+<div class="card">
+<h3>Contact Information</h3>
+<p>Email: chen.hajaj@biu.ac.il</p>
+<p>Phone: +972-3-531-8061</p>
+<p>Office: Room 123, Building 456</p>
+</div>
+</div>
 
-
-<!-- Home Section -->
-<section id="home">
-    <div class="container lead">
-
-    <h3>Short Biography of Chen Hajaj</h1>
-
-    <p>Chen Hajaj is a post-doctoral researcher at the Vanderbilt University Computer Science and Electrical Engineering department. He received Ph.D. (2016) degree in Computer Science, M.Sc. (2012) degree in Electrical Engineering and a B.Sc. degree in Computer Engineering from Bar-Ilan University. His work focuses on game theoretic modeling of modern markets, algorithmic and behavioral game theory and incentive design, crowdsourcing, and electronic commerce.  Chen won several awards in Israel and abroad among which is the Prof. Rahamimoff Travel Grant for Young Scientists by the United States-Israel Binational Science Foundation (BSF).
-            </p>
-        </div>
-        </div>
-    </section>
-
-<hr class="star-primary">
-<footer>
-    <small>
-    <center>
-        © 2015 | C. Hajaj. Credits: AR template
-    <a onclick="javascript:$('#credit').toggle();"><img border="0" src="images/ccby.png"/></a>
-    <div style="display:none;" id="credit">[AR template available under Creative Commons CC BY 4.0 licence: 
-    <a href="https://github.com/dmsl/academic-responsive-template"_blank">
-        https://github.com/dmsl/academic-responsive-template
-    </a> ]
-    </div>
-    </center>
-    </small>
-</footer>
-
-</body>
-
+  </body>
 </html>
