@@ -1,0 +1,67 @@
+/* Customize your CSS for styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.category {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 0;
+}
+
+.publication-list {
+    list-style: none;
+    padding: 0;
+}
+
+.publication {
+    background-color: #f8f8f8;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.authors, .pub-date, .journal, .abstract {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.download-link {
+    text-decoration: none;
+    color: #333;
+    background-color: #ffd700;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.download-link:hover {
+    background-color: #ffcc00;
+}
