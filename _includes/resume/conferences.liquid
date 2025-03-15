@@ -1,0 +1,43 @@
+{% assign conferences = data %}
+<div class="conferences">
+  {% for item in conferences %}
+  <div class="conference-item">
+    <h5 class="role">{{ item.role | capitalize }}</h5>
+    <h6 class="conference-name">{{ item.name }}</h6>
+    <div class="year">
+      <i class="fas fa-calendar-alt mr-1"></i>
+      {{ item.year }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<style>
+.conferences {
+  margin-bottom: 1.5rem;
+}
+.conference-item {
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 3px solid transparent;
+}
+.conference-item:hover {
+  border-left-color: #28a745;
+}
+.role {
+  color: #28a745;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.conference-name {
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 0.25rem;
+}
+.year {
+  color: #6c757d;
+}
+.year i {
+  margin-right: 0.5rem;
+}
+</style> 

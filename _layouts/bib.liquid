@@ -1,6 +1,6 @@
 ---
 ---
-<div class="row">
+<div class="row" {% if entry.projects %}data-projects="{{ entry.projects }}"{% endif %}>
   {% if site.enable_publication_thumbnails %}
     <div class="col col-sm-2 abbr">
       {%- if entry.abbr -%}
@@ -49,6 +49,17 @@
   <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}">
     <!-- Title -->
     <div class="title">{{ entry.title }}</div>
+    
+    <!-- Project tags -->
+    {% if entry.projects %}
+    <div class="project-tags">
+      {% assign project_list = entry.projects | split: "," %}
+      {% for project in project_list %}
+        <span class="project-tag badge badge-light">{{ project | strip }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+    
     <!-- Author -->
     <div class="author">
       {% assign author_array_size = entry.author_array | size %}
@@ -368,3 +379,16 @@
     {% endif %}
   </div>
 </div>
+
+<style>
+.project-tag {
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #495057;
+  border-radius: 12px;
+}
+</style>
