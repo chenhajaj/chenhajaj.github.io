@@ -1,81 +1,63 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
-importance: 2
+title: Encrypted Traffic Classification
+description: Research on modern approaches to classifying encrypted internet traffic
+img: assets/img/network-traffic.jpg
+importance: 1
 category: work
-giscus_comments: true
+giscus_comments: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+# Encrypted Traffic Classification Research
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+The management of internet traffic is essential to ensure the Quality of Services (QoS) and Quality of Experience (QoE) of users. Internet traffic classification is a key component in network management, providing network visibility, traffic-trend analyses, and intrusion detection. However, with the ongoing transition towards encryption protocols, the task of traffic classification has become increasingly challenging.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+## Project Overview
+
+Our research focuses on developing new methodologies for accurately classifying encrypted internet traffic in the modern protocol landscape. We investigate approaches that can maintain effectiveness even as privacy-preserving protocols become more prevalent.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/traffic-analysis.jpg" title="Traffic analysis visualization" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/encryption-protocols.jpg" title="Modern encryption protocols" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/classification-results.jpg" title="Classification results" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
+    Left: Network traffic analysis visualization. Middle: Overview of modern encryption protocols. Right: Classification accuracy results.
 </div>
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+## Research Challenges
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+The transition towards encryption protocols presents several key challenges:
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+1. Increased adoption of privacy-preserving protocols like ESNI and DoH
+2. Limited visibility due to TLS 1.3 and similar protocols
+3. Connection aggregation in QUIC, HTTP/2, and HTTP/3
+4. Need for new classification methodologies
 
-{% raw %}
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
 
-{% endraw %}
+## Methodology
+
+Our research approach includes:
+
+- Analysis of traffic patterns in encrypted streams
+- Development of machine learning models for classification
+- Evaluation of classification accuracy across different protocols
+- Assessment of scalability and real-time performance
+
+## Impact
+
+This research aims to:
+
+1. Improve network management capabilities
+2. Maintain effective traffic classification despite encryption
+3. Balance privacy requirements with network visibility needs
+4. Advance the state of the art in traffic analysis
+
+The findings will help network operators and security professionals adapt to the evolving landscape of encrypted internet traffic.

@@ -1,0 +1,50 @@
+{% assign grants = data %}
+<div class="grants">
+  {% for item in grants %}
+  <div class="grant-item">
+    <h5 class="grant-agency">{{ item.agency }}</h5>
+    {% if item.title != "" %}
+    <h6 class="grant-title">{{ item.title }}</h6>
+    {% endif %}
+    <div class="period">
+      <i class="fas fa-calendar-alt mr-1"></i>
+      {{ item.period }}
+    </div>
+    <div class="investigators">
+      <i class="fas fa-users mr-1"></i>
+      {{ item.investigators }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<style>
+.grants {
+  margin-bottom: 1.5rem;
+}
+.grant-item {
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 3px solid transparent;
+}
+.grant-item:hover {
+  border-left-color: #ffc107;
+}
+.grant-agency {
+  color: #ffc107;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.grant-title {
+  font-weight: 500;
+  color: #495057;
+  margin-bottom: 0.25rem;
+}
+.period, .investigators {
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+.period i, .investigators i {
+  margin-right: 0.5rem;
+}
+</style> 

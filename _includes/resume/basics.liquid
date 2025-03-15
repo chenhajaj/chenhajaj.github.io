@@ -1,28 +1,59 @@
-<table class="table table-cv table-sm table-borderless table-responsive table-cv-map">
-  {% assign skip_basics = 'image,profiles,location' | split: ',' %}
-  {% for content in data[1] %}
-    {%
-      if (content[1] == "") or (skip_basics contains
-      content[0])
-    %}
-      {% continue %}
+{% assign basics = data %}
+<div class="basics">
+  <div class="name">{{ basics.name }}</div>
+  <div class="contact-info">
+    {% if basics.email %}
+    <span><i class="fas fa-envelope"></i> {{ basics.email }}</span>
     {% endif %}
+    {% if basics.url %}
+    <span><i class="fas fa-globe"></i> <a href="{{ basics.url }}">{{ basics.url }}</a></span>
+    {% endif %}
+  </div>
+  {% if basics.profiles %}
+  <div class="social-links">
+    {% for profile in basics.profiles %}
+    <a href="{{ profile.url }}" class="social-link" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-{{ profile.network | downcase }}"></i> {{ profile.network }}
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
 
-    <tr>
-      <td class="p-1 pr-2 font-weight-bold">
-        <b>{{ content[0] | capitalize }}</b>
-      </td>
-      <td class="p-1 pl-2 font-weight-light text">
-        {% if content[0] == 'url' %}
-          <a href="{{ content[1] }}" target="_blank" rel="noopener noreferrer">{{ content[1] }}</a>
-        {% elsif content[0] == 'email' %}
-          <a href="mailto:{{ content[1] }}" target="_blank">{{ content[1] }}</a>
-        {% elsif content[0] == 'phone' %}
-          <a href="tel:{{ content[1] }}">{{ content[1] }}</a>
-        {% else %}
-          {{ content[1] }}
-        {% endif %}
-      </td>
-    </tr>
-  {% endfor %}
-</table>
+<style>
+.basics {
+  margin-bottom: 2rem;
+}
+.name {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #343a40;
+  margin-bottom: 1rem;
+}
+.contact-info {
+  margin-bottom: 0.5rem;
+}
+.contact-info span {
+  margin-right: 1.5rem;
+  color: #495057;
+}
+.contact-info i {
+  margin-right: 0.5rem;
+  color: #6c757d;
+}
+.social-links {
+  margin-top: 0.5rem;
+}
+.social-link {
+  margin-right: 1.5rem;
+  color: #495057;
+  text-decoration: none;
+}
+.social-link:hover {
+  color: #007bff;
+  text-decoration: none;
+}
+.social-link i {
+  margin-right: 0.5rem;
+}
+</style>

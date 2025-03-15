@@ -3,11 +3,11 @@
 # -----------------------------------------------------------------------------
 
 title: blank # the website title (if blank, full name will be used instead)
-first_name: You
-middle_name: R.
-last_name: Name
+first_name: Chen
+middle_name: 
+last_name: Hajaj
 contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
+  
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 footer_text: >
@@ -152,6 +152,7 @@ collections:
     output: true
   projects:
     output: true
+    
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
@@ -264,8 +265,8 @@ display_categories: ["external-services"] # these categories will be displayed o
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Einstein]
-  first_name: [Albert, A.]
+  last_name: [Hajaj]
+  first_name: [Chen]
 
   style: apa
   locale: en
@@ -324,7 +325,7 @@ filtered_bibtex_keywords:
   ]
 
 # Maximum number of authors to be shown for each publication (more authors are visible on click)
-max_author_limit: 3 # leave blank to always show all authors
+max_author_limit:  # leave blank to always show all authors
 more_authors_animation_delay: 10 # more authors are revealed on click using animation; smaller delay means faster animation
 
 # Enables publication thumbnails. If disabled, none of the publications will display thumbnails, even if specified in the bib entry.
@@ -625,14 +626,26 @@ jekyll_get_json:
 
 jsonresume:
   - basics
+  - profiles
   - work
   - education
   - publications
   - projects
-  - volunteer
-  - awards
-  - certificates
-  - skills
-  - languages
-  - interests
-  - references
+  #- volunteer
+  #- awards
+  #- certificates
+  #- skills
+  #- languages
+  #- interests
+  #- references
+
+# -----------------------------------------------------------------------------
+# Resume settings
+# -----------------------------------------------------------------------------
+use_resume: true
+resume_sections:
+  - basics
+  - academicAdministration
+  - conferences
+  - patents
+  - grants
