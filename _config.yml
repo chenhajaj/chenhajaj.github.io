@@ -244,6 +244,18 @@ terser:
     drop_console: true
 
 # -----------------------------------------------------------------------------
+# Resume
+# -----------------------------------------------------------------------------
+use_resume: true
+resume_sections:
+  - basics
+  - education
+  - academicAdministration
+  - conferences
+  - patents
+  - grants
+
+# -----------------------------------------------------------------------------
 # Jekyll Archives
 # -----------------------------------------------------------------------------
 
@@ -642,10 +654,6 @@ jsonresume:
 # -----------------------------------------------------------------------------
 # Resume settings
 # -----------------------------------------------------------------------------
-use_resume: true
-resume_sections:
-  - basics
-  - academicAdministration
-  - conferences
-  - patents
-  - grants
+resume:
+  enabled: true
+  use_json: true   # use assets/json/resume.json instead of _data/cv.yml
