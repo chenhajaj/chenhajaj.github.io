@@ -1,14 +1,15 @@
 ---
 layout: page
 title: Encrypted Traffic Classification
-description: Research on modern approaches to classifying encrypted internet traffic
-img: assets/img/network-traffic.jpg
+description: 
+img: assets/img/encrypted.jpg
 importance: 1
 category: work
 giscus_comments: false
+
 ---
 
-# Encrypted Traffic Classification Research
+<!-- # Encrypted Traffic Classification Research -->
 
 The management of internet traffic is essential to ensure the Quality of Services (QoS) and Quality of Experience (QoE) of users. Internet traffic classification is a key component in network management, providing network visibility, traffic-trend analyses, and intrusion detection. However, with the ongoing transition towards encryption protocols, the task of traffic classification has become increasingly challenging.
 
