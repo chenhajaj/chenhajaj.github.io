@@ -1,0 +1,105 @@
+/* Shared styles across pages */
+
+/* Common page container */
+.page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Section headings */
+h2, h3, h4 {
+  color: var(--global-theme-color);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Card-like elements */
+.card-element {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+}
+
+.card-element:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+/* Button styles */
+.custom-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.2rem;
+  color: var(--global-theme-color);
+  text-decoration: none;
+  font-weight: 500;
+  border: 2px solid var(--global-theme-color);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.custom-button:hover {
+  background-color: var(--global-theme-color);
+  color: white;
+  text-decoration: none;
+}
+
+/* Grid layouts */
+.grid-container {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Student/Team member cards */
+.member-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.member-card.alumni {
+  background: #f8f9fa;
+}
+
+.member-card strong {
+  color: var(--global-theme-color);
+  font-size: 1.1rem;
+}
+
+.member-card em {
+  color: #666;
+  font-style: normal;
+  font-size: 0.9rem;
+}
+
+/* Responsive images */
+.responsive-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 1rem 0.5rem;
+  }
+  
+  .card-element {
+    padding: 1.5rem;
+  }
+  
+  .member-card {
+    padding: 1rem;
+  }
+} 

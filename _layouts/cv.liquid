@@ -8,11 +8,7 @@ layout: default
         {{ page.title }}
         {% if page.cv_pdf %}
           <a
-            {% if page.cv_pdf contains '://' %}
-              href="{{ page.cv_pdf }}"
-            {% else %}
-              href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}"
-            {% endif %}
+            href="{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url }}"
             target="_blank"
             rel="noopener noreferrer"
             class="float-right"
@@ -31,10 +27,11 @@ layout: default
         {% for section in site.resume_sections %}
           {% assign data = site.data.resume[section] %}
           {% if data %}
-            <a class="anchor" id="{{ section }}"></a>
-            <div class="section">
+            <div class="section" id="{{ section }}">
               <h3 class="section-title">
                 {% case section %}
+                  {% when 'basics' %}
+                    About
                   {% when 'academicAdministration' %}
                     Academic Administration
                   {% when 'conferences' %}
@@ -48,18 +45,7 @@ layout: default
                 {% endcase %}
               </h3>
               <div class="section-content">
-                {% case section %}
-                  {% when 'basics' %}
-                    {% include resume/basics.liquid data=data %}
-                  {% when 'academicAdministration' %}
-                    {% include resume/academicAdministration.liquid data=data %}
-                  {% when 'conferences' %}
-                    {% include resume/conferences.liquid data=data %}
-                  {% when 'patents' %}
-                    {% include resume/patents.liquid data=data %}
-                  {% when 'grants' %}
-                    {% include resume/grants.liquid data=data %}
-                {% endcase %}
+                {% include resume/{{ section }}.liquid data=data %}
               </div>
             </div>
           {% endif %}
@@ -67,19 +53,52 @@ layout: default
       </div>
     </article>
   </div>
+
   <style>
+    .cv {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
     .section {
       margin-bottom: 3rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
     }
+
+    .section:hover {
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
+
     .section-title {
-      color: #343a40;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
+      color: var(--global-theme-color);
+      font-size: 1.75rem;
+      margin-bottom: 2rem;
       padding-bottom: 0.5rem;
-      border-bottom: 2px solid #e9ecef;
+      border-bottom: 2px solid var(--global-theme-color);
     }
+
     .section-content {
-      padding-left: 1rem;
+      padding: 0 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .cv {
+        padding: 1rem;
+      }
+      
+      .section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
     }
   </style>
 {% else %}

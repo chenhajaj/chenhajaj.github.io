@@ -1,14 +1,14 @@
 {
   "basics": {
     "name": "Chen Hajaj",
-    "label": "Faculty Member",
-    "image": "https://chenhajaj.github.io/assets/img/chen.jpeg",
+    "label": "Assistant Professor",
+    "image": "/assets/img/chen.png",
     "email": "chenha@g.ariel.ac.il",
     "phone": "",
     "url": "https://chenhajaj.github.io/",
     "summary": "",
     "location": {
-      "address": "",
+      "address": "Office: 58.3.42",
       "postalCode": "",
       "city": "",
       "countryCode": "IL",
@@ -16,22 +16,67 @@
     },
     "profiles": [
       {
+        "network": "GitHub",
+        "username": "chenhajaj",
+        "url": "https://github.com/chenhajaj"
+      },
+      {
         "network": "LinkedIn",
+        "username": "chen-hajaj",
+        "url": "https://www.linkedin.com/in/chen-hajaj-b2b4b0b"
+      },
+      {
+        "network": "Google Scholar",
         "username": "Chen Hajaj",
-        "url": "https://www.linkedin.com/in/chen-hajaj-5ba59517/"
+        "url": "https://scholar.google.com/citations?user=Ys5aNKYAAAAJ"
       }
     ]
   },
+  "education": [
+    {
+      "studyType": "Postdoctoral Fellowship",
+      "area": "Computer Science",
+      "institution": "Computer Science Department, Vanderbilt University",
+      "startDate": "2017",
+      "endDate": "2018",
+      "host": "Professor Yevgeniy Vorobeychik"
+    },
+    {
+      "studyType": "Ph.D.",
+      "area": "Computer Science",
+      "institution": "Department of Computer Science, Bar-Ilan University",
+      "startDate": "2013",
+      "endDate": "2016",
+      "advisor": "Professors David Sarne and Avinatan Hassidim",
+      "thesis": "Intelligent Mechanisms for Platforms in Modern Markets"
+    },
+    {
+      "studyType": "M.Sc.",
+      "area": "Electrical Engineering",
+      "institution": "Faculty of Engineering, Bar-Ilan University",
+      "startDate": "2010",
+      "endDate": "2012",
+      "advisor": "Professor Yosi Keller",
+      "thesis": "Three-Dimensional Group Registration of Mesh Objects"
+    },
+    {
+      "studyType": "B.Sc.",
+      "area": "Computer Engineering",
+      "institution": "Faculty of Engineering, Bar-Ilan University",
+      "startDate": "2006",
+      "endDate": "2010"
+    }
+  ],
   "academicAdministration": [
     {
       "position": "Head of the Faculty review board",
-      "institution": "Ariel University, Faculty of Engineering",
+      "institution": "Faculty of Engineering, Ariel University",
       "startDate": "2021",
       "endDate": "present"
     },
     {
       "position": "Head of Data Science track",
-      "institution": "Ariel University, Industrial Engineering and Management",
+      "institution": "Department of Industrial Engineering and Management, Ariel University",
       "startDate": "2021",
       "endDate": "present"
     },
@@ -43,7 +88,7 @@
     },
     {
       "position": "Data Science fellow",
-      "institution": "Vanderbilt University",
+      "institution": "Computer Science Department, Vanderbilt University",
       "startDate": "2017",
       "endDate": "2018"
     },
