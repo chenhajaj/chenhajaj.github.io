@@ -5,7 +5,7 @@ description: Analyzing nutrition delivery methods and patient outcomes in intens
 img: assets/img/icu-nutrition.jpg
 importance: 2
 category: work
-related_publications: true
+related_publications: false
 ---
 
 # Medical Data Science: ICU Nutrition Study
@@ -14,7 +14,7 @@ This research project investigates the critical relationship between nutrition d
 
 ## Project Overview
 
-Our team has collected and analyzed comprehensive medical data from ICU patients at Rabin Medical Center spanning 2008-2018. The study focuses on comparing enteral nutrition (via gastrointestinal tract) versus parenteral nutrition in terms of key patient outcomes.
+Our team has processed and analyzed comprehensive medical data from ICU patients at Rabin Medical Center spanning 2008-2018. The study focuses on comparing enteral nutrition (via gastrointestinal tract) versus parenteral nutrition in terms of key patient outcomes.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -67,7 +67,7 @@ Our study aims to evaluate:
 3. Effects on mechanical ventilation duration
 4. Influence on ICU length of stay
 
-This research will help establish evidence-based guidelines for optimal nutrition delivery in critical care settings.
+This research helps establishing evidence-based guidelines for optimal nutrition delivery in critical care settings.
 
 ## Methodology
 
@@ -77,7 +77,7 @@ We employ advanced statistical analysis and machine learning techniques to proce
 
 <div class="publications">
   <div class="publication-list">
-    {% bibliography -q @*[author ~= Raphaeli] %}
+    {% bibliography -q @*[author ~= Raphaeli && !(author ~= Glik)] %}
   </div>
 </div>
 

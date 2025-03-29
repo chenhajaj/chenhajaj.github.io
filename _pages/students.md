@@ -2,12 +2,20 @@
 layout: page
 permalink: /students/
 title: Research Group
-description: Current and Past Lab Members
+description: 
 nav: true
 nav_order: 3
 ---
 
-## PhD Students
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/grad.webp" title="Graduation" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
+
+
+### PhD Students
 
 <!-- ### Current Doctoral Candidates -->
 <div class="row">
@@ -61,7 +69,7 @@ nav_order: 3
     </div>
 </div>
 
-## MSc Students
+### Masters Students
 
 <!-- ### Current Master's Students -->
 <div class="row">
@@ -218,6 +226,13 @@ nav_order: 3
 
 <!-- ### Current Research Assistants -->
 <div class="row">
+    <div class="col-sm-4 mt-3 mt-md-0">
+        <div class="caption current">
+            <strong>Michal Isaacs</strong><br>
+            <em>2025</em><br>
+            Research: Design Spaces
+        </div>
+    </div>
     <div class="col-sm-4 mt-3 mt-md-0">
         <div class="caption current">
             <strong>Roni Epstein</strong><br>

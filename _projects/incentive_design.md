@@ -2,7 +2,7 @@
 layout: page
 title: Incentive Design
 description: Research on economics of decision-making in networks and incentives in crowdsourcing
-img: assets/img/9.jpg
+img: assets/img/DM.png
 importance: 2
 category: work
 giscus_comments: true
@@ -72,4 +72,12 @@ Our research on team formation investigates mechanisms to:
 </div>
 <div class="caption">
     Left: Framework for incentive-compatible team formation. Right: Analysis of welfare and fairness outcomes.
+</div>
+
+## Key Publications
+
+<div class="publications">
+  <div class="publication-list">
+    {% bibliography -q @*[author ~= Sarne] %}
+  </div>
 </div>
