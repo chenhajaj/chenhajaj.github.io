@@ -25,14 +25,14 @@ ninja.data = [{
           },
         },{id: "nav-projects",
           title: "Projects",
-          description: "A growing collection of your cool projects.",
+          description: "A growing collection of our cool projects.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
           },
         },{id: "nav-research-group",
           title: "Research Group",
-          description: "Current and Past Lab Members",
+          description: "",
           section: "Navigation",
           handler: () => {
             window.location.href = "/students/";
@@ -405,27 +405,7 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-icu-nutrition-analysis",
-          title: 'ICU Nutrition Analysis',
-          description: "Analyzing nutrition delivery methods and patient outcomes in intensive care",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/1_project/";
-            },},{id: "projects-encrypted-traffic-classification",
-          title: 'Encrypted Traffic Classification',
-          description: "Research on modern approaches to classifying encrypted internet traffic",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/2_project/";
-            },},{id: "projects-project-3-with-very-long-name",
-          title: 'project 3 with very long name',
-          description: "a project that redirects to another website",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/3_project/";
-            },},{id: "projects-project-4",
-          title: 'project 4',
-          description: "another without an image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/4_project/";
-            },},{id: "projects-project-5",
+          section: "News",},{id: "projects-project-5",
           title: 'project 5',
           description: "a project with a background image",
           section: "Projects",handler: () => {
@@ -435,21 +415,41 @@ ninja.data = [{
           description: "a project with no image",
           section: "Projects",handler: () => {
               window.location.href = "/projects/6_project/";
-            },},{id: "projects-adversarial-artificial-intelligence",
-          title: 'Adversarial Artificial Intelligence',
-          description: "Research on developing robust and secure AI systems against malicious attacks",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/7_project/";
-            },},{id: "projects-incentive-design",
-          title: 'Incentive Design',
-          description: "Research on economics of decision-making in networks and incentives in crowdsourcing",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/8_project/";
             },},{id: "projects-project-9",
           title: 'project 9',
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
+            },},{id: "projects-adversarial-artificial-intelligence",
+          title: 'Adversarial Artificial Intelligence',
+          description: "Research on developing robust and secure AI systems against malicious attacks",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/adversarial_ai/";
+            },},{id: "projects-quantifying-constructivist-learning-in-studio-based-education",
+          title: 'Quantifying Constructivist Learning in Studio-Based Education',
+          description: "",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/constructivist_learning/";
+            },},{id: "projects-encrypted-traffic-classification",
+          title: 'Encrypted Traffic Classification',
+          description: "",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/encrypted_traffic/";
+            },},{id: "projects-icu-nutrition-analysis",
+          title: 'ICU Nutrition Analysis',
+          description: "Analyzing nutrition delivery methods and patient outcomes in intensive care",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/icu_nutrition/";
+            },},{id: "projects-incentive-design",
+          title: 'Incentive Design',
+          description: "Research on economics of decision-making in networks and incentives in crowdsourcing",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/incentive_design/";
+            },},{id: "projects-a-multimodal-approach-for-measuring-item-similarity",
+          title: 'A Multimodal Approach for Measuring Item Similarity',
+          description: "An innovative method for measuring similarity between items using concepts from image recognition and NLP, applied to e-tourism destinations",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/similarity/";
             },},{
         id: 'social-email',
         title: 'email',
