@@ -30,12 +30,20 @@ nav_order: 3
         <p class="research-area"><i class="fas fa-microscope"></i> Auction Theory and Machine Learning</p>
       </div>
       <div class="member-card">
+        <strong>Omri Arbiv</strong>
+        <p class="research-area"><i class="fas fa-microscope"></i> Medical Data Science</p>
+      </div>
+      <div class="member-card">
         <strong>Natan Dillbary</strong>
         <p class="research-area"><i class="fas fa-microscope"></i> Time and Spectral Time Series Analysis</p>
       </div>
       <div class="member-card">
         <strong>Bar Vinder</strong>
         <p class="research-area"><i class="fas fa-microscope"></i> Medical Data Analysis</p>
+      </div>
+      <div class="member-card">
+        <strong>Shira Schweitzer</strong>
+        <p class="research-area"><i class="fas fa-microscope"></i> Interaction between Parents and Teens during Driving </p>
       </div>
     </div>
   </div>
@@ -64,6 +72,14 @@ nav_order: 3
       <div class="member-card">
         <strong>Nave Cohen</strong>
         <p class="research-area"><i class="fas fa-microscope"></i> Customizing Recommendations by Funnel Position</p>
+      </div>
+      <div class="member-card">
+        <strong>Amit Tzahar</strong>
+        <p class="research-area"><i class="fas fa-microscope"></i> Image Restoration in Adversarially Encrypted Medical Images</p>
+      </div>
+      <div class="member-card">
+        <strong>Stav Gal Elhadif</strong>
+        <p class="research-area"><i class="fas fa-microscope"></i> LLMs & Explainability</p>
       </div>
       <div class="member-card">
         <strong>Ihab Hino</strong>
@@ -146,7 +162,7 @@ nav_order: 3
       <div class="member-card alumni">
         <strong>Ofek Bader</strong>
         <p class="graduation-year"><i class="fas fa-calendar"></i> 2022</p>
-        <p class="research-area"><i class="fas fa-microscope"></i> ICU Mortality</p>
+        <p class="research-area"><i class="fas fa-microscope"></i> An Open-Source Framework for Encrypted Internet and Malicious Traffic Classification</p>
       </div>
       <div class="member-card alumni">
         <strong>Rotem Bar</strong>
@@ -175,16 +191,16 @@ nav_order: 3
   <div class="student-section card-element">
     <h2><i class="fas fa-flask"></i> Research Assistants</h2>
     <div class="student-grid">
-      <div class="member-card">
-        <strong>Michal Isaacs</strong>
+    <div class="member-card">
+        <strong>Elior Dahan</strong>
         <p class="graduation-year"><i class="fas fa-calendar"></i> 2025</p>
-        <p class="research-area"><i class="fas fa-microscope"></i> Design Spaces</p>
+        <p class="research-area"><i class="fas fa-microscope"></i> Multimodal Learning</p>
       </div>
       <div class="member-card">
-        <strong>Roni Epstein</strong>
-        <p class="graduation-year"><i class="fas fa-calendar"></i> 2024-2025</p>
-        <p class="research-area"><i class="fas fa-microscope"></i> Design Spaces, UTI early detection, Cancer detection</p>
-      </div>
+        <strong>Uri Iron</strong>
+        <p class="graduation-year"><i class="fas fa-calendar"></i> 2025</p>
+        <p class="research-area"><i class="fas fa-microscope"></i> LLMs</p>
+      </div> 
     </div>
   </div>
 
@@ -192,6 +208,11 @@ nav_order: 3
   <div class="student-section card-element">
     <h2><i class="fas fa-history"></i> Former Research Assistants</h2>
     <div class="student-grid">
+      <div class="member-card alumni">
+        <strong>Roni Epstein</strong>
+        <p class="graduation-year"><i class="fas fa-calendar"></i> 2024-2025</p>
+        <p class="research-area"><i class="fas fa-microscope"></i> Design Spaces, UTI early detection, Cancer detection</p>
+      </div>
       <div class="member-card alumni">
         <strong>Shon Schori</strong>
         <p class="graduation-year"><i class="fas fa-calendar"></i> 2022-2024</p>
