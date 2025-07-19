@@ -41,90 +41,72 @@ latest_posts:
         <span class="name">Dr. Chen Hajaj</span>
       </h1>
       <p class="hero-subtitle">Assistant Professor & Data Science Leader</p>
-      <!-- <div class="hero-badges">
-        <span class="badge">40+ Publications</span>
-        <span class="badge">AI Research</span>
-        <span class="badge">Industry Partnerships</span>
-      </div> -->
-    </div>
-  </section>
-
-  <!-- Academic Leadership -->
-  <section class="leadership-section">
-    <h3><i class="fas fa-crown"></i> Academic Leadership</h3>
-    <div class="positions-stack">
-      <div class="position-item">
-        <div class="position-icon">
+      
+      <!-- Academic Leadership Compact -->
+      <div class="hero-positions">
+        <div class="position-compact">
           <i class="fas fa-chalkboard-teacher"></i>
+          <span>Assistant Professor</span>
         </div>
-        <div class="position-content">
-          <h4>Assistant Professor</h4>
-          <span class="institution">Ariel University</span>
-        </div>
-      </div>
-      <div class="position-item">
-        <div class="position-icon">
+        <div class="position-compact">
           <i class="fas fa-database"></i>
+          <span>Head of Data Science Track</span>
         </div>
-        <div class="position-content">
-          <h4>Head of Data Science Track</h4>
-          <span class="institution">Department of Industrial Engineering and Management</span>
+        <div class="position-compact">
+          <i class="fas fa-gavel"></i>
+          <span>Director Faculty Review Board</span>
         </div>
       </div>
-      <div class="position-item">
-        <div class="position-icon">
-          <i class="fas fa-gavel"></i>
-        </div>
-        <div class="position-content">
-          <h4>Director of Faculty Review Board</h4>
-          <span class="institution">Faculty of Engineering</span>
-        </div>
+      
+      <div class="hero-institution">
+        <i class="fas fa-university"></i>
+        <span>Ariel University</span>
       </div>
     </div>
   </section>
 
   <!-- Research Focus -->
   <section class="research-focus-section">
-    <h3><i class="fas fa-microscope"></i> Research Focus</h3>
+    <h3><i class="fas fa-microscope"></i> Research Focus & Excellence</h3>
+    <div class="research-intro-container">
+      <p class="research-intro">My research spans from theoretical foundations to practical applications, developing innovative solutions for real-world challenges across multiple domains.</p>
+    </div>
     <div class="research-stack">
       <div class="research-item featured">
         <div class="research-icon">
           <i class="fas fa-brain"></i>
         </div>
-        <div class="research-content">
-          <h4>Multimodal Learning</h4>
-          <p>AI systems integrating multiple data sources for comprehensive analysis</p>
-          <div class="research-tags">
-            <span class="tag">Neural Networks</span>
-            <span class="tag">GenAI</span>
-          </div>
-        </div>
+        <h4>Multimodal Learning</h4>
       </div>
       <div class="research-item">
         <div class="research-icon">
           <i class="fas fa-shield-alt"></i>
         </div>
-        <div class="research-content">
-          <h4>Cybersecurity & Network Monitoring</h4>
-          <p>ML-driven approaches for digital infrastructure analysis and protection</p>
-          <div class="research-tags">
-            <span class="tag">Threat Detection</span>
-            <span class="tag">Network Analysis</span>
-          </div>
-        </div>
+        <h4>Cybersecurity & Network Monitoring</h4>
       </div>
       <div class="research-item">
         <div class="research-icon">
           <i class="fas fa-heartbeat"></i>
         </div>
-        <div class="research-content">
-          <h4>Medical Data Science</h4>
-          <p>ML-driven approaches for hea lthcare advancement and personalized treatment</p>
-          <div class="research-tags">
-            <span class="tag">Predictive Analytics</span>
-            <span class="tag">Healthcare AI</span>
-          </div>
+        <h4>Medical Data Science</h4>
+      </div>
+      <div class="research-item">
+        <div class="research-icon">
+          <i class="fas fa-shopping-cart"></i>
         </div>
+        <h4>eCommerce</h4>
+      </div>
+      <div class="research-item">
+        <div class="research-icon">
+          <i class="fas fa-vr-cardboard"></i>
+        </div>
+        <h4>Design Spaces</h4>
+      </div>
+      <div class="research-item">
+        <div class="research-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h4>Human Behavior Analysis</h4>
       </div>
     </div>
   </section>
@@ -135,12 +117,12 @@ latest_posts:
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-marker">
-          <i class="fas fa-graduation-cap"></i>
+          <i class="fas fa-university"></i>
         </div>
         <div class="timeline-content">
-          <h4>Ph.D. in Computer Science</h4>
-          <p>Specialized in <strong>game theory and mechanism design</strong>, developing theoretical models for strategic decision-making in competitive environments.</p>
-          <span class="timeline-meta">Bar-Ilan University • 2016</span>
+          <h4>Faculty Position</h4>
+          <p>Leading cutting-edge research in <strong>artificial intelligence</strong> while serving in multiple leadership roles and establishing international collaborations.</p>
+          <span class="timeline-meta">Ariel University • 2018-Present</span>
         </div>
       </div>
       <div class="timeline-item">
@@ -155,24 +137,18 @@ latest_posts:
       </div>
       <div class="timeline-item">
         <div class="timeline-marker">
-          <i class="fas fa-university"></i>
+          <i class="fas fa-graduation-cap"></i>
         </div>
         <div class="timeline-content">
-          <h4>Faculty Position</h4>
-          <p>Leading cutting-edge research in <strong>artificial intelligence</strong> while serving in multiple leadership roles and establishing international collaborations.</p>
-          <span class="timeline-meta">Ariel University • 2018-Present</span>
+          <h4>Ph.D. in Computer Science</h4>
+          <p>Specialized in <strong>game theory and mechanism design</strong>, developing theoretical models for strategic decision-making in competitive environments.</p>
+          <span class="timeline-meta">Bar-Ilan University • 2016</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Research Excellence -->
-  <section class="research-excellence">
-    <div class="excellence-content">
-      <h3><i class="fas fa-star"></i> Research Excellence</h3>
-      <p class="research-intro">My research portfolio spans from theoretical foundations to practical applications, with <strong>40+ peer-reviewed publications</strong> in leading venues. I focus on developing innovative AI solutions that address real-world challenges across multiple domains.</p>
-    </div>
-  </section>
+
 
   <!-- Collaboration & Impact -->
   <section class="impact-section">
@@ -317,25 +293,58 @@ h3 i {
   font-weight: 500;
 }
 
-.hero-badges {
+.hero-positions {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
+  margin: 2rem 0 1.5rem 0;
 }
 
-.badge {
-  background: var(--global-theme-color);
-  color: white;
-  padding: 0.5rem 1.2rem;
-  border-radius: 25px;
+.position-compact {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--global-theme-color);
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
   font-size: 0.9rem;
   font-weight: 600;
-  box-shadow: 0 3px 10px rgba(75, 108, 183, 0.3);
+  box-shadow: 0 3px 12px rgba(75, 108, 183, 0.2);
+  border: 1px solid rgba(75, 108, 183, 0.2);
+  transition: all 0.3s ease;
 }
 
-/* Leadership and Research Sections */
-.leadership-section, .research-focus-section {
+.position-compact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(75, 108, 183, 0.3);
+  background: white;
+}
+
+.position-compact i {
+  font-size: 1rem;
+  color: var(--global-theme-color);
+}
+
+.hero-institution {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.hero-institution i {
+  color: var(--global-theme-color);
+  font-size: 1.2rem;
+}
+
+/* Research Focus Section */
+.research-focus-section {
   background: white;
   padding: 2.5rem;
   border-radius: 20px;
@@ -343,64 +352,34 @@ h3 i {
   border: 1px solid #e2e8f0;
 }
 
-/* Position Items - Stacked */
-.positions-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.research-intro-container {
+  text-align: center;
+  padding: 1.5rem 0 2rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
 }
 
-.position-item {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1.5rem;
-  background: #f8fafc;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  transition: all 0.3s ease;
-}
-
-.position-item:hover {
-  transform: translateX(8px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  background: white;
-}
-
-.position-icon {
-  background: linear-gradient(135deg, var(--global-theme-color), #3b5998);
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.position-content h4 {
+.research-intro {
   color: #2d3748;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 0.3rem 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0 auto;
+  font-weight: 400;
 }
 
-.institution {
-  color: var(--global-theme-color);
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-/* Research Items - Stacked */
+/* Research Items - 2x3 Matrix Layout */
 .research-stack {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
 .research-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   padding: 1.5rem;
   background: #f8fafc;
   border-radius: 12px;
@@ -426,43 +405,22 @@ h3 i {
 .research-icon {
   background: linear-gradient(135deg, var(--global-theme-color), #3b5998);
   color: white;
-  width: 45px;
-  height: 45px;
-  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  flex-shrink: 0;
 }
 
-.research-content h4 {
+.research-item h4 {
   color: #2d3748;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  margin: 0 0 0.8rem 0;
-}
-
-.research-content p {
-  color: #4a5568;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.research-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.tag {
-  background: rgba(75, 108, 183, 0.1);
-  color: var(--global-theme-color);
-  padding: 0.25rem 0.6rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  margin: 0;
+  flex: 1;
 }
 
 /* Timeline Section */
@@ -523,28 +481,7 @@ h3 i {
   font-size: 0.95rem;
 }
 
-/* Research Excellence Section */
-.research-excellence {
-  text-align: center;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  padding: 3rem;
-  border-radius: 20px;
-  border: 1px solid #e2e8f0;
-}
 
-.excellence-content h3 {
-  margin-bottom: 1.5rem;
-  justify-content: center;
-}
-
-.research-intro {
-  color: #2d3748;
-  font-size: 1.2rem;
-  line-height: 1.7;
-  max-width: 900px;
-  margin: 0 auto;
-  font-weight: 500;
-}
 
 /* Impact Section */
 .impact-grid {
@@ -709,13 +646,22 @@ h3 i {
     font-size: 1.1rem;
   }
 
-  .hero-badges {
-    gap: 0.5rem;
+  .hero-positions {
+    gap: 1rem;
+    margin: 1.5rem 0 1rem 0;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .badge {
+  .position-compact {
     font-size: 0.8rem;
-    padding: 0.4rem 1rem;
+    padding: 0.6rem 1rem;
+    gap: 0.4rem;
+  }
+
+  .hero-institution {
+    font-size: 1rem;
+    margin-top: 0.8rem;
   }
 
   /* Section Headers Mobile */
@@ -728,37 +674,46 @@ h3 i {
     margin-bottom: 2.5rem;
   }
 
-  /* Leadership and Research Sections Mobile */
-  .leadership-section, .research-focus-section {
+  /* Research Focus Section Mobile */
+  .research-focus-section {
     padding: 1.5rem;
   }
 
-  .position-item, .research-item {
-    padding: 1rem;
-  }
-
-  .position-item {
-    flex-direction: column;
-    text-align: center;
+  .research-stack {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     gap: 1rem;
   }
 
-  .position-item:hover {
-    transform: translateY(-4px);
+  .research-item {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
   }
 
-  .research-content p {
-    font-size: 0.85rem;
+  .research-item h4 {
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .research-stack {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 0.8rem;
   }
 
-  /* Research Excellence Mobile */
-  .research-excellence {
-    padding: 2rem 1rem;
+  .research-item {
+    padding: 0.8rem;
   }
 
-  .research-intro {
-    font-size: 1rem;
+  .research-item h4 {
+    font-size: 0.8rem;
   }
+
+
 
   /* Timeline Mobile */
   .timeline {
@@ -788,10 +743,9 @@ h3 i {
     font-size: 0.95rem;
   }
 
-  /* Research Section Mobile */
+  /* Research Intro Mobile */
   .research-intro {
     font-size: 1rem;
-    margin-bottom: 2rem;
   }
 
   .research-areas {
@@ -925,10 +879,5 @@ h3 i {
   }
 }
 
-.research-intro {
-  color: #2d3748;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
+
 </style>
