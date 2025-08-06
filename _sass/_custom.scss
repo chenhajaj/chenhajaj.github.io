@@ -1,5 +1,56 @@
 /* Shared styles across pages */
 
+/* About Me Introduction Section */
+.about-intro-section {
+  background: white;
+  padding: 2.5rem;
+  margin-bottom: 4rem;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.about-intro-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.12);
+}
+
+.about-intro-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-intro-text {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #2d3748;
+  margin: 0;
+  font-weight: 450;
+  text-align: justify;
+  text-align-last: center;
+  letter-spacing: 0.025em;
+  word-spacing: 0.05em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .about-intro-section {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-intro-text {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    text-align: left;
+    text-align-last: left;
+    letter-spacing: 0.02em;
+    word-spacing: 0.03em;
+  }
+}
+
 /* Common page container */
 .page-content {
   max-width: 1200px;
@@ -8,7 +59,9 @@
 }
 
 /* Section headings */
-h2, h3, h4 {
+h2,
+h3,
+h4 {
   color: var(--global-theme-color);
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -20,14 +73,14 @@ h2, h3, h4 {
   background: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
 }
 
 .card-element:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
@@ -62,7 +115,7 @@ h2, h3, h4 {
   background: white;
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
 
@@ -94,12 +147,12 @@ h2, h3, h4 {
   .page-content {
     padding: 1rem 0.5rem;
   }
-  
+
   .card-element {
     padding: 1.5rem;
   }
-  
+
   .member-card {
     padding: 1rem;
   }
-} 
+}

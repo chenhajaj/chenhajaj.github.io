@@ -1,43 +1,43 @@
 {% assign positions = data %}
 <div class="positions">
   {% for item in positions %}
-  <div class="position-item">
-    <h5 class="position-title">{{ item.position | capitalize }}</h5>
-    <h6 class="institution">{{ item.institution }}</h6>
-    <div class="period">
-      <i class="fas fa-calendar-alt mr-1"></i>
-      {{ item.startDate }} - {{ item.endDate }}
+    <div class="position-item">
+      <h5 class="position-title">{{ item.position | capitalize }}</h5>
+      <h6 class="institution">{{ item.institution }}</h6>
+      <div class="period">
+        <i class="fas fa-calendar-alt mr-1"></i>
+        {{ item.startDate }} - {{ item.endDate }}
+      </div>
     </div>
-  </div>
   {% endfor %}
 </div>
 
 <style>
-.positions {
-  margin-bottom: 1.5rem;
-}
-.position-item {
-  margin-bottom: 1.5rem;
-  padding-left: 1rem;
-  border-left: 3px solid transparent;
-}
-.position-item:hover {
-  border-left-color: #2a6496;
-}
-.position-title {
-  color: #2a6496;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-.institution {
-  font-weight: 500;
-  color: #495057;
-  margin-bottom: 0.25rem;
-}
-.period {
-  color: #6c757d;
-}
-.period i {
-  margin-right: 0.5rem;
-}
-</style> 
+  .positions {
+    margin-bottom: 1.5rem;
+  }
+  .position-item {
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid transparent;
+  }
+  .position-item:hover {
+    border-left-color: #2a6496;
+  }
+  .position-title {
+    color: #2a6496;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .institution {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.25rem;
+  }
+  .period {
+    color: #6c757d;
+  }
+  .period i {
+    margin-right: 0.5rem;
+  }
+</style>

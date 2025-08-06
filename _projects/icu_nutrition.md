@@ -27,6 +27,7 @@ Our team has processed and analyzed comprehensive medical data from ICU patients
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/data-analysis.jpg" title="Medical data analysis" class="img-fluid rounded z-depth-1" %}
     </div>
+
 </div>
 <div class="caption">
     Left: ICU patient monitoring systems. Middle: Enteral nutrition delivery setup. Right: Analysis of patient outcome data.
@@ -35,6 +36,7 @@ Our team has processed and analyzed comprehensive medical data from ICU patients
 ## Data Collection
 
 Our comprehensive dataset includes:
+
 - Clinical metrics
 - Patient diagnoses
 - Medication records
@@ -43,6 +45,7 @@ Our comprehensive dataset includes:
 - Patient outcomes
 
 Data was collected through:
+
 - Electronic medical records
 - Bedside monitoring devices
 - Clinical documentation
@@ -62,6 +65,7 @@ Data was collected through:
 ## Research Objectives
 
 Our study aims to evaluate:
+
 1. Impact of nutrition delivery methods on mortality rates
 2. Correlation with nosocomial infections
 3. Effects on mechanical ventilation duration
@@ -80,8 +84,3 @@ We employ advanced statistical analysis and machine learning techniques to proce
     {% bibliography -q @*[author ~= Raphaeli && !(author ~= Glik)] %}
   </div>
 </div>
-
-
-
-
-

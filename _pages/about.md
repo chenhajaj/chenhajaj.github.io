@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: 
+subtitle:
 
 profile:
   align: right
@@ -33,36 +33,17 @@ latest_posts:
 ---
 
 <div class="about-content">
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        <span class="greeting">Hello, I'm</span>
-        <span class="name">Dr. Chen Hajaj</span>
-      </h1>
-      <p class="hero-subtitle">Assistant Professor & Data Science Leader</p>
-      
-      <!-- Academic Leadership Compact -->
-      <div class="hero-positions">
-        <div class="position-compact">
-          <i class="fas fa-chalkboard-teacher"></i>
-          <span>Assistant Professor</span>
-        </div>
-        <div class="position-compact">
-          <i class="fas fa-database"></i>
-          <span>Head of Data Science Track</span>
-        </div>
-        <div class="position-compact">
-          <i class="fas fa-gavel"></i>
-          <span>Director Faculty Review Board</span>
-        </div>
-      </div>
-      
-      <div class="hero-institution">
-        <i class="fas fa-university"></i>
-        <span>Ariel University</span>
-      </div>
+  <!-- About Me Section -->
+  <section class="about-intro-section">
+    <div class="about-intro-content">
+      <p class="about-intro-text">
+       I am Associate Professor and Head of the Data Science Track at the Department of Industrial Engineering and Management, Ariel University. My work spans the exciting intersection where artificial intelligence meets real-world challenges, transforming theoretical insights into practical solutions that matter.
+
+        As Director of the Faculty Review Board for the Faculty of Engineering, I am fostering innovation while maintaining the highest ethical standards. My passion lies in developing cutting-edge AI technologies that create meaningful impact—bridging the gap between academic research and industry applications to solve complex problems across healthcare, cybersecurity, eCommerce, and beyond.
+
+      </p>
     </div>
+
   </section>
 
   <!-- Research Focus -->
@@ -111,46 +92,32 @@ latest_posts:
     </div>
   </section>
 
-  <!-- Academic Journey -->
-  <section class="journey-section">
-    <h3><i class="fas fa-route"></i> Academic Journey</h3>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-marker">
-          <i class="fas fa-university"></i>
-        </div>
-        <div class="timeline-content">
-          <h4>Faculty Position</h4>
-          <p>Leading cutting-edge research in <strong>artificial intelligence</strong> while serving in multiple leadership roles and establishing international collaborations.</p>
-          <span class="timeline-meta">Ariel University • 2018-Present</span>
-        </div>
+  <!-- Join Our Team -->
+  <section class="join-team-section">
+    <h3><i class="fas fa-user-plus"></i> Join Our Research Team</h3>
+    <div class="join-lab-cta">
+      <div class="cta-main-content">
+        <!-- <h4>Join Our Research Team</h4> -->
+        <p class="welcome-text">We welcome motivated graduate students interested in pushing the boundaries of AI research. Our lab offers collaborative environment, cutting-edge projects, and opportunities for high-impact publications.</p>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-marker">
-          <i class="fas fa-microscope"></i>
+      <div class="cta-bottom">
+        <div class="cta-benefits">
+          <span class="benefit"><i class="fas fa-check"></i> Collaborative Environment</span>
+          <span class="benefit"><i class="fas fa-check"></i> Industry Partnerships</span>
+          <span class="benefit"><i class="fas fa-check"></i> Top-tier Publications</span>
+          <span class="benefit"><i class="fas fa-check"></i> International Exposure</span>
         </div>
-        <div class="timeline-content">
-          <h4>Postdoctoral Research</h4>
-          <p>Expanded research into <strong>machine learning and cybersecurity</strong>, developing AI-driven algorithms and supervising graduate students.</p>
-          <span class="timeline-meta">Vanderbilt University • 2016-2018</span>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-marker">
-          <i class="fas fa-graduation-cap"></i>
-        </div>
-        <div class="timeline-content">
-          <h4>Ph.D. in Computer Science</h4>
-          <p>Specialized in <strong>game theory and mechanism design</strong>, developing theoretical models for strategic decision-making in competitive environments.</p>
-          <span class="timeline-meta">Bar-Ilan University • 2016</span>
+        <div class="cta-action">
+          <a href="mailto:chenha@g.ariel.ac.il" class="btn-primary">
+            <i class="fas fa-envelope"></i>
+            Contact for Research Opportunities
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-
-
-  <!-- Collaboration & Impact -->
+  <!-- Research Opportunities -->
   <section class="impact-section">
     <h3><i class="fas fa-users"></i> Research Opportunities</h3>
     <div class="impact-grid">
@@ -191,24 +158,40 @@ latest_posts:
         </div>
       </div>
     </div>
-    
-    <div class="join-lab-cta">
-      <div class="cta-main-content">
-        <h4>Join Our Research Team</h4>
-        <p class="welcome-text">We welcome motivated graduate students interested in pushing the boundaries of AI research. Our lab offers collaborative environment, cutting-edge projects, and opportunities for high-impact publications.</p>
-      </div>
-      <div class="cta-bottom">
-        <div class="cta-benefits">
-          <span class="benefit"><i class="fas fa-check"></i> Collaborative Environment</span>
-          <span class="benefit"><i class="fas fa-check"></i> Industry Partnerships</span>
-          <span class="benefit"><i class="fas fa-check"></i> Top-tier Publications</span>
-          <span class="benefit"><i class="fas fa-check"></i> International Exposure</span>
+  </section>
+
+  <!-- Academic Journey -->
+  <section class="journey-section">
+    <h3><i class="fas fa-route"></i> Academic Journey</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker">
+          <i class="fas fa-university"></i>
         </div>
-        <div class="cta-action">
-          <a href="mailto:chenha@g.ariel.ac.il" class="btn-primary">
-            <i class="fas fa-envelope"></i>
-            Contact for Research Opportunities
-          </a>
+        <div class="timeline-content">
+          <h4>Faculty Position</h4>
+          <p>Leading cutting-edge research in <strong>artificial intelligence</strong> while serving in multiple leadership roles and establishing international collaborations.</p>
+          <span class="timeline-meta">Ariel University • 2018-Present</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker">
+          <i class="fas fa-microscope"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>Postdoctoral Research</h4>
+          <p>Expanded research into <strong>machine learning and cybersecurity</strong>, developing AI-driven algorithms and supervising graduate students.</p>
+          <span class="timeline-meta">Vanderbilt University • 2016-2018</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>Ph.D. in Computer Science</h4>
+          <p>Specialized in <strong>game theory and mechanism design</strong>, developing theoretical models for strategic decision-making in competitive environments.</p>
+          <span class="timeline-meta">Bar-Ilan University • 2016</span>
         </div>
       </div>
     </div>
@@ -239,6 +222,15 @@ latest_posts:
 section {
   margin-bottom: 4rem;
   padding: 0;
+}
+
+/* About Intro Section Override */
+.about-intro-section {
+  background: white !important;
+  padding: 2.5rem !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08) !important;
 }
 
 h3 {

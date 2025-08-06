@@ -2,7 +2,6 @@
 layout: page
 permalink: /teaching/
 title: Teaching Experience
-
 ---
 
 <div class="row">
