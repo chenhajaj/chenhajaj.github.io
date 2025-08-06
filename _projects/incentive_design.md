@@ -15,8 +15,9 @@ My research focuses on the economics of decision-making in networks and incentiv
 ## Research Areas
 
 Our work encompasses several key areas:
+
 - Payment mechanism design
-- Task allocation optimization  
+- Task allocation optimization
 - Network coordination and cooperation
 - Team formation incentives
 - Preference elicitation
@@ -40,6 +41,7 @@ Our work encompasses several key areas:
 ## Challenges in Crowdsourcing
 
 A key challenge in crowdsourcing is designing payment schemes that:
+
 - Motivate high-quality work
 - Ensure fair compensation
 - Prevent gaming of the system
@@ -57,6 +59,7 @@ A key challenge in crowdsourcing is designing payment schemes that:
 ## Team Formation Research
 
 Our research on team formation investigates mechanisms to:
+
 1. Elicit honest reporting of preferences and capabilities
 2. Form effective teams that maximize social welfare
 3. Balance individual and collective objectives

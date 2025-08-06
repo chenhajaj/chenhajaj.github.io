@@ -1,6 +1,11 @@
 ---
 ---
-<div class="entry" {% if entry.projects %}data-projects="{{ entry.projects }}"{% endif %}>
+<div
+  class="entry"
+  {% if entry.projects %}
+    data-projects="{{ entry.projects }}"
+  {% endif %}
+>
   <!-- Title -->
   <div class="title">
     {% if entry.url %}
@@ -9,10 +14,10 @@
       {{ entry.title }}
     {% endif %}
   </div>
-  
+
   <!-- Year -->
   <div class="year">{{ entry.year }}</div>
-  
+
   <!-- Author -->
   <div class="author">
     {% assign author_array_size = entry.author_array | size %}
@@ -36,19 +41,23 @@
         {%- if forloop.last and author_array_limit == author_array_size %}and&nbsp;{% endif -%}
       {% endif %}
       {%- if author_is_self -%}
-        <em>{{- author.first }} {{ author_last_html -}}</em>
+        <em>
+          {{- author.first }}
+          {{ author_last_html -}}
+        </em>
       {%- else -%}
-        {{- author.first }} {{ author_last_html -}}
+        {{- author.first }}
+        {{ author_last_html -}}
       {%- endif -%}
     {%- endfor -%}
   </div>
 
   <!-- Periodical -->
-  {% if entry.type == "article" -%}
+  {% if entry.type == 'article' -%}
     {%- if entry.journal -%}
       <div class="periodical">{{ entry.journal }}</div>
     {%- endif -%}
-  {% elsif entry.type == "inproceedings" -%}
+  {% elsif entry.type == 'inproceedings' -%}
     {%- if entry.booktitle -%}
       <div class="periodical">{{ entry.booktitle }}</div>
     {%- endif -%}
@@ -69,14 +78,14 @@
 </div>
 
 <style>
-.project-tag {
-  font-size: 0.8rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding: 0.2rem 0.6rem;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  color: #495057;
-  border-radius: 12px;
-}
+  .project-tag {
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.2rem 0.6rem;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    border-radius: 12px;
+  }
 </style>

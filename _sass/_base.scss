@@ -717,7 +717,7 @@ footer.sticky-bottom {
       background: white;
       padding: 1.2rem;
       border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
       transition: all 0.3s ease;
       border: 1px solid #eee;
       position: relative;
@@ -734,7 +734,7 @@ footer.sticky-bottom {
       }
 
       &:hover {
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         transform: translateY(-1px);
       }
 
@@ -762,7 +762,7 @@ footer.sticky-bottom {
         margin-top: 0.8rem;
         padding-top: 0.8rem;
         padding-left: 2rem;
-        
+
         .btn {
           font-size: 0.75rem;
           padding: 0.15rem 0.6rem;
@@ -776,7 +776,7 @@ footer.sticky-bottom {
   .publications {
     ol.bibliography li {
       padding: 1rem;
-      
+
       &::before {
         left: 1rem;
         top: 1rem;

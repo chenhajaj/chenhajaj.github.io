@@ -1,12 +1,11 @@
 ---
 layout: page
 title: Encrypted Traffic Classification
-description: 
+description:
 img: assets/img/encrypted.jpg
 importance: 1
 category: work
 giscus_comments: false
-
 ---
 
 <!-- # Encrypted Traffic Classification Research -->
@@ -40,8 +39,6 @@ The transition towards encryption protocols presents several key challenges:
 2. Limited visibility due to TLS 1.3 and similar protocols
 3. Connection aggregation in QUIC, HTTP/2, and HTTP/3
 4. Need for new classification methodologies
-
-
 
 ## Methodology
 
