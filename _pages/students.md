@@ -196,11 +196,7 @@ nav_order: 3
         <p class="graduation-year"><i class="fas fa-calendar"></i> 2025</p>
         <p class="research-area"><i class="fas fa-microscope"></i> Multimodal Learning</p>
       </div>
-      <div class="member-card">
-        <strong>Uri Iron</strong>
-        <p class="graduation-year"><i class="fas fa-calendar"></i> 2025</p>
-        <p class="research-area"><i class="fas fa-microscope"></i> LLMs</p>
-      </div> 
+       
     </div>
   </div>
 
@@ -208,12 +204,17 @@ nav_order: 3
   <div class="student-section card-element">
     <h2><i class="fas fa-history"></i> Former Research Assistants</h2>
     <div class="student-grid">
-      <div class="member-card alumni">
+    <div class="member-card alumni">
+        <strong>Uri Iron</strong>
+        <p class="graduation-year"><i class="fas fa-calendar"></i> 2025</p>
+        <p class="research-area"><i class="fas fa-microscope"></i> LLMs</p>
+    </div>
+    <div class="member-card alumni">
         <strong>Roni Epstein</strong>
         <p class="graduation-year"><i class="fas fa-calendar"></i> 2024-2025</p>
         <p class="research-area"><i class="fas fa-microscope"></i> Design Spaces, UTI early detection, Cancer detection</p>
-      </div>
-      <div class="member-card alumni">
+    </div>
+    <div class="member-card alumni">
         <strong>Shon Schori</strong>
         <p class="graduation-year"><i class="fas fa-calendar"></i> 2022-2024</p>
         <p class="research-area"><i class="fas fa-microscope"></i> UTI early detection, Cancer detection, Emotions and AI</p>

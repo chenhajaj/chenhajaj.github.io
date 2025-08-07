@@ -37,7 +37,7 @@ latest_posts:
   <section class="about-intro-section">
     <div class="about-intro-content">
       <p class="about-intro-text">
-       I am Associate Professor and Head of the Data Science Track at the Department of Industrial Engineering and Management, Ariel University. My work spans the exciting intersection where artificial intelligence meets real-world challenges, transforming theoretical insights into practical solutions that matter.
+       I am an Associate Professor and Head of the Data Science Track at the Department of Industrial Engineering and Management, Ariel University. My work spans the exciting intersection where artificial intelligence meets real-world challenges, transforming theoretical insights into practical solutions that matter.
 
         As Director of the Faculty Review Board for the Faculty of Engineering, I am fostering innovation while maintaining the highest ethical standards. My passion lies in developing cutting-edge AI technologies that create meaningful impact—bridging the gap between academic research and industry applications to solve complex problems across healthcare, cybersecurity, eCommerce, and beyond.
 
@@ -170,7 +170,7 @@ latest_posts:
         </div>
         <div class="timeline-content">
           <h4>Faculty Position</h4>
-          <p>Leading cutting-edge research in <strong>artificial intelligence</strong> while serving in multiple leadership roles and establishing international collaborations.</p>
+          <p>Leading cutting-edge research while serving in multiple leadership roles.</p>
           <span class="timeline-meta">Ariel University • 2018-Present</span>
         </div>
       </div>

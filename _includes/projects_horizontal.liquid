@@ -4,7 +4,15 @@
       <div class="row no-gutters">
         {% if project.img %}
           <div class="col-md-6">
-            {% include figure.liquid loading="eager" path=project.img sizes="(min-width: 768px) 156px, 50vw" alt="project thumbnail" class="card-img" %}
+            <div class="project-img-container-horizontal">
+              {% include figure.liquid loading="eager" path=project.img sizes="(min-width: 768px) 156px, 50vw" alt="project thumbnail" class="card-img project-img-horizontal" %}
+            </div>
+          </div>
+        {% else %}
+          <div class="col-md-6">
+            <div class="project-img-placeholder-horizontal">
+              <i class="fas fa-project-diagram"></i>
+            </div>
           </div>
         {% endif %}
         <div class="{% if project.img %}col-md-6{% else %}col-md-12{% endif %}">
