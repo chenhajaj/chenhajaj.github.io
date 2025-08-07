@@ -11,7 +11,7 @@ ninja.data = [{
     },
   },{id: "nav-curriculum-vitae",
           title: "Curriculum Vitae",
-          description: "Academic CV including positions, publications, patents, and grants.",
+          description: "Academic CV including education, academic administration, conferences, patents, and grants.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
@@ -435,9 +435,9 @@ ninja.data = [{
           description: "",
           section: "Projects",handler: () => {
               window.location.href = "/projects/encrypted_traffic/";
-            },},{id: "projects-icu-nutrition-analysis",
-          title: 'ICU Nutrition Analysis',
-          description: "Analyzing nutrition delivery methods and patient outcomes in intensive care",
+            },},{id: "projects-medical-data-science",
+          title: 'Medical Data Science',
+          description: "Advancing healthcare through machine learning and data-driven clinical insights",
           section: "Projects",handler: () => {
               window.location.href = "/projects/icu_nutrition/";
             },},{id: "projects-incentive-design",
