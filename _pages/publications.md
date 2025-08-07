@@ -128,19 +128,30 @@ nav_order: 2
   font-weight: 500;
 }
 
-/* Year Groups */
+/* Year Groups - Rectangle Cards */
+.year-group {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 3rem;
+  transition: all 0.3s ease;
+}
+
+.year-group:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(0,0,0,0.12);
+}
+
 .publications-container h2 {
   font-size: 2rem;
   font-weight: 700;
   color: var(--global-theme-color);
-  margin: 3rem 0 2rem 0;
-  padding: 1rem 0;
+  margin: 0 0 2rem 0;
+  padding: 0 0 1rem 0;
   border-bottom: 3px solid var(--global-theme-color);
   position: relative;
-}
-
-.publications-container h2:first-child {
-  margin-top: 0;
 }
 
 .publications-container h2::after {
@@ -156,6 +167,103 @@ nav_order: 2
 /* Publication Entries */
 .publications-container {
   margin-bottom: 3rem;
+}
+
+/* Style year groupings as rectangles */
+.publications-container .year {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 3rem;
+  transition: all 0.3s ease;
+}
+
+.publications-container .year:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(0,0,0,0.12);
+}
+
+/* Adjust spacing within year groups */
+.publications-container .year h2 {
+  margin-top: 0;
+}
+
+.publications-container .year .bibliography {
+  margin-top: 0;
+}
+
+.publications-container .year .bibliography li:last-child {
+  margin-bottom: 0;
+}
+
+/* Override default bibliography styling for year grouping */
+.publications-container .bibliography h2 {
+  color: var(--global-theme-color);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 2rem 0;
+  padding: 0 0 1rem 0;
+  border-bottom: 3px solid var(--global-theme-color);
+  position: relative;
+}
+
+.publications-container .bibliography h2::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: #3b5998;
+}
+
+/* Year container styling */
+.publications-container .bibliography h2 + .bibliography {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 3rem;
+  transition: all 0.3s ease;
+}
+
+/* Publications grouped by year styling */
+.publications-container > .bibliography h2 ~ ol {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 3rem;
+  transition: all 0.3s ease;
+}
+
+/* Year grouping with JavaScript enhancement */
+.year-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 3rem;
+  transition: all 0.3s ease;
+}
+
+.year-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(0,0,0,0.12);
+}
+
+.year-card h2 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.year-card .bibliography {
+  margin: 0;
 }
 
 .entry {
@@ -375,3 +483,37 @@ nav_order: 2
   }
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Group year headings with their corresponding publications
+  const publicationsContainer = document.querySelector('.publications-container');
+  if (publicationsContainer) {
+    const bibliography = publicationsContainer.querySelector('.bibliography');
+    if (bibliography) {
+      const yearHeadings = bibliography.querySelectorAll('h2');
+      
+      yearHeadings.forEach(function(heading) {
+        // Find the next bibliography list after this heading
+        let nextElement = heading.nextElementSibling;
+        while (nextElement && !nextElement.matches('ol.bibliography')) {
+          nextElement = nextElement.nextElementSibling;
+        }
+        
+        if (nextElement && nextElement.matches('ol.bibliography')) {
+          // Create a year card container
+          const yearCard = document.createElement('div');
+          yearCard.className = 'year-card';
+          
+          // Insert the year card before the heading
+          heading.parentNode.insertBefore(yearCard, heading);
+          
+          // Move the heading and bibliography list into the year card
+          yearCard.appendChild(heading);
+          yearCard.appendChild(nextElement);
+        }
+      });
+    }
+  }
+});
+</script>
