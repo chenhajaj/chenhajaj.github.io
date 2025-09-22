@@ -37,9 +37,9 @@ latest_posts:
   <section class="about-intro-section">
     <div class="about-intro-content">
       <p class="about-intro-text">
-       I am an Associate Professor and Head of the Data Science Track at the Department of Industrial Engineering and Management, Ariel University. My work spans the exciting intersection where artificial intelligence meets real-world challenges, transforming theoretical insights into practical solutions that matter.
+       I am an Associate Professor and Head of the Data Science Track in the Department of Industrial Engineering and Management at Ariel University. My research explores the dynamic intersection of artificial intelligence and real-world applications, where theoretical insights are transformed into practical solutions with tangible impact. My passion is advancing AI technologies that bridge academia and industry, tackling complex challenges in healthcare, cybersecurity, eCommerce, and other domains where intelligent systems can make a real difference.
 
-        As Director of the Faculty Review Board for the Faculty of Engineering, I am fostering innovation while maintaining the highest ethical standards. My passion lies in developing cutting-edge AI technologies that create meaningful impact—bridging the gap between academic research and industry applications to solve complex problems across healthcare, cybersecurity, eCommerce, and beyond.
+        <!-- As Director of the Faculty Review Board for the Faculty of Engineering, I am fostering innovation while maintaining the highest ethical standards. My passion lies in developing cutting-edge AI technologies that create meaningful impact—bridging the gap between academic research and industry applications to solve complex problems across healthcare, cybersecurity, eCommerce, and beyond. -->
 
       </p>
     </div>
@@ -118,7 +118,7 @@ latest_posts:
   </section>
 
   <!-- Research Opportunities -->
-  <section class="impact-section">
+  <!-- <section class="impact-section">
     <h3><i class="fas fa-users"></i> Research Opportunities</h3>
     <div class="impact-grid">
       <div class="impact-card">
@@ -158,7 +158,7 @@ latest_posts:
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- Academic Journey -->
   <section class="journey-section">
