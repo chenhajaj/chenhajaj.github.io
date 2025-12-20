@@ -25,7 +25,7 @@ ninja.data = [{
           },
         },{id: "nav-projects",
           title: "Projects",
-          description: "A growing collection of our cool projects.",
+          description: "Research projects in AI, cybersecurity, healthcare, and data science.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
@@ -427,27 +427,27 @@ ninja.data = [{
               window.location.href = "/projects/adversarial_ai/";
             },},{id: "projects-quantifying-constructivist-learning-in-studio-based-education",
           title: 'Quantifying Constructivist Learning in Studio-Based Education',
-          description: "",
+          description: "Data science methods for measuring learning in creative education settings",
           section: "Projects",handler: () => {
               window.location.href = "/projects/constructivist_learning/";
             },},{id: "projects-encrypted-traffic-classification",
           title: 'Encrypted Traffic Classification',
-          description: "",
+          description: "AI-powered methods for classifying and analyzing encrypted network traffic",
           section: "Projects",handler: () => {
               window.location.href = "/projects/encrypted_traffic/";
             },},{id: "projects-medical-data-science",
           title: 'Medical Data Science',
-          description: "Advancing healthcare through machine learning and data-driven clinical insights",
+          description: "Machine learning applications for critical care and medical decision-making",
           section: "Projects",handler: () => {
               window.location.href = "/projects/icu_nutrition/";
             },},{id: "projects-incentive-design",
           title: 'Incentive Design',
-          description: "Research on economics of decision-making in networks and incentives in crowdsourcing",
+          description: "Mechanism design for strategic decision-making in networks and crowdsourcing",
           section: "Projects",handler: () => {
               window.location.href = "/projects/incentive_design/";
             },},{id: "projects-a-multimodal-approach-for-measuring-item-similarity",
           title: 'A Multimodal Approach for Measuring Item Similarity',
-          description: "An innovative method for measuring similarity between items using concepts from image recognition and NLP, applied to e-tourism destinations",
+          description: "Measuring similarity between items using computer vision and natural language processing",
           section: "Projects",handler: () => {
               window.location.href = "/projects/similarity/";
             },},{
