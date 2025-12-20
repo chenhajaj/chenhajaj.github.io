@@ -9,6 +9,9 @@
 - title: Academic Administration
   type: time_table
   contents:
+    - title: NVIDIA University Ambassador
+      institution: Ariel University
+      year: 2024 - present
     - title: Head of the Faculty review board
       institution: Ariel University, Faculty of Engineering
       year: 2021 - present
@@ -87,3 +90,16 @@
     - title: BSF - Strategy proof Mechanisms for Kidney Exchange
       year: 2015
       description: Principal Investigator - Chen Hajaj. Amount - $4,000
+
+- title: Education
+  type: time_table
+  contents:
+    - title: Ph.D. in Computer Science
+      institution: Bar-Ilan University, Israel
+      year: 2010 - 2015
+    - title: M.Sc. in Computer Science
+      institution: Bar-Ilan University, Israel
+      year: 2008 - 2010
+    - title: B.Sc. in Computer Science
+      institution: Bar-Ilan University, Israel
+      year: 2005 - 2008

@@ -1,113 +1,213 @@
 ---
 layout: page
 title: Incentive Design
-description: Research on economics of decision-making in networks and incentives in crowdsourcing
+description: Mechanism design for strategic decision-making in networks and crowdsourcing
 img: assets/img/DM.png
 importance: 2
 category: work
 giscus_comments: true
 ---
 
-# Strategic Market Intelligence: When Economics Meets AI
+<style>
+.post-header {
+  display: none;
+}
 
-What happens when **millions of online shoppers** make decisions based on incomplete information? How do you design systems where **everyone wins** – even when people are naturally selfish? Welcome to the fascinating world of **Mechanism Design and Strategic Intelligence** – where we engineer the invisible rules that make digital markets, platforms, and teams actually work.
+/* Project Content Styling */
+.project-content {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2d3748;
+}
 
-Imagine designing the **perfect auction** where lying doesn't pay off, or creating **life-saving kidney exchange** programs that are both efficient and fair. Picture **e-commerce platforms** that strategically reveal just the right information to help both buyers and sellers win. **This isn't theoretical economics – this is applied intelligence reshaping how the world does business.**
+.project-content .lead-text {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #1a202c;
+  margin-bottom: 3rem;
+  font-weight: 400;
+  border-left: 4px solid var(--global-theme-color);
+  padding-left: 1.5rem;
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.05), transparent);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  border-radius: 0 8px 8px 0;
+}
 
-## The Hidden Architecture of Digital Success
+.project-content p {
+  margin: 1rem 0;
+  color: #4a5568;
+}
 
-Every click, every transaction, every team formation on digital platforms is governed by **carefully designed incentives**. Our research engineers the **invisible mechanisms** that turn chaos into coordination, competition into collaboration, and self-interest into social benefit.
+.project-content h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--global-theme-color);
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.8rem;
+  border-bottom: 3px solid var(--global-theme-color);
+}
 
-### 💡 **The Core Challenge**
+.project-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right, #3b5998, var(--global-theme-color));
+}
 
-How do you design systems where **rational, self-interested actors** (people, companies, algorithms) naturally make choices that benefit everyone? The answer lies in **strategic mechanism design** – the art and science of creating rules that align individual incentives with collective goals.
+.project-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--global-theme-color);
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.08), transparent);
+  padding: 0.8rem 0 0.8rem 1.2rem;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
 
-## Our Research Breakthroughs: Engineering Digital Economics
+.project-content h3:hover {
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.12), transparent);
+  transform: translateX(4px);
+}
 
-### 🛒 **E-commerce Intelligence: Strategic Information Platforms**
+.project-content h3 + p {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+  color: #4a5568;
+}
 
-**The Problem**: Online shopping platforms control what information buyers see, but how should they reveal prices and options to maximize both buyer satisfaction and seller revenue?
+.project-publications {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 2px solid #e2e8f0;
+}
 
-**Our Innovation**: **Strategic information disclosure** mechanisms that:
+.project-publications h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--global-theme-color);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: none;
+  background: none;
+  padding: 0;
+}
 
-- **Selectively reveal prices** to optimize comparison shopping effectiveness
-- **Time information release** to improve buyer decision-making
-- **Balance platform profits** with user welfare
-- **Prevent information manipulation** while maintaining competitive markets
+.project-publications h3:hover {
+  transform: none;
+}
 
-_Real Impact_: Our research shapes how major e-commerce platforms design their information architecture, affecting **millions of purchasing decisions daily**.
+.project-publications h3 i {
+  font-size: 1.6rem;
+}
 
-### 🤝 **Team Formation Mechanisms: Making Cooperation Work**
+@media (max-width: 768px) {
+  .project-content {
+    font-size: 1rem;
+  }
+  
+  .project-content > p:first-of-type {
+    font-size: 1.15rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .project-content h2 {
+    font-size: 1.7rem;
+    margin-top: 2.5rem;
+  }
+  
+  .project-content h3 {
+    font-size: 1.25rem;
+    padding-left: 1rem;
+  }
+  
+  .project-publications h3 {
+    font-size: 1.5rem;
+  }
+}
+</style>
 
-**The Challenge**: How do you form effective teams when people lie about their abilities and preferences?
+<!-- Project Banner -->
+<div class="project-banner" style="margin-bottom: 3rem; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-height: 400px; position: relative;">
+  <div style="width: 100%; height: 400px; overflow: hidden; position: relative;">
+    {% include figure.liquid loading="eager" path="assets/img/DM.png" title="Incentive Design" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" %}
+  </div>
+  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); padding: 2.5rem; color: white;">
+    <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">Incentive Design</h1>
+    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">Mechanism design for strategic decision-making in networks and crowdsourcing</p>
+  </div>
+</div>
 
-**Our Solution**: **Strategy-proof team formation** mechanisms that:
+<div class="project-content">
 
-- **Elicit honest reporting** of skills and preferences through clever incentive design
-- **Maximize team effectiveness** while ensuring individual fairness
-- **Balance individual rewards** with collective success
-- **Scale from small groups** to large organizational restructuring
+<p class="lead-text">How do you design systems where selfish behavior leads to good outcomes? Through mechanism design—creating rules and incentives that align individual interests with collective goals. We develop strategies for e-commerce, team formation, and healthcare allocation.</p>
 
-_Applications_: Used in everything from academic research teams to corporate project allocation.
+<h2>Research Areas</h2>
 
-### 💝 **Life-Saving Mechanism Design: Kidney Exchange Systems**
+<h3>E-commerce Platforms</h3>
 
-**The Ultimate Stakes**: Designing **strategy-proof and efficient kidney exchange** programs where lying could literally cost lives.
+<p>Strategic information disclosure that helps buyers make better decisions while balancing platform profits and user welfare.</p>
 
-**Our Breakthrough**: **Credit-based kidney exchange** mechanisms that:
+<h3>Team Formation</h3>
 
-- **Prevent strategic manipulation** by donors and recipients
-- **Increase transplant efficiency** through better matching algorithms
-- **Ensure fairness** across different patient populations
-- **Save lives** through mathematically proven optimal allocation
+<p>Strategy-proof mechanisms that make honesty the best policy. Form effective teams even when people might misreport skills.</p>
 
-_Global Impact_: Our mechanisms are being implemented in **real hospital systems**, directly improving organ transplant outcomes worldwide.
+<h3>Kidney Exchange</h3>
 
-## The Ripple Effect: From Theory to Global Impact
+<p>Credit-based systems preventing manipulation. Increase transplant efficiency while ensuring fairness.</p>
 
-### 🌐 **Digital Platform Revolution**
+<h2>Technical Approach</h2>
 
-Our mechanism design research has **fundamentally changed** how digital platforms operate:
+<h3>Mechanism Design Theory</h3>
 
-**E-commerce Giants**:
+<p>Applying game theory and economic theory to design systems where truth-telling is the optimal strategy. Mathematical proofs of strategy-proofness and efficiency.</p>
 
-- **Amazon, eBay, and major platforms** implement our strategic information disclosure research
-- **Millions of buyers** make better decisions through optimized information timing
-- **Sellers compete more fairly** with transparent, mechanism-designed systems
+<h3>Strategic Intelligence</h3>
 
-**Healthcare Systems**:
+<p>Understanding how information revelation affects decision-making. Timing and sequencing of information to improve outcomes.</p>
 
-- **Kidney exchange programs** using our credit mechanisms save hundreds of lives annually
-- **Hospital allocation systems** implement our fairness-based team formation research
-- **Medical resource distribution** operates through strategy-proof mechanisms
+<h3>Fairness and Efficiency</h3>
 
-### 🎯 **Why This Research Changes Everything**
+<p>Balancing individual incentives with collective welfare. Ensuring systems are both efficient and fair.</p>
 
-**Traditional Approach**: "Hope people behave well and fix problems later"
+<h2>Applications</h2>
 
-**Our Approach**: **"Design systems where good behavior is the rational choice"**
+<h3>Digital Platforms</h3>
 
-### 📊 **Measurable Global Impact**
+<p>E-commerce platforms implementing strategic information disclosure. Team formation systems for organizations.</p>
 
-- **500,000+ organ transplant** decisions optimized through our kidney exchange mechanisms
-- **Billions of e-commerce transactions** influenced by our strategic information research
-- **Thousands of teams** formed using our strategy-proof mechanisms
-- **Major platforms** redesigned their core architecture based on our findings
+<h3>Healthcare</h3>
 
-### 🚀 **The Future of Strategic Intelligence**
+<p>Kidney exchange programs in hospital systems. Medical resource allocation mechanisms.</p>
 
-Our research extends far beyond current applications:
+<h3>General Markets</h3>
 
-- **AI agent negotiations** using mechanism design principles
-- **Blockchain consensus mechanisms** based on our strategic intelligence research
-- **Social media platforms** implementing our coordination mechanisms
-- **Smart cities** using our team formation research for resource allocation
+<p>Any system requiring coordination among self-interested parties. Applications in AI agent negotiations and blockchain consensus mechanisms.</p>
 
-**The Bottom Line**: In a world where **digital interactions govern trillion-dollar markets**, the mechanisms we design today determine whether technology serves humanity or exploits it. Our research ensures that **intelligence serves everyone**.
+<h2>Impact</h2>
+
+<p>Our research contributes to the design of digital platforms and healthcare systems. The work includes mechanisms implemented in real e-commerce platforms and kidney exchange programs, affecting millions of transactions and improving organ transplant outcomes.</p>
 
 <div class="project-publications">
   <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
   <div class="publications">
     {% bibliography -q @*[author ~= Sarne] %}
   </div>
+</div>
+
 </div>

@@ -1,12 +1,11 @@
 {% assign positions = data %}
-<div class="positions">
+<div class="timeline">
   {% for item in positions %}
-    <div class="position-item">
-      <h5 class="position-title">{{ item.position | capitalize }}</h5>
-      <h6 class="institution">{{ item.institution }}</h6>
-      <div class="period">
-        <i class="fas fa-calendar-alt mr-1"></i>
-        {{ item.startDate }} - {{ item.endDate }}
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="timeline-year">{{ item.startDate }} - {{ item.endDate }}</div>
+        <h4 class="timeline-title">{{ item.position | capitalize }}</h4>
+        <div class="timeline-institution">{{ item.institution }}</div>
       </div>
     </div>
   {% endfor %}

@@ -56,48 +56,393 @@ layout: default
 
   <style>
     .cv {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 2rem 1rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
     .section {
       margin-bottom: 3rem;
-      padding: 2rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    .section:hover {
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      transform: translateY(-2px);
-      transition: all 0.3s ease;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
     }
 
     .section-title {
-      color: var(--global-theme-color);
-      font-size: 1.75rem;
+      color: #1e293b;
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       margin-bottom: 2rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--global-theme-color);
+      padding-bottom: 0;
+      border-bottom: none;
+      letter-spacing: -0.03em;
+      text-transform: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
     .section-content {
-      padding: 0 1rem;
+      padding: 0;
+    }
+    
+    /* Timeline Container */
+    .timeline {
+      position: relative;
+      padding-left: 0;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      bottom: 10px;
+      width: 3px;
+      background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+      border-radius: 2px;
+    }
+    
+    /* Timeline Item - Modern Card */
+    .timeline-item {
+      position: relative;
+      padding-left: 60px;
+      margin-bottom: 2.5rem;
+      min-height: 80px;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 8px;
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+      z-index: 1;
+    }
+    
+    .timeline-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .timeline-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .timeline-card:hover {
+      transform: translateX(8px);
+      box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
+      border-color: #3b82f6;
+    }
+    
+    .timeline-card:hover::before {
+      opacity: 1;
+    }
+    
+    /* Year Badge */
+    .timeline-year {
+      position: absolute;
+      top: 1.75rem;
+      right: 1.75rem;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      max-width: 140px;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .timeline-year {
+        position: static;
+        display: inline-block;
+        margin-bottom: 0.75rem;
+        font-size: 0.85rem;
+        padding: 0.4rem 0.85rem;
+      }
+    }
+    
+    /* Content Typography */
+    .timeline-title {
+      color: #1e293b;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem 0;
+      line-height: 1.4;
+      padding-right: 160px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+    
+    @media (max-width: 768px) {
+      .timeline-title {
+        padding-right: 0;
+        margin-top: 3rem;
+      }
+    }
+    
+    .timeline-institution {
+      color: #64748b;
+      font-size: 1.05rem;
+      margin: 0 0 1rem 0;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .timeline-institution::before {
+      content: '\f19c';
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      color: #3b82f6;
+      font-size: 1rem;
+    }
+    
+    .timeline-description {
+      color: #475569;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0.75rem 0 0 0;
+    }
+    
+    /* Special styling for different sections */
+    
+    /* Education Section */
+    #education .timeline-card {
+      border-color: #dbeafe;
+      background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+    }
+    
+    #education .timeline-card:hover {
+      border-color: #3b82f6;
+    }
+    
+    /* Grants Section */
+    #grants .timeline-card {
+      border-color: #d1fae5;
+      background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+    }
+    
+    #grants .timeline-card:hover {
+      border-color: #10b981;
+    }
+    
+    #grants .timeline-year {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    
+    #grants .timeline::before {
+      background: linear-gradient(to bottom, #10b981, #059669);
+    }
+    
+    #grants .timeline-item::before {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    }
+    
+    /* Patents Section */
+    #patents .timeline-card {
+      border-color: #e9d5ff;
+      background: linear-gradient(135deg, #ffffff 0%, #faf5ff 100%);
+    }
+    
+    #patents .timeline-card:hover {
+      border-color: #8b5cf6;
+    }
+    
+    #patents .timeline-year {
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+    
+    #patents .timeline::before {
+      background: linear-gradient(to bottom, #8b5cf6, #7c3aed);
+    }
+    
+    #patents .timeline-item::before {
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+    }
+    
+    /* Amount Badge for Grants */
+    .grant-amount {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 0.75rem;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+    }
+    
+    .grant-amount::before {
+      content: '\f155';
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      margin-right: 0.5rem;
+    }
+    
+    /* Patent Badge */
+    .patent-badge {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      color: white;
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      box-shadow: 0 3px 10px rgba(139, 92, 246, 0.25);
+    }
+    
+    .patent-badge::before {
+      content: '\f0e7';
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      margin-right: 0.4rem;
+    }
+    
+    /* Conference Cards */
+    #conference-organization .timeline-card,
+    #academic-administration .timeline-card {
+      border-color: #fed7aa;
+      background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+    }
+    
+    #conference-organization .timeline-card:hover,
+    #academic-administration .timeline-card:hover {
+      border-color: #f59e0b;
+    }
+    
+    #conference-organization .timeline-year,
+    #academic-administration .timeline-year {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    
+    #conference-organization .timeline::before,
+    #academic-administration .timeline::before {
+      background: linear-gradient(to bottom, #f59e0b, #d97706);
+    }
+    
+    #conference-organization .timeline-item::before,
+    #academic-administration .timeline-item::before {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+    }
+    
+    /* Thesis/Details styling */
+    .cv-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(59, 130, 246, 0.05);
+      border-radius: 10px;
+      border-left: 3px solid #3b82f6;
+    }
+    
+    .cv-detail-icon {
+      color: #3b82f6;
+      font-size: 1.1rem;
+      margin-top: 0.2rem;
+    }
+    
+    .cv-detail-label {
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+    
+    .cv-detail-value {
+      color: #475569;
+      font-style: italic;
+      line-height: 1.6;
+      font-size: 0.95rem;
     }
 
     @media (max-width: 768px) {
       .cv {
-        padding: 1rem;
+        padding: 1rem 0.5rem;
       }
 
       .section {
-        padding: 1.5rem;
         margin-bottom: 2rem;
       }
 
       .section-title {
         font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .timeline::before {
+        left: 15px;
+      }
+      
+      .timeline-item {
+        padding-left: 50px;
+      }
+      
+      .timeline-item::before {
+        left: 8px;
+        width: 14px;
+        height: 14px;
+      }
+      
+      .timeline-card {
+        padding: 1.5rem;
+      }
+      
+      .timeline-year {
+        position: static;
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .timeline-title {
+        font-size: 1.15rem;
+        padding-right: 0;
+      }
+      
+      .timeline-institution {
+        font-size: 1rem;
       }
     }
   </style>
@@ -127,6 +472,7 @@ layout: default
     </header>
 
     <article>
+      {{ content }}
       <div class="cv">
         {% for entry in site.data.cv %}
           <a class="anchor" id="{{ entry.title }}"></a>

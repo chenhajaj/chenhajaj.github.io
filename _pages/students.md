@@ -7,46 +7,80 @@ nav: true
 nav_order: 3
 ---
 
-<div class="research-group">
-  <!-- Header Image -->
-  <div class="header-image">
-    {% include figure.liquid loading="eager" path="assets/img/grad.webp" title="Graduation" class="img-fluid rounded z-depth-1" %}
-  </div>
+<style>
+.post-header {
+  display: none;
+}
+</style>
 
-  <!-- PhD Students Section -->
-  <div class="student-section card-element">
-    <h2><i class="fas fa-user-graduate"></i> PhD Students</h2>
-    <div class="student-grid">
-      <div class="member-card">
-        <strong>Jonathan Zion</strong>
-        <p class="research-area"><i class="fas fa-microscope"></i> Generative AI</p>
-      </div>
-      <div class="member-card">
-        <strong>Udi Aharon</strong>
-        <p class="research-area"><i class="fas fa-microscope"></i> API Security</p>
-      </div>
-      <div class="member-card">
-        <strong>Aviad Levi</strong>
-        <p class="research-area"><i class="fas fa-microscope"></i> Auction Theory and Machine Learning</p>
-      </div>
-      <div class="member-card">
-        <strong>Omri Arbiv</strong>
-        <p class="research-area"><i class="fas fa-microscope"></i> Medical Data Science</p>
-      </div>
-      <div class="member-card">
-        <strong>Natan Dillbary</strong>
-        <p class="research-area"><i class="fas fa-microscope"></i> Time and Spectral Time Series Analysis</p>
-      </div>
-      <div class="member-card">
-        <strong>Bar Vinder</strong>
-        <p class="research-area"><i class="fas fa-microscope"></i> Medical Data Analysis</p>
-      </div>
-      <div class="member-card">
-        <strong>Shira Schweitzer</strong>
-        <p class="research-area"><i class="fas fa-microscope"></i> Interaction between Parents and Teens during Driving </p>
-      </div>
+<!-- Header Image - Compact Banner Style -->
+<div class="header-image" style="margin-bottom: 3rem; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-height: 400px; position: relative;">
+  <div style="width: 100%; height: 400px; overflow: hidden; position: relative;">
+    {% include figure.liquid loading="eager" path="assets/img/grad.webp" title="Graduation" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" %}
+  </div>
+  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%); padding: 2.5rem; color: white;">
+    <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">Research Group</h1>
+    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">Meet our talented team of researchers</p>
+  </div>
+</div>
+
+<!-- PhD Students Section -->
+<div class="student-section" style="margin-bottom: 4rem; display: block; background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+  <h2 style="color: #2563eb; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;">
+    <i class="fas fa-user-graduate" style="color: #3b82f6;"></i> PhD Students
+  </h2>
+  <div class="student-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
+    <div class="member-card" style="padding: 2rem; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid #e5e7eb; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(37,99,235,0.15)'; this.style.borderColor='#3b82f6';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'; this.style.borderColor='#e5e7eb';">
+      <strong style="display: block; color: #1e40af; font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700;">Jonathan Zion</strong>
+      <p class="research-area" style="color: #374151; margin: 0; font-size: 1rem; line-height: 1.6; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fas fa-microscope" style="color: #3b82f6; font-size: 1.1rem;"></i> 
+        <span style="color: #4b5563;">Generative AI</span>
+      </p>
+    </div>
+    <div class="member-card" style="padding: 2rem; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid #e5e7eb; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(37,99,235,0.15)'; this.style.borderColor='#3b82f6';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'; this.style.borderColor='#e5e7eb';">
+      <strong style="display: block; color: #1e40af; font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700;">Udi Aharon</strong>
+      <p class="research-area" style="color: #374151; margin: 0; font-size: 1rem; line-height: 1.6; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fas fa-microscope" style="color: #3b82f6; font-size: 1.1rem;"></i> 
+        <span style="color: #4b5563;">API Security</span>
+      </p>
+    </div>
+    <div class="member-card" style="padding: 2rem; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid #e5e7eb; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(37,99,235,0.15)'; this.style.borderColor='#3b82f6';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'; this.style.borderColor='#e5e7eb';">
+      <strong style="display: block; color: #1e40af; font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700;">Aviad Levi</strong>
+      <p class="research-area" style="color: #374151; margin: 0; font-size: 1rem; line-height: 1.6; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fas fa-microscope" style="color: #3b82f6; font-size: 1.1rem;"></i> 
+        <span style="color: #4b5563;">Auction Theory and Machine Learning</span>
+      </p>
+    </div>
+    <div class="member-card" style="padding: 2rem; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid #e5e7eb; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(37,99,235,0.15)'; this.style.borderColor='#3b82f6';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'; this.style.borderColor='#e5e7eb';">
+      <strong style="display: block; color: #1e40af; font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700;">Omri Arbiv</strong>
+      <p class="research-area" style="color: #374151; margin: 0; font-size: 1rem; line-height: 1.6; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fas fa-microscope" style="color: #3b82f6; font-size: 1.1rem;"></i> 
+        <span style="color: #4b5563;">Medical Data Science</span>
+      </p>
+    </div>
+    <div class="member-card" style="padding: 2rem; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid #e5e7eb; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(37,99,235,0.15)'; this.style.borderColor='#3b82f6';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'; this.style.borderColor='#e5e7eb';">
+      <strong style="display: block; color: #1e40af; font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700;">Natan Dillbary</strong>
+      <p class="research-area" style="color: #374151; margin: 0; font-size: 1rem; line-height: 1.6; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fas fa-microscope" style="color: #3b82f6; font-size: 1.1rem;"></i> 
+        <span style="color: #4b5563;">Time and Spectral Time Series Analysis</span>
+      </p>
+    </div>
+    <div class="member-card" style="padding: 2rem; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid #e5e7eb; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(37,99,235,0.15)'; this.style.borderColor='#3b82f6';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'; this.style.borderColor='#e5e7eb';">
+      <strong style="display: block; color: #1e40af; font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700;">Bar Vinder</strong>
+      <p class="research-area" style="color: #374151; margin: 0; font-size: 1rem; line-height: 1.6; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fas fa-microscope" style="color: #3b82f6; font-size: 1.1rem;"></i> 
+        <span style="color: #4b5563;">Medical Data Analysis</span>
+      </p>
+    </div>
+    <div class="member-card" style="padding: 2rem; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid #e5e7eb; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(37,99,235,0.15)'; this.style.borderColor='#3b82f6';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'; this.style.borderColor='#e5e7eb';">
+      <strong style="display: block; color: #1e40af; font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700;">Shira Schweitzer</strong>
+      <p class="research-area" style="color: #374151; margin: 0; font-size: 1rem; line-height: 1.6; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fas fa-microscope" style="color: #3b82f6; font-size: 1.1rem;"></i> 
+        <span style="color: #4b5563;">Interaction between Parents and Teens during Driving</span>
+      </p>
     </div>
   </div>
+</div>
 
   <!-- PhD Alumni Section -->
   <div class="student-section card-element">
@@ -252,42 +286,57 @@ nav_order: 3
 .research-group {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 1rem;
+  color: #333;
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 .header-image {
   margin-bottom: 2rem;
+  display: block;
+  visibility: visible;
 }
 
 .header-image img {
   width: 100%;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: block;
 }
 
 .student-section {
   margin-bottom: 3rem;
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 .student-section h2 {
-  color: var(--global-theme-color);
+  color: #4b6cb7;
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: left;
+  visibility: visible;
 }
 
 .student-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
-}
-
-.member-card {
-  padding: 1.5rem;
-  border-radius: 8px;
-  background: white;
+  visibility: visible;
+} !important;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 .member-card:hover {
@@ -296,24 +345,41 @@ nav_order: 3
 }
 
 .member-card.alumni {
-  background: #f8f9fa;
+  background: #f8f9fa !important;
 }
 
 .member-card strong {
   display: block;
-  color: var(--global-theme-color);
+  color: #4b6cb7 !important;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: left;
+  visibility: visible;
+}
+
+.member-card p {
+  color: #333 !important;
+  margin: 0.3rem 0;
+  text-align: left;
+  line-height: 1.5;
+  display: block;
+  visibility: visible
+.member-card p {
+  color: var(--global-text-color, #333);
+  margin: 0.3rem 0;
+  text-align: left;
+  line-height: 1.5;
 }
 
 .graduation-year {
-  color: #666;
+  color: #666 !important;
   font-size: 0.9rem;
   margin: 0.3rem 0;
 }
 
 .research-area {
-  color: #2c3e50;
+  color: #2c3e50 !important;
   margin: 0.3rem 0;
   font-size: 0.95rem;
 }
@@ -321,16 +387,92 @@ nav_order: 3
 .research-area i,
 .graduation-year i {
   margin-right: 0.3rem;
-  color: var(--global-theme-color);
-}
-
-@media (max-width: 768px) {
-  .student-grid {
+  color: var(--global-theme-color, #4b6cb7);
     grid-template-columns: 1fr;
   }
   
   .member-card {
     padding: 1rem;
   }
+}
+</style>
+<style>
+/* Enhanced styling for all sections */
+.student-section {
+  margin-bottom: 4rem !important;
+  display: block !important;
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%) !important;
+  padding: 2.5rem !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08) !important;
+}
+
+.student-section h2 {
+  color: #2563eb !important;
+  margin-bottom: 2rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+}
+
+.student-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  gap: 2rem !important;
+}
+
+.member-card {
+  padding: 2rem !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+  border: 2px solid #e5e7eb !important;
+  transition: all 0.3s ease !important;
+}
+
+.member-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 12px 28px rgba(37,99,235,0.15) !important;
+  border-color: #3b82f6 !important;
+}
+
+.member-card.alumni {
+  background: linear-gradient(135deg, #fef3c7 0%, #fef9e7 100%) !important;
+  border-color: #fbbf24 !important;
+}
+
+.member-card.alumni:hover {
+  box-shadow: 0 12px 28px rgba(251,191,36,0.2) !important;
+  border-color: #f59e0b !important;
+}
+
+.member-card strong {
+  display: block !important;
+  color: #1e40af !important;
+  font-size: 1.25rem !important;
+  margin-bottom: 0.75rem !important;
+  font-weight: 700 !important;
+}
+
+.member-card p {
+  color: #4b5563 !important;
+  margin: 0.5rem 0 !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+}
+
+.graduation-year {
+  color: #9ca3af !important;
+  font-size: 0.95rem !important;
+}
+
+.research-area {
+  color: #374151 !important;
+}
+
+.member-card i {
+  color: #3b82f6 !important;
 }
 </style>

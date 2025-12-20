@@ -33,11 +33,47 @@ latest_posts:
 ---
 
 <div class="about-content">
+  <!-- Impact Stats Hero -->
+  <section class="impact-stats-hero">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-value">$1.2M+</div>
+        <div class="stat-label">Research Funding</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">4</div>
+        <div class="stat-label">Patents</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">6</div>
+        <div class="stat-label">Conferences Chaired</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">50+</div>
+        <div class="stat-label">Publications</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">12</div>
+        <div class="stat-label">Current Students</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">8</div>
+        <div class="stat-label">Alumni Students</div>
+      </div>
+    </div>
+  </section>
+
   <!-- About Me Section -->
   <section class="about-intro-section">
     <div class="about-intro-content">
+      <p class="about-lead-text">
+        I lead data science research and education as <strong>Associate Professor</strong> and <strong>Head of the Data Science Track</strong> at Ariel University, where I also serve as <strong>Head of the Faculty Review Board</strong> and <strong>NVIDIA University Ambassador</strong>.
+      </p>
       <p class="about-intro-text">
-        I am an Associate Professor and Head of the Data Science Track in the Department of Industrial Engineering and Management at Ariel University. My research sits at the dynamic intersection of artificial intelligence and real-world applications, where theoretical insights transform into practical solutions with measurable impact. I am passionate about advancing AI technologies that bridge academia and industry, tackling complex challenges across healthcare, cybersecurity, eCommerce, and beyond—where intelligent systems can create meaningful, tangible differences.
+        My research translates artificial intelligence theory into deployed systems with measurable real-world impact. I've secured over <strong>$1.2 million in competitive research funding</strong> and hold <strong>4 patents</strong> in AI applications spanning healthcare diagnostics, cybersecurity, and human behavior prediction.
+      </p>
+      <p class="about-intro-text">
+        I bridge academia and industry through active collaborations with the Israel Innovation Authority, Ministry of Innovation Science and Technology, and leading technology companies—developing AI solutions for encrypted traffic analysis, medical decision support, and intelligent recommendation systems deployed at scale.
       </p>
     </div>
 
@@ -156,17 +192,20 @@ latest_posts:
     </div>
   </section> -->
 
-  <!-- Academic Journey -->
+  <!-- Academic Leadership & Impact -->
   <section class="journey-section">
-    <h3><i class="fas fa-route"></i> Academic Journey</h3>
+    <h3><i class="fas fa-crown"></i> Leadership & Impact</h3>
     <div class="timeline">
-      <div class="timeline-item">
+      <div class="timeline-item highlight">
         <div class="timeline-marker">
           <i class="fas fa-university"></i>
         </div>
         <div class="timeline-content">
-          <h4>Faculty Position</h4>
-          <p>Leading cutting-edge research initiatives while serving in multiple leadership roles, including Head of the Data Science Track and Director of the Faculty Review Board for the Faculty of Engineering.</p>
+          <h4>Senior Faculty & Administrative Leadership</h4>
+          <p><strong>NVIDIA University Ambassador (2024-present)</strong> • Leading GPU computing and AI education initiatives.</p>
+          <p><strong>Head of Faculty Review Board (2021-present)</strong> • Directing research quality and ethical standards across the Faculty of Engineering.</p>
+          <p><strong>Head of Data Science Track (2021-present)</strong> • Overseeing curriculum development, student programs, and industry partnerships.</p>
+          <p><strong>Director, Data Science & AI Research Center (2019-2024)</strong> • Built a research center securing $1.2M+ in competitive funding, producing 4 patents, and establishing collaborations with Israel Innovation Authority and Ministry of Innovation.</p>
           <span class="timeline-meta">Ariel University • 2018-Present</span>
         </div>
       </div>
@@ -176,7 +215,7 @@ latest_posts:
         </div>
         <div class="timeline-content">
           <h4>Postdoctoral Research</h4>
-          <p>Expanded research into <strong>machine learning and cybersecurity</strong>, developing innovative AI-driven algorithms for network monitoring and threat detection while mentoring graduate students.</p>
+          <p>Developed machine learning algorithms for cybersecurity and network monitoring. Served on the Postdoc Association Committee, contributing to research policy and mentoring programs.</p>
           <span class="timeline-meta">Vanderbilt University • 2016-2018</span>
         </div>
       </div>
@@ -186,8 +225,8 @@ latest_posts:
         </div>
         <div class="timeline-content">
           <h4>Ph.D. in Computer Science</h4>
-          <p>Specialized in <strong>game theory and mechanism design</strong>, developing theoretical models and algorithms for strategic decision-making in competitive and cooperative environments.</p>
-          <span class="timeline-meta">Bar-Ilan University • 2016</span>
+          <p>Specialized in game theory and mechanism design, developing theoretical models and algorithms for strategic decision-making in competitive and cooperative environments.</p>
+          <span class="timeline-meta">Bar-Ilan University • 2010-2016</span>
         </div>
       </div>
     </div>
@@ -214,6 +253,54 @@ latest_posts:
   }
 }
 
+/* Impact Stats Hero */
+.impact-stats-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2.5rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
 /* Global Section Styling */
 section {
   margin-bottom: 4rem;
@@ -223,15 +310,42 @@ section {
 /* About Intro Section Override */
 .about-intro-section {
   background: white !important;
-  padding: 2.5rem !important;
+  padding: 3rem !important;
   border: 1px solid #e2e8f0 !important;
   border-radius: 20px !important;
   box-shadow: 0 4px 25px rgba(0,0,0,0.08) !important;
 }
 
+.about-lead-text {
+  font-size: 1.35rem !important;
+  line-height: 1.7 !important;
+  color: #1a202c !important;
+  margin-bottom: 2rem !important;
+  font-weight: 500 !important;
+  border-left: 4px solid var(--global-theme-color) !important;
+  padding-left: 1.5rem !important;
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.05), transparent) !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  padding-right: 1rem !important;
+  border-radius: 0 12px 12px 0 !important;
+}
+
+.about-intro-text {
+  font-size: 1.1rem !important;
+  line-height: 1.8 !important;
+  color: #4a5568 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.about-intro-text strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
 h3 {
   color: #2d3748;
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 700;
   margin-bottom: 2rem;
   display: flex;
@@ -445,6 +559,20 @@ h3 i {
   padding-left: 3rem;
 }
 
+.timeline-item.highlight {
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.03), transparent);
+  padding: 2rem;
+  padding-left: 5rem;
+  margin-left: -2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(75, 108, 183, 0.2);
+}
+
+.timeline-item.highlight .timeline-content h4 {
+  color: var(--global-theme-color);
+  font-size: 1.5rem;
+}
+
 .timeline-marker {
   position: absolute;
   left: -47px;
@@ -461,6 +589,14 @@ h3 i {
   font-size: 1.2rem;
   box-shadow: 0 4px 15px rgba(75, 108, 183, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item.highlight .timeline-marker {
+  width: 70px;
+  height: 70px;
+  font-size: 1.5rem;
+  left: -52px;
+  box-shadow: 0 6px 25px rgba(75, 108, 183, 0.5);
 }
 
 .timeline-item:hover .timeline-marker {

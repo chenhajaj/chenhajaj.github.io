@@ -1,26 +1,193 @@
 ---
 layout: page
 title: Medical Data Science
-description: Advancing healthcare through machine learning and data-driven clinical insights
+description: Machine learning applications for critical care and medical decision-making
 img: assets/img/icu-nutrition.jpg
 importance: 2
 category: work
 related_publications: false
 ---
 
-# Medical Data Science: Where AI Meets Life-Saving Medicine
+<style>
+.post-header {
+  display: none;
+}
 
-When every heartbeat counts and split-second decisions can mean the difference between life and death, **how do we ensure doctors have the most accurate information possible?** Enter the revolutionary world of Medical Data Science – where cutting-edge machine learning transforms mountains of clinical data into life-saving insights.
+/* Project Content Styling */
+.project-content {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2d3748;
+}
 
-Imagine predicting which critically ill patients will develop feeding complications **days before symptoms appear**. Picture AI systems that can identify rare respiratory diseases from complex patient patterns that even experienced doctors might miss. **This isn't future medicine – this is happening right now in hospitals around the world.**
+.project-content .lead-text {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #1a202c;
+  margin-bottom: 3rem;
+  font-weight: 400;
+  border-left: 4px solid var(--global-theme-color);
+  padding-left: 1.5rem;
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.05), transparent);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  border-radius: 0 8px 8px 0;
+}
 
-## The Medical Data Revolution: From Information Overload to Intelligent Insights
+.project-content p {
+  margin: 1rem 0;
+  color: #4a5568;
+}
 
-Modern hospitals generate **terabytes of patient data every single day** – vital signs, lab results, medication records, imaging studies, clinical notes. But raw data isn't enough when **lives hang in the balance**. Our Medical Data Science research transforms this information explosion into **precision medicine that saves lives**.
+.project-content h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--global-theme-color);
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.8rem;
+  border-bottom: 3px solid var(--global-theme-color);
+}
 
-### 🏥 **The Critical Care Challenge**
+.project-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right, #3b5998, var(--global-theme-color));
+}
 
-In intensive care units, **every decision matters**. Our groundbreaking research focuses on the most vulnerable patients – those fighting for their lives in critical care – where **traditional guesswork isn't good enough**.
+.project-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--global-theme-color);
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.08), transparent);
+  padding: 0.8rem 0 0.8rem 1.2rem;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
+
+.project-content h3:hover {
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.12), transparent);
+  transform: translateX(4px);
+}
+
+.project-content h3 + p {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+  color: #4a5568;
+}
+
+.project-publications {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 2px solid #e2e8f0;
+}
+
+.project-publications h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--global-theme-color);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.project-publications h3:hover {
+  transform: none;
+}
+
+.project-publications h3 i {
+  font-size: 1.6rem;
+}
+
+@media (max-width: 768px) {
+  .project-content {
+    font-size: 1rem;
+  }
+  
+  .project-content > p:first-of-type {
+    font-size: 1.15rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .project-content h2 {
+    font-size: 1.7rem;
+    margin-top: 2.5rem;
+  }
+  
+  .project-content h3 {
+    font-size: 1.25rem;
+    padding-left: 1rem;
+  }
+  
+  .project-publications h3 {
+    font-size: 1.5rem;
+  }
+}
+</style>
+
+<!-- Project Banner -->
+<div class="project-banner" style="margin-bottom: 3rem; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-height: 400px; position: relative;">
+  <div style="width: 100%; height: 400px; overflow: hidden; position: relative;">
+    {% include figure.liquid loading="eager" path="assets/img/icu-nutrition.jpg" title="Medical Data Science" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" %}
+  </div>
+  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); padding: 2.5rem; color: white;">
+    <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">Medical Data Science</h1>
+    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">Machine learning applications for critical care and medical decision-making</p>
+  </div>
+</div>
+
+<div class="project-content">
+
+<p class="lead-text">Critical care medicine generates massive amounts of data, but making real-time predictions from it is challenging. We develop machine learning systems for ICU nutrition, respiratory diseases, and collaborative medical research—improving patient outcomes through data-driven insights.</p>
+
+<h2>Research Areas</h2>
+
+<h3>Critical Care Nutrition</h3>
+
+<p>Predict ICU feeding complications before symptoms appear. Optimize protein intake per patient. Identify high-risk cases early using decade-long datasets from Rabin Medical Center.</p>
+
+<h3>Respiratory Medicine</h3>
+
+<p>AI phenotypical analysis for rare diseases like NTM infections. Accelerate diagnosis and predict treatment responses.</p>
+
+<h3>Medical Data Collaboration</h3>
+
+<p>Privacy-preserving crowdsourcing for medical datasets. Enable scalable research while protecting patient data.</p>
+
+<h2>Technical Methods</h2>
+
+<h3>Predictive Modeling</h3>
+
+<p>Machine learning models trained on extensive clinical datasets. Validation using real patient data from hospital systems.</p>
+
+<h3>Phenotypical Analysis</h3>
+
+<p>Pattern recognition in complex patient profiles to identify disease characteristics and treatment responses.</p>
+
+<h3>Privacy-Preserving Learning</h3>
+
+<p>Methods that enable data sharing and collaboration while maintaining patient privacy and data security.</p>
+
+<h2>Impact</h2>
+
+<p>Our critical care nutrition models have shown reductions in feeding complications through early prediction. Respiratory medicine applications enable faster diagnosis of rare conditions. The collaborative data collection frameworks support medical research at scale while preserving privacy.</p>
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -37,89 +204,11 @@ In intensive care units, **every decision matters**. Our groundbreaking research
     Left: Real-time patient monitoring generating continuous data streams. Middle: Critical care nutrition delivery systems. Right: AI-powered analysis of complex medical patterns.
 </div>
 
-## Our Research Breakthroughs: Multiple Medical Frontiers
-
-### 🍽️ **Predicting Critical Care Nutrition Outcomes**
-
-**The Problem**: Traditional approaches to ICU nutrition are often reactive – doctors wait to see problems before adjusting treatment. **But what if we could predict complications before they happen?**
-
-**Our Solution**: Using **decade-long datasets** from Rabin Medical Center (2008-2018), our machine learning models can:
-
-- **Predict feeding intolerance** days before symptoms appear
-- **Optimize protein intake** for individual patient recovery
-- **Identify high-risk patients** who need immediate nutritional intervention
-- **Reduce mortality rates** through data-driven nutrition protocols
-
-### 🫁 **Respiratory Medicine Intelligence**
-
-**The Challenge**: Rare diseases like nontuberculous mycobacterial infections are notoriously difficult to diagnose, often taking months or years to identify correctly.
-
-**Our Innovation**: AI-powered **phenotypical analysis** that:
-
-- **Identifies disease patterns** in complex patient profiles
-- **Accelerates diagnosis** of rare respiratory conditions
-- **Predicts treatment responses** based on patient characteristics
-- **Improves outcomes** for bronchiectasis patients
-
-### 🤝 **Democratizing Medical Data**
-
-**The Vision**: Medical breakthroughs shouldn't be limited by data access. Our **crowdsourcing framework** revolutionizes how medical datasets are created and shared:
-
-- **Collaborative data collection** that preserves privacy
-- **Scalable annotation systems** for medical research
-- **Open science approaches** that accelerate discovery
-- **Global health equity** through shared medical intelligence
-
-## Real-World Impact: Transforming Healthcare Delivery
-
-### 📊 **Proven Results Saving Lives**
-
-Our Medical Data Science research has delivered **measurable improvements** in patient care:
-
-**Critical Care Nutrition**:
-
-- **30% reduction** in feeding complications through predictive modeling
-- **Faster recovery times** with personalized protein intake optimization
-- **Earlier intervention** for high-risk patients identified by AI
-- **Improved survival rates** through data-driven nutrition protocols
-
-**Respiratory Medicine**:
-
-- **Months faster diagnosis** of rare mycobacterial infections
-- **Better treatment targeting** through phenotypical analysis
-- **Reduced patient suffering** from delayed or incorrect diagnoses
-- **Enhanced clinical decision-making** with AI-powered insights
-
-**Medical Data Innovation**:
-
-- **Scalable crowdsourcing platforms** deployed in multiple hospitals
-- **Privacy-preserving data sharing** that accelerates research
-- **Open medical datasets** used by researchers worldwide
-- **Democratized access** to medical AI development tools
-
-### 🌍 **Beyond Individual Hospitals: Global Health Impact**
-
-Our research methodology scales from **single patients to entire populations**:
-
-- **Hospital systems** implementing our predictive models see **reduced mortality rates**
-- **Medical schools** using our frameworks train **data-literate physicians**
-- **Research institutions** leverage our crowdsourcing tools for **breakthrough discoveries**
-- **Global health organizations** apply our methods in **resource-limited settings**
-
-### 🔬 **The Science Behind the Success**
-
-We combine **clinical expertise with cutting-edge AI** to ensure our solutions are:
-
-- **Clinically validated** through rigorous testing with real patient data
-- **Ethically sound** with privacy-preserving machine learning
-- **Practically deployable** in real hospital environments
-- **Continuously improving** through feedback loops with healthcare providers
-
-**Our approach**: Where traditional medicine meets artificial intelligence, **saving lives through data-driven insights**.
-
 <div class="project-publications">
   <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
   <div class="publications">
     {% bibliography -q @*[projects  ~= healthcare] %}
   </div>
+</div>
+
 </div>

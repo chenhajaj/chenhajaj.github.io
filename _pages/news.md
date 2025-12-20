@@ -1,10 +1,12 @@
+---
 layout: page
 title: news
 permalink: /news/
 pagination:
-enabled: true
-collection: posts
-
+  enabled: true
+  collection: posts
+  per_page: 10
+  permalink: '/news/:num/'
 ---
 
 {% if paginator %}
