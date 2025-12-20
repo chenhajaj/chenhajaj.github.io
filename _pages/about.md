@@ -37,10 +37,7 @@ latest_posts:
   <section class="about-intro-section">
     <div class="about-intro-content">
       <p class="about-intro-text">
-       I am an Associate Professor and Head of the Data Science Track in the Department of Industrial Engineering and Management at Ariel University. My research explores the dynamic intersection of artificial intelligence and real-world applications, where theoretical insights are transformed into practical solutions with tangible impact. My passion is advancing AI technologies that bridge academia and industry, tackling complex challenges in healthcare, cybersecurity, eCommerce, and other domains where intelligent systems can make a real difference.
-
-        <!-- As Director of the Faculty Review Board for the Faculty of Engineering, I am fostering innovation while maintaining the highest ethical standards. My passion lies in developing cutting-edge AI technologies that create meaningful impact—bridging the gap between academic research and industry applications to solve complex problems across healthcare, cybersecurity, eCommerce, and beyond. -->
-
+        I am an Associate Professor and Head of the Data Science Track in the Department of Industrial Engineering and Management at Ariel University. My research sits at the dynamic intersection of artificial intelligence and real-world applications, where theoretical insights transform into practical solutions with measurable impact. I am passionate about advancing AI technologies that bridge academia and industry, tackling complex challenges across healthcare, cybersecurity, eCommerce, and beyond—where intelligent systems can create meaningful, tangible differences.
       </p>
     </div>
 
@@ -48,9 +45,9 @@ latest_posts:
 
   <!-- Research Focus -->
   <section class="research-focus-section">
-    <h3><i class="fas fa-microscope"></i> Research Focus & Excellence</h3>
+    <h3><i class="fas fa-microscope"></i> Research Focus</h3>
     <div class="research-intro-container">
-      <p class="research-intro">My research spans from theoretical foundations to practical applications, developing innovative solutions for real-world challenges across multiple domains.</p>
+      <p class="research-intro">My research bridges theoretical foundations with practical applications, developing innovative solutions that address real-world challenges across diverse domains. Each area represents a commitment to advancing knowledge while creating tangible value for industry and society.</p>
     </div>
     <div class="research-stack">
       <div class="research-item featured">
@@ -97,8 +94,7 @@ latest_posts:
     <h3><i class="fas fa-user-plus"></i> Join Our Research Team</h3>
     <div class="join-lab-cta">
       <div class="cta-main-content">
-        <!-- <h4>Join Our Research Team</h4> -->
-        <p class="welcome-text">We welcome motivated graduate students interested in pushing the boundaries of AI research. Our lab offers collaborative environment, cutting-edge projects, and opportunities for high-impact publications.</p>
+        <p class="welcome-text">We welcome motivated graduate students who are passionate about pushing the boundaries of AI research. Our lab provides a collaborative environment, cutting-edge projects, and opportunities to contribute to high-impact publications while working on meaningful problems that bridge theory and practice.</p>
       </div>
       <div class="cta-bottom">
         <div class="cta-benefits">
@@ -170,7 +166,7 @@ latest_posts:
         </div>
         <div class="timeline-content">
           <h4>Faculty Position</h4>
-          <p>Leading cutting-edge research while serving in multiple leadership roles.</p>
+          <p>Leading cutting-edge research initiatives while serving in multiple leadership roles, including Head of the Data Science Track and Director of the Faculty Review Board for the Faculty of Engineering.</p>
           <span class="timeline-meta">Ariel University • 2018-Present</span>
         </div>
       </div>
@@ -180,7 +176,7 @@ latest_posts:
         </div>
         <div class="timeline-content">
           <h4>Postdoctoral Research</h4>
-          <p>Expanded research into <strong>machine learning and cybersecurity</strong>, developing AI-driven algorithms and supervising graduate students.</p>
+          <p>Expanded research into <strong>machine learning and cybersecurity</strong>, developing innovative AI-driven algorithms for network monitoring and threat detection while mentoring graduate students.</p>
           <span class="timeline-meta">Vanderbilt University • 2016-2018</span>
         </div>
       </div>
@@ -190,7 +186,7 @@ latest_posts:
         </div>
         <div class="timeline-content">
           <h4>Ph.D. in Computer Science</h4>
-          <p>Specialized in <strong>game theory and mechanism design</strong>, developing theoretical models for strategic decision-making in competitive environments.</p>
+          <p>Specialized in <strong>game theory and mechanism design</strong>, developing theoretical models and algorithms for strategic decision-making in competitive and cooperative environments.</p>
           <span class="timeline-meta">Bar-Ilan University • 2016</span>
         </div>
       </div>
@@ -376,7 +372,8 @@ h3 i {
   background: #f8fafc;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 
 .research-item.featured {
@@ -405,6 +402,11 @@ h3 i {
   justify-content: center;
   font-size: 1.2rem;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.research-item:hover .research-icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .research-item h4 {
@@ -413,6 +415,12 @@ h3 i {
   font-weight: 600;
   margin: 0;
   flex: 1;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.research-item:hover h4 {
+  color: var(--global-theme-color);
 }
 
 /* Timeline Section */
@@ -443,7 +451,7 @@ h3 i {
   top: 0;
   width: 60px;
   height: 60px;
-  background: var(--global-theme-color);
+  background: linear-gradient(135deg, var(--global-theme-color), #3b5998);
   border: 4px solid white;
   border-radius: 50%;
   display: flex;
@@ -452,6 +460,12 @@ h3 i {
   color: white;
   font-size: 1.2rem;
   box-shadow: 0 4px 15px rgba(75, 108, 183, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover .timeline-marker {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(75, 108, 183, 0.4);
 }
 
 .timeline-content h4 {
@@ -600,18 +614,21 @@ h3 i {
   background: linear-gradient(135deg, var(--global-theme-color), #3b5998);
   color: white;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 1rem;
   border-radius: 15px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 6px 20px rgba(75, 108, 183, 0.3);
   white-space: nowrap;
+  border: none;
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(75, 108, 183, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(75, 108, 183, 0.45);
   color: white;
   text-decoration: none;
+  background: linear-gradient(135deg, #4b6cb7, #2c5282);
 }
 
 /* Mobile Responsive Styles */
