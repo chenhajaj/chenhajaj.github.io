@@ -1,12 +1,11 @@
 {% assign conferences = data %}
-<div class="conferences">
+<div class="timeline">
   {% for item in conferences %}
-    <div class="conference-item">
-      <h5 class="role">{{ item.role | capitalize }}</h5>
-      <h6 class="conference-name">{{ item.name }}</h6>
-      <div class="year">
-        <i class="fas fa-calendar-alt mr-1"></i>
-        {{ item.year }}
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="timeline-year">{{ item.year }}</div>
+        <h4 class="timeline-title">{{ item.role | capitalize }}</h4>
+        <div class="timeline-description">{{ item.name }}</div>
       </div>
     </div>
   {% endfor %}

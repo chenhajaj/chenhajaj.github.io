@@ -1,18 +1,25 @@
 {% assign grants = data %}
-<div class="grants">
+<div class="timeline">
   {% for item in grants %}
-    <div class="grant-item">
-      <h5 class="grant-agency">{{ item.agency }}</h5>
-      {% if item.title != '' %}
-        <h6 class="grant-title">{{ item.title }}</h6>
-      {% endif %}
-      <div class="period">
-        <i class="fas fa-calendar-alt mr-1"></i>
-        {{ item.period }}
-      </div>
-      <div class="investigators">
-        <i class="fas fa-users mr-1"></i>
-        {{ item.investigators }}
+    <div class="timeline-item">
+      <div class="timeline-card">
+        <div class="timeline-year">{{ item.period }}</div>
+        <h4 class="timeline-title">{{ item.agency }}</h4>
+        {% if item.title != '' %}
+          <div class="timeline-description">{{ item.title }}</div>
+        {% endif %}
+        {% if item.investigators %}
+          <div class="cv-detail" style="margin-top: 1rem;">
+            <i class="fas fa-users cv-detail-icon"></i>
+            <div>
+              <div class="cv-detail-label">Investigators:</div>
+              <div class="cv-detail-value">{{ item.investigators }}</div>
+            </div>
+          </div>
+        {% endif %}
+        {% if item.amount %}
+          <div class="grant-amount">{{ item.amount }}</div>
+        {% endif %}
       </div>
     </div>
   {% endfor %}

@@ -8,125 +8,196 @@ category: work
 related_publications: false
 ---
 
-# Building AI That Fights Back: The Ultimate Cybersecurity Challenge
+<style>
+.post-header {
+  display: none;
+}
 
-Imagine an AI system protecting a hospital's patient data suddenly being fooled by a single, carefully crafted pixel change in a medical image. Or a self-driving car's AI being tricked into misreading a stop sign because someone placed a few strategic stickers on it. **This isn't science fiction – this is the reality of adversarial AI attacks happening right now.**
+/* Project Content Styling */
+.project-content {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2d3748;
+}
 
-As AI becomes the backbone of everything from healthcare to finance, **the stakes have never been higher**. Traditional cybersecurity isn't enough when the attackers are specifically targeting the AI's decision-making process itself. We're in an arms race where **every AI system is a potential target**, and we're building the ultimate defense.
+.project-content .lead-text {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #1a202c;
+  margin-bottom: 3rem;
+  font-weight: 400;
+  border-left: 4px solid var(--global-theme-color);
+  padding-left: 1.5rem;
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.05), transparent);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  border-radius: 0 8px 8px 0;
+}
 
-## The Hidden War: AI vs. AI Attackers
+.project-content p {
+  margin: 1rem 0;
+  color: #4a5568;
+}
 
-Welcome to the frontlines of the most sophisticated cyber warfare of our time. **Adversarial AI** isn't just about hackers anymore – it's about attackers who understand exactly how AI thinks and can exploit those thought processes with surgical precision.
+.project-content h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--global-theme-color);
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.8rem;
+  border-bottom: 3px solid var(--global-theme-color);
+}
 
-**The threat is everywhere:**
+.project-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right, #3b5998, var(--global-theme-color));
+}
 
-- 🏥 **Healthcare AI** making life-or-death decisions with compromised data
-- 🚗 **Autonomous vehicles** navigating with manipulated visual inputs
-- 💰 **Financial systems** processing transactions under adversarial influence
-- 📱 **Mobile apps** exposing personal data through AI vulnerabilities
-- 🌐 **Social networks** spreading misinformation through coordinated AI manipulation
+.project-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--global-theme-color);
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.08), transparent);
+  padding: 0.8rem 0 0.8rem 1.2rem;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
 
-But here's the game-changer: **We're not just defending – we're building AI that actively fights back.**
+.project-content h3:hover {
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.12), transparent);
+  transform: translateX(4px);
+}
 
-## Our Arsenal: Multi-Layered Defense Systems
+.project-content h3 + p {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+  color: #4a5568;
+}
 
-### 🕵️ **AI Threat Hunters: Seeing the Invisible**
+.project-publications {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 2px solid #e2e8f0;
+}
 
-Think of these as digital detectives that never sleep, constantly scanning for threats that traditional security misses:
+.project-publications h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--global-theme-color);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: none;
+  background: none;
+  padding: 0;
+}
 
-- **Encrypted traffic analysis** that sees through digital camouflage
-- **Real-time attack prevention** that stops threats before they strike
-- **Mobile system vulnerability scanning** that finds weaknesses before attackers do
-- **Zero-day attack detection** that catches threats no one has seen before
+.project-publications h3:hover {
+  transform: none;
+}
 
-### 🛡️ **Bulletproof AI Architecture: Building Impenetrable Systems**
+.project-publications h3 i {
+  font-size: 1.6rem;
+}
 
-We're not just patching vulnerabilities – we're redesigning AI from the ground up to be attack-resistant:
+@media (max-width: 768px) {
+  .project-content {
+    font-size: 1rem;
+  }
+  
+  .project-content > p:first-of-type {
+    font-size: 1.15rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .project-content h2 {
+    font-size: 1.7rem;
+    margin-top: 2.5rem;
+  }
+  
+  .project-content h3 {
+    font-size: 1.25rem;
+    padding-left: 1rem;
+  }
+  
+  .project-publications h3 {
+    font-size: 1.5rem;
+  }
+}
+</style>
 
-- **Healthcare AI fortification** that protects patient lives and privacy
-- **Social network defense systems** that stop coordinated manipulation campaigns
-- **Mobile application hardening** that turns your phone into a digital fortress
-- **Privacy-preserving machine learning** that keeps data safe while AI learns
+<!-- Project Banner -->
+<div class="project-banner" style="margin-bottom: 3rem; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-height: 400px; position: relative;">
+  <div style="width: 100%; height: 400px; overflow: hidden; position: relative;">
+    {% include figure.liquid loading="eager" path="assets/img/cyber.jpg" title="Adversarial AI" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" %}
+  </div>
+  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); padding: 2.5rem; color: white;">
+    <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">Adversarial Artificial Intelligence</h1>
+    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">Research on developing robust and secure AI systems against malicious attacks</p>
+  </div>
+</div>
 
-### 🧪 **AI Security Lab: Testing Under Fire**
+<div class="project-content">
 
-Like crash-testing cars, we put AI systems through rigorous adversarial testing:
+<p class="lead-text">AI systems can be fooled by adversarial attacks—carefully crafted inputs that cause wrong predictions. As AI powers healthcare, finance, and autonomous systems, protecting against manipulation is critical. We develop defenses that work across multiple domains.</p>
 
-- **Comprehensive malware detection protocols** that catch the smartest threats
-- **Performance vs. security optimization** that doesn't sacrifice speed for safety
-- **Encrypted traffic classification benchmarks** that set new industry standards
-- **Attack resilience metrics** that measure how well AI survives under assault
+<h2>Research Focus</h2>
 
-### ⚡ **Lightning-Fast Defense: Real-Time Protection**
+<h3>Network Security</h3>
 
-When milliseconds matter, our AI responds faster than any human could:
+<p>Encrypted traffic analysis detecting anomalies without breaking encryption. Real-time threat identification.</p>
 
-- **Dynamic network security responses** that adapt to threats in real-time
-- **Adaptive mobile platform protection** that evolves with new attack patterns
-- **Continuous healthcare AI monitoring** that never lets its guard down
-- **Instant social network threat mitigation** that stops misinformation before it spreads
+<h3>Mobile Security</h3>
 
-## Victory Reports: Real-World Wins Against AI Attacks
+<p>Android malware detection resistant to evasion. Works even when attackers know our methods.</p>
 
-The numbers don't lie – our adversarial AI defense systems are winning the war against digital threats:
+<h3>Healthcare AI</h3>
 
-### 🌐 **Network Security: The Digital Perimeter**
+<p>Medical diagnosis maintaining accuracy under attack. Patient prediction models resistant to manipulation.</p>
 
-We've transformed how networks defend themselves against invisible threats:
+<h3>Social Networks</h3>
 
-- **99.5% accuracy** in detecting encrypted traffic anomalies that slip past traditional firewalls
-- **85% faster malware detection** with significantly fewer false alarms disrupting operations
-- **Real-time monitoring** that processes millions of data points without breaking a sweat
-- **Zero successful penetrations** in our most recent 6-month testing period
+<p>Coordinated campaign detection. Bot identification and misinformation tracking.</p>
 
-### 📱 **Mobile Security: Your Personal Bodyguard**
+<h2>Technical Approaches</h2>
 
-Every smartphone and tablet becomes a fortress with our protection:
+<h3>Threat Detection</h3>
 
-- **Advanced Android malware detection** that catches threats before they steal your data
-- **Evasion-proof mechanisms** that work even when attackers know about our defenses
-- **System hardening protocols** that make mobile devices nearly impossible to compromise
-- **Assessment frameworks** that give users real-time security scores
+<p>AI systems that identify adversarial patterns in encrypted traffic, mobile applications, and network communications. Zero-day attack detection using contrastive learning methods.</p>
 
-### 🏥 **Healthcare AI: Protecting Lives and Privacy**
+<h3>Robust Architecture</h3>
 
-When patient safety meets AI security, every millisecond matters:
+<p>Privacy-preserving machine learning that protects data while maintaining model performance. System hardening protocols for mobile and network infrastructure.</p>
 
-- **Medical diagnosis systems** that remain accurate even under adversarial attacks
-- **Patient outcome predictions** that maintain reliability despite data manipulation attempts
-- **Privacy-preserving analytics** that keep medical data safe while enabling breakthrough research
-- **Clinical decision support** that doctors can trust, even in hostile digital environments
+<h3>Testing and Evaluation</h3>
 
-### 💬 **Social Network Security: Fighting the Info War**
+<p>Comprehensive adversarial testing frameworks. Performance metrics that measure resilience under attack conditions.</p>
 
-In the battle against misinformation and manipulation, our AI is the shield:
+<h2>Impact</h2>
 
-- **Coordinated attack prevention** that stops organized disinformation campaigns
-- **Misinformation detection** that works faster than fact-checkers
-- **Content integrity verification** that ensures what you see is what was really posted
-- **Behavioral analysis** that identifies bot networks and influence operations
-
-## Why This Research Matters: The Stakes Couldn't Be Higher
-
-### 🏥 **Life and Death Decisions**
-
-When AI systems make medical diagnoses or control autonomous vehicles, **a single successful attack could cost lives**. Our research ensures that when it matters most, AI systems remain trustworthy.
-
-### 💰 **Economic Security**
-
-With **trillions of dollars** flowing through AI-powered financial systems daily, economic stability depends on adversarial AI defense. We're protecting the global economy from digital warfare.
-
-### 🔒 **Personal Privacy**
-
-Your personal data, your photos, your messages – all processed by AI systems that could be compromised. **We're building the locks that keep your digital life secure.**
-
-### 🌍 **National Security**
-
-From power grids to communication networks, critical infrastructure relies on AI. **Our research is literally defending civilization's digital foundation.**
+<p>Our research contributes to securing AI systems in critical applications. Work includes encrypted traffic classification with high accuracy, mobile malware detection systems, and healthcare AI that maintains reliability under adversarial conditions.</p>
 
 <div class="project-publications">
   <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
   <div class="publications">
     {% bibliography -q @*[projects ~= security] %}
   </div>
+</div>
+
 </div>

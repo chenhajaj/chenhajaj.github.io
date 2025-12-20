@@ -1,138 +1,197 @@
 ---
 layout: page
 title: Encrypted Traffic Classification
-description:
+description: AI-powered methods for classifying and analyzing encrypted network traffic
 img: assets/img/encrypted.jpg
 importance: 1
 category: work
 giscus_comments: false
 ---
 
-# Decoding the Invisible Internet: AI-Powered Traffic Intelligence
+<style>
+.post-header {
+  display: none;
+}
 
-Imagine trying to identify what's inside **millions of sealed packages** flowing through the world's busiest highway – **every single second**. Now imagine that highway is the internet, those packages are encrypted data packets, and **the stakes couldn't be higher**: cybersecurity, network performance, and digital privacy all hang in the balance.
+/* Project Content Styling */
+.project-content {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2d3748;
+}
 
-Welcome to the cutting edge of **Encrypted Traffic Classification** – where artificial intelligence meets the **invisible internet**. As the digital world moves toward complete encryption (which is great for privacy!), traditional network monitoring has gone **completely blind**. But we've built AI systems that can **see through the encryption** without breaking it.
+.project-content .lead-text {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #1a202c;
+  margin-bottom: 3rem;
+  font-weight: 400;
+  border-left: 4px solid var(--global-theme-color);
+  padding-left: 1.5rem;
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.05), transparent);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  border-radius: 0 8px 8px 0;
+}
 
-**The Challenge**: Over **90% of internet traffic is now encrypted**. Network operators, cybersecurity teams, and ISPs are flying blind, unable to detect threats, optimize performance, or manage resources effectively.
+.project-content p {
+  margin: 1rem 0;
+  color: #4a5568;
+}
 
-**Our Breakthrough**: AI that **reads the patterns behind the encryption** – like a digital detective who can identify someone by their walking style, even when they're completely disguised.
+.project-content h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--global-theme-color);
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.8rem;
+  border-bottom: 3px solid var(--global-theme-color);
+}
 
-## The Encryption Revolution: Why Everything Changed
+.project-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right, #3b5998, var(--global-theme-color));
+}
 
-The internet has undergone a **security revolution**. With TLS 1.3, ESNI, DoH, HTTP/3, and now **post-quantum encryption**, we've built an incredibly secure digital world. But this created an enormous challenge:
+.project-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--global-theme-color);
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.08), transparent);
+  padding: 0.8rem 0 0.8rem 1.2rem;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s ease;
+}
 
-**How do you manage what you can't see?**
+.project-content h3:hover {
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.12), transparent);
+  transform: translateX(4px);
+}
 
-## Our AI Arsenal: Revolutionary Classification Technologies
+.project-content h3 + p {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+  color: #4a5568;
+}
 
-### 🧬 **Generative AI: Creating Synthetic Training Data**
+.project-publications {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 2px solid #e2e8f0;
+}
 
-**The Problem**: You can't train AI to recognize encrypted traffic patterns when there's never enough real data to work with.
+.project-publications h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--global-theme-color);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: none;
+  background: none;
+  padding: 0;
+}
 
-**Our Innovation**: **Synthetic data generation using advanced GANs** that:
+.project-publications h3:hover {
+  transform: none;
+}
 
-- **Creates unlimited training data** from limited real samples
-- **Generates realistic encrypted traffic patterns** for rare attack types
-- **Overcomes data scarcity** that has plagued traditional approaches
-- **Improves classification accuracy** by orders of magnitude
+.project-publications h3 i {
+  font-size: 1.6rem;
+}
 
-_Breakthrough_: Our generative models create synthetic encrypted traffic that's **indistinguishable from real data** but allows AI training at unprecedented scale.
+@media (max-width: 768px) {
+  .project-content {
+    font-size: 1rem;
+  }
+  
+  .project-content > p:first-of-type {
+    font-size: 1.15rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .project-content h2 {
+    font-size: 1.7rem;
+    margin-top: 2.5rem;
+  }
+  
+  .project-content h3 {
+    font-size: 1.25rem;
+    padding-left: 1rem;
+  }
+  
+  .project-publications h3 {
+    font-size: 1.5rem;
+  }
+}
+</style>
 
-### 🔮 **Post-Quantum Classification: Future-Proofing Security**
+<!-- Project Banner -->
+<div class="project-banner" style="margin-bottom: 3rem; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-height: 400px; position: relative;">
+  <div style="width: 100%; height: 400px; overflow: hidden; position: relative;">
+    {% include figure.liquid loading="eager" path="assets/img/encrypted.jpg" title="Encrypted Traffic Classification" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" %}
+  </div>
+  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); padding: 2.5rem; color: white;">
+    <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">Encrypted Traffic Classification</h1>
+    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">AI-powered methods for classifying and analyzing encrypted network traffic</p>
+  </div>
+</div>
 
-**The Challenge**: Quantum computers will break current encryption, forcing a massive shift to **post-quantum cryptography**. But how do you monitor what doesn't exist yet?
+<div class="project-content">
 
-**Our Solution**: **PQClass** – the world's first system for classifying post-quantum encrypted traffic:
+<p class="lead-text">Over 90% of internet traffic is now encrypted. While encryption protects privacy, it also makes traditional network monitoring impossible. We develop AI systems that classify encrypted traffic without breaking encryption—enabling network security and management while preserving user privacy.</p>
 
-- **Identifies quantum-resistant encryption algorithms** in real network traffic
-- **Prepares networks** for the post-quantum transition
-- **Maintains security visibility** even as encryption evolves
-- **Future-proofs** network infrastructure for the quantum computing era
+<h2>Key Challenges</h2>
 
-### 🌊 **Spectral Intelligence: Hidden Patterns in Time and Frequency**
+<p>Modern encryption protocols (TLS 1.3, ESNI, DoH, HTTP/3) hide traffic characteristics completely. Network operators need to identify traffic types for security monitoring, quality of service, and capacity planning, but cannot compromise encryption or user privacy.</p>
 
-**The Insight**: Even encrypted traffic has **spectral fingerprints** – patterns hidden in the frequency domain that reveal application behavior.
+<h2>Our Approach</h2>
 
-**Our Technique**: **Multiresolution spectral analysis** that:
+<h3>Generative AI for Data Synthesis</h3>
 
-- **Analyzes traffic in frequency domain** rather than just time sequences
-- **Detects hidden periodic patterns** in encrypted communications
-- **Identifies applications** by their unique spectral signatures
-- **Works even with heavily encrypted protocols** like TLS 1.3
+<p>Using GANs to create realistic encrypted traffic datasets. Addresses data scarcity in encrypted traffic research.</p>
 
-### 🎯 **Advanced Data Augmentation: Amplifying Intelligence**
+<h3>Post-Quantum Traffic Classification</h3>
 
-**The Strategy**: Traditional machine learning fails with encrypted traffic because there's not enough diverse training data.
+<p>First system (PQClass) to classify traffic encrypted with post-quantum algorithms. Prepares networks for quantum-resistant cryptography.</p>
 
-**Our Advancement**: **Next-generation data augmentation** techniques that:
+<h3>Spectral Analysis</h3>
 
-- **Artificially increases training diversity** without compromising real patterns
-- **Creates robust models** that work across different network conditions
-- **Improves generalization** to unseen encrypted protocols
-- **Maintains privacy** while enhancing AI training effectiveness
+<p>Frequency-domain analysis identifies application patterns in encrypted communications without decryption.</p>
 
-### ⚡ **SimCSE for Zero-Day Detection: Catching the Unknown**
+<h3>Advanced Data Augmentation</h3>
 
-**The Ultimate Test**: Can AI detect **completely new attack patterns** hidden in encrypted traffic?
+<p>Novel techniques that improve model performance across diverse network conditions.</p>
 
-**Our Breakthrough**: **SimCSE-based contrastive learning** that:
+<h3>Zero-Day Detection</h3>
 
-- **Detects zero-day attacks** that have never been seen before
-- **Learns encrypted traffic representations** without labeled attack data
-- **Identifies anomalous patterns** in encrypted communication flows
-- **Provides early warning** for unknown threats
+<p>SimCSE-based contrastive learning detects previously unseen attack patterns in encrypted traffic.</p>
 
-## Real-World Impact: From Research to Global Defense
+<h2>Impact</h2>
 
-### 🌐 **Network Infrastructure at Scale**
-
-Our traffic classification AI is already deployed in:
-
-**Internet Service Providers**:
-
-- **Real-time traffic shaping** for millions of users
-- **Quality of Service optimization** without privacy invasion
-- **Network capacity planning** based on encrypted traffic patterns
-- **Proactive congestion management** using AI predictions
-
-**Cybersecurity Operations Centers**:
-
-- **Threat detection** in fully encrypted environments
-- **Incident response** with AI-powered traffic analysis
-- **Zero-day attack prevention** using our contrastive learning models
-- **Security monitoring** that respects user privacy
-
-### 📊 **Measurable Breakthroughs**
-
-**Classification Accuracy**:
-
-- **95%+ accuracy** on encrypted traffic across all major protocols
-- **80% improvement** over traditional Deep Packet Inspection methods
-- **Real-time processing** of multi-gigabit network streams
-- **Zero privacy violations** while maintaining full functionality
-
-**Innovation Metrics**:
-
-- **First successful post-quantum traffic classification** system globally
-- **Novel generative AI approach** creating synthetic encrypted traffic datasets
-- **Spectral analysis techniques** that work on any encryption protocol
-- **Industry-standard benchmark** setting for encrypted traffic research
-
-### 🚀 **Future Applications: Beyond Traditional Networks**
-
-Our encrypted traffic intelligence enables:
-
-**Smart Cities**: Traffic optimization in IoT networks where everything is encrypted
-**5G/6G Networks**: Real-time service management in ultra-high-speed encrypted networks
-**Edge Computing**: Distributed AI that classifies traffic at network edges
-**Quantum Internet**: Preparing for future quantum-encrypted communication networks
-
-**The Bottom Line**: As the internet becomes **100% encrypted for security**, our AI ensures that **network intelligence doesn't disappear**. We're building the invisible infrastructure that keeps the encrypted internet **fast, secure, and manageable**.
+<p>Our methods achieve high accuracy while fully respecting encryption and privacy. Applications include real-time threat detection, network optimization, and the world's first post-quantum traffic classification system.</p>
 
 <div class="project-publications">
   <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
   <div class="publications">
     {% bibliography -q @*[projects ~= traffic-classification] %}
   </div>
+</div>
+
 </div>

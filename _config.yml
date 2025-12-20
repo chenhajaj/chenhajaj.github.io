@@ -247,11 +247,11 @@ terser:
 use_resume: true
 resume_sections:
   - basics
-  - education
   - academicAdministration
   - conferences
   - patents
   - grants
+  - education
 
 # -----------------------------------------------------------------------------
 # Jekyll Archives
