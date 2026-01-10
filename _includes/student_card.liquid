@@ -1,9 +1,19 @@
-<div class="member-card {% if include.student.graduation_year %} alumni {% endif %}" style="padding: 2rem; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid #e5e7eb; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(37,99,235,0.15)'; this.style.borderColor='#3b82f6';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'; this.style.borderColor='#e5e7eb';">
+<div
+  class="member-card {% if include.student.graduation_year %} alumni {% endif %}"
+  style="padding: 2rem; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 2px solid #e5e7eb; transition: all 0.3s ease; cursor: pointer;"
+  onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 28px rgba(37,99,235,0.15)'; this.style.borderColor='#3b82f6';"
+  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'; this.style.borderColor='#e5e7eb';"
+>
   <strong style="display: block; color: #1e40af; font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700;">{{ include.student.name }}</strong>
   {% if include.student.graduation_year %}
-  <p class="graduation-year" style="color: #9ca3af; font-size: 0.95rem; margin: 0.5rem 0 !important;"><i class="fas fa-calendar" style="color: #3b82f6 !important;"></i> {{ include.student.graduation_year }}</p>
+    <p class="graduation-year" style="color: #9ca3af; font-size: 0.95rem; margin: 0.5rem 0 !important;">
+      <i class="fas fa-calendar" style="color: #3b82f6 !important;"></i> {{ include.student.graduation_year }}
+    </p>
   {% endif %}
-  <p class="research-area" style="color: #374151; margin: 0.5rem 0 !important; font-size: 1rem; line-height: 1.6; display: flex; align-items: center; gap: 0.5rem;">
+  <p
+    class="research-area"
+    style="color: #374151; margin: 0.5rem 0 !important; font-size: 1rem; line-height: 1.6; display: flex; align-items: center; gap: 0.5rem;"
+  >
     <i class="fas fa-microscope" style="color: #3b82f6; font-size: 1.1rem;"></i>
     <span style="color: #4b5563;">{{ include.student.research_area }}</span>
   </p>

@@ -79,6 +79,7 @@ nav_order: 2
         <span id="visible-count">0</span> of <span id="total-count">0</span> publications
       </span>
     </div>
+
   </div>
 
   <!-- Publications Container -->
