@@ -6,7 +6,7 @@ pagination:
   enabled: true
   collection: posts
   per_page: 10
-  permalink: '/news/:num/'
+  permalink: "/news/:num/"
 ---
 
 {% if paginator %}
@@ -14,18 +14,18 @@ pagination:
 <ul class="news-list">
 {% for post in paginator.posts %}
 <li>
-<a href="{{ post.url }}">{{ post.title }}</a>
+<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
 <span class="date">{{ post.date | date: "%B %d, %Y" }}</span>
 </li>
 {% endfor %}
 </ul>
 <div class="pagination">
 {% if paginator.previous_page %}
-<a href="{{ paginator.previous_page_path }}">Previous</a>
+<a href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
 {% endif %}
 <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
 {% if paginator.next_page %}
-<a href="{{ paginator.next_page_path }}">Next</a>
+<a href="{{ paginator.next_page_path | relative_url }}">Next</a>
 {% endif %}
 </div>
 {% else %}
