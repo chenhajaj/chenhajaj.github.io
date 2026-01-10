@@ -53,11 +53,11 @@ latest_posts:
         <div class="stat-label">Publications</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">12</div>
+        <div class="stat-value">16</div>
         <div class="stat-label">Current Students</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">8</div>
+        <div class="stat-value">20</div>
         <div class="stat-label">Alumni Students</div>
       </div>
     </div>
@@ -127,7 +127,7 @@ latest_posts:
 
   <!-- Join Our Team -->
   <section class="join-team-section">
-    <h3><i class="fas fa-user-plus"></i> Join Our Research Team</h3>
+    <h3><i class="fas fa-user-plus"></i> Join Our Lab</h3>
     <div class="join-lab-cta">
       <div class="cta-main-content">
         <p class="welcome-text">We welcome motivated graduate students who are passionate about pushing the boundaries of AI research. Our lab provides a collaborative environment, cutting-edge projects, and opportunities to contribute to high-impact publications while working on meaningful problems that bridge theory and practice.</p>
