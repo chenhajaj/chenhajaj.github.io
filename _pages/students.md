@@ -37,8 +37,10 @@ nav_order: 3
 </div>
 
 <!-- PhD Alumni Section -->
-<div class="student-section card-element">
-  <h2><i class="fas fa-award"></i> PhD Alumni</h2>
+<div class="student-section" style="margin-bottom: 4rem; display: block; background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+  <h2 style="color: #2563eb; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;">
+    <i class="fas fa-award" style="color: #3b82f6;"></i> PhD Alumni
+  </h2>
   <div class="student-grid">
     {% for student in site.data.students.phd_alumni %}
       {% include student_card.liquid student=student %}
@@ -47,8 +49,10 @@ nav_order: 3
 </div>
 
 <!-- Masters Students Section -->
-<div class="student-section card-element">
-  <h2><i class="fas fa-user-graduate"></i> Masters Students</h2>
+<div class="student-section" style="margin-bottom: 4rem; display: block; background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+  <h2 style="color: #2563eb; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;">
+    <i class="fas fa-user-graduate" style="color: #3b82f6;"></i> Masters Students
+  </h2>
   <div class="student-grid">
     {% for student in site.data.students.masters_students %}
       {% include student_card.liquid student=student %}
@@ -57,8 +61,10 @@ nav_order: 3
 </div>
 
 <!-- Masters Alumni Section -->
-<div class="student-section card-element">
-  <h2><i class="fas fa-award"></i> Masters Alumni</h2>
+<div class="student-section" style="margin-bottom: 4rem; display: block; background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+  <h2 style="color: #2563eb; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;">
+    <i class="fas fa-award" style="color: #3b82f6;"></i> Masters Alumni
+  </h2>
   <div class="student-grid">
     {% for student in site.data.students.masters_alumni %}
       {% include student_card.liquid student=student %}
@@ -67,8 +73,10 @@ nav_order: 3
 </div>
 
 <!-- Current Research Assistants Section -->
-<div class="student-section card-element">
-  <h2><i class="fas fa-flask"></i> Research Assistants</h2>
+<div class="student-section" style="margin-bottom: 4rem; display: block; background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+  <h2 style="color: #2563eb; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;">
+    <i class="fas fa-flask" style="color: #3b82f6;"></i> Research Assistants
+  </h2>
   <div class="student-grid">
     {% for student in site.data.students.research_assistants %}
       {% include student_card.liquid student=student %}
@@ -77,8 +85,10 @@ nav_order: 3
 </div>
 
 <!-- Former Research Assistants Section -->
-<div class="student-section card-element">
-  <h2><i class="fas fa-history"></i> Former Research Assistants</h2>
+<div class="student-section" style="margin-bottom: 4rem; display: block; background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+  <h2 style="color: #2563eb; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;">
+    <i class="fas fa-history" style="color: #3b82f6;"></i> Former Research Assistants
+  </h2>
   <div class="student-grid">
     {% for student in site.data.students.former_research_assistants %}
       {% include student_card.liquid student=student %}
