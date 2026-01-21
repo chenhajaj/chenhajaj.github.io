@@ -29,8 +29,6 @@ phd_alumni:
     research_area: "APK Security"
 
 masters_students:
-  - name: "Nave Cohen"
-    research_area: "Customizing Recommendations by Funnel Position"
   - name: "Ihab Hino"
     research_area: "Dynamic Multimodal Attribute Completion"
   - name: "Amit Stein"
@@ -42,22 +40,22 @@ masters_students:
 
 masters_alumni:
   - name: "Amit Tzahar"
-    graduation_year: "2023"
+    graduation_year: "2025"
     research_area: "Image Restoration in Adversarially Encrypted Medical Images"
   - name: "Stav Gal Elhadif"
-    graduation_year: "2023"
+    graduation_year: "2025"
     research_area: "LLMs & Explainability"
   - name: "Bar Ben David"
-    graduation_year: "2021"
+    graduation_year: "2024"
     research_area: "Speech Emotion Recognition using Computer Vision Methods"
   - name: "Ben-Ron Udi"
-    graduation_year: "2021"
+    graduation_year: "2024"
     research_area: "Image-based Time Series Prediction"
   - name: "Adi Lichi"
-    graduation_year: "2021"
+    graduation_year: "2024"
     research_area: "Encrypted Traffic Classification"
   - name: "Porat Aharon"
-    graduation_year: "2021"
+    graduation_year: "2023"
     research_area: "Image-based Traffic Classification"
   - name: "Chen Shiener"
     graduation_year: "2023"
@@ -98,7 +96,6 @@ masters_alumni:
 
 research_assistants:
   - name: "Yarin Amar"
-    graduation_year: "2025-2026"
     research_area: "Design Spaces"
 
 former_research_assistants:
