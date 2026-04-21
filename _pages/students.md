@@ -3,7 +3,7 @@ layout: page
 permalink: /students/
 title: Research Group
 description: Meet our talented team of researchers
-nav: true
+nav: false
 nav_order: 3
 ---
 
