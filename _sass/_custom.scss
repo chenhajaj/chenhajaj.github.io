@@ -1,3 +1,17 @@
+/* ── Full page width override ────────────────────────────────────── */
+.container {
+  max-width: 100% !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
 /* Shared styles across pages */
 
 /* About Me Introduction Section */
@@ -54,9 +68,9 @@
 
 /* Common page container */
 .page-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 2rem 0;
 }
 
 /* Section headings */
@@ -163,9 +177,9 @@ h4 {
 
 /* Projects page styling */
 .projects-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 2rem 0;
   color: var(--global-text-color);
   line-height: 1.6;
 }
@@ -269,9 +283,9 @@ h4 {
 
 /* Student/Research group page styling */
 .research-group {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 2rem 0;
 }
 
 .research-group h2 {
