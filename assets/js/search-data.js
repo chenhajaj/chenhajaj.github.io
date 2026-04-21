@@ -23,6 +23,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
+        },{id: "nav-people",
+          title: "People",
+          description: "Current students and alumni of the Hajaj Lab at Ariel University",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/people/";
+          },
         },{id: "nav-projects",
           title: "Projects",
           description: "Research projects in AI, cybersecurity, healthcare, and data science.",
@@ -371,6 +378,21 @@ ninja.data = [{
               window.location.href = "/news/announcement_2/";
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+          description: "",
+          section: "News",},{id: "news-new-paper-in-ieee-access-leveraging-osint-for-advanced-proactive-cybersecurity-strategies-and-solutions-doi-10-1109-access-2025-3603868-️",
+          title: 'New paper in IEEE Access: Leveraging OSINT for Advanced Proactive Cybersecurity: Strategies and...',
+          description: "",
+          section: "News",},{id: "news-two-papers-presented-at-ieee-ccnc-2026-in-las-vegas-qoe-prediction-for-call-of-duty-and-cloudy-with-a-chance-of-anomalies-dynamic-gnn-for-cloud-anomaly-detection-️",
+          title: 'Two papers presented at IEEE CCNC 2026 in Las Vegas: QoE Prediction for...',
+          description: "",
+          section: "News",},{id: "news-new-paper-published-in-computer-networks-real-time-network-security-integrating-ann-and-dynamic-graph-based-clustering-doi-10-1016-j-comnet-2026-112016",
+          title: 'New paper published in Computer Networks: Real-Time Network Security: Integrating ANN and Dynamic...',
+          description: "",
+          section: "News",},{id: "news-paper-accepted-at-aamas-2026-cleaner-adversarial-captchas-intelligent-targets-and-precise-noise-for-usable-security-meir-litman-amp-amp-chen-hajaj",
+          title: 'Paper accepted at AAMAS 2026: Cleaner Adversarial CAPTCHAs: Intelligent Targets and Precise Noise...',
+          description: "",
+          section: "News",},{id: "news-two-papers-accepted-at-ieee-icc-2026-in-glasgow-uncovering-microservice-faults-udi-aharon-et-al-and-real-time-network-security-with-ann-and-graph-based-clustering-zohar-simhon-et-al",
+          title: 'Two papers accepted at IEEE ICC 2026 in Glasgow: Uncovering Microservice Faults (Udi...',
           description: "",
           section: "News",},{id: "projects-project-5",
           title: 'project 5',
