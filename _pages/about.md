@@ -15,7 +15,7 @@ profile:
       <div class="social-links">
         <a href="mailto:chenha@g.ariel.ac.il" title="Email"><i class="fas fa-envelope"></i></a>
         <a href="https://github.com/chenhajaj" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/chen-hajaj-b2b4b0b" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.linkedin.com/in/chen-hajaj-5ba59517" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="https://scholar.google.com/citations?user=Ys5aNKYAAAAJ" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
       </div>
     </div>
