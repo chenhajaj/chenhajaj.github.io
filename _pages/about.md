@@ -235,15 +235,15 @@ latest_posts:
 
 <style>
 .about-content {
-  max-width: 1300px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   padding: 0;
 }
 
 /* Ensure content doesn't overlap with profile image */
 @media (min-width: 769px) {
   .about-content {
-    margin-right: 200px;
+    margin-right: 0;
   }
 }
 
