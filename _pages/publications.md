@@ -99,8 +99,7 @@ nav_order: 2
 /* Publications Container */
 .publications {
   padding: 0 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
 }
 
 /* Header Section */
