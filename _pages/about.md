@@ -20,10 +20,10 @@ profile:
       </div>
     </div>
 
-selected_papers: true
+selected_papers: false
 social: false
 announcements:
-  enabled: true
+  enabled: false
   scrollable: true
   limit: 5
 latest_posts:
@@ -123,6 +123,20 @@ latest_posts:
         <h4>Human Behavior Analysis</h4>
       </div>
     </div>
+  </section>
+
+  <!-- ── News ── -->
+  <section style="margin-bottom:3rem;">
+  <h3 style="color:var(--global-theme-color);font-size:1.4rem;font-weight:600;border-bottom:2px solid #e2e8f0;padding-bottom:0.5rem;margin-bottom:1.5rem;">📰 News</h3>
+  <div style="display:flex;flex-direction:column;gap:0.5rem;">
+  {% assign sorted_news = site.news | sort: "date" | reverse %}
+  {% for item in sorted_news limit: 10 %}{% unless item.path contains "_TEMPLATE" %}
+  <div style="display:flex;gap:1rem;padding:0.6rem 0;border-bottom:1px solid #f0f0f0;align-items:baseline;">
+    <span style="min-width:110px;color:#718096;font-size:0.85rem;font-weight:500;flex-shrink:0;">{{ item.date | date: "%b %-d, %Y" }}</span>
+    <span style="color:#2d3748;line-height:1.5;">{{ item.content | remove: '<p>' | remove: '</p>' }}</span>
+  </div>
+  {% endunless %}{% endfor %}
+  </div>
   </section>
 
   <!-- Join Our Team -->
