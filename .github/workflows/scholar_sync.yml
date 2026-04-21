@@ -1,0 +1,163 @@
+# .github/workflows/scholar_sync.yml
+#
+# Automatically syncs new papers from Google Scholar.
+#
+# What it does:
+#   1. Runs every Sunday at 08:00 UTC (or manually via workflow_dispatch)
+#   2. Queries your Google Scholar profile using the `scholarly` Python library
+#   3. Compares results against the existing _bibliography/papers.bib
+#   4. If new entries are found, opens a DRAFT Pull Request with the additions
+#   5. You review the PR, adjust fields if needed, then merge → site rebuilds
+#
+# Setup:
+#   - No secrets required for public Scholar profiles
+#   - The workflow uses GITHUB_TOKEN (auto-provided) to open PRs
+#   - Your Scholar ID is: Ys5aNKYAAAAJ
+#
+# Manual run:
+#   Go to Actions → Scholar Sync → Run workflow
+
+name: Scholar Sync
+
+on:
+  schedule:
+    - cron: "0 8 * * 0"   # Every Sunday at 08:00 UTC
+  workflow_dispatch:       # Also runnable manually from GitHub Actions tab
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install scholarly bibtexparser
+
+      - name: Fetch new papers from Scholar
+        id: fetch
+        run: |
+          python - <<'EOF'
+          import json, sys, time, re
+          from scholarly import scholarly
+          import bibtexparser
+          from bibtexparser.bwriter import BibTexWriter
+
+          SCHOLAR_ID = "Ys5aNKYAAAAJ"
+          BIB_PATH = "_bibliography/papers.bib"
+
+          # Load existing bib keys
+          with open(BIB_PATH, "r", encoding="utf-8") as f:
+              existing_bib = bibtexparser.load(f)
+          existing_keys = {e["ID"].lower() for e in existing_bib.entries}
+          existing_titles = {e.get("title", "").lower().strip() for e in existing_bib.entries}
+
+          print(f"Existing entries: {len(existing_keys)}")
+
+          # Fetch from Scholar
+          author = scholarly.search_author_id(SCHOLAR_ID)
+          scholarly.fill(author, sections=["publications"])
+
+          new_entries = []
+          for pub in author.get("publications", []):
+              try:
+                  scholarly.fill(pub)
+                  title = pub.get("bib", {}).get("title", "").lower().strip()
+                  if not title:
+                      continue
+                  if title in existing_titles:
+                      continue
+
+                  bib = pub.get("bib", {})
+                  year = str(bib.get("pub_year", ""))
+                  # Generate a key: firstauthorlastname + year + first_word_of_title
+                  first_author = bib.get("author", "").split(" and ")[0].split(",")[0].strip().lower()
+                  first_author = re.sub(r"[^a-z]", "", first_author)
+                  title_word = re.sub(r"[^a-z]", "", bib.get("title", "").split()[0].lower())
+                  key = f"{first_author}{year}{title_word}"
+
+                  # Build BibTeX entry
+                  entry_type = "article"
+                  venue = bib.get("journal", bib.get("conference", bib.get("booktitle", "")))
+                  if bib.get("conference") or bib.get("booktitle"):
+                      entry_type = "inproceedings"
+
+                  entry_lines = [
+                      f"@{entry_type}{{{key},",
+                      f"  author  = {{{bib.get('author', '')}}},",
+                      f"  title   = {{{bib.get('title', '')}}},",
+                  ]
+                  if entry_type == "article":
+                      entry_lines.append(f"  journal = {{{bib.get('journal', '')}}},")
+                  else:
+                      entry_lines.append(f"  booktitle = {{{bib.get('booktitle', bib.get('conference', ''))}}},")
+                  if year:
+                      entry_lines.append(f"  year    = {{{year}}},")
+                  if bib.get("url"):
+                      entry_lines.append(f"  url     = {{{bib['url']}}},")
+                  entry_lines.append("  selected  = {false},")
+                  entry_lines.append("  projects  = {},  % TODO: add project tags")
+                  entry_lines.append("}")
+
+                  new_entries.append("\n".join(entry_lines))
+                  print(f"  NEW: {bib.get('title', '')}")
+                  time.sleep(1)   # Be polite to Scholar
+
+              except Exception as e:
+                  print(f"  SKIP: {e}", file=sys.stderr)
+                  continue
+
+          if new_entries:
+              with open("new_papers.bib", "w", encoding="utf-8") as f:
+                  f.write("\n\n".join(new_entries) + "\n")
+              print(f"\nFound {len(new_entries)} new paper(s). Saved to new_papers.bib")
+              with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
+                  fh.write(f"new_count={len(new_entries)}\n")
+          else:
+              print("No new papers found.")
+              with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
+                  fh.write("new_count=0\n")
+          EOF
+
+      - name: Append new papers to papers.bib
+        if: steps.fetch.outputs.new_count != '0'
+        run: |
+          echo "" >> _bibliography/papers.bib
+          echo "% ── Auto-added by scholar_sync on $(date +%Y-%m-%d) ──────────────" >> _bibliography/papers.bib
+          cat new_papers.bib >> _bibliography/papers.bib
+
+      - name: Create Pull Request
+        if: steps.fetch.outputs.new_count != '0'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: scholar-sync/auto-update
+          delete-branch: true
+          draft: true
+          title: "📚 Scholar Sync: ${{ steps.fetch.outputs.new_count }} new paper(s) detected"
+          body: |
+            ## New papers found on Google Scholar
+
+            This PR was automatically generated by the Scholar Sync workflow.
+
+            **${{ steps.fetch.outputs.new_count }} new entries** have been appended to `_bibliography/papers.bib`.
+
+            ### Before merging, please:
+            - [ ] Review each new entry for correctness
+            - [ ] Remove duplicate or incorrect entries
+            - [ ] Add `selected = {true}` to any featured papers
+            - [ ] Add `abstract`, `pdf`, `code`, and `projects` fields
+            - [ ] Delete the `% ── Auto-added...` comment line
+
+            Once merged, the site will rebuild automatically.
+          commit-message: "chore: add ${{ steps.fetch.outputs.new_count }} new paper(s) from Scholar sync"
+          labels: "papers, automated"
