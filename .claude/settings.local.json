@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm Dockerfile docker-compose.yml docker-compose-slim.yml .dockerignore bin/entry_point.sh)",
+      "Bash(rmdir bin *)",
+      "Bash(rm .github/workflows/deploy-image.yml .github/workflows/docker-slim.yml .github/workflows/deploy-docker-tag.yml)"
+    ]
+  }
+}
