@@ -38,7 +38,7 @@ latest_posts:
     <div class="stats-grid">
       <div class="stat-item">
         <div class="stat-value">$1.2M+</div>
-        <div class="stat-label">Research Funding</div>
+        <div class="stat-label">in Research Grants</div>
       </div>
       <div class="stat-item">
         <div class="stat-value">4</div>
@@ -53,12 +53,12 @@ latest_posts:
         <div class="stat-label">Publications</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">16</div>
+        <div class="stat-value">14</div>
         <div class="stat-label">Current Students</div>
       </div>
       <div class="stat-item">
         <div class="stat-value">20</div>
-        <div class="stat-label">Alumni Students</div>
+        <div class="stat-label">Alumni</div>
       </div>
     </div>
   </section>
@@ -67,13 +67,13 @@ latest_posts:
   <section class="about-intro-section">
     <div class="about-intro-content">
       <p class="about-lead-text">
-        I lead data science research and education as <strong>Associate Professor</strong> and <strong>Head of the Data Science Track</strong> at Ariel University, where I also serve as <strong>Head of the Faculty Review Board</strong> and <strong>NVIDIA University Ambassador</strong>.
+        I lead data science research and education as <strong>Associate Professor</strong> and <strong>Head of the Data Science Track</strong> at Ariel University. I also serve as <strong>Head of the Faculty Review Board</strong> and <strong>NVIDIA University Ambassador</strong>.
       </p>
       <p class="about-intro-text">
-        My research translates artificial intelligence theory into deployed systems with measurable real-world impact. I've secured over <strong>$1.2 million in competitive research funding</strong> and hold <strong>4 patents</strong> in AI applications spanning healthcare diagnostics, cybersecurity, and human behavior prediction.
+        My research translates artificial intelligence theory into deployed systems with measurable real-world impact. I have secured more than <strong>$1.2 million in competitive research funding</strong> and hold <strong>4 patents</strong> in AI applications spanning healthcare diagnostics, cybersecurity, and human behavior prediction.
       </p>
       <p class="about-intro-text">
-        I bridge academia and industry through active collaborations with the Israel Innovation Authority, Ministry of Innovation Science and Technology, and leading technology companies—developing AI solutions for encrypted traffic analysis, medical decision support, and intelligent recommendation systems deployed at scale.
+        I bridge academia and industry through active collaborations with the Israel Innovation Authority, the Ministry of Innovation, Science and Technology, and leading technology companies — developing AI solutions for encrypted traffic analysis, medical decision support, and intelligent recommendation systems deployed at scale.
       </p>
     </div>
 
@@ -83,7 +83,7 @@ latest_posts:
   <section class="research-focus-section">
     <h3><i class="fas fa-microscope"></i> Research Focus</h3>
     <div class="research-intro-container">
-      <p class="research-intro">My research bridges theoretical foundations with practical applications, developing innovative solutions that address real-world challenges across diverse domains. Each area represents a commitment to advancing knowledge while creating tangible value for industry and society.</p>
+      <p class="research-intro">My research bridges theoretical foundations with practical applications, developing innovative solutions that address real-world challenges across diverse domains, with a commitment to advancing knowledge while creating tangible value for industry and society.</p>
     </div>
     <div class="research-stack">
       <div class="research-item featured">
@@ -144,7 +144,7 @@ latest_posts:
     <h3><i class="fas fa-user-plus"></i> Join Our Lab</h3>
     <div class="join-lab-cta">
       <div class="cta-main-content">
-        <p class="welcome-text">We welcome motivated graduate students who are passionate about pushing the boundaries of AI research. Our lab provides a collaborative environment, cutting-edge projects, and opportunities to contribute to high-impact publications while working on meaningful problems that bridge theory and practice.</p>
+        <p class="welcome-text">We welcome motivated graduate students who are passionate about pushing the boundaries of AI research. Our lab provides a collaborative environment, access to cutting-edge projects, and opportunities to contribute to high-impact publications while working on meaningful problems at the intersection of theory and practice.</p>
       </div>
       <div class="cta-bottom">
         <div class="cta-benefits">
@@ -219,7 +219,7 @@ latest_posts:
           <p><strong>NVIDIA University Ambassador (2024-present)</strong> • Leading GPU computing and AI education initiatives.</p>
           <p><strong>Head of Faculty Review Board (2021-present)</strong> • Directing research quality and ethical standards across the Faculty of Engineering.</p>
           <p><strong>Head of Data Science Track (2021-present)</strong> • Overseeing curriculum development, student programs, and industry partnerships.</p>
-          <p><strong>Director, Data Science & AI Research Center (2019-2024)</strong> • Built a research center securing $1.2M+ in competitive funding, producing 4 patents, and establishing collaborations with Israel Innovation Authority and Ministry of Innovation.</p>
+          <p><strong>Director, Data Science & AI Research Center (2019–2024)</strong> • Founded and directed a research center that secured more than $1.2M in competitive funding, resulted in 4 patents, and established collaborations with the Israel Innovation Authority and the Ministry of Innovation.</p>
           <span class="timeline-meta">Ariel University • 2018-Present</span>
         </div>
       </div>
@@ -988,35 +988,65 @@ h3 i {
 
 .contact-info {
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(75, 108, 183, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(75, 108, 183, 0.15);
 }
 
 .contact-info p {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  margin: 0.5rem 0;
+  gap: 0.4rem;
+  margin: 0 0 0.6rem 0;
   color: #4a5568;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.contact-info p i {
+  color: var(--global-theme-color);
 }
 
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 1.1rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(75, 108, 183, 0.15);
 }
 
 .social-links a {
-  color: #4a5568;
-  font-size: 1.25rem;
+  color: #718096;
+  font-size: 1.2rem;
   transition: all 0.2s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #e2e8f0;
 }
 
 .social-links a:hover {
-  color: #4b6cb7;
+  color: var(--global-theme-color);
+  border-color: var(--global-theme-color);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(75, 108, 183, 0.2);
+}
+
+/* Profile sidebar alignment */
+.profile {
+  margin-bottom: 1.5rem !important;
+}
+
+.profile .more-info {
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 768px) {
