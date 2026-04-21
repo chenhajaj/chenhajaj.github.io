@@ -31,7 +31,7 @@ latest_posts:
       </div>
       <div class="profile-header-text">
         <h2 class="profile-name">Chen Hajaj</h2>
-        <p class="profile-title">Associate Professor &amp; Head of Data Science Track</p>
+        <p class="profile-title"><span id="typed-title" style="color:#fff;font-weight:700;"></span><span class="typed-cursor typed-cursor--blink" style="color:#fff;font-weight:700;">|</span></p>
         <p class="profile-institution"><i class="fas fa-university"></i> Ariel University</p>
         <div class="profile-contact-links">
           <a href="mailto:chenha@g.ariel.ac.il" title="Email"><i class="fas fa-envelope"></i> chenha@g.ariel.ac.il</a>
@@ -1342,5 +1342,33 @@ h3 i {
   }
 }
 
+</style>
 
+<!-- Typed.js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script>
+(function() {
+  var el = document.getElementById('typed-title');
+  if (!el) return;
+  // Hide the manual blinking cursor — Typed.js manages its own
+  var manualCursor = el.nextElementSibling;
+  if (manualCursor) manualCursor.style.display = 'none';
+  new Typed('#typed-title', {
+    strings: [
+      'Associate Professor',
+      'Head of Data Science Track',
+      'AI &amp; Cybersecurity Researcher',
+      'NVIDIA University Ambassador',
+      'Head of Faculty Review Board'
+    ],
+    typeSpeed: 55,
+    backSpeed: 30,
+    backDelay: 2200,
+    startDelay: 400,
+    loop: true,
+    smartBackspace: true,
+    cursorChar: '|'
+  });
+})();
+</script>
 </style>

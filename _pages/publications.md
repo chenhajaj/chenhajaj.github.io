@@ -20,7 +20,6 @@ nav_order: 2
 
   <!-- Filter and Navigation Bar -->
   <div class="filter-section">
-    <div class="search-container">
       <i class="fas fa-search search-icon"></i>
       <input type="text" id="search-input" class="search-input" placeholder="Search publications by title, author, venue...">
       <button id="clear-search" class="clear-btn" title="Clear search">
@@ -1032,3 +1031,4 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
