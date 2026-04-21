@@ -8,17 +8,6 @@ profile:
   align: right
   image: me.jpeg
   image_circular: false
-  more_info: >
-    <div class="contact-info">
-      <p><i class="fas fa-building"></i> Office: 58.3.42</p>
-      
-      <div class="social-links">
-        <a href="mailto:chenha@g.ariel.ac.il" title="Email"><i class="fas fa-envelope"></i></a>
-        <a href="https://github.com/chenhajaj" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/chen-hajaj-5ba59517" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://scholar.google.com/citations?user=Ys5aNKYAAAAJ" title="Google Scholar"><i class="ai ai-google-scholar"></i></a>
-      </div>
-    </div>
 
 selected_papers: false
 social: false
@@ -33,6 +22,28 @@ latest_posts:
 ---
 
 <div class="about-content">
+
+  <!-- Profile Header -->
+  <section class="profile-header-section">
+    <div class="profile-header-inner">
+      <div class="profile-header-text">
+        <h2 class="profile-name">Chen Hajaj</h2>
+        <p class="profile-title">Associate Professor &amp; Head of Data Science Track</p>
+        <p class="profile-institution"><i class="fas fa-university"></i> Ariel University</p>
+        <div class="profile-contact-links">
+          <a href="mailto:chenha@g.ariel.ac.il" title="Email"><i class="fas fa-envelope"></i> chenha@g.ariel.ac.il</a>
+          <a href="https://github.com/chenhajaj" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
+          <a href="https://www.linkedin.com/in/chen-hajaj-5ba59517" title="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://scholar.google.com/citations?user=Ys5aNKYAAAAJ" title="Google Scholar"><i class="ai ai-google-scholar"></i> Scholar</a>
+          <span class="profile-office"><i class="fas fa-building"></i> Office: 58.3.42</span>
+        </div>
+      </div>
+      <div class="profile-header-photo">
+        <img src="/assets/img/me.jpeg" alt="Chen Hajaj" class="profile-photo-img" />
+      </div>
+    </div>
+  </section>
+
   <!-- Impact Stats Hero -->
   <section class="impact-stats-hero">
     <div class="stats-grid">
@@ -1040,13 +1051,141 @@ h3 i {
   box-shadow: 0 4px 12px rgba(75, 108, 183, 0.2);
 }
 
-/* Profile sidebar alignment */
-.profile {
-  margin-bottom: 1.5rem !important;
+/* Hide the al-folio float profile since we have our own header */
+.profile.float-right,
+.profile.float-left {
+  display: none !important;
 }
 
-.profile .more-info {
-  margin-top: 0.5rem;
+/* Profile Header Section */
+.profile-header-section {
+  margin-bottom: 2.5rem;
+}
+
+.profile-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2rem 2.5rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.07);
+}
+
+.profile-header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-name {
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  color: #1a202c !important;
+  margin: 0 0 0.4rem 0 !important;
+  border: none !important;
+  padding: 0 !important;
+  display: block !important;
+  align-items: unset !important;
+  gap: unset !important;
+}
+
+.profile-name i { display: none; }
+
+.profile-title {
+  font-size: 1.1rem;
+  color: var(--global-theme-color);
+  font-weight: 600;
+  margin: 0 0 0.3rem 0;
+}
+
+.profile-institution {
+  font-size: 0.95rem;
+  color: #718096;
+  margin: 0 0 1.2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.profile-institution i {
+  color: var(--global-theme-color);
+  font-size: 0.9rem;
+}
+
+.profile-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.profile-contact-links a,
+.profile-contact-links .profile-office {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #4a5568;
+}
+
+.profile-contact-links a:hover {
+  color: var(--global-theme-color);
+  border-color: var(--global-theme-color);
+  background: white;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(75, 108, 183, 0.15);
+  text-decoration: none;
+}
+
+.profile-contact-links a i,
+.profile-contact-links .profile-office i {
+  font-size: 0.9rem;
+  color: var(--global-theme-color);
+}
+
+.profile-office {
+  color: #718096 !important;
+  cursor: default;
+}
+
+.profile-header-photo {
+  flex-shrink: 0;
+}
+
+.profile-photo-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 6px 25px rgba(75, 108, 183, 0.25);
+}
+
+@media (max-width: 640px) {
+  .profile-header-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  .profile-photo-img {
+    width: 120px;
+    height: 120px;
+  }
+  .profile-contact-links {
+    justify-content: center;
+  }
+  .profile-institution {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {
