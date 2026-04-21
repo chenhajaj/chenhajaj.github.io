@@ -9,9 +9,9 @@ nav_order: 3
 
 <style>
 .people-stats{display:flex;gap:2rem;justify-content:center;margin:2rem 0 3rem;flex-wrap:wrap}
-.people-stat{text-align:center;background:linear-gradient(135deg,#4b6cb7 0%,#182848 100%);color:white;padding:1.5rem 2.5rem;border-radius:12px;min-width:140px}
-.people-stat .stat-number{font-size:2.5rem;font-weight:700;line-height:1}
-.people-stat .stat-label{font-size:0.85rem;margin-top:0.4rem;opacity:0.9}
+.people-stat{text-align:center;background:linear-gradient(135deg,#4b6cb7 0%,#182848 100%);color:#fff!important;padding:1.5rem 2.5rem;border-radius:12px;min-width:140px}
+.people-stat .stat-number{font-size:2.5rem;font-weight:700;line-height:1;color:#fff!important}
+.people-stat .stat-label{font-size:0.85rem;margin-top:0.4rem;opacity:0.9;color:#fff!important}
 .people-section-title{font-size:1.4rem;font-weight:600;color:#2d3748;border-bottom:3px solid #4b6cb7;padding-bottom:0.5rem;margin:2.5rem 0 1.5rem}
 .people-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;margin-bottom:2rem}
 .person-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.5rem 1rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:transform 0.2s,box-shadow 0.2s}
