@@ -62,7 +62,7 @@ latest_posts:
         <div class="stat-label">Publications</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">14</div>
+        <div class="stat-value">17</div>
         <div class="stat-label">Current Students</div>
       </div>
       <div class="stat-item">
@@ -98,7 +98,7 @@ latest_posts:
           <i class="fas fa-handshake"></i>
           <div>
             <span class="highlight-label">Industry Partners</span>
-            <span class="highlight-value">IIA · Ministry of Innovation · Tech companies</span>
+            <span class="highlight-value">Israeli Innovation Authority · Ministry of Innovation, Science and Technology · Tech companies</span>
           </div>
         </div>
         <div class="highlight-item">

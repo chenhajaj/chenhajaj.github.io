@@ -1,11 +1,11 @@
 ---
 layout: page
 permalink: /cv/
-title: Curriculum Vitae
+title: # Curriculum Vitae
 nav: true
 nav_order: 1
 cv_pdf: CV.pdf
-description: Academic CV including education, academic administration, conferences, patents, and grants.
+description: #Academic CV including education, academic administration, conferences, patents, and grants.
 ---
 
 <div class="cv-wrapper">
@@ -35,7 +35,7 @@ description: Academic CV including education, academic administration, conferenc
     <div class="cv-stat"><span class="cv-stat-n">4</span><span class="cv-stat-l">Patents</span></div>
     <div class="cv-stat"><span class="cv-stat-n">6</span><span class="cv-stat-l">Conferences Chaired</span></div>
     <div class="cv-stat"><span class="cv-stat-n">50+</span><span class="cv-stat-l">Publications</span></div>
-    <div class="cv-stat"><span class="cv-stat-n">14</span><span class="cv-stat-l">Current Students</span></div>
+    <div class="cv-stat"><span class="cv-stat-n">17</span><span class="cv-stat-l">Current Students</span></div>
     <div class="cv-stat"><span class="cv-stat-n">20</span><span class="cv-stat-l">Alumni</span></div>
   </div>
 
@@ -211,7 +211,7 @@ description: Academic CV including education, academic administration, conferenc
               <h3 class="cv-item-title">Ministry of Innovation, Science and Technology</h3>
               <p class="cv-item-org"><i class="fas fa-landmark"></i> State of Israel</p>
               <p class="cv-item-desc">Principal Investigators: Chen Hajaj and Amit Dvir</p>
-              <span class="cv-grant-amount"><i class="fas fa-shekel-sign"></i> 482,900 NIS</span>
+              <span class="cv-grant-amount"><i class="fas fa-shekel-sign"></i> 482,900</span>
             </div>
           </div>
 
@@ -221,7 +221,7 @@ description: Academic CV including education, academic administration, conferenc
               <h3 class="cv-item-title">Ministry of Innovation, Science and Technology</h3>
               <p class="cv-item-org"><i class="fas fa-landmark"></i> State of Israel</p>
               <p class="cv-item-desc">Principal Investigators: Sharon Barak, Chen Hajaj, and Riki Tesler</p>
-              <span class="cv-grant-amount"><i class="fas fa-shekel-sign"></i> 412,569 NIS</span>
+              <span class="cv-grant-amount"><i class="fas fa-shekel-sign"></i> 412,569</span>
             </div>
           </div>
 
@@ -231,7 +231,7 @@ description: Academic CV including education, academic administration, conferenc
               <h3 class="cv-item-title">Encrypted Traffic Classification</h3>
               <p class="cv-item-org"><i class="fas fa-landmark"></i> Israel Innovation Authority</p>
               <p class="cv-item-desc">Principal Investigators: Chen Hajaj and Amit Dvir</p>
-              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> $341,000</span>
+              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> 341,000</span>
             </div>
           </div>
 
@@ -241,7 +241,7 @@ description: Academic CV including education, academic administration, conferenc
               <h3 class="cv-item-title">APK Malware Detection</h3>
               <p class="cv-item-org"><i class="fas fa-landmark"></i> Israel National Cyber Directorate</p>
               <p class="cv-item-desc">Principal Investigator: Chen Hajaj</p>
-              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> $179,000</span>
+              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> 179,000</span>
             </div>
           </div>
 
@@ -251,7 +251,7 @@ description: Academic CV including education, academic administration, conferenc
               <h3 class="cv-item-title">Quality of Service Research</h3>
               <p class="cv-item-org"><i class="fas fa-landmark"></i> Israel Innovation Authority</p>
               <p class="cv-item-desc">Principal Investigators: Chen Hajaj and Amit Dvir</p>
-              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> $100,000</span>
+              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> 100,000</span>
             </div>
           </div>
 
@@ -261,7 +261,7 @@ description: Academic CV including education, academic administration, conferenc
               <h3 class="cv-item-title">Violence Prediction in Public Events</h3>
               <p class="cv-item-org"><i class="fas fa-landmark"></i> Israel Innovation Authority</p>
               <p class="cv-item-desc">Principal Investigators: Chen Hajaj, Amit Dvir, and Uzi Ben-Shalom</p>
-              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> $100,000</span>
+              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> 100,000</span>
             </div>
           </div>
 
@@ -271,7 +271,7 @@ description: Academic CV including education, academic administration, conferenc
               <h3 class="cv-item-title">Strategy-proof Mechanisms for Kidney Exchange</h3>
               <p class="cv-item-org"><i class="fas fa-landmark"></i> BSF – US-Israel Binational Science Foundation</p>
               <p class="cv-item-desc">Principal Investigator: Chen Hajaj</p>
-              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> $4,000</span>
+              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> 4,000</span>
             </div>
           </div>
 
