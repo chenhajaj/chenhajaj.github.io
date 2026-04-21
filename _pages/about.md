@@ -20,10 +20,10 @@ profile:
       </div>
     </div>
 
-selected_papers: false
+selected_papers: true
 social: false
 announcements:
-  enabled: false
+  enabled: true
   scrollable: true
   limit: 5
 latest_posts:
