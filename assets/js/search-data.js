@@ -9,9 +9,9 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-curriculum-vitae",
-          title: "Curriculum Vitae",
-          description: "Academic CV including education, academic administration, conferences, patents, and grants.",
+  },{id: "nav-",
+          title: "",
+          description: "",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
@@ -32,17 +32,12 @@ ninja.data = [{
           },
         },{id: "nav-projects",
           title: "Projects",
-          description: "Research projects in AI, cybersecurity, healthcare, and data science.",
+          description: "Research projects in AI, Cybersecurity, Healthcare, and Data Science.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
           },
-        },{id: "books-the-godfather",
-          title: 'The Godfather',
-          description: "",
-          section: "Books",handler: () => {
-              window.location.href = "/books/the_godfather/";
-            },},{id: "news-new-paper-in-ieee-access-leveraging-osint-for-advanced-proactive-cybersecurity-strategies-and-solutions-doi-10-1109-access-2025-3603868-️",
+        },{id: "news-new-paper-in-ieee-access-leveraging-osint-for-advanced-proactive-cybersecurity-strategies-and-solutions-doi-10-1109-access-2025-3603868-️",
           title: 'New paper in IEEE Access: Leveraging OSINT for Advanced Proactive Cybersecurity: Strategies and...',
           description: "",
           section: "News",},{id: "news-two-papers-presented-at-ieee-ccnc-2026-in-las-vegas-qoe-prediction-for-call-of-duty-and-cloudy-with-a-chance-of-anomalies-dynamic-gnn-for-cloud-anomaly-detection-️",
@@ -57,22 +52,7 @@ ninja.data = [{
           section: "News",},{id: "news-one-paper-accepted-at-ieee-icc-2026-in-glasgow-uncovering-microservice-faults-udi-aharon-et-al",
           title: 'One paper accepted at IEEE ICC 2026 in Glasgow: Uncovering Microservice Faults (Udi...',
           description: "",
-          section: "News",},{id: "projects-project-5",
-          title: 'project 5',
-          description: "a project with a background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/5_project/";
-            },},{id: "projects-project-6",
-          title: 'project 6',
-          description: "a project with no image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/6_project/";
-            },},{id: "projects-project-9",
-          title: 'project 9',
-          description: "another project with an image 🎉",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/9_project/";
-            },},{id: "projects-adversarial-artificial-intelligence",
+          section: "News",},{id: "projects-adversarial-artificial-intelligence",
           title: 'Adversarial Artificial Intelligence',
           description: "Research on developing robust and secure AI systems against malicious attacks",
           section: "Projects",handler: () => {
