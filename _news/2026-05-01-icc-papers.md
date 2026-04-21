@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Two papers accepted at **IEEE ICC 2026** in Glasgow: *Uncovering Microservice Faults* (Udi Aharon et al.) and *Real-Time Network Security with ANN and Graph-Based Clustering* (Zohar Simhon et al.). 🎉
+One paper accepted at **IEEE ICC 2026** in Glasgow: *Uncovering Microservice Faults* (Udi Aharon et al.). 🎉
