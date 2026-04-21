@@ -19,7 +19,8 @@ phd_students:
     research_area: "Chatbosts for Funnel Optimization"
   - name: "Ohad Nir"
     research_area: "Learning Approches for the Chaising Repairmna Problem"
-
+  - name: "Eden Shmuel"
+    research_area: "Using Machine Leaning to Personalize Nutritional Treatment"
 phd_alumni:
   - name: "Or Anidjar"
     graduation_year: "2022"
@@ -37,6 +38,10 @@ masters_students:
     research_area: "Multi-Modal Learning for Product Attributes"
   - name: "Yona Elbar"
     research_area: "Pipeline Optimization of Multimodal Systems"
+  - name: "Liav Cohen"
+    research_area: "Few-shot ANN for Low-latency Classification in O-RAN Networks"
+  - name: "Stas Shuar"
+    research_area: "QUIC-based Quantum Traffic Classification "
 
 masters_alumni:
   - name: "Amit Tzahar"
