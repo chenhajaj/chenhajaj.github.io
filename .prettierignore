@@ -10,3 +10,9 @@ _posts/2015-10-20-math.md
 _sass/font-awesome/*.scss
 _sass/tabler-icons/*.scss
 _scripts/search.liquid.js
+# Content directories — not subject to Prettier formatting
+_bibliography/**
+_news/**
+_data/**
+_pages/**
+.github/workflows/**
