@@ -23,9 +23,12 @@ latest_posts:
 
 <div class="about-content">
 
-  <!-- Profile Header -->
-  <section class="profile-header-section">
-    <div class="profile-header-inner">
+  <!-- Hero: Profile + Stats -->
+  <section class="hero-combined">
+    <div class="hero-profile-row">
+      <div class="profile-header-photo">
+        <img src="/assets/img/me.jpeg" alt="Chen Hajaj" class="profile-photo-img" />
+      </div>
       <div class="profile-header-text">
         <h2 class="profile-name">Chen Hajaj</h2>
         <p class="profile-title">Associate Professor &amp; Head of Data Science Track</p>
@@ -35,17 +38,12 @@ latest_posts:
           <a href="https://github.com/chenhajaj" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
           <a href="https://www.linkedin.com/in/chen-hajaj-5ba59517" title="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
           <a href="https://scholar.google.com/citations?user=Ys5aNKYAAAAJ" title="Google Scholar"><i class="ai ai-google-scholar"></i> Scholar</a>
+          <a href="https://orcid.org/0000-0001-9940-5654" title="ORCID" target="_blank" rel="noopener"><i class="ai ai-orcid"></i> ORCID</a>
           <span class="profile-office"><i class="fas fa-building"></i> Office: 58.3.42</span>
         </div>
       </div>
-      <div class="profile-header-photo">
-        <img src="/assets/img/me.jpeg" alt="Chen Hajaj" class="profile-photo-img" />
-      </div>
     </div>
-  </section>
-
-  <!-- Impact Stats Hero -->
-  <section class="impact-stats-hero">
+    <div class="hero-divider"></div>
     <div class="stats-grid">
       <div class="stat-item">
         <div class="stat-value">$1.2M+</div>
@@ -76,18 +74,42 @@ latest_posts:
 
   <!-- About Me Section -->
   <section class="about-intro-section">
-    <div class="about-intro-content">
-      <p class="about-lead-text">
-        I lead data science research and education as <strong>Associate Professor</strong> and <strong>Head of the Data Science Track</strong> at Ariel University. I also serve as <strong>Head of the Faculty Review Board</strong> and <strong>NVIDIA University Ambassador</strong>.
-      </p>
-      <p class="about-intro-text">
-        My research translates artificial intelligence theory into deployed systems with measurable real-world impact. I have secured more than <strong>$1.2 million in competitive research funding</strong> and hold <strong>4 patents</strong> in AI applications spanning healthcare diagnostics, cybersecurity, and human behavior prediction.
-      </p>
-      <p class="about-intro-text">
-        I bridge academia and industry through active collaborations with the Israel Innovation Authority, the Ministry of Innovation, Science and Technology, and leading technology companies — developing AI solutions for encrypted traffic analysis, medical decision support, and intelligent recommendation systems deployed at scale.
-      </p>
+    <div class="about-intro-grid">
+      <div class="about-intro-prose">
+        <p class="about-lead-text">
+          I am an <strong>Associate Professor</strong> and <strong>Head of the Data Science Track</strong> at Ariel University, where I lead research and education at the intersection of artificial intelligence theory and real-world deployment. I also serve as <strong>Head of the Faculty Review Board</strong> and <strong>NVIDIA University Ambassador</strong>.
+        </p>
+        <p class="about-intro-text">
+          My work focuses on translating AI into systems with measurable impact — spanning encrypted traffic analysis, medical decision support, and intelligent recommendation at scale. I have secured over <strong>$1.2 million</strong> in competitive funding and hold <strong>4 patents</strong> in healthcare diagnostics, cybersecurity, and human behavior prediction.
+        </p>
+        <p class="about-intro-text">
+          I bridge academia and industry through partnerships with the Israel Innovation Authority, the Ministry of Innovation, Science and Technology, and leading technology companies.
+        </p>
+      </div>
+      <div class="about-intro-highlights">
+        <div class="highlight-item">
+          <i class="fas fa-flask"></i>
+          <div>
+            <span class="highlight-label">Research Areas</span>
+            <span class="highlight-value">AI · Cybersecurity · Healthcare · eCommerce</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <i class="fas fa-handshake"></i>
+          <div>
+            <span class="highlight-label">Industry Partners</span>
+            <span class="highlight-value">IIA · Ministry of Innovation · Tech companies</span>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <i class="fas fa-microchip"></i>
+          <div>
+            <span class="highlight-label">Role</span>
+            <span class="highlight-value">NVIDIA University Ambassador</span>
+          </div>
+        </div>
+      </div>
     </div>
-
   </section>
 
   <!-- Research Focus -->
@@ -259,6 +281,11 @@ latest_posts:
 </div>
 
 <style>
+/* Hide the auto-generated name heading above our custom profile box */
+.post-title {
+  display: none !important;
+}
+
 .about-content {
   max-width: 100%;
   margin: 0;
@@ -278,13 +305,66 @@ latest_posts:
   }
 }
 
-/* Impact Stats Hero */
-.impact-stats-hero {
+/* Combined Hero */
+.hero-combined {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 3rem 2.5rem;
+  padding: 2.5rem 2.5rem 2.5rem;
   border-radius: 20px;
   margin-bottom: 3rem;
   box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+}
+
+.hero-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 0;
+}
+
+.hero-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.25);
+  margin: 2rem 0;
+}
+
+.hero-combined .profile-name {
+  color: white !important;
+}
+
+.hero-combined .profile-title {
+  color: rgba(255,255,255,0.9) !important;
+}
+
+.hero-combined .profile-institution {
+  color: rgba(255,255,255,0.75) !important;
+}
+
+.hero-combined .profile-institution i {
+  color: rgba(255,255,255,0.75) !important;
+}
+
+.hero-combined .profile-contact-links a,
+.hero-combined .profile-contact-links .profile-office {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.3);
+  color: white;
+}
+
+.hero-combined .profile-contact-links a i,
+.hero-combined .profile-contact-links .profile-office i {
+  color: white;
+}
+
+.hero-combined .profile-contact-links a:hover {
+  background: rgba(255,255,255,0.28);
+  border-color: rgba(255,255,255,0.6);
+  color: white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+.hero-combined .profile-photo-img {
+  border-color: rgba(255,255,255,0.4);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
 }
 
 .stats-grid {
@@ -332,40 +412,111 @@ section {
   padding: 0;
 }
 
-/* About Intro Section Override */
+/* About Intro Section */
 .about-intro-section {
-  background: white !important;
-  padding: 3rem !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 20px !important;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.08) !important;
+  background: white;
+  padding: 2.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+}
+
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2.5rem;
+  align-items: start;
 }
 
 .about-lead-text {
-  font-size: 1.35rem !important;
-  line-height: 1.7 !important;
-  color: #1a202c !important;
-  margin-bottom: 2rem !important;
-  font-weight: 500 !important;
-  border-left: 4px solid var(--global-theme-color) !important;
-  padding-left: 1.5rem !important;
-  background: linear-gradient(to right, rgba(75, 108, 183, 0.05), transparent) !important;
-  padding-top: 1rem !important;
-  padding-bottom: 1rem !important;
-  padding-right: 1rem !important;
-  border-radius: 0 12px 12px 0 !important;
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: #1a202c;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+  border-left: 4px solid var(--global-theme-color);
+  padding: 0.85rem 1rem 0.85rem 1.25rem;
+  background: linear-gradient(to right, rgba(75, 108, 183, 0.05), transparent);
+  border-radius: 0 10px 10px 0;
 }
 
 .about-intro-text {
-  font-size: 1.1rem !important;
-  line-height: 1.8 !important;
-  color: #4a5568 !important;
-  margin-bottom: 1.5rem !important;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #4a5568;
+  margin-bottom: 1rem;
 }
 
-.about-intro-text strong {
+.about-intro-text:last-child { margin-bottom: 0; }
+
+.about-intro-text strong,
+.about-lead-text strong {
   color: #2d3748;
   font-weight: 600;
+}
+
+.about-intro-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.highlight-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(75,108,183,0.12);
+}
+
+.highlight-item > i {
+  color: var(--global-theme-color);
+  font-size: 1.1rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.highlight-item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.highlight-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a0aec0;
+}
+
+.highlight-value {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #2d3748;
+  line-height: 1.35;
+}
+
+@media (max-width: 768px) {
+  .about-intro-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-intro-highlights {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .highlight-item {
+    flex: 1 1 calc(50% - 0.375rem);
+    min-width: 140px;
+  }
 }
 
 h3 {
@@ -1057,21 +1208,6 @@ h3 i {
   display: none !important;
 }
 
-/* Profile Header Section */
-.profile-header-section {
-  margin-bottom: 2.5rem;
-}
-
-.profile-header-inner {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  padding: 2rem 2.5rem;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 20px;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.07);
-}
 
 .profile-header-text {
   flex: 1;
@@ -1152,7 +1288,7 @@ h3 i {
 }
 
 .profile-office {
-  color: #718096 !important;
+  color: white !important;
   cursor: default;
 }
 
@@ -1170,10 +1306,9 @@ h3 i {
 }
 
 @media (max-width: 640px) {
-  .profile-header-inner {
-    flex-direction: column-reverse;
+  .hero-profile-row {
+    flex-direction: column;
     text-align: center;
-    padding: 1.5rem;
     gap: 1.5rem;
   }
   .profile-photo-img {
