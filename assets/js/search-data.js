@@ -37,6 +37,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/projects/";
           },
+        },{id: "nav-teaching-experience",
+          title: "Teaching Experience",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/teaching/";
+          },
         },{id: "news-new-paper-in-ieee-access-leveraging-osint-for-advanced-proactive-cybersecurity-strategies-and-solutions-doi-10-1109-access-2025-3603868-️",
           title: 'New paper in IEEE Access: Leveraging OSINT for Advanced Proactive Cybersecurity: Strategies and...',
           description: "",
@@ -54,32 +61,32 @@ ninja.data = [{
           description: "",
           section: "News",},{id: "projects-adversarial-artificial-intelligence",
           title: 'Adversarial Artificial Intelligence',
-          description: "Research on developing robust and secure AI systems against malicious attacks",
+          description: "Developing robust AI systems that withstand adversarial attacks — across network security, mobile malware, healthcare AI, and social network manipulation.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/adversarial_ai/";
             },},{id: "projects-quantifying-constructivist-learning-in-studio-based-education",
           title: 'Quantifying Constructivist Learning in Studio-Based Education',
-          description: "Data science methods for measuring learning in creative education settings",
+          description: "Data science methods that quantify learning in design studio education — measuring cognitive breakthroughs, engagement, and teaching effectiveness during live critiques.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/constructivist_learning/";
             },},{id: "projects-encrypted-traffic-classification",
           title: 'Encrypted Traffic Classification',
-          description: "AI-powered methods for classifying and analyzing encrypted network traffic",
+          description: "AI-powered classification of encrypted network traffic — enabling security monitoring and QoS management without compromising encryption or user privacy.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/encrypted_traffic/";
             },},{id: "projects-medical-data-science",
           title: 'Medical Data Science',
-          description: "Machine learning applications for critical care and medical decision-making",
+          description: "Machine learning for critical care — predicting ICU feeding complications, phenotyping rare respiratory diseases, and enabling privacy-preserving medical data collaboration.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/icu_nutrition/";
             },},{id: "projects-incentive-design",
           title: 'Incentive Design',
-          description: "Mechanism design for strategic decision-making in networks and crowdsourcing",
+          description: "Mechanism design and game theory for e-commerce platforms, team formation, and kidney exchange — aligning individual incentives with collective outcomes.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/incentive_design/";
             },},{id: "projects-a-multimodal-approach-for-measuring-item-similarity",
           title: 'A Multimodal Approach for Measuring Item Similarity',
-          description: "Measuring similarity between items using computer vision and natural language processing",
+          description: "Multimodal AI that fuses computer vision and NLP to measure item similarity the way humans do — powering smarter recommendations in tourism, e-commerce, and real estate.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/similarity/";
             },},{
