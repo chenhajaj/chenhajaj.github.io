@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Medical Data Science
-description: Machine learning applications for critical care and medical decision-making
-img: assets/img/icu-nutrition.jpg
+description: Machine learning for critical care — predicting ICU feeding complications, phenotyping rare respiratory diseases, and enabling privacy-preserving medical data collaboration.
+img: assets/img/medical_new.png
 importance: 2
 category: work
 related_publications: false
@@ -143,51 +143,29 @@ related_publications: false
 </style>
 
 <!-- Project Banner -->
-<div class="project-banner" style="margin-bottom: 3rem; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-height: 400px; position: relative;">
-  <div style="width: 100%; height: 400px; overflow: hidden; position: relative;">
-    {% include figure.liquid loading="eager" path="assets/img/icu-nutrition.jpg" title="Medical Data Science" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" %}
-  </div>
-  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); padding: 2.5rem; color: white;">
-    <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">Medical Data Science</h1>
-    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">Machine learning applications for critical care and medical decision-making</p>
+<div class="project-banner" style="position:relative;height:260px;overflow:hidden;border-radius:16px;box-shadow:0 6px 28px rgba(0,0,0,.14);margin-bottom:3rem;">
+  <img src="{{ '/assets/img/medical_new.png' | relative_url }}" alt="Medical Data Science" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+  <div class="project-banner-overlay" style="position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.15) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem;color:white;">
+    <h1 style="margin:0;font-size:2.2rem;font-weight:700;color:white;text-shadow:0 2px 8px rgba(0,0,0,.5);">Medical Data Science</h1>
+    <p style="margin:.5rem 0 0;font-size:1.05rem;color:rgba(255,255,255,.9);">Machine learning for ICU nutrition, rare respiratory disease phenotyping, and privacy-preserving clinical data collaboration.</p>
   </div>
 </div>
 
 <div class="project-content">
 
-<p class="lead-text">Critical care medicine generates massive amounts of data, but making real-time predictions from it is challenging. We develop machine learning systems for ICU nutrition, respiratory diseases, and collaborative medical research—improving patient outcomes through data-driven insights.</p>
+<p class="lead-text">Critical care patients are among the most vulnerable — yet managing their nutrition, predicting complications, and coordinating care remains largely manual. We build machine learning systems that turn ICU data into actionable clinical decisions, improving patient outcomes through real-time prediction.</p>
 
 <h2>Research Areas</h2>
 
-<h3>Critical Care Nutrition</h3>
-
-<p>Predict ICU feeding complications before symptoms appear. Optimize protein intake per patient. Identify high-risk cases early using decade-long datasets from Rabin Medical Center.</p>
-
-<h3>Respiratory Medicine</h3>
-
-<p>AI phenotypical analysis for rare diseases like NTM infections. Accelerate diagnosis and predict treatment responses.</p>
-
-<h3>Medical Data Collaboration</h3>
-
-<p>Privacy-preserving crowdsourcing for medical datasets. Enable scalable research while protecting patient data.</p>
+<ul>
+  <li><strong>ICU Nutrition &amp; Feeding Complications</strong> — Models trained on a decade of records from <strong>Rabin Medical Center</strong> that predict feeding intolerance and caloric deficit before symptoms appear, optimizing enteral nutrition per patient.</li>
+  <li><strong>Rare Respiratory Disease Phenotyping</strong> — Unsupervised clustering and AI phenotypical analysis for NTM lung infections, accelerating diagnosis and predicting treatment response in pulmonology.</li>
+  <li><strong>Privacy-Preserving Medical Data Collaboration</strong> — Federated learning and crowdsourcing frameworks enabling multi-hospital research without exposing patient records.</li>
+</ul>
 
 <h2>Technical Methods</h2>
 
-<h3>Predictive Modeling</h3>
-
-<p>Machine learning models trained on extensive clinical datasets. Validation using real patient data from hospital systems.</p>
-
-<h3>Phenotypical Analysis</h3>
-
-<p>Pattern recognition in complex patient profiles to identify disease characteristics and treatment responses.</p>
-
-<h3>Privacy-Preserving Learning</h3>
-
-<p>Methods that enable data sharing and collaboration while maintaining patient privacy and data security.</p>
-
-<h2>Impact</h2>
-
-<p>Our critical care nutrition models have shown reductions in feeding complications through early prediction. Respiratory medicine applications enable faster diagnosis of rare conditions. The collaborative data collection frameworks support medical research at scale while preserving privacy.</p>
+<p>Our pipeline combines gradient-boosted trees and deep learning for tabular clinical data, time-series models for continuous monitoring streams, and survival analysis for time-to-event outcomes. All models are validated prospectively against held-out hospital cohorts before clinical reporting.</p>
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -201,7 +179,7 @@ related_publications: false
     </div>
 </div>
 <div class="caption">
-    Left: Real-time patient monitoring generating continuous data streams. Middle: Critical care nutrition delivery systems. Right: AI-powered analysis of complex medical patterns.
+    Left: Real-time patient monitoring generating continuous data streams. Middle: Critical care enteral nutrition delivery. Right: AI-driven analysis of complex clinical data patterns.
 </div>
 
 <div class="project-publications">

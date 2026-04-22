@@ -1,8 +1,8 @@
 ---
 layout: page
 title: A Multimodal Approach for Measuring Item Similarity
-description: Measuring similarity between items using computer vision and natural language processing
-img: assets/img/tourism.webp
+description: Multimodal AI that fuses computer vision and NLP to measure item similarity the way humans do — powering smarter recommendations in tourism, e-commerce, and real estate.
+img: assets/img/tourism-new.png
 importance: 3
 category: work
 ---
@@ -142,55 +142,35 @@ category: work
 </style>
 
 <!-- Project Banner -->
-<div class="project-banner" style="margin-bottom: 3rem; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-height: 400px; position: relative;">
-  <div style="width: 100%; height: 400px; overflow: hidden; position: relative;">
-    {% include figure.liquid loading="eager" path="assets/img/tourism.webp" title="Multimodal Item Similarity" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" %}
-  </div>
-  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); padding: 2.5rem; color: white;">
-    <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">Multimodal Item Similarity</h1>
-    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">Measuring similarity using computer vision and natural language processing</p>
+<div class="project-banner" style="position:relative;height:260px;overflow:hidden;border-radius:16px;box-shadow:0 6px 28px rgba(0,0,0,.14);margin-bottom:3rem;">
+  <img src="{{ '/assets/img/tourism-new.png' | relative_url }}" alt="Multimodal Item Similarity" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+  <div class="project-banner-overlay" style="position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.15) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem;color:white;">
+    <h1 style="margin:0;font-size:2.2rem;font-weight:700;color:white;text-shadow:0 2px 8px rgba(0,0,0,.5);">Multimodal Item Similarity</h1>
+    <p style="margin:.5rem 0 0;font-size:1.05rem;color:rgba(255,255,255,.9);">Fusing computer vision and NLP to measure item similarity the way humans do — for tourism, e-commerce, and real estate recommendations.</p>
   </div>
 </div>
 
 <div class="project-content">
-
-<p class="lead-text">Measuring how similar two items are is more complex than it seems. People consider visual appearance, functionality, context, and subjective preferences—all simultaneously. We develop AI systems that combine computer vision and natural language processing to understand similarity the way humans do.</p>
+<p class="lead-text">When humans judge similarity, they consider appearance, function, atmosphere, and context simultaneously. Simple text matching or category tags miss most of this. We develop multimodal AI that fuses computer vision and NLP to measure item similarity the way people actually experience it.</p>
 
 <h2>The Challenge</h2>
 
-<p>Traditional methods use simple categories or require extensive manual effort. They miss nuanced similarities that matter to users. Our solution: teach AI to analyze both visual and textual features, learning patterns that match human intuition.</p>
+<p>Two hotels can look similar in photos but feel completely different in reviews. Two tourist destinations can share atmosphere despite different geographies. Traditional similarity metrics capture one dimension at a time — and fail at the nuanced comparisons that drive real user decisions.</p>
 
 <h2>Our Approach</h2>
 
-<h3>Visual Analysis</h3>
-
-<p>Computer vision extracts features like architectural styles, landscapes, activities, and atmosphere from images.</p>
-
-<h3>Text Processing</h3>
-
-<p>NLP analyzes descriptions to understand cultural characteristics, offerings, climate, and context.</p>
-
-<h3>Multimodal Integration</h3>
-
-<p>Combining both creates similarity judgments that match human intuition.</p>
+<ul>
+  <li><strong>Visual Feature Extraction</strong> — Deep convolutional networks and vision transformers extract semantic features (architectural style, landscape type, activity level, color palette) directly from images without manual annotation.</li>
+  <li><strong>Textual Semantic Analysis</strong> — Large language models encode review text and descriptions to capture cultural character, climate, offerings, and subjective user sentiment as dense semantic vectors.</li>
+  <li><strong>Multimodal Fusion</strong> — Cross-attention mechanisms align visual and textual embeddings into a unified similarity space, validated against human expert judgments across thousands of item pairs.</li>
+</ul>
 
 <h2>Applications</h2>
 
-<h3>Tourism & Travel</h3>
-
-<p>Destination recommendations that match travel preferences. Finding alternatives when favorites are unavailable.</p>
-
-<h3>E-commerce & Real Estate</h3>
-
-<p>Product and property recommendations based on visual and textual similarity.</p>
-
-<h3>General Purpose</h3>
-
-<p>Applicable to any domain requiring multi-faceted similarity measurement.</p>
-
-<h2>Why It Works</h2>
-
-<p>No single similarity measure captures human judgment. Our hybrid approach combines multiple dimensions, adapts to different domains, and learns from feedback. Validated against expert judgments and deployed at scale.</p>
+<ul>
+  <li><strong>Tourism &amp; Travel Recommendations</strong> — Suggesting alternative destinations when a user's top choice is unavailable, matched on experience rather than category. Validated against real booking patterns.</li>
+  <li><strong>E-commerce &amp; Real Estate</strong> — Finding visually and contextually similar products or properties at different price points, improving discovery and reducing search abandonment.</li>
+</ul>
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -198,7 +178,7 @@ category: work
     </div>
 </div>
 <div class="caption">
-    Our AI system analyzes visual and textual features of destinations to understand similarity patterns that match human intuition.
+    Our AI analyzes visual and textual features of destinations to build similarity judgments that match human intuition across diverse travel contexts.
 </div>
 
 <div class="project-publications">

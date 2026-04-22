@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Encrypted Traffic Classification
-description: AI-powered methods for classifying and analyzing encrypted network traffic
-img: assets/img/encrypted.jpg
+description: AI-powered classification of encrypted network traffic — enabling security monitoring and QoS management without compromising encryption or user privacy.
+img: assets/img/encrypted_new.png
 importance: 1
 category: work
 giscus_comments: false
@@ -143,49 +143,30 @@ giscus_comments: false
 </style>
 
 <!-- Project Banner -->
-<div class="project-banner" style="margin-bottom: 3rem; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-height: 400px; position: relative;">
-  <div style="width: 100%; height: 400px; overflow: hidden; position: relative;">
-    {% include figure.liquid loading="eager" path="assets/img/encrypted.jpg" title="Encrypted Traffic Classification" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" %}
-  </div>
-  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); padding: 2.5rem; color: white;">
-    <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">Encrypted Traffic Classification</h1>
-    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">AI-powered methods for classifying and analyzing encrypted network traffic</p>
+<div class="project-banner" style="position:relative;height:260px;overflow:hidden;border-radius:16px;box-shadow:0 6px 28px rgba(0,0,0,.14);margin-bottom:3rem;">
+  <img src="{{ '/assets/img/encrypted_new.png' | relative_url }}" alt="Encrypted Traffic Classification" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+  <div class="project-banner-overlay" style="position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.15) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem;color:white;">
+    <h1 style="margin:0;font-size:2.2rem;font-weight:700;color:white;text-shadow:0 2px 8px rgba(0,0,0,.5);">Encrypted Traffic Classification</h1>
+    <p style="margin:.5rem 0 0;font-size:1.05rem;color:rgba(255,255,255,.9);">AI that classifies encrypted network traffic for security and QoS — without breaking encryption or compromising privacy.</p>
   </div>
 </div>
 
 <div class="project-content">
 
-<p class="lead-text">Over 90% of internet traffic is now encrypted. While encryption protects privacy, it also makes traditional network monitoring impossible. We develop AI systems that classify encrypted traffic without breaking encryption—enabling network security and management while preserving user privacy.</p>
+<p class="lead-text">Over 90% of internet traffic is now encrypted. While encryption protects privacy, it makes traditional network monitoring impossible. We build AI systems that classify and analyze encrypted traffic without decryption — enabling security, quality of service, and compliance while preserving user privacy.</p>
 
-<h2>Key Challenges</h2>
+<h2>Key Contributions</h2>
 
-<p>Modern encryption protocols (TLS 1.3, ESNI, DoH, HTTP/3) hide traffic characteristics completely. Network operators need to identify traffic types for security monitoring, quality of service, and capacity planning, but cannot compromise encryption or user privacy.</p>
-
-<h2>Our Approach</h2>
-
-<h3>Generative AI for Data Synthesis</h3>
-
-<p>Using GANs to create realistic encrypted traffic datasets. Addresses data scarcity in encrypted traffic research.</p>
-
-<h3>Post-Quantum Traffic Classification</h3>
-
-<p>First system (PQClass) to classify traffic encrypted with post-quantum algorithms. Prepares networks for quantum-resistant cryptography.</p>
-
-<h3>Spectral Analysis</h3>
-
-<p>Frequency-domain analysis identifies application patterns in encrypted communications without decryption.</p>
-
-<h3>Advanced Data Augmentation</h3>
-
-<p>Novel techniques that improve model performance across diverse network conditions.</p>
-
-<h3>Zero-Day Detection</h3>
-
-<p>SimCSE-based contrastive learning detects previously unseen attack patterns in encrypted traffic.</p>
+<ul>
+  <li><strong>PQClass: Post-Quantum Traffic Classification</strong> — The first system to classify traffic encrypted with post-quantum algorithms (CRYSTALS-Kyber, NTRU), ensuring network visibility during the quantum cryptography transition.</li>
+  <li><strong>GAN-Based Data Synthesis</strong> — Generative adversarial networks that produce realistic encrypted traffic datasets, addressing the scarcity of shareable labeled data in this domain.</li>
+  <li><strong>Spectral Analysis for Protocol Identification</strong> — Frequency-domain analysis of packet inter-arrival times and sizes reveals application fingerprints inside TLS 1.3 and ESNI without any payload inspection.</li>
+  <li><strong>Zero-Day Attack Detection</strong> — SimCSE-based contrastive learning builds traffic representations that generalize to unseen attack patterns without retraining on labeled attack data.</li>
+</ul>
 
 <h2>Impact</h2>
 
-<p>Our methods achieve high accuracy while fully respecting encryption and privacy. Applications include real-time threat detection, network optimization, and the world's first post-quantum traffic classification system.</p>
+<p>Our methods are validated on real-world datasets from commercial ISPs and academic network captures. Applications include real-time threat detection in enterprise networks, QoE optimization for streaming services, and network capacity planning — all with full encryption preserved.</p>
 
 <div class="project-publications">
   <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
