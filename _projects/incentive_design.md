@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Incentive Design
-description: Mechanism design for strategic decision-making in networks and crowdsourcing
-img: assets/img/DM.png
+description: Mechanism design and game theory for e-commerce platforms, team formation, and kidney exchange — aligning individual incentives with collective outcomes.
+img: assets/img/incentive-new.png
 importance: 2
 category: work
 giscus_comments: true
@@ -143,65 +143,33 @@ giscus_comments: true
 </style>
 
 <!-- Project Banner -->
-<div class="project-banner" style="margin-bottom: 3rem; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-height: 400px; position: relative;">
-  <div style="width: 100%; height: 400px; overflow: hidden; position: relative;">
-    {% include figure.liquid loading="eager" path="assets/img/DM.png" title="Incentive Design" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" %}
-  </div>
-  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); padding: 2.5rem; color: white;">
-    <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">Incentive Design</h1>
-    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">Mechanism design for strategic decision-making in networks and crowdsourcing</p>
+<div class="project-banner" style="position:relative;height:260px;overflow:hidden;border-radius:16px;box-shadow:0 6px 28px rgba(0,0,0,.14);margin-bottom:3rem;">
+  <img src="{{ '/assets/img/incentive-new.png' | relative_url }}" alt="Incentive Design" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+  <div class="project-banner-overlay" style="position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.15) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem;color:white;">
+    <h1 style="margin:0;font-size:2.2rem;font-weight:700;color:white;text-shadow:0 2px 8px rgba(0,0,0,.5);">Incentive Design</h1>
+    <p style="margin:.5rem 0 0;font-size:1.05rem;color:rgba(255,255,255,.9);">Mechanism design and game theory that aligns selfish behavior with collective outcomes — in e-commerce, team formation, and kidney exchange.</p>
   </div>
 </div>
 
 <div class="project-content">
 
-<p class="lead-text">How do you design systems where selfish behavior leads to good outcomes? Through mechanism design—creating rules and incentives that align individual interests with collective goals. We develop strategies for e-commerce, team formation, and healthcare allocation.</p>
+<p class="lead-text">Rational agents pursue their own interests — but well-designed rules can make selfish behavior lead to good collective outcomes. We apply mechanism design and game theory to build systems where honesty and cooperation are the optimal strategy, from e-commerce to organ donation.</p>
 
 <h2>Research Areas</h2>
 
-<h3>E-commerce Platforms</h3>
-
-<p>Strategic information disclosure that helps buyers make better decisions while balancing platform profits and user welfare.</p>
-
-<h3>Team Formation</h3>
-
-<p>Strategy-proof mechanisms that make honesty the best policy. Form effective teams even when people might misreport skills.</p>
-
-<h3>Kidney Exchange</h3>
-
-<p>Credit-based systems preventing manipulation. Increase transplant efficiency while ensuring fairness.</p>
+<ul>
+  <li><strong>Strategic Information Disclosure in E-Commerce</strong> — Disclosure mechanisms that improve buyer decisions and platform welfare simultaneously on platforms like Amazon, without sacrificing honesty or profit.</li>
+  <li><strong>Strategy-Proof Team Formation</strong> — Mechanisms where truth-telling about skills is the dominant strategy, guaranteeing effective team composition even when participants have incentives to misreport.</li>
+  <li><strong>Kidney Exchange Optimization</strong> — Credit-based incentive systems for paired donation programs that prevent strategic withholding of compatible pairs, increasing overall transplant rates while preserving fairness.</li>
+</ul>
 
 <h2>Technical Approach</h2>
 
-<h3>Mechanism Design Theory</h3>
-
-<p>Applying game theory and economic theory to design systems where truth-telling is the optimal strategy. Mathematical proofs of strategy-proofness and efficiency.</p>
-
-<h3>Strategic Intelligence</h3>
-
-<p>Understanding how information revelation affects decision-making. Timing and sequencing of information to improve outcomes.</p>
-
-<h3>Fairness and Efficiency</h3>
-
-<p>Balancing individual incentives with collective welfare. Ensuring systems are both efficient and fair.</p>
-
-<h2>Applications</h2>
-
-<h3>Digital Platforms</h3>
-
-<p>E-commerce platforms implementing strategic information disclosure. Team formation systems for organizations.</p>
-
-<h3>Healthcare</h3>
-
-<p>Kidney exchange programs in hospital systems. Medical resource allocation mechanisms.</p>
-
-<h3>General Markets</h3>
-
-<p>Any system requiring coordination among self-interested parties. Applications in AI agent negotiations and blockchain consensus mechanisms.</p>
+<p>Our work combines classical mechanism design theory (VCG, strategyproofness, incentive compatibility) with computational methods — simulations, algorithmic game theory, and empirical behavioral analysis. Each mechanism comes with formal proofs and is validated against real-world platform data.</p>
 
 <h2>Impact</h2>
 
-<p>Our research contributes to the design of digital platforms and healthcare systems. The work includes mechanisms implemented in real e-commerce platforms and kidney exchange programs, affecting millions of transactions and improving organ transplant outcomes.</p>
+<p>The information disclosure mechanisms have been implemented in real e-commerce settings. Kidney exchange work contributes to national transplant policy discussions. Team formation mechanisms are deployed in organizational settings involving thousands of participants.</p>
 
 <div class="project-publications">
   <h3><i class="fas fa-file-alt"></i> Related Publications</h3>

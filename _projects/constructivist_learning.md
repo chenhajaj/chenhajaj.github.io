@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Quantifying Constructivist Learning in Studio-Based Education
-description: Data science methods for measuring learning in creative education settings
-img: assets/img/arch.png
+description: Data science methods that quantify learning in design studio education — measuring cognitive breakthroughs, engagement, and teaching effectiveness during live critiques.
+img: assets/img/design-new.png
 importance: 3
 category: work
 ---
@@ -142,51 +142,36 @@ category: work
 </style>
 
 <!-- Project Banner -->
-<div class="project-banner" style="margin-bottom: 3rem; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-height: 400px; position: relative;">
-  <div style="width: 100%; height: 400px; overflow: hidden; position: relative;">
-    {% include figure.liquid loading="eager" path="assets/img/arch.png" title="Constructivist Learning" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" %}
-  </div>
-  <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); padding: 2.5rem; color: white;">
-    <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.4);">Quantifying Constructivist Learning</h1>
-    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: rgba(255,255,255,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.3);">Data science methods for measuring learning in creative education settings</p>
+<div class="project-banner" style="position:relative;height:260px;overflow:hidden;border-radius:16px;box-shadow:0 6px 28px rgba(0,0,0,.14);margin-bottom:3rem;">
+  <img src="{{ '/assets/img/design-new.png' | relative_url }}" alt="Constructivist Learning" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+  <div class="project-banner-overlay" style="position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.15) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:2.5rem;color:white;">
+    <h1 style="margin:0;font-size:2.2rem;font-weight:700;color:white;text-shadow:0 2px 8px rgba(0,0,0,.5);">Quantifying Constructivist Learning</h1>
+    <p style="margin:.5rem 0 0;font-size:1.05rem;color:rgba(255,255,255,.9);">Data science methods that measure cognitive breakthroughs and teaching effectiveness in design studio education.</p>
   </div>
 </div>
 
 <div class="project-content">
 
-<p class="lead-text">How do you measure learning in a design studio? Traditional tests don't work for creative education. We develop data science methods that quantify learning moments during design critiques—capturing breakthroughs, engagement, and cognitive development in real-time.</p>
+<p class="lead-text">Design education is fundamentally different from traditional instruction — learning happens through making, critiquing, and iterating, not through tests. We develop data science methods that quantify these learning moments in real-time, giving educators and students objective insight into creative development.</p>
 
 <h2>Research Focus</h2>
 
-<h3>Learning Measurement</h3>
-
-<p>Quantify cognitive breakthroughs and engagement during critiques. Track learning patterns in real-time.</p>
-
-<h3>Problem-Solving Analysis</h3>
-
-<p>Study student-mentor collaboration. Identify scaffolding moments that guide breakthroughs.</p>
-
-<h3>Assessment Methods</h3>
-
-<p>Data-driven metrics for creative progress. Objective teaching effectiveness measures.</p>
+<ul>
+  <li><strong>Measuring Cognitive Breakthroughs</strong> — NLP and speech analysis that detect breakthrough moments in recorded studio sessions, quantifying their frequency, depth, and context.</li>
+  <li><strong>Engagement &amp; Learning Quality Analysis</strong> — Multi-modal signals (speech patterns, interaction turns, topic shifts) that identify conditions correlating with high-quality learning outcomes.</li>
+  <li><strong>Student–Mentor Interaction Modeling</strong> — Analysis of scaffolding dynamics that identifies effective coaching patterns to improve critique structure and mentor training.</li>
+</ul>
 
 <h2>Applications</h2>
 
-<h3>For Educators</h3>
-
-<p>Evidence-based teaching strategies with real-time feedback on student engagement. Personalized insights for individual learning styles.</p>
-
-<h3>For Students</h3>
-
-<p>Clear progress indicators showing skill development. Personalized learning paths tailored to individual strengths and challenges.</p>
-
-<h3>For Research</h3>
-
-<p>New understanding of how creativity develops. Methodological innovations applicable to other educational fields.</p>
+<ul>
+  <li><strong>For Educators</strong> — Session-level dashboards showing which students are disengaged, which topics generate confusion, and where critiques most effectively generate learning.</li>
+  <li><strong>For Students</strong> — Personalized learning path analysis understanding individual growth trajectories based on objective behavioral signals rather than subjective grades.</li>
+</ul>
 
 <h2>Impact</h2>
 
-<p>Our research provides practical tools for educators working in creative fields. The methods integrate with existing programs and are validated in actual studio environments. The work contributes to understanding how creative learning happens and how it can be measured and improved.</p>
+<p>Methods validated in live architecture and industrial design studios at Israeli universities. The framework is generalizable to other constructivist disciplines — law clinics, medical simulations, and project-based STEM education.</p>
 
 <div class="project-publications">
   <h3><i class="fas fa-file-alt"></i> Related Publications</h3>

@@ -40,9 +40,9 @@ horizontal: false
 .project-img-wrap {
   position: relative;
   width: 100%;
-  height: 220px;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #e9ecef;
+  background: #f0f4fa;
 }
 
 /* Neutralise figure/picture wrappers from figure.liquid */
@@ -64,11 +64,19 @@ horizontal: false
   transition: transform 0.35s ease;
 }
 
+/* Diagram images: show fully, no cropping */
+.project-img-wrap.img-contain img {
+  object-fit: contain;
+  padding: 1rem;
+  background: #f8fafc;
+}
+.project-img-wrap.img-contain::after { display: none; }
+
 .projects .card:hover .project-img-wrap img {
   transform: scale(1.06);
 }
 
-/* Gradient overlay on image */
+/* Gradient overlay on photo images */
 .project-img-wrap::after {
   content: "";
   position: absolute;
@@ -122,7 +130,6 @@ horizontal: false
 
 /* ── Responsive tweaks ──────────────────────────────────────── */
 @media (max-width: 768px) {
-  .project-img-wrap,
   .project-img-placeholder {
     height: 190px;
   }
