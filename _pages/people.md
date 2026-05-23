@@ -57,7 +57,7 @@ nav_order: 3
 /* Join CTA */
 .join-cta{background:var(--global-theme-color);color:#fff;border-radius:12px;padding:2rem;text-align:center;margin-top:3rem}
 .join-cta h3{font-size:1.3rem;margin-bottom:0.6rem;color:#fff}
-.join-cta p{opacity:0.9;margin-bottom:1.25rem;font-size:0.95rem}
+.join-cta p{opacity:0.9;margin-bottom:1.25rem;font-size:0.95rem;color:#fff !important}
 .btn-join{display:inline-block;background:#fff;color:var(--global-theme-color);padding:0.65rem 1.75rem;border-radius:8px;font-weight:700;text-decoration:none;transition:all 0.2s;font-size:0.9rem}
 .btn-join:hover{background:#f0f4ff;transform:translateY(-2px);text-decoration:none}
 
@@ -97,7 +97,6 @@ nav_order: 3
     <div class="person-info">
       <div class="person-name">{{ student.name }}</div>
       {% if student.research_area %}
-        <div class="person-area-label">Research</div>
         <div class="person-area">{{ student.research_area }}</div>
       {% endif %}
     </div>
@@ -114,7 +113,6 @@ nav_order: 3
     <div class="person-info">
       <div class="person-name">{{ student.name }}</div>
       {% if student.research_area %}
-        <div class="person-area-label">Research</div>
         <div class="person-area">{{ student.research_area }}</div>
       {% endif %}
     </div>
@@ -132,7 +130,6 @@ nav_order: 3
     <div class="person-info">
       <div class="person-name">{{ student.name }}</div>
       {% if student.research_area %}
-        <div class="person-area-label">Research</div>
         <div class="person-area">{{ student.research_area }}</div>
       {% endif %}
     </div>
@@ -151,7 +148,6 @@ nav_order: 3
       <div class="person-name">{{ student.name }}</div>
       {% if student.graduation_year %}<span class="person-year">{{ student.graduation_year }}</span>{% endif %}
       {% if student.research_area %}
-        <div class="person-area-label">Thesis</div>
         <div class="person-area">{{ student.research_area }}</div>
       {% endif %}
     </div>
@@ -169,7 +165,6 @@ nav_order: 3
       <div class="person-name">{{ student.name }}</div>
       {% if student.graduation_year %}<span class="person-year">{{ student.graduation_year }}</span>{% endif %}
       {% if student.research_area %}
-        <div class="person-area-label">Thesis</div>
         <div class="person-area">{{ student.research_area }}</div>
       {% endif %}
     </div>
@@ -188,7 +183,6 @@ nav_order: 3
       <div class="person-name">{{ student.name }}</div>
       {% if student.graduation_year %}<span class="person-year">{{ student.graduation_year }}</span>{% endif %}
       {% if student.research_area %}
-        <div class="person-area-label">Work</div>
         <div class="person-area">{{ student.research_area }}</div>
       {% endif %}
     </div>
