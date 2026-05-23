@@ -20,13 +20,14 @@ nav_order: 2
 
   <!-- Filter and Navigation Bar -->
   <div class="filter-section">
+    <div class="search-container">
       <i class="fas fa-search search-icon"></i>
       <input type="text" id="search-input" class="search-input" placeholder="Search publications by title, author, venue...">
       <button id="clear-search" class="clear-btn" title="Clear search">
         <i class="fas fa-times"></i>
       </button>
     </div>
-    
+
     <div class="filter-controls">
       <div class="filter-group">
         <label><i class="fas fa-tags"></i> Filter by Topic:</label>
