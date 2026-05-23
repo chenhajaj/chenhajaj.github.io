@@ -106,9 +106,9 @@ nav_order: 2
   text-align: center;
   margin-bottom: 1rem;
   padding: 1rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: var(--global-bg-color);
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--global-divider-color);
 }
 
 .header-actions {
@@ -143,11 +143,11 @@ nav_order: 2
 
 /* Filter Section */
 .filter-section {
-  background: white;
+  background: var(--global-card-bg-color);
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--global-divider-color);
   margin-bottom: 1.5rem;
   position: sticky;
   top: 70px;
@@ -164,18 +164,19 @@ nav_order: 2
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #718096;
+  color: var(--global-text-color-light);
   font-size: 1.1rem;
 }
 
 .search-input {
   width: 100%;
   padding: 0.6rem 2.5rem 0.6rem 2.5rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--global-divider-color);
   border-radius: 8px;
   font-size: 0.9rem;
   transition: all 0.3s ease;
-  background: #f8fafc;
+  background: var(--global-bg-color);
+  color: var(--global-text-color);
 }
 
 .search-input:focus {
@@ -327,102 +328,6 @@ nav_order: 2
   font-size: 0.95rem;
 }
 
-.page-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #2d3748;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.page-title i {
-  color: var(--global-theme-color);
-  font-size: 2.2rem;
-}
-
-.page-subtitle {
-  font-size: 1.2rem;
-  color: #4a5568;
-  margin-bottom: 2.5rem;
-  line-height: 1.6;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-
-.download-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  background: var(--global-theme-color);
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(75, 108, 183, 0.3);
-}
-
-.download-btn:hover {
-  background: #3b5998;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(75, 108, 183, 0.4);
-  color: white;
-  text-decoration: none;
-}
-
-.stats {
-  display: flex;
-  gap: 2rem;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--global-theme-color);
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 500;
-}
-
-/* Year Groups - Rectangle Cards */
-.year-group {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.08);
-  border: 1px solid #e2e8f0;
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.year-group:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 35px rgba(0,0,0,0.12);
-}
 
 .publications-container h2 {
   font-size: 1.35rem;
@@ -818,27 +723,24 @@ document.addEventListener('DOMContentLoaded', function() {
   const totalCount = document.getElementById('total-count');
 
   // Group year headings with their corresponding publications
-  const bibliography = publicationsList.querySelector('.bibliography');
-  if (bibliography) {
-    const yearHeadings = bibliography.querySelectorAll('h2');
-    
-    yearHeadings.forEach(function(heading) {
-      let nextElement = heading.nextElementSibling;
-      while (nextElement && !nextElement.matches('ol.bibliography')) {
-        nextElement = nextElement.nextElementSibling;
-      }
-      
-      if (nextElement && nextElement.matches('ol.bibliography')) {
-        const yearCard = document.createElement('div');
-        yearCard.className = 'year-card';
-        yearCard.setAttribute('data-year', heading.textContent.trim());
-        
-        heading.parentNode.insertBefore(yearCard, heading);
-        yearCard.appendChild(heading);
-        yearCard.appendChild(nextElement);
-      }
-    });
-  }
+  const yearHeadings = publicationsList.querySelectorAll('h2.bibliography');
+
+  yearHeadings.forEach(function(heading) {
+    let nextElement = heading.nextElementSibling;
+    while (nextElement && !nextElement.matches('ol.bibliography')) {
+      nextElement = nextElement.nextElementSibling;
+    }
+
+    if (nextElement && nextElement.matches('ol.bibliography')) {
+      const yearCard = document.createElement('div');
+      yearCard.className = 'year-card';
+      yearCard.setAttribute('data-year', heading.textContent.trim());
+
+      heading.parentNode.insertBefore(yearCard, heading);
+      yearCard.appendChild(heading);
+      yearCard.appendChild(nextElement);
+    }
+  });
 
   // Get all publications
   const allPublications = document.querySelectorAll('.bibliography li');
@@ -905,31 +807,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const yearCard = publication.closest('.year-card');
     const year = yearCard ? yearCard.getAttribute('data-year') : '';
 
-    // Extract projects/topics from the text
-    const projects = [];
-    const topicKeywords = {
-      'machine-learning': ['machine learning', 'ml', 'neural network', 'deep learning', 'classification', 'prediction'],
-      'security': ['security', 'malware', 'attack', 'threat', 'anomaly', 'malicious', 'adversarial', 'cybersecurity'],
-      'traffic-classification': ['traffic', 'encrypted traffic', 'network', 'packet'],
-      'healthcare': ['health', 'medical', 'clinical', 'patient', 'disease'],
-      'e-commerce': ['commerce', 'shopping', 'market', 'consumer'],
-      'generative-ai': ['gan', 'generative', 'synthetic'],
-      'multi-agent-systems': ['agent', 'multi-agent', 'coordination'],
-      'human-computer-interaction': ['interaction', 'crowdsourcing', 'vigilance', 'tutor'],
-      'education': ['education', 'student', 'learning group', 'teaching'],
-      'computer-vision': ['vision', 'image', 'segmentation', 'anatomical'],
-      'speech-processing': ['speech', 'speaker', 'diarization'],
-      'game-theory': ['game theory', 'team formation'],
-      'covid-19': ['covid'],
-      'emotion-analysis': ['emotion', 'sentiment'],
-      'similarity': ['similarity']
-    };
-
-    for (const [key, keywords] of Object.entries(topicKeywords)) {
-      if (keywords.some(keyword => text.includes(keyword))) {
-        projects.push(key);
-      }
-    }
+    // Read projects from data-projects attribute on the .entry div
+    const entryDiv = publication.querySelector('.entry');
+    const projects = entryDiv
+      ? (entryDiv.getAttribute('data-projects') || '').split(',').map(s => s.trim()).filter(Boolean)
+      : [];
 
     return { text, type, year, projects };
   }
