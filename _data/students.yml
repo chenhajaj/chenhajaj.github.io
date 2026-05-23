@@ -16,7 +16,7 @@ phd_students:
   - name: "Zohar Shimhon"
     research_area: "Graph Neural Networks"
   - name: "Tanya Zhelezni"
-    research_area: "Chatbosts for Funnel Optimization"
+    research_area: "Chatbots for Funnel Optimization"
   - name: "Ohad Nir"
     research_area: "Learning Approaches for the Chasing Repairman Problem"
   - name: "Eden Shmuel"

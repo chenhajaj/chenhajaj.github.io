@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-One paper accepted at **IEEE ICC 2026** in Glasgow: *Uncovering Microservice Faults* (Udi Aharon et al.). 🎉
+Paper accepted at **IEEE ICC 2026** in Glasgow: *Uncovering Microservice Faults: A Temporal Graph Approach to Root Cause Analysis*. 🎉
