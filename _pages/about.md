@@ -37,7 +37,7 @@ latest_posts:
           <a href="mailto:chenha@g.ariel.ac.il" title="Email"><i class="fas fa-envelope"></i> chenha@g.ariel.ac.il</a>
           <a href="https://github.com/chenhajaj" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
           <a href="https://www.linkedin.com/in/chen-hajaj-5ba59517" title="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-          <a href="https://scholar.google.com/citations?user=Ys5aNKYAAAAJ" title="Google Scholar"><i class="ai ai-google-scholar"></i> Scholar</a>
+          <a href="https://scholar.google.com/citations?user=Zy2cIskAAAAJ" title="Google Scholar"><i class="ai ai-google-scholar"></i> Scholar</a>
           <a href="https://orcid.org/0000-0001-9940-5654" title="ORCID" target="_blank" rel="noopener"><i class="ai ai-orcid"></i> ORCID</a>
           <span class="profile-office"><i class="fas fa-building"></i> Office: 58.3.42</span>
         </div>
@@ -461,10 +461,10 @@ section { margin-bottom: 4rem; }
   justify-content: center; color: white; font-size: 1.2rem;
   box-shadow: 0 4px 15px rgba(75,108,183,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.timeline-item.highlight .timeline-marker { width: 66px; height: 66px; font-size: 1.4rem; left: -50px; }
+.timeline-item.highlight .timeline-marker { width: 66px; height: 66px; font-size: 1.4rem; left: -19px; }
 .timeline-item:hover .timeline-marker { transform: scale(1.1); box-shadow: 0 6px 20px rgba(75,108,183,0.4); }
-.timeline-content h4 { color: #2d3748; font-size: 1.2rem; font-weight: 600; margin: 0 0 0.75rem 0; }
-.timeline-content p { color: #4a5568; line-height: 1.7; margin: 0 0 0.75rem 0; }
+.timeline-content h4 { color: var(--global-text-color); font-size: 1.2rem; font-weight: 600; margin: 0 0 0.75rem 0; }
+.timeline-content p { color: var(--global-text-color); line-height: 1.7; margin: 0 0 0.75rem 0; }
 .timeline-meta { color: var(--global-theme-color); font-weight: 600; font-size: 0.9rem; }
 
 /* News Section */

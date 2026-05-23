@@ -16,11 +16,11 @@
 
 /* About Me Introduction Section */
 .about-intro-section {
-  background: linear-gradient(to bottom, #ffffff 0%, #fafbfc 100%);
+  background: var(--global-bg-color);
   padding: 2.75rem;
   margin-bottom: 4rem;
   border-radius: 20px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--global-divider-color);
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -40,7 +40,7 @@
 .about-intro-text {
   font-size: 1.15rem;
   line-height: 1.85;
-  color: #2d3748;
+  color: var(--global-text-color);
   margin: 0;
   font-weight: 400;
   text-align: justify;
@@ -87,7 +87,7 @@ h4 {
 
 /* Card-like elements */
 .card-element {
-  background: white;
+  background: var(--global-card-bg-color);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -130,7 +130,7 @@ h4 {
 
 /* Student/Team member cards */
 .member-card {
-  background: white;
+  background: var(--global-card-bg-color);
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -138,7 +138,7 @@ h4 {
 }
 
 .member-card.alumni {
-  background: #f8f9fa;
+  background: var(--global-bg-color);
 }
 
 .member-card strong {
@@ -147,7 +147,7 @@ h4 {
 }
 
 .member-card em {
-  color: #666;
+  color: var(--global-text-color-light);
   font-style: normal;
   font-size: 0.9rem;
 }
@@ -242,7 +242,7 @@ h4 {
 .project-publications {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 2px solid #e2e8f0;
+  border-top: 2px solid var(--global-divider-color);
 }
 
 .project-publications h3 {
@@ -259,7 +259,7 @@ h4 {
 }
 
 .projects .card {
-  background: white;
+  background: var(--global-card-bg-color);
   border: 1px solid rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
@@ -312,12 +312,12 @@ h4 {
 }
 
 .member-card .research-area {
-  color: #2c3e50;
+  color: var(--global-text-color);
   font-size: 0.95rem;
 }
 
 .member-card .graduation-year {
-  color: #666;
+  color: var(--global-text-color-light);
   font-size: 0.9rem;
 }
 
@@ -438,10 +438,10 @@ h4 {
 .project-content ul li {
   position: relative;
   padding: 0.45rem 0 0.45rem 2rem;
-  color: #4a5568;
+  color: var(--global-text-color);
   font-size: 1rem;
   line-height: 1.65;
-  border-bottom: 1px solid #f0f4f8;
+  border-bottom: 1px solid var(--global-divider-color);
 
   &:last-child {
     border-bottom: none;
@@ -461,7 +461,54 @@ h4 {
   }
 
   strong {
-    color: #2d3748;
+    color: var(--global-text-color);
     font-weight: 600;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  .about-intro-section {
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-intro-text {
+    font-size: 0.975rem;
+    line-height: 1.65;
+  }
+
+  .student-grid {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+
+  .member-card {
+    padding: 0.875rem;
+  }
+
+  .project-banner {
+    height: 160px;
+
+    .project-banner-overlay h1 {
+      font-size: 1.2rem;
+    }
+
+    .project-banner-overlay p {
+      font-size: 0.85rem;
+    }
+  }
+
+  .projects-page h1 {
+    font-size: 1.6rem;
+  }
+
+  .projects-page h2 {
+    font-size: 1.25rem;
   }
 }

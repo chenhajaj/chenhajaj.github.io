@@ -21,7 +21,7 @@ description: #Academic CV including education, academic administration, conferen
         <a href="mailto:chenha@g.ariel.ac.il"><i class="fas fa-envelope"></i> chenha@g.ariel.ac.il</a>
         <a href="https://github.com/chenhajaj" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         <a href="https://www.linkedin.com/in/chen-hajaj-5ba59517" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://scholar.google.com/citations?user=Ys5aNKYAAAAJ" target="_blank"><i class="ai ai-google-scholar"></i> Scholar</a>
+        <a href="https://scholar.google.com/citations?user=Zy2cIskAAAAJ" target="_blank"><i class="ai ai-google-scholar"></i> Scholar</a>
       </div>
     </div>
     <div class="cv-header-right">
