@@ -18,9 +18,9 @@ phd_students:
   - name: "Tanya Zhelezni"
     research_area: "Chatbosts for Funnel Optimization"
   - name: "Ohad Nir"
-    research_area: "Learning Approches for the Chaising Repairmna Problem"
+    research_area: "Learning Approaches for the Chasing Repairman Problem"
   - name: "Eden Shmuel"
-    research_area: "Using Machine Leaning to Personalize Nutritional Treatment"
+    research_area: "Using Machine Learning to Personalize Nutritional Treatment"
 phd_alumni:
   - name: "Or Anidjar"
     graduation_year: "2022"
