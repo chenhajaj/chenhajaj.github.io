@@ -6,6 +6,7 @@ img: assets/img/incentive-new.png
 importance: 2
 category: work
 giscus_comments: true
+related_publications: true
 ---
 
 <style>

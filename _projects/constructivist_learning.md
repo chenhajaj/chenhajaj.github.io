@@ -5,6 +5,7 @@ description: Data science methods that quantify learning in design studio educat
 img: assets/img/design-new.png
 importance: 3
 category: work
+related_publications: true
 ---
 
 <style>
