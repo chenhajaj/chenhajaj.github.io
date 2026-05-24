@@ -5,6 +5,7 @@ description: Multimodal AI that fuses computer vision and NLP to measure item si
 img: assets/img/tourism-new.png
 importance: 3
 category: work
+related_publications: true
 ---
 
 <style>

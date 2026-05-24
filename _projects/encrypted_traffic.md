@@ -6,6 +6,7 @@ img: assets/img/encrypted_new.png
 importance: 1
 category: work
 giscus_comments: false
+related_publications: true
 ---
 
 <style>

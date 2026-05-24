@@ -8,7 +8,9 @@
 >
   <!-- Title -->
   <div class="title">
-    {% if entry.url %}
+    {% if entry.abstract %}
+      <span class="abstract-toggle">{{ entry.title }}</span>
+    {% elsif entry.url %}
       <a href="{{ entry.url }}">{{ entry.title }}</a>
     {% else %}
       {{ entry.title }}
@@ -63,11 +65,20 @@
     {%- endif -%}
   {%- endif %}
 
+  <!-- Abstract (shown on title click) -->
+  {% if entry.abstract %}
+    <div class="abstract-content">
+      {{ entry.abstract }}
+    </div>
+  {% endif %}
+
   <!-- Links -->
   <div class="links">
-    {% if entry.abstract %}
-      <a class="btn btn-sm z-depth-0" role="button">Abstract</a>
-    {% endif %}
+    {% unless entry.doi %}
+      {% if entry.url %}
+        <a class="btn btn-sm z-depth-0" href="{{ entry.url }}" target="_blank" rel="noopener">Link</a>
+      {% endif %}
+    {% endunless %}
     {% if entry.pdf %}
       <a class="btn btn-sm z-depth-0 pdf" href="{{ entry.pdf }}">PDF</a>
     {% endif %}

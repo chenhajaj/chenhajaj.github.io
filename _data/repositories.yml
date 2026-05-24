@@ -1,14 +1,74 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - ArielCyber
 
 repo_description_lines_max: 2
 
-github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+repos:
+  encrypted_traffic:
+    - name: OSF-EIMTC
+      url: https://github.com/ArielCyber/OSF-EIMTC
+      description: Open-source framework for encrypted internet and malicious traffic classification — full ML/DL pipeline, datasets, and benchmarks.
+      stars: 20
+      language: Python
+    - name: When_a_RF_Beats_a_CNN_and_GRU
+      url: https://github.com/ArielCyber/When_a_RF_Beats_a_CNN_and_GRU
+      description: Code for comparing classical ML vs deep learning approaches for encrypted malware traffic classification.
+      stars: 0
+      language: Python
+    - name: Spectral-Encrypted-Internet-Traffic-Classification
+      url: https://github.com/ArielCyber/Spectral-Encrypted-Internet-Traffic-Classification
+      description: Spectral methods for encrypted internet traffic classification.
+      stars: 0
+      language: Python
+    - name: PQClass
+      url: https://github.com/ArielCyber/PQClass
+      description: Classification of operating systems and browsers using post-quantum cryptography algorithms.
+      stars: 1
+      language: Python
+    - name: ITC-Data-Augmentations-
+      url: https://github.com/ArielCyber/ITC-Data-Augmentations-
+      description: Data augmentation techniques for internet traffic classification.
+      stars: 1
+      language: Python
+    - name: GAN-N-Net
+      url: https://github.com/ArielCyber/GAN-N-Net
+      description: GAN-based synthetic data generation for network traffic classification.
+      stars: 1
+      language: Python
+    - name: graph-mux
+      url: https://github.com/ArielCyber/graph-mux
+      description: Graph-based multiplexing for network traffic analysis.
+      stars: 1
+      language: Python
+    - name: TGN-RCA
+      url: https://github.com/ArielCyber/TGN-RCA
+      description: "Official implementation: Uncovering Microservice Faults — Temporal Graph Approach to Root Cause Analysis."
+      stars: 0
+      language: Python
+
+  api_malware:
+    - name: FT-ANN
+      url: https://github.com/ArielCyber/FT-ANN
+      description: Classification-by-retrieval framework for few-shot anomaly detection to detect API injection attacks.
+      stars: 3
+      language: Python
+    - name: Android-crystal-ball
+      url: https://github.com/ArielCyber/Android-crystal-ball
+      description: "Code for: Crystal Ball — From Innovative Attack to Attack Effectiveness Classifier (IEEE Access, 2021)."
+      stars: 2
+      language: Python
+    - name: robust-malicious-url-detection
+      url: https://github.com/ArielCyber/robust-malicious-url-detection
+      description: Malicious URL detection using a robust feature set resistant to adversarial example attacks.
+      stars: 0
+      language: Python
+    - name: When-the-guard-failed-the-droid
+      url: https://github.com/ArielCyber/When-the-guard-failed-the-droid
+      description: Code for Android malware evasion case study.
+      stars: 1
+      language: Python
+    - name: OOD_Is_Not_Magic
+      url: https://github.com/ArielCyber/OOD_Is_Not_Magic
+      description: "Out-Of-Distribution Is Not Magic: The Clash Between Rejection Rate and Model Success."
+      stars: 0
+      language: Python

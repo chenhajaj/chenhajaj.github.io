@@ -5,7 +5,7 @@ description: Machine learning for critical care — predicting ICU feeding compl
 img: assets/img/medical_new.png
 importance: 2
 category: work
-related_publications: false
+related_publications: true
 ---
 
 <style>

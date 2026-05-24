@@ -4,7 +4,7 @@ title: Our Lab
 permalink: /people/
 description: Current students and alumni of the Hajaj Lab at Ariel University
 nav: true
-nav_order: 3
+nav_order: 4
 ---
 
 <style>
@@ -43,8 +43,8 @@ nav_order: 3
   background:var(--global-theme-color);
   display:flex;align-items:center;justify-content:center;
   color:#fff;font-size:1.1rem;font-weight:700;
-  opacity:0.9
 }
+
 
 /* Text block */
 .person-info{flex:1;min-width:0}
@@ -59,7 +59,7 @@ nav_order: 3
 .join-cta h3{font-size:1.3rem;margin-bottom:0.6rem;color:#fff}
 .join-cta p{opacity:0.9;margin-bottom:1.25rem;font-size:0.95rem;color:#fff !important}
 .btn-join{display:inline-block;background:#fff;color:var(--global-theme-color);padding:0.65rem 1.75rem;border-radius:8px;font-weight:700;text-decoration:none;transition:all 0.2s;font-size:0.9rem}
-.btn-join:hover{background:#f0f4ff;transform:translateY(-2px);text-decoration:none}
+.btn-join:hover{background:rgba(75,108,183,0.12);transform:translateY(-2px);text-decoration:none}
 
 @media(max-width:600px){
   .people-grid{grid-template-columns:1fr;gap:0.9rem}
@@ -70,17 +70,20 @@ nav_order: 3
 
 {% assign phd_count = site.data.students.phd_students | size %}
 {% assign msc_count = site.data.students.masters_students | size %}
-{% assign ra_count = site.data.students.research_assistants | size %}
 {% assign phd_alumni_count = site.data.students.phd_alumni | size %}
 {% assign msc_alumni_count = site.data.students.masters_alumni | size %}
-{% assign current_count = phd_count | plus: msc_count | plus: ra_count %}
+{% assign current_count = phd_count | plus: msc_count %}
 {% assign alumni_count = phd_alumni_count | plus: msc_alumni_count %}
 
 <!-- Stats Banner -->
 <div class="people-stats">
   <div class="people-stat">
-    <div class="stat-number">{{ current_count }}</div>
-    <div class="stat-label">Current Members</div>
+    <div class="stat-number">{{ phd_count }}</div>
+    <div class="stat-label">PhD Students</div>
+  </div>
+  <div class="people-stat">
+    <div class="stat-number">{{ msc_count }}</div>
+    <div class="stat-label">MSc Students</div>
   </div>
   <div class="people-stat">
     <div class="stat-number">{{ alumni_count }}</div>
@@ -88,8 +91,8 @@ nav_order: 3
   </div>
 </div>
 
-<!-- PhD Students -->
-<h2 class="people-section-title"><i class="fas fa-user-graduate"></i> PhD Students</h2>
+<!-- Current PhD Students -->
+<h2 class="people-section-title"><i class="fas fa-user-graduate"></i> Current PhD Students</h2>
 <div class="people-grid">
 {% for student in site.data.students.phd_students %}
   <div class="person-card">
@@ -104,8 +107,8 @@ nav_order: 3
 {% endfor %}
 </div>
 
-<!-- MSc Students -->
-<h2 class="people-section-title"><i class="fas fa-book-open"></i> MSc Students</h2>
+<!-- Current MSc Students -->
+<h2 class="people-section-title"><i class="fas fa-book-open"></i> Current MSc Students</h2>
 <div class="people-grid">
 {% for student in site.data.students.masters_students %}
   <div class="person-card">
@@ -119,24 +122,6 @@ nav_order: 3
   </div>
 {% endfor %}
 </div>
-
-{% if site.data.students.research_assistants.size > 0 %}
-<!-- Research Assistants -->
-<h2 class="people-section-title"><i class="fas fa-flask"></i> Research Assistants</h2>
-<div class="people-grid">
-{% for student in site.data.students.research_assistants %}
-  <div class="person-card">
-    <div class="person-avatar">{{ student.name | split: ' ' | first | slice: 0 }}{{ student.name | split: ' ' | last | slice: 0 }}</div>
-    <div class="person-info">
-      <div class="person-name">{{ student.name }}</div>
-      {% if student.research_area %}
-        <div class="person-area">{{ student.research_area }}</div>
-      {% endif %}
-    </div>
-  </div>
-{% endfor %}
-</div>
-{% endif %}
 
 <!-- PhD Alumni -->
 <h2 class="people-section-title"><i class="fas fa-trophy"></i> PhD Alumni</h2>
@@ -171,25 +156,6 @@ nav_order: 3
   </div>
 {% endfor %}
 </div>
-
-<!-- Former Research Assistants -->
-{% if site.data.students.former_research_assistants.size > 0 %}
-<h2 class="people-section-title"><i class="fas fa-history"></i> Former Research Assistants</h2>
-<div class="people-grid">
-{% for student in site.data.students.former_research_assistants %}
-  <div class="person-card">
-    <div class="person-avatar">{{ student.name | split: ' ' | first | slice: 0 }}{{ student.name | split: ' ' | last | slice: 0 }}</div>
-    <div class="person-info">
-      <div class="person-name">{{ student.name }}</div>
-      {% if student.graduation_year %}<span class="person-year">{{ student.graduation_year }}</span>{% endif %}
-      {% if student.research_area %}
-        <div class="person-area">{{ student.research_area }}</div>
-      {% endif %}
-    </div>
-  </div>
-{% endfor %}
-</div>
-{% endif %}
 
 <!-- Join CTA -->
 <div class="join-cta">

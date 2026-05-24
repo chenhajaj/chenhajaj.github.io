@@ -2,7 +2,7 @@
 layout: page
 permalink: /publications/
 title: Publications
-description:
+description: Full list of publications by Chen Hajaj — machine learning, cybersecurity, healthcare AI, and multi-agent systems.
 nav: true
 nav_order: 2
 ---
@@ -135,7 +135,7 @@ nav_order: 2
 }
 
 .download-btn:hover {
-  background: #3b5998;
+  filter: brightness(0.88);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(75, 108, 183, 0.4);
   color: white;
@@ -194,7 +194,7 @@ nav_order: 2
   transform: translateY(-50%);
   background: transparent;
   border: none;
-  color: #a0aec0;
+  color: var(--global-text-color-light);
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 8px;
@@ -203,8 +203,8 @@ nav_order: 2
 }
 
 .clear-btn:hover {
-  background: #e2e8f0;
-  color: #4a5568;
+  background: var(--global-divider-color);
+  color: var(--global-text-color);
 }
 
 .clear-btn.active {
@@ -227,7 +227,7 @@ nav_order: 2
 .filter-group label {
   display: block;
   font-weight: 600;
-  color: #4a5568;
+  color: var(--global-text-color);
   margin-bottom: 0.3rem;
   font-size: 0.85rem;
 }
@@ -240,22 +240,22 @@ nav_order: 2
 .filter-select {
   width: 100%;
   padding: 0.5rem 0.75rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--global-divider-color);
   border-radius: 8px;
   font-size: 0.85rem;
-  background: #f8fafc;
+  background: var(--global-bg-color);
+  color: var(--global-text-color);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .filter-select:hover {
-  border-color: #cbd5e0;
+  border-color: var(--global-theme-color);
 }
 
 .filter-select:focus {
   outline: none;
   border-color: var(--global-theme-color);
-  background: white;
   box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.1);
 }
 
@@ -283,7 +283,7 @@ nav_order: 2
   justify-content: space-between;
   align-items: center;
   padding-top: 0.75rem;
-  border-top: 2px solid #e2e8f0;
+  border-top: 2px solid var(--global-divider-color);
 }
 
 .stat-badge {
@@ -307,25 +307,25 @@ nav_order: 2
 .no-results {
   text-align: center;
   padding: 4rem 2rem;
-  background: #f8fafc;
+  background: var(--global-bg-color);
   border-radius: 16px;
-  border: 2px dashed #cbd5e0;
+  border: 2px dashed var(--global-divider-color);
   margin-top: 2rem;
 }
 
 .no-results i {
   font-size: 3rem;
-  color: #a0aec0;
+  color: var(--global-text-color-light);
   margin-bottom: 1rem;
 }
 
 .no-results h3 {
-  color: #4a5568;
+  color: var(--global-text-color);
   margin-bottom: 0.5rem;
 }
 
 .no-results p {
-  color: #718096;
+  color: var(--global-text-color-light);
   font-size: 0.95rem;
 }
 
@@ -361,7 +361,7 @@ nav_order: 2
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 25px rgba(0,0,0,0.08);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--global-divider-color);
   margin-bottom: 1.5rem;
   transition: all 0.3s ease;
 }
@@ -411,7 +411,7 @@ nav_order: 2
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 25px rgba(0,0,0,0.08);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--global-divider-color);
   margin-bottom: 1.5rem;
   transition: all 0.3s ease;
 }
@@ -422,18 +422,18 @@ nav_order: 2
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 25px rgba(0,0,0,0.08);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--global-divider-color);
   margin-bottom: 1.5rem;
   transition: all 0.3s ease;
 }
 
 /* Year grouping with JavaScript enhancement */
 .year-card {
-  background: white;
+  background: var(--global-card-bg-color);
   padding: 1.2rem;
   border-radius: 10px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--global-divider-color);
   margin-bottom: 1.2rem;
   transition: all 0.3s ease;
 }
@@ -453,12 +453,12 @@ nav_order: 2
 }
 
 .entry {
-  background: white;
+  background: var(--global-card-bg-color);
   padding: 0.9rem;
   border-radius: 8px;
   box-shadow: 0 1px 6px rgba(0,0,0,0.06);
   transition: all 0.3s ease;
-  border: 1px solid rgba(0,0,0,0.08);
+  border: 1px solid var(--global-divider-color);
   position: relative;
   margin-bottom: 0.65rem;
   overflow: hidden;
@@ -488,11 +488,38 @@ nav_order: 2
 .entry .title {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--global-text-color);
   line-height: 1.3;
   margin: 0 0 0.35rem 0;
   padding-right: 3rem;
 }
+
+.abstract-toggle {
+  cursor: pointer;
+  color: var(--global-text-color);
+  transition: color 0.2s;
+}
+.abstract-toggle:hover { color: var(--global-theme-color); }
+.abstract-toggle::after {
+  content: " ▸";
+  font-size: 0.65em;
+  opacity: 0.5;
+  vertical-align: middle;
+}
+.entry.abstract-open .abstract-toggle::after { content: " ▾"; opacity: 0.7; }
+
+.abstract-content {
+  display: none;
+  margin: 0.5rem 0 0.25rem;
+  padding: 0.7rem 0.9rem;
+  background: var(--global-bg-color);
+  border-left: 3px solid var(--global-theme-color);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--global-text-color);
+}
+.entry.abstract-open .abstract-content { display: block; }
 
 .entry .title a {
   color: inherit;
@@ -511,14 +538,14 @@ nav_order: 2
   font-size: 0.75rem;
   color: var(--global-theme-color);
   font-weight: 600;
-  background: #f8fafc;
+  background: var(--global-bg-color);
   padding: 0.15rem 0.45rem;
   border-radius: 10px;
   border: 1.5px solid var(--global-theme-color);
 }
 
 .entry .author {
-  color: #4a5568;
+  color: var(--global-text-color);
   font-size: 0.8rem;
   margin: 0.35rem 0;
   line-height: 1.4;
@@ -534,10 +561,10 @@ nav_order: 2
 }
 
 .entry .periodical {
-  color: #2d3748;
+  color: var(--global-text-color);
   font-style: italic;
   font-size: 0.8rem;
-  background: #f8fafc;
+  background: var(--global-bg-color);
   border-left: 2.5px solid var(--global-theme-color);
   padding: 0.45rem 0.7rem;
   margin: 0.35rem 0;
@@ -552,22 +579,7 @@ nav_order: 2
   flex-wrap: wrap;
   margin-top: 0.5rem;
   padding-top: 0.5rem;
-  border-top: 1px solid #e2e8f0;
-}
-
-.entry .links .btn {
-  font-size: 0.65rem;
-  padding: 0.25rem 0.55rem;
-  border-radius: 5px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-}
-
-.entry .links .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  border-top: 1px solid var(--global-divider-color);
 }
 
 .entry .links .btn {
@@ -707,6 +719,31 @@ nav_order: 2
     font-size: 2rem;
   }
 }
+
+/* Touch targets: ensure 44px min on interactive controls */
+.reset-btn,
+.filter-select,
+.search-input,
+.clear-btn {
+  min-height: 44px;
+}
+
+/* Focus states for keyboard navigation */
+.search-input:focus-visible,
+.filter-select:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 2px;
+}
+.reset-btn:focus-visible,
+.clear-btn:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 2px;
+}
+.abstract-toggle:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 </style>
 
 <script>
@@ -754,7 +791,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (year) years.add(year);
   });
   
-  Array.from(years).sort((a, b) => b - a).forEach(year => {
+  Array.from(years).sort((a, b) => parseInt(b) - parseInt(a)).forEach(year => {
     const option = document.createElement('option');
     option.value = year;
     option.textContent = year;
@@ -860,7 +897,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Hide/show year cards based on visible publications
     yearCards.forEach(card => {
-      const visibleInCard = card.querySelectorAll('li:not([style*="display: none"])').length;
+      const visibleInCard = Array.from(card.querySelectorAll('li')).filter(li => li.style.display !== 'none').length;
       card.style.display = visibleInCard > 0 ? '' : 'none';
     });
 
@@ -906,11 +943,12 @@ document.addEventListener('DOMContentLoaded', function() {
     filterPublications();
   });
 
-  // Add highlight on hover for better UX
-  allPublications.forEach(pub => {
-    pub.addEventListener('mouseenter', function() {
-      this.style.transition = 'all 0.3s ease';
-    });
+  // Abstract toggle — click title to show/hide
+  publicationsList.addEventListener('click', function(e) {
+    const toggle = e.target.closest('.abstract-toggle');
+    if (!toggle) return;
+    const entry = toggle.closest('.entry');
+    if (entry) entry.classList.toggle('abstract-open');
   });
 });
 </script>
