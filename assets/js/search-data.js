@@ -18,10 +18,17 @@ ninja.data = [{
           },
         },{id: "nav-publications",
           title: "Publications",
-          description: "",
+          description: "Full list of publications by Chen Hajaj — machine learning, cybersecurity, healthcare AI, and multi-agent systems.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
+          title: "Projects",
+          description: "Research projects in AI, Cybersecurity, Healthcare, and Data Science.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/projects/";
           },
         },{id: "nav-our-lab",
           title: "Our Lab",
@@ -30,12 +37,12 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/people/";
           },
-        },{id: "nav-projects",
-          title: "Projects",
-          description: "Research projects in AI, Cybersecurity, Healthcare, and Data Science.",
+        },{id: "nav-code-amp-software",
+          title: "Code &amp; Software",
+          description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/projects/";
+            window.location.href = "/software/";
           },
         },{id: "nav-teaching",
           title: "Teaching",
@@ -50,6 +57,13 @@ ninja.data = [{
           section: "Navigation",
           handler: () => {
             window.location.href = "/contact/";
+          },
+        },{id: "nav-news",
+          title: "News",
+          description: "Latest updates, publications, and announcements from the Hajaj Lab.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/news/";
           },
         },{id: "news-four-papers-accepted-at-ieee-icc-2025-d-magic-gnn-based-cybersecurity-attack-detection-encrypted-traffic-classification-via-advanced-data-augmentation-pqclass-post-quantum-encryption-traffic-classification-and-optimized-file-type-detection-and-one-shot-retrieval",
           title: 'Four papers accepted at IEEE ICC 2025: D-MAGIC (GNN-based cybersecurity attack detection), Encrypted...',
