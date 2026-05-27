@@ -1,13 +1,14 @@
 ---
 ---
 <div
-  class="entry"
+  class="entry{% if entry.selected %} entry-selected{% endif %}"
   {% if entry.projects %}
     data-projects="{{ entry.projects }}"
   {% endif %}
 >
   <!-- Title -->
   <div class="title">
+    {% if entry.selected %}<span class="selected-badge" title="Selected publication">★</span>{% endif %}
     {% if entry.abstract %}
       <span class="abstract-toggle">{{ entry.title }}</span>
     {% elsif entry.url %}
@@ -74,6 +75,9 @@
 
   <!-- Links -->
   <div class="links">
+    {% if entry.abstract %}
+      <span class="btn btn-sm z-depth-0 abstract-toggle-btn abstract-toggle">Abstract</span>
+    {% endif %}
     {% unless entry.doi %}
       {% if entry.url %}
         <a class="btn btn-sm z-depth-0" href="{{ entry.url }}" target="_blank" rel="noopener">Link</a>

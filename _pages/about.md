@@ -7,6 +7,7 @@ subtitle:
 profile:
   align: right
   image: me.jpeg
+  image_alt: "Chen Hajaj, Associate Professor at Ariel University"
   image_circular: false
 
 selected_papers: false
@@ -320,13 +321,13 @@ section { margin-bottom: 4rem; }
   box-shadow: 0 6px 25px rgba(75,108,183,0.25);
 }
 .profile-name {
-  font-size: 2rem !important; font-weight: 800 !important; color: #1a202c !important;
+  font-size: 2rem !important; font-weight: 800 !important; color: var(--global-text-color) !important;
   margin: 0 0 0.3rem 0 !important; border: none !important; padding: 0 !important;
   display: block !important; align-items: unset !important; gap: unset !important;
 }
 .profile-name i { display: none; }
 .profile-title { font-size: 1.05rem; color: var(--global-theme-color); font-weight: 600; margin: 0 0 0.3rem 0; }
-.profile-institution { font-size: 0.9rem; color: #718096; margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.4rem; }
+.profile-institution { font-size: 0.9rem; color: var(--global-text-color-light); margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.4rem; }
 .profile-institution i { color: var(--global-theme-color); }
 .profile-contact-links { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
 .profile-contact-links a,
@@ -335,11 +336,11 @@ section { margin-bottom: 4rem; }
   padding: 0.35rem 0.8rem; border-radius: 8px;
   font-size: 0.85rem; font-weight: 500; text-decoration: none;
   transition: all 0.2s ease; border: 1px solid #e2e8f0;
-  background: #f8fafc; color: #4a5568;
+  background: var(--global-code-bg-color); color: var(--global-text-color);
 }
 .profile-contact-links a:hover {
   color: var(--global-theme-color); border-color: var(--global-theme-color);
-  background: white; transform: translateY(-1px);
+  background: var(--global-card-bg-color); transform: translateY(-1px);
   box-shadow: 0 3px 10px rgba(75,108,183,0.15); text-decoration: none;
 }
 .profile-contact-links a i,
@@ -349,12 +350,12 @@ section { margin-bottom: 4rem; }
 
 /* About Intro */
 .about-intro-section {
-  background: white; padding: 2.25rem;
+  background: var(--global-card-bg-color); padding: 2.25rem;
   border: 1px solid #e2e8f0; border-radius: 20px;
   box-shadow: 0 4px 25px rgba(0,0,0,0.08);
 }
 .about-lead-text {
-  font-size: 1.15rem; line-height: 1.8; color: #1a202c;
+  font-size: 1.15rem; line-height: 1.8; color: var(--global-text-color);
   margin-bottom: 1.75rem; font-weight: 500;
   border-left: 4px solid var(--global-theme-color);
   padding: 0.8rem 1rem 0.8rem 1.25rem;
@@ -365,7 +366,7 @@ section { margin-bottom: 4rem; }
 .about-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 .about-pillar {
   display: flex; align-items: flex-start; gap: 1rem;
-  padding: 1.25rem; background: #f8fafc;
+  padding: 1.25rem; background: var(--global-code-bg-color);
   border: 1px solid #e2e8f0; border-radius: 14px;
   transition: box-shadow 0.2s, transform 0.2s;
 }
@@ -378,8 +379,8 @@ section { margin-bottom: 4rem; }
 }
 .about-pillar-body { display: flex; flex-direction: column; gap: 0.35rem; }
 .about-pillar-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--global-theme-color); }
-.about-pillar-text { font-size: 1.05rem; line-height: 1.7; color: #4a5568; }
-.about-pillar-text strong { color: #2d3748; font-weight: 600; }
+.about-pillar-text { font-size: 1.05rem; line-height: 1.7; color: var(--global-text-color); }
+.about-pillar-text strong { color: var(--global-text-color); font-weight: 600; }
 @media (max-width: 768px) {
   .about-pillars { grid-template-columns: 1fr; }
   .about-pillar { padding: 1rem; }
@@ -387,14 +388,14 @@ section { margin-bottom: 4rem; }
 
 /* Section headings */
 .about-content h3 {
-  color: #2d3748; font-size: 1.6rem; font-weight: 700;
+  color: var(--global-text-color); font-size: 1.6rem; font-weight: 700;
   margin-bottom: 1.75rem; display: flex; align-items: center; gap: 0.65rem;
 }
 .about-content h3 i { color: var(--global-theme-color); font-size: 1.3rem; }
 
 /* Research Focus */
 .research-focus-section {
-  background: white; padding: 2.5rem; border-radius: 20px;
+  background: var(--global-card-bg-color); padding: 2.5rem; border-radius: 20px;
   box-shadow: 0 4px 25px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;
 }
 .research-stack {
@@ -405,7 +406,7 @@ section { margin-bottom: 4rem; }
 /* Research Cards */
 .research-card {
   display: flex; flex-direction: column; gap: 0.75rem;
-  padding: 1.4rem 1.35rem; background: #f8fafc;
+  padding: 1.4rem 1.35rem; background: var(--global-code-bg-color);
   border: 1px solid #e2e8f0; border-radius: 14px;
   transition: all 0.25s ease;
 }
@@ -416,7 +417,7 @@ section { margin-bottom: 4rem; }
 .research-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 28px rgba(75,108,183,0.13);
-  background: white;
+  background: var(--global-card-bg-color);
 }
 .research-card-header { display: flex; align-items: center; gap: 0.85rem; }
 .research-card-icon {
@@ -428,12 +429,12 @@ section { margin-bottom: 4rem; }
 }
 .research-card:hover .research-card-icon { transform: scale(1.12) rotate(5deg); }
 .research-card h4 {
-  color: #2d3748; font-size: 1rem; font-weight: 700; margin: 0; line-height: 1.35;
+  color: var(--global-text-color); font-size: 1rem; font-weight: 700; margin: 0; line-height: 1.35;
   transition: color 0.2s;
 }
 .research-card:hover h4 { color: var(--global-theme-color); }
 .research-card p {
-  font-size: 0.92rem; line-height: 1.7; color: #718096; margin: 0;
+  font-size: 0.92rem; line-height: 1.7; color: var(--global-text-color-light); margin: 0;
 }
 .research-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; padding-top: 0.5rem; }
 .research-tags span {
@@ -477,13 +478,13 @@ section { margin-bottom: 4rem; }
 
 /* News Section */
 .news-section {
-  background: white; padding: 2.5rem; border-radius: 20px;
-  box-shadow: 0 4px 25px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;
+  background: var(--global-card-bg-color); padding: 2.5rem; border-radius: 20px;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.08); border: 1px solid var(--global-divider-color);
 }
 .news-list { display: flex; flex-direction: column; gap: 0; }
 .news-item {
   display: flex; gap: 1.25rem; align-items: center;
-  padding: 1rem 0; border-bottom: 1px solid #f0f4f8;
+  padding: 1rem 0; border-bottom: 1px solid var(--global-divider-color);
   transition: background 0.2s ease;
   border-radius: 8px;
 }
@@ -498,7 +499,7 @@ section { margin-bottom: 4rem; }
 .news-month { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; line-height: 1; color: white !important; }
 .news-year { font-size: 0.78rem; font-weight: 600; line-height: 1; color: rgba(255,255,255,0.85) !important; }
 .news-body { flex: 1; }
-.news-text { font-size: 1rem; line-height: 1.7; color: #2d3748; }
+.news-text { font-size: 1rem; line-height: 1.7; color: var(--global-text-color); }
 @media (max-width: 480px) {
   .news-section { padding: 1.5rem; }
   .news-item:hover { padding-left: 0.4rem; padding-right: 0.4rem; margin: 0 -0.4rem; }
@@ -512,10 +513,10 @@ section { margin-bottom: 4rem; }
   background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
   padding: 2.5rem; border-radius: 20px; border: 1px solid #e2e8f0;
 }
-.welcome-text { color: #4a5568; line-height: 1.8; font-size: 1.1rem; margin-bottom: 2rem; max-width: 860px; }
+.welcome-text { color: var(--global-text-color); line-height: 1.8; font-size: 1.1rem; margin-bottom: 2rem; max-width: 860px; }
 .cta-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; }
 .cta-benefits { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; flex: 1; }
-.benefit { display: flex; align-items: center; gap: 0.45rem; color: #2d3748; font-weight: 500; font-size: 0.95rem; }
+.benefit { display: flex; align-items: center; gap: 0.45rem; color: var(--global-text-color); font-weight: 500; font-size: 0.95rem; }
 .benefit i { color: #10b981; }
 .cta-action { flex-shrink: 0; }
 .btn-primary {
@@ -533,6 +534,7 @@ section { margin-bottom: 4rem; }
 /* Responsive */
 @media (max-width: 768px) {
   .hero-profile-row { flex-direction: column; text-align: center; gap: 1.25rem; }
+  .profile-photo-img { width: 110px; height: 110px; }
 </style>
 
 <!-- Typed.js -->

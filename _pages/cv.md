@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /cv/
-title: # Curriculum Vitae
+title: CV
 nav: true
 nav_order: 1
 cv_pdf: CV.pdf
@@ -65,7 +65,7 @@ description: #Academic CV including education, academic administration, conferen
         <div class="cv-timeline">
 
           <div class="cv-item cv-item--blue">
-            <div class="cv-item-year">2010 – 2015</div>
+            <div class="cv-item-year">2010 – 2016</div>
             <div class="cv-item-body">
               <h3 class="cv-item-title">Ph.D. in Computer Science</h3>
               <p class="cv-item-org"><i class="fas fa-university"></i> Bar-Ilan University, Israel</p>
@@ -138,7 +138,7 @@ description: #Academic CV including education, academic administration, conferen
           </div>
 
           <div class="cv-item cv-item--indigo">
-            <div class="cv-item-year">2017 – 2018</div>
+            <div class="cv-item-year">2016 – 2018</div>
             <div class="cv-item-body">
               <h3 class="cv-item-title">Data Science Fellow &amp; Postdoctoral Researcher</h3>
               <p class="cv-item-org"><i class="fas fa-university"></i> Vanderbilt University, USA</p>
