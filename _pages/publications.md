@@ -33,21 +33,12 @@ nav_order: 2
         <label><i class="fas fa-tags"></i> Filter by Topic:</label>
         <select id="topic-filter" class="filter-select">
           <option value="all">All Topics</option>
-          <option value="machine-learning">Machine Learning</option>
-          <option value="security">Security</option>
-          <option value="traffic-classification">Traffic Classification</option>
-          <option value="healthcare">Healthcare</option>
-          <option value="e-commerce">E-Commerce</option>
-          <option value="generative-ai">Generative AI</option>
-          <option value="multi-agent-systems">Multi-Agent Systems</option>
-          <option value="human-computer-interaction">Human-Computer Interaction</option>
+          <option value="group-ai">AI &amp; Machine Learning</option>
+          <option value="group-security">Cybersecurity</option>
+          <option value="group-healthcare">Healthcare</option>
+          <option value="group-multiagent">Multi-Agent &amp; Game Theory</option>
+          <option value="group-ecommerce">E-Commerce &amp; HCI</option>
           <option value="education">Education</option>
-          <option value="computer-vision">Computer Vision</option>
-          <option value="speech-processing">Speech Processing</option>
-          <option value="game-theory">Game Theory</option>
-          <option value="covid-19">COVID-19</option>
-          <option value="emotion-analysis">Emotion Analysis</option>
-          <option value="similarity">Similarity</option>
         </select>
       </div>
 
@@ -337,17 +328,6 @@ nav_order: 2
   margin: 0 0 0.8rem 0;
   padding: 0 0 0.4rem 0;
   border-bottom: 2.5px solid var(--global-theme-color);
-  position: relative;
-}
-
-.publications-container h2::after {
-  content: "";
-  position: absolute;
-  bottom: -2.5px;
-  left: 0;
-  width: 35px;
-  height: 2.5px;
-  background: #3b5998;
 }
 
 /* Publication Entries */
@@ -357,7 +337,7 @@ nav_order: 2
 
 /* Style year groupings as rectangles */
 .publications-container .year {
-  background: white;
+  background: var(--global-card-bg-color);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 25px rgba(0,0,0,0.08);
@@ -392,17 +372,6 @@ nav_order: 2
   margin: 0 0 1rem 0;
   padding: 0 0 0.5rem 0;
   border-bottom: 3px solid var(--global-theme-color);
-  position: relative;
-}
-
-.publications-container .bibliography h2::after {
-  content: "";
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 40px;
-  height: 3px;
-  background: #3b5998;
 }
 
 /* Year container styling */
@@ -456,7 +425,7 @@ nav_order: 2
   background: var(--global-card-bg-color);
   padding: 0.9rem;
   border-radius: 8px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
   transition: all 0.3s ease;
   border: 1px solid var(--global-divider-color);
   position: relative;
@@ -500,13 +469,33 @@ nav_order: 2
   transition: color 0.2s;
 }
 .abstract-toggle:hover { color: var(--global-theme-color); }
-.abstract-toggle::after {
-  content: " ▸";
-  font-size: 0.65em;
-  opacity: 0.5;
+
+.abstract-toggle-btn {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--global-theme-color);
+  color: var(--global-theme-color);
+  border-radius: 4px;
+  font-size: 0.72rem;
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+.abstract-toggle-btn:hover { background: var(--global-theme-color); color: #fff; }
+.entry.abstract-open .abstract-toggle-btn { background: var(--global-theme-color); color: #fff; }
+
+.entry-selected {
+  border-left: 3px solid var(--global-theme-color);
+}
+.entry-selected::before { transform: scaleY(1) !important; }
+
+.selected-badge {
+  color: var(--global-theme-color);
+  font-size: 0.8em;
+  margin-right: 0.3rem;
   vertical-align: middle;
 }
-.entry.abstract-open .abstract-toggle::after { content: " ▾"; opacity: 0.7; }
 
 .abstract-content {
   display: none;
@@ -854,6 +843,14 @@ document.addEventListener('DOMContentLoaded', function() {
     return { text, type, year, projects };
   }
 
+  const topicGroups = {
+    'group-ai': ['machine-learning', 'generative-ai', 'computer-vision', 'speech-processing', 'similarity', 'emotion-analysis'],
+    'group-security': ['security', 'traffic-classification', 'cyber-threat-intelligence'],
+    'group-healthcare': ['healthcare', 'covid-19'],
+    'group-multiagent': ['multi-agent-systems', 'game-theory'],
+    'group-ecommerce': ['e-commerce', 'human-computer-interaction'],
+  };
+
   // Filter publications
   function filterPublications() {
     const searchTerm = searchInput.value.toLowerCase().trim();
@@ -873,8 +870,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       // Topic filter
-      if (selectedTopic !== 'all' && !data.projects.includes(selectedTopic)) {
-        isVisible = false;
+      if (selectedTopic !== 'all') {
+        const groupTags = topicGroups[selectedTopic];
+        const matches = groupTags
+          ? data.projects.some(p => groupTags.includes(p))
+          : data.projects.includes(selectedTopic);
+        if (!matches) isVisible = false;
       }
 
       // Year filter

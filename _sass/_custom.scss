@@ -131,10 +131,18 @@ h4 {
 /* Student/Team member cards */
 .member-card {
   background: var(--global-card-bg-color);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 2px solid var(--global-divider-color);
   transition: all 0.3s ease;
+  cursor: default;
+}
+
+.member-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(75, 108, 183, 0.15);
+  border-color: var(--global-theme-color);
 }
 
 .member-card.alumni {
@@ -142,14 +150,38 @@ h4 {
 }
 
 .member-card strong {
+  display: block;
   color: var(--global-theme-color);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
 }
 
 .member-card em {
   color: var(--global-text-color-light);
   font-style: normal;
   font-size: 0.9rem;
+}
+
+.member-card .graduation-year {
+  color: var(--global-text-color-light);
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
+
+  i { color: var(--global-theme-color); }
+}
+
+.member-card .research-area {
+  color: var(--global-text-color);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  i { color: var(--global-theme-color); font-size: 1.1rem; }
+  span { color: var(--global-text-color); }
 }
 
 /* Responsive images */
@@ -397,7 +429,7 @@ h4 {
 
   // Diagram variant: show full image without cropping
   &.banner-contain {
-    background: #f0f4fa;
+    background: var(--global-code-bg-color);
 
     img {
       object-fit: contain !important;
@@ -512,3 +544,7 @@ h4 {
     font-size: 1.25rem;
   }
 }
+
+/* News table shared styles */
+.news-scroll { max-height: 60vw; overflow-y: auto; }
+.news-date-col { width: 20%; }

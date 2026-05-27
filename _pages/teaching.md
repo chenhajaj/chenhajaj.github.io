@@ -2,6 +2,7 @@
 layout: page
 permalink: /teaching/
 title: Teaching
+description: Courses taught at Ariel University and other institutions, covering data science, machine learning, and computer science.
 nav: true
 nav_order: 5
 ---
