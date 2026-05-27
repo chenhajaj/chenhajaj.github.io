@@ -337,22 +337,6 @@ h4 {
   gap: 1.5rem;
 }
 
-.member-card p {
-  color: var(--global-text-color);
-  margin: 0.3rem 0;
-  text-align: left;
-}
-
-.member-card .research-area {
-  color: var(--global-text-color);
-  font-size: 0.95rem;
-}
-
-.member-card .graduation-year {
-  color: var(--global-text-color-light);
-  font-size: 0.9rem;
-}
-
 @media (max-width: 768px) {
   .projects-page {
     padding: 1rem 0.5rem;
