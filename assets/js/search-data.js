@@ -9,14 +9,7 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-cv",
-          title: "CV",
-          description: "",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/cv/";
-          },
-        },{id: "nav-publications",
+  },{id: "nav-publications",
           title: "Publications",
           description: "Full list of publications by Chen Hajaj — machine learning, cybersecurity, healthcare AI, and multi-agent systems.",
           section: "Navigation",
@@ -37,12 +30,12 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/people/";
           },
-        },{id: "nav-code-amp-software",
-          title: "Code &amp; Software",
+        },{id: "nav-cv",
+          title: "CV",
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/software/";
+            window.location.href = "/cv/";
           },
         },{id: "nav-teaching",
           title: "Teaching",
@@ -50,6 +43,13 @@ ninja.data = [{
           section: "Navigation",
           handler: () => {
             window.location.href = "/teaching/";
+          },
+        },{id: "nav-code-amp-software",
+          title: "Code &amp; Software",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/software/";
           },
         },{id: "nav-contact",
           title: "Contact",
