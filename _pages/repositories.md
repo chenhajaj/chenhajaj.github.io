@@ -4,7 +4,7 @@ title: Code & Software
 permalink: /software/
 description:
 nav: true
-nav_order: 5
+nav_order: 6
 ---
 
 <style>
