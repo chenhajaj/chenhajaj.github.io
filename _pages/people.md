@@ -4,7 +4,7 @@ title: Our Lab
 permalink: /people/
 description: Current students and alumni of the Hajaj Lab at Ariel University
 nav: true
-nav_order: 4
+nav_order: 3
 ---
 
 <style>

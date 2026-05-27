@@ -4,7 +4,7 @@ title: News
 permalink: /news/
 description: Latest updates, publications, and announcements from the Hajaj Lab.
 nav: true
-nav_order: 7
+nav_order: 8
 ---
 
 <style>

@@ -9,7 +9,11 @@
       "Bash(git commit -m ' *)",
       "Bash(prettier --version)",
       "Bash(node_modules/.bin/prettier --write .)",
-      "Bash(node_modules/.bin/prettier --check .)"
+      "Bash(node_modules/.bin/prettier --check .)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(sed -n '1,20p' _bibliography/papers.bib)",
+      "Bash(sed -n '98,116p' _bibliography/papers.bib)"
     ]
   }
 }

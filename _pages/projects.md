@@ -4,7 +4,7 @@ title: Projects
 permalink: /projects/
 description: Research projects in AI, Cybersecurity, Healthcare, and Data Science.
 nav: true
-nav_order: 3
+nav_order: 2
 horizontal: false
 ---
 
