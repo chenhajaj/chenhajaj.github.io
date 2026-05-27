@@ -157,6 +157,43 @@ nav_order: 3
 {% endfor %}
 </div>
 
+<!-- Research Assistants -->
+{% if site.data.students.research_assistants and site.data.students.research_assistants.size > 0 %}
+<h2 class="people-section-title"><i class="fas fa-flask"></i> Research Assistants</h2>
+<div class="people-grid">
+{% for student in site.data.students.research_assistants %}
+  <div class="person-card">
+    <div class="person-avatar">{{ student.name | split: ' ' | first | slice: 0 }}{{ student.name | split: ' ' | last | slice: 0 }}</div>
+    <div class="person-info">
+      <div class="person-name">{{ student.name }}</div>
+      {% if student.research_area %}
+        <div class="person-area">{{ student.research_area }}</div>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endif %}
+
+<!-- Former Research Assistants -->
+{% if site.data.students.former_research_assistants and site.data.students.former_research_assistants.size > 0 %}
+<h2 class="people-section-title"><i class="fas fa-history"></i> Former Research Assistants</h2>
+<div class="people-grid">
+{% for student in site.data.students.former_research_assistants %}
+  <div class="person-card">
+    <div class="person-avatar">{{ student.name | split: ' ' | first | slice: 0 }}{{ student.name | split: ' ' | last | slice: 0 }}</div>
+    <div class="person-info">
+      <div class="person-name">{{ student.name }}</div>
+      {% if student.graduation_year %}<span class="person-year">{{ student.graduation_year }}</span>{% endif %}
+      {% if student.research_area %}
+        <div class="person-area">{{ student.research_area }}</div>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endif %}
+
 <!-- Join CTA -->
 <div class="join-cta">
   <h3>Join the Lab</h3>
