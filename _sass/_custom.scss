@@ -720,6 +720,16 @@ details[open] .grants-toggle-icon {
 /* Publication Cards */
 /* ────────────────────────────────────────────────────────────────────────── */
 
+.bibliography {
+  list-style: none;
+  padding-left: 0;
+  
+  li {
+    list-style: none;
+    margin-left: 0;
+  }
+}
+
 .entry {
   padding: 1.5rem;
   margin-bottom: 1.75rem;
