@@ -10,7 +10,7 @@ profile:
   image_alt: "Chen Hajaj, Associate Professor at Ariel University"
   image_circular: false
 
-selected_papers: false
+selected_papers: true
 social: false
 announcements:
   enabled: false
@@ -45,9 +45,17 @@ latest_posts:
       </div>
     </div>
     <div class="hero-divider"></div>
+    {% assign phd_count = site.data.students.phd_students | size %}
+    {% assign msc_count = site.data.students.masters_students | size %}
+    {% assign ra_count = site.data.students.research_assistants | size %}
+    {% assign current_students = phd_count | plus: msc_count | plus: ra_count %}
+    {% assign phd_alumni_count = site.data.students.phd_alumni | size %}
+    {% assign msc_alumni_count = site.data.students.masters_alumni | size %}
+    {% assign former_ra_count = site.data.students.former_research_assistants | size %}
+    {% assign total_alumni = phd_alumni_count | plus: msc_alumni_count | plus: former_ra_count %}
     <div class="stats-grid">
       <div class="stat-item">
-        <div class="stat-value">$1.2M+</div>
+        <div class="stat-value">{{ site.data.grants.total_display }}</div>
         <div class="stat-label">Research Grants</div>
       </div>
       <div class="stat-item">
@@ -63,19 +71,19 @@ latest_posts:
         <div class="stat-label">Publications</div>
       </div>
       <div class="stat-item scholar-stat" onclick="window.open('https://scholar.google.com/citations?user=Zy2cIskAAAAJ','_blank')" style="cursor:pointer;" title="View on Google Scholar">
-        <div class="stat-value">18</div>
+        <div class="stat-value">{{ site.data.scholar.h_index }}</div>
         <div class="stat-label">h-index</div>
       </div>
       <div class="stat-item scholar-stat" onclick="window.open('https://scholar.google.com/citations?user=Zy2cIskAAAAJ','_blank')" style="cursor:pointer;" title="View on Google Scholar">
-        <div class="stat-value">950+</div>
+        <div class="stat-value">{{ site.data.scholar.citations }}+</div>
         <div class="stat-label">Citations</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">17</div>
+        <div class="stat-value">{{ current_students }}</div>
         <div class="stat-label">Current Students</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">20</div>
+        <div class="stat-value">{{ total_alumni }}</div>
         <div class="stat-label">Alumni</div>
       </div>
     </div>
@@ -105,7 +113,7 @@ latest_posts:
         <div class="about-pillar-icon"><i class="fas fa-graduation-cap"></i></div>
         <div class="about-pillar-body">
           <span class="about-pillar-title">Mentorship</span>
-          <span class="about-pillar-text">Supervising <strong>17 current students</strong> and <strong>20 alumni</strong> across PhD and MSc programs, fostering the next generation of AI researchers.</span>
+          <span class="about-pillar-text">Supervising <strong>{{ current_students }} current students</strong> and <strong>{{ total_alumni }} alumni</strong> across PhD and MSc programs, fostering the next generation of AI researchers.</span>
         </div>
       </div>
     </div>
@@ -230,6 +238,56 @@ latest_posts:
       </div>
 
     </div>
+  </section>
+
+  <!-- Research Grants -->
+  <section class="grants-section">
+    <h3><i class="fas fa-dollar-sign"></i> Research Grants &amp; Funding</h3>
+    <details class="grants-accordion">
+      <summary class="grants-summary">
+        <span class="grants-total">Total Secured: <strong>{{ site.data.grants.total_display }}</strong></span>
+        <span class="grants-toggle-icon">▼</span>
+      </summary>
+      <div class="grants-details">
+        <div class="grants-list">
+          {% for grant in site.data.grants.grants %}
+            <div class="grant-item">
+              <div class="grant-header">
+                <h4 class="grant-title">{{ grant.full_name }}</h4>
+                <span class="grant-year">{{ grant.year }}</span>
+              </div>
+              <div class="grant-body">
+                <p class="grant-org"><i class="fas fa-landmark"></i> {{ grant.organization }}</p>
+                <p class="grant-role">
+                  {% if grant.role == "PI" %}
+                    <strong>PI:</strong> Chen Hajaj
+                  {% else %}
+                    <strong>Co-PIs:</strong>
+                    {% for pi in grant.co_pis %}
+                      {% if forloop.last and grant.co_pis.size > 1 %}
+                        and {{ pi }}
+                      {% elsif forloop.first %}
+                        {{ pi }}
+                      {% else %}
+                        , {{ pi }}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </p>
+                <span class="grant-amount">
+                  {% if grant.currency == "NIS" %}
+                    <i class="fas fa-shekel-sign"></i>
+                  {% else %}
+                    <i class="fas fa-dollar-sign"></i>
+                  {% endif %}
+                  {{ grant.amount | number_format: 0 }} {{ grant.currency }}
+                </span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </details>
   </section>
 
   <!-- Join Our Lab -->
@@ -535,6 +593,23 @@ section { margin-bottom: 4rem; }
 @media (max-width: 768px) {
   .hero-profile-row { flex-direction: column; text-align: center; gap: 1.25rem; }
   .profile-photo-img { width: 110px; height: 110px; }
+  .profile-contact-links { justify-content: center; }
+}
+
+/* Small phone fixes (≤400px) */
+@media (max-width: 400px) {
+  .hero-combined { padding: 1.5rem 1.1rem; border-radius: 14px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .stat-item { padding: 0.9rem 0.5rem; }
+  .stat-value { font-size: 1.5rem; }
+  .stat-label { font-size: 0.7rem; letter-spacing: 0.04em; }
+  .profile-contact-links a,
+  .profile-contact-links .profile-office {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.6rem;
+  }
+  .profile-name { font-size: 1.6rem !important; }
+}
 </style>
 
 <!-- Typed.js -->
@@ -556,5 +631,91 @@ section { margin-bottom: 4rem; }
     typeSpeed: 55, backSpeed: 30, backDelay: 2200,
     startDelay: 400, loop: true, smartBackspace: true, cursorChar: '|'
   });
+})();
+</script>
+
+<!-- Stat count-up animation -->
+<script>
+(function() {
+  // Parse a stat string like "950+", "$1.2M+", "18", "4" into a numeric target + affix parts
+  function parseStat(text) {
+    text = text.trim();
+    var prefix = '', suffix = '';
+    var num = text;
+    // Strip leading non-numeric (e.g. "$")
+    var prefixMatch = num.match(/^([^0-9]*)/);
+    if (prefixMatch) { prefix = prefixMatch[1]; num = num.slice(prefix.length); }
+    // Strip trailing non-numeric (e.g. "M+", "+")
+    var suffixMatch = num.match(/([^0-9]+)$/);
+    if (suffixMatch) { suffix = suffixMatch[1]; num = num.slice(0, num.length - suffix.length); }
+    // Handle decimal (e.g. 1.2)
+    var value = parseFloat(num);
+    var decimals = (num.indexOf('.') >= 0) ? num.split('.')[1].length : 0;
+    return isNaN(value) ? null : { prefix: prefix, suffix: suffix, value: value, decimals: decimals, original: text };
+  }
+
+  function animateCounter(el, target, decimals, duration) {
+    var start = null;
+    var prefix = el.dataset.prefix || '';
+    var suffix = el.dataset.suffix || '';
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      // Ease-out cubic
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = eased * target;
+      el.textContent = prefix + current.toFixed(decimals) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = prefix + target.toFixed(decimals) + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+
+  function initCounters() {
+    var statEls = document.querySelectorAll('.stat-value');
+    statEls.forEach(function(el) {
+      var parsed = parseStat(el.textContent);
+      if (!parsed) return;
+      el.dataset.prefix = parsed.prefix;
+      el.dataset.suffix = parsed.suffix;
+      el.dataset.target = parsed.value;
+      el.dataset.decimals = parsed.decimals;
+      el.dataset.original = parsed.original;
+      // Start at 0
+      el.textContent = parsed.prefix + '0' + parsed.suffix;
+    });
+
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: animate immediately
+      statEls.forEach(function(el) {
+        if (!el.dataset.target) return;
+        animateCounter(el, parseFloat(el.dataset.target), parseInt(el.dataset.decimals), 1200);
+      });
+      return;
+    }
+
+    var observed = false;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !observed) {
+          observed = true;
+          observer.disconnect();
+          statEls.forEach(function(el) {
+            if (!el.dataset.target) return;
+            animateCounter(el, parseFloat(el.dataset.target), parseInt(el.dataset.decimals), 1400);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    var statsGrid = document.querySelector('.stats-grid');
+    if (statsGrid) observer.observe(statsGrid);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounters);
+  } else {
+    initCounters();
+  }
 })();
 </script>

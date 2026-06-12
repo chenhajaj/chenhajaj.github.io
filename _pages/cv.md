@@ -202,79 +202,55 @@ description: #Academic CV including education, academic administration, conferen
       <!-- ── RESEARCH GRANTS ── -->
       <section id="grants" class="cv-section cv-section--green">
         <h2 class="cv-section-title"><span class="cv-section-icon"><i class="fas fa-dollar-sign"></i></span> Research Grants &amp; Funding</h2>
-        <div class="cv-grants-total"><i class="fas fa-trophy"></i> Total Funding Secured: <strong>$1.2M+</strong></div>
+        <div class="cv-grants-total"><i class="fas fa-trophy"></i> Total Funding Secured: <strong>{{ site.data.grants.total_display }}</strong></div>
         <div class="cv-timeline">
-
-          <div class="cv-item cv-item--green">
-            <div class="cv-item-year">2025 – 2028</div>
-            <div class="cv-item-body">
-              <h3 class="cv-item-title">Ministry of Innovation, Science and Technology</h3>
-              <p class="cv-item-org"><i class="fas fa-landmark"></i> State of Israel</p>
-              <p class="cv-item-desc">Principal Investigators: Chen Hajaj and Amit Dvir</p>
-              <span class="cv-grant-amount"><i class="fas fa-shekel-sign"></i> 482,900</span>
+          {% for grant in site.data.grants.grants %}
+            {% assign icon = "fas fa-dollar-sign" %}
+            {% if grant.currency == "NIS" %}
+              {% assign icon = "fas fa-shekel-sign" %}
+            {% endif %}
+            <div class="cv-item cv-item--green">
+              <div class="cv-item-year">{{ grant.year }}</div>
+              <div class="cv-item-body">
+                <h3 class="cv-item-title">{{ grant.full_name }}</h3>
+                <p class="cv-item-org"><i class="fas fa-landmark"></i> {{ grant.organization }}</p>
+                <p class="cv-item-desc">
+                  {% if grant.role == "PI" %}
+                    Principal Investigator: Chen Hajaj
+                  {% else %}
+                    {% assign co_pi_names = "" %}
+                    {% for pi in grant.co_pis %}
+                      {% if pi == "Chen Hajaj" %}
+                        {% if grant.co_pis.size == 1 %}
+                          {% assign co_pi_names = "Chen Hajaj" %}
+                        {% elsif forloop.last %}
+                          {% assign co_pi_names = co_pi_names | append: " and " | append: pi %}
+                        {% elsif forloop.first %}
+                          {% assign co_pi_names = pi %}
+                        {% else %}
+                          {% assign co_pi_names = co_pi_names | append: ", " | append: pi %}
+                        {% endif %}
+                      {% else %}
+                        {% if co_pi_names == "" and grant.co_pis.size == 1 %}
+                          {% assign co_pi_names = pi %}
+                        {% elsif forloop.last and co_pi_names != "" %}
+                          {% assign co_pi_names = co_pi_names | append: " and " | append: pi %}
+                        {% elsif co_pi_names == "" %}
+                          {% assign co_pi_names = pi %}
+                        {% elsif forloop.first %}
+                          {% assign co_pi_names = pi %}
+                        {% else %}
+                          {% assign co_pi_names = co_pi_names | append: ", " | append: pi %}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                    Principal Investigators: {{ co_pi_names }}
+                  {% endif %}
+                </p>
+                <span class="cv-grant-amount"><i class="{{ icon }}"></i> {{ grant.amount | number_to_currency | remove: "$" | remove: "," }}</span>
+              </div>
             </div>
-          </div>
-
-          <div class="cv-item cv-item--green">
-            <div class="cv-item-year">2025 – 2028</div>
-            <div class="cv-item-body">
-              <h3 class="cv-item-title">Ministry of Innovation, Science and Technology</h3>
-              <p class="cv-item-org"><i class="fas fa-landmark"></i> State of Israel</p>
-              <p class="cv-item-desc">Principal Investigators: Sharon Barak, Chen Hajaj, and Riki Tesler</p>
-              <span class="cv-grant-amount"><i class="fas fa-shekel-sign"></i> 412,569</span>
-            </div>
-          </div>
-
-          <div class="cv-item cv-item--green">
-            <div class="cv-item-year">2021 – 2025</div>
-            <div class="cv-item-body">
-              <h3 class="cv-item-title">Encrypted Traffic Classification</h3>
-              <p class="cv-item-org"><i class="fas fa-landmark"></i> Israel Innovation Authority</p>
-              <p class="cv-item-desc">Principal Investigators: Chen Hajaj and Amit Dvir</p>
-              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> 341,000</span>
-            </div>
-          </div>
-
-          <div class="cv-item cv-item--green">
-            <div class="cv-item-year">2019 – 2023</div>
-            <div class="cv-item-body">
-              <h3 class="cv-item-title">APK Malware Detection</h3>
-              <p class="cv-item-org"><i class="fas fa-landmark"></i> Israel National Cyber Directorate</p>
-              <p class="cv-item-desc">Principal Investigator: Chen Hajaj</p>
-              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> 179,000</span>
-            </div>
-          </div>
-
-          <div class="cv-item cv-item--green">
-            <div class="cv-item-year">2019 – 2020</div>
-            <div class="cv-item-body">
-              <h3 class="cv-item-title">Quality of Service Research</h3>
-              <p class="cv-item-org"><i class="fas fa-landmark"></i> Israel Innovation Authority</p>
-              <p class="cv-item-desc">Principal Investigators: Chen Hajaj and Amit Dvir</p>
-              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> 100,000</span>
-            </div>
-          </div>
-
-          <div class="cv-item cv-item--green">
-            <div class="cv-item-year">2019 – 2020</div>
-            <div class="cv-item-body">
-              <h3 class="cv-item-title">Violence Prediction in Public Events</h3>
-              <p class="cv-item-org"><i class="fas fa-landmark"></i> Israel Innovation Authority</p>
-              <p class="cv-item-desc">Principal Investigators: Chen Hajaj, Amit Dvir, and Uzi Ben-Shalom</p>
-              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> 100,000</span>
-            </div>
-          </div>
-
-          <div class="cv-item cv-item--green">
-            <div class="cv-item-year">2015</div>
-            <div class="cv-item-body">
-              <h3 class="cv-item-title">Strategy-proof Mechanisms for Kidney Exchange</h3>
-              <p class="cv-item-org"><i class="fas fa-landmark"></i> BSF – US-Israel Binational Science Foundation</p>
-              <p class="cv-item-desc">Principal Investigator: Chen Hajaj</p>
-              <span class="cv-grant-amount"><i class="fas fa-dollar-sign"></i> 4,000</span>
-            </div>
-          </div>
-
+          {% endfor %}
         </div>
       </section>
 

@@ -68,14 +68,20 @@
 
   <!-- Abstract (shown on title click) -->
   {% if entry.abstract %}
-    <div class="abstract-content">
-      {{ entry.abstract }}
-    </div>
+    {% if entry.selected %}
+      <div class="abstract-content">
+        {{ entry.abstract }}
+      </div>
+    {% else %}
+      <div class="abstract-content hidden">
+        {{ entry.abstract }}
+      </div>
+    {% endif %}
   {% endif %}
 
   <!-- Links -->
   <div class="links">
-    {% if entry.abstract %}
+    {% if entry.abstract and !entry.selected %}
       <span class="btn btn-sm z-depth-0 abstract-toggle-btn abstract-toggle">Abstract</span>
     {% endif %}
     {% unless entry.doi %}

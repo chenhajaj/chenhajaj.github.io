@@ -1,0 +1,59 @@
+# Research grants — Full details with PI role and organization
+# total_display: what shows on the site (e.g. "$1.5M+")
+
+total_display: "$1M+"
+
+grants:
+  - full_name: "Multi-layered Classification of PQC-Encrypted Traffic"
+    organization: "Ministry of Innovation, Science and Technology"
+    role: "co-PI"
+    co_pis: ["Chen Hajaj", "Amit Dvir"]
+    amount: 482900
+    currency: "NIS"
+    year: 2025
+  
+  - full_name: "Clinical Progression of Dystrophinopathies: Exploring the Role of Autonomic Nervous System Activity and Machine Learning Models"
+    organization: "Ministry of Innovation, Science and Technology"
+    role: "co-PI"
+    co_pis: ["Sharon Barak", "Chen Hajaj", "Riki Tesler"]
+    amount: 412569
+    currency: "NIS"
+    year: 2025
+  
+  - full_name: "Encrypted Networks Traffic Monitoring"
+    organization: "Israel Innovation Authority"
+    role: "PI"
+    co_pis: ["Chen Hajaj", "Amit Dvir"]
+    amount: 341000
+    currency: "USD"
+    year: 2021
+  
+  - full_name: "APK Malware Detection and Analysis"
+    organization: "Israel National Cyber Directorate"
+    role: "PI"
+    amount: 179000
+    currency: "USD"
+    year: 2019
+  
+  - full_name: "Quality of Service Monitoring"
+    organization: "Israel Innovation Authority"
+    role: "co-PI"
+    co_pis: ["Chen Hajaj", "Amit Dvir"]
+    amount: 100000
+    currency: "USD"
+    year: 2019
+  
+  - full_name: "Violence Prediction in Public Events"
+    organization: "Israel Innovation Authority"
+    role: "co-PI"
+    co_pis: ["Chen Hajaj", "Amit Dvir", "Uzi Ben-Shalom"]
+    amount: 100000
+    currency: "USD"
+    year: 2019
+  
+  - full_name: "Strategy Proof Mechanisms for Kidney Exchange"
+    organization: "BSF"
+    role: "PI"
+    amount: 4000
+    currency: "USD"
+    year: 2015

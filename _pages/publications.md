@@ -29,9 +29,19 @@ nav_order: 1
     </div>
 
     <div class="filter-controls">
-      <div class="filter-group">
-        <label><i class="fas fa-tags"></i> Filter by Topic:</label>
-        <select id="topic-filter" class="filter-select">
+    <div class="filter-group topic-pills-group">
+        <label><i class="fas fa-tags"></i> Topic:</label>
+        <div class="topic-pills" id="topic-filter-pills">
+          <button class="topic-pill active" data-value="all">All</button>
+          <button class="topic-pill" data-value="group-ai">AI &amp; ML</button>
+          <button class="topic-pill" data-value="group-security">Cybersecurity</button>
+          <button class="topic-pill" data-value="group-healthcare">Healthcare</button>
+          <button class="topic-pill" data-value="group-multiagent">Multi-Agent</button>
+          <button class="topic-pill" data-value="group-ecommerce">E-Commerce</button>
+          <button class="topic-pill" data-value="education">Education</button>
+        </div>
+        <!-- hidden select kept for JS compatibility -->
+        <select id="topic-filter" class="filter-select" style="display:none">
           <option value="all">All Topics</option>
           <option value="group-ai">AI &amp; Machine Learning</option>
           <option value="group-security">Cybersecurity</option>
@@ -200,6 +210,41 @@ nav_order: 1
 
 .clear-btn.active {
   display: block;
+}
+
+.topic-pills-group { min-width: 100%; }
+
+.topic-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.3rem;
+}
+
+.topic-pill {
+  padding: 0.3rem 0.85rem;
+  border: 2px solid var(--global-divider-color);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--global-bg-color);
+  color: var(--global-text-color);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  min-height: 36px;
+}
+
+.topic-pill:hover {
+  border-color: var(--global-theme-color);
+  color: var(--global-theme-color);
+}
+
+.topic-pill.active {
+  background: var(--global-theme-color);
+  border-color: var(--global-theme-color);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(75,108,183,0.3);
 }
 
 .filter-controls {
@@ -932,6 +977,25 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   topicFilter.addEventListener('change', filterPublications);
+
+  // Pill buttons — sync with hidden select
+  document.querySelectorAll('.topic-pill').forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.topic-pill').forEach(function(p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+      topicFilter.value = pill.dataset.value;
+      filterPublications();
+    });
+  });
+
+  // Keep pills in sync when reset is clicked
+  const _origReset = resetBtn.onclick;
+  resetBtn.addEventListener('click', function() {
+    document.querySelectorAll('.topic-pill').forEach(function(p) { p.classList.remove('active'); });
+    const allPill = document.querySelector('.topic-pill[data-value="all"]');
+    if (allPill) allPill.classList.add('active');
+  });
+
   yearFilter.addEventListener('change', filterPublications);
   typeFilter.addEventListener('change', filterPublications);
 
