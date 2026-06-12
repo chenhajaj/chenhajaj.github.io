@@ -763,11 +763,11 @@ details[open] .grants-toggle-icon {
       cursor: pointer;
       position: relative;
       color: var(--global-accent-primary);
-      text-decoration: underline;
-      text-decoration-style: wavy;
+      text-decoration: none;
       text-underline-offset: 2px;
 
       &:hover {
+        text-decoration: underline;
         text-decoration-style: solid;
       }
     }
@@ -788,14 +788,18 @@ details[open] .grants-toggle-icon {
   }
 
   .year {
-    display: inline-block;
-    font-size: 0.85rem;
-    color: var(--global-accent-primary);
-    font-weight: 600;
-    background: rgba(75, 108, 183, 0.08);
-    padding: 0.25rem 0.75rem;
-    border-radius: 6px;
-    margin-bottom: 0.75rem;
+    display: none; /* Hide year badge - shown inline in entry details instead */
+  }
+
+  /* Hide citation index added by Jekyll Scholar */
+  .entry::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  /* Target citation numbers if they appear as elements */
+  sup.citation {
+    display: none !important;
   }
 
   .abstract-content {
