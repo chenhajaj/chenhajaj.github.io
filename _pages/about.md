@@ -32,7 +32,7 @@ latest_posts:
       </div>
       <div class="profile-header-text">
         <h2 class="profile-name">Chen Hajaj</h2>
-        <p class="profile-title"><span id="typed-title" style="color:#fff;font-weight:700;"></span><span class="typed-cursor typed-cursor--blink" style="color:#fff;font-weight:700;">|</span></p>
+        <p class="profile-title"><span id="typed-title" style="color:#1e293b;font-weight:700;"></span><span class="typed-cursor typed-cursor--blink" style="color:#1e293b;font-weight:700;">|</span></p>
         <p class="profile-institution"><i class="fas fa-university"></i> Ariel University</p>
         <div class="profile-contact-links">
           <a href="mailto:chenha@g.ariel.ac.il" title="Email"><i class="fas fa-envelope"></i> chenha@g.ariel.ac.il</a>
@@ -323,35 +323,40 @@ section { margin-bottom: 4rem; }
 
 /* Hero */
 .hero-combined {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 60%, #e0ecff 100%);
   padding: 2.5rem;
   border-radius: 20px;
   margin-bottom: 3rem;
-  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+  border: 1px solid #dbe3f3;
+  box-shadow: 0 10px 30px rgba(59, 89, 152, 0.12);
 }
 .hero-profile-row { display: flex; align-items: center; gap: 2rem; }
-.hero-divider { border: none; border-top: 1px solid rgba(255,255,255,0.25); margin: 2rem 0; }
-.hero-combined .profile-name { color: white !important; }
-.hero-combined .profile-title { color: rgba(255,255,255,0.9) !important; }
-.hero-combined .profile-institution { color: rgba(255,255,255,0.75) !important; }
-.hero-combined .profile-institution i { color: rgba(255,255,255,0.75) !important; }
+.hero-divider { border: none; border-top: 1px solid rgba(75,108,183,0.18); margin: 2rem 0; }
+.hero-combined .profile-name {
+  color: #1e3a8a !important;
+  background: none !important;
+  -webkit-text-fill-color: #1e3a8a !important;
+}
+.hero-combined .profile-title { color: #1e293b !important; }
+.hero-combined .profile-institution { color: #334155 !important; }
+.hero-combined .profile-institution i { color: #4b6cb7 !important; }
 .hero-combined .profile-contact-links a,
 .hero-combined .profile-contact-links .profile-office {
-  background: rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.3);
-  color: white;
+  background: rgba(255,255,255,0.85);
+  border-color: rgba(75,108,183,0.2);
+  color: #1e293b;
 }
 .hero-combined .profile-contact-links a i,
-.hero-combined .profile-contact-links .profile-office i { color: white; }
+.hero-combined .profile-contact-links .profile-office i { color: #4b6cb7; }
 .hero-combined .profile-contact-links a:hover {
-  background: rgba(255,255,255,0.28);
-  border-color: rgba(255,255,255,0.6);
-  color: white;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  background: rgba(75,108,183,0.1);
+  border-color: rgba(75,108,183,0.45);
+  color: #1e293b;
+  box-shadow: 0 4px 12px rgba(75,108,183,0.16);
 }
 .hero-combined .profile-photo-img {
-  border-color: rgba(255,255,255,0.4);
-  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+  border-color: rgba(75,108,183,0.35);
+  box-shadow: 0 8px 22px rgba(75,108,183,0.22);
 }
 
 /* Stats */
@@ -362,13 +367,13 @@ section { margin-bottom: 4rem; }
 }
 .stat-item {
   text-align: center; padding: 1.25rem;
-  background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
-  border-radius: 14px; border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.9); backdrop-filter: blur(8px);
+  border-radius: 14px; border: 1px solid rgba(75,108,183,0.15);
   transition: all 0.3s ease;
 }
-.stat-item:hover { transform: translateY(-4px); background: rgba(255,255,255,0.22); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
-.stat-value { font-size: 2rem; font-weight: 700; color: white; line-height: 1; margin-bottom: 0.4rem; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-.stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.9); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+.stat-item:hover { transform: translateY(-4px); background: #ffffff; box-shadow: 0 10px 24px rgba(75,108,183,0.16); border-color: rgba(75,108,183,0.4); }
+.stat-value { font-size: 2rem; font-weight: 700; color: #2c5282; line-height: 1; margin-bottom: 0.4rem; text-shadow: none; }
+.stat-label { font-size: 0.8rem; color: #475569; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
 
 /* Profile Card */
 .profile-header-text { flex: 1; min-width: 0; }
