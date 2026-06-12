@@ -64,6 +64,16 @@ nav_order: 5
 
 .teaching-courses li strong { color: var(--global-text-color); font-weight: 600; }
 
+.course-desc {
+  display: block;
+  width: 100%;
+  font-size: 0.82rem;
+  color: var(--global-text-color-light);
+  line-height: 1.55;
+  margin-top: 0.25rem;
+  padding-left: 0.1rem;
+}
+
 .course-badge {
   display: inline-block; padding: 0.15rem 0.55rem; border-radius: 20px;
   font-size: 0.7rem; font-weight: 600; flex-shrink: 0;
@@ -95,10 +105,10 @@ nav_order: 5
       <span class="teaching-period">2018 – present</span>
     </div>
     <ul class="teaching-courses">
-      <li><strong>Machine Learning</strong> <span class="course-badge undergraduate">Undergraduate</span></li>
-      <li><strong>Advanced Topics in Machine Learning</strong> <span class="course-badge undergraduate">Undergraduate</span></li>
-      <li><strong>Introduction to Computing (Python)</strong> <span class="course-badge undergraduate">Undergraduate</span></li>
-      <li><strong>Search Engines and Recommendation Systems</strong> <span class="course-badge undergraduate">Undergraduate</span></li>
+      <li><strong>Machine Learning</strong> <span class="course-badge undergraduate">Undergraduate</span><span class="course-desc">Supervised &amp; unsupervised learning, decision trees, SVMs, neural networks, and model evaluation.</span></li>
+      <li><strong>Advanced Topics in Machine Learning</strong> <span class="course-badge undergraduate">Undergraduate</span><span class="course-desc">Deep learning, CNNs, RNNs, transformers, and applied project work on real datasets.</span></li>
+      <li><strong>Introduction to Computing (Python)</strong> <span class="course-badge undergraduate">Undergraduate</span><span class="course-desc">Programming fundamentals, algorithms, and data structures using Python for first-year students.</span></li>
+      <li><strong>Search Engines and Recommendation Systems</strong> <span class="course-badge undergraduate">Undergraduate</span><span class="course-desc">Information retrieval, indexing, ranking algorithms, collaborative filtering, and content-based recommendations.</span></li>
     </ul>
   </div>
 
@@ -111,8 +121,8 @@ nav_order: 5
       <span class="teaching-period">2016 – 2018</span>
     </div>
     <ul class="teaching-courses">
-      <li><strong>Advanced Artificial Intelligence</strong> <span class="course-badge graduate">Graduate</span></li>
-      <li><strong>Computational Economics</strong> <span class="course-badge graduate">Graduate</span></li>
+      <li><strong>Advanced Artificial Intelligence</strong> <span class="course-badge graduate">Graduate</span><span class="course-desc">Search, planning, probabilistic reasoning, machine learning, and AI ethics for graduate students.</span></li>
+      <li><strong>Computational Economics</strong> <span class="course-badge graduate">Graduate</span><span class="course-desc">Game theory, mechanism design, auctions, and algorithmic approaches to economic modeling.</span></li>
     </ul>
   </div>
 
@@ -125,12 +135,12 @@ nav_order: 5
       <span class="teaching-period">2011 – 2016</span>
     </div>
     <ul class="teaching-courses">
-      <li><strong>Introduction to Computer Science</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2012–2016</span></li>
-      <li><strong>Object-Oriented Programming</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2013–2016</span></li>
-      <li><strong>Operating Systems</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2013–2016</span></li>
-      <li><strong>VERILOG</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2014–2016</span></li>
-      <li><strong>Simulation and Simulation Languages</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2011–2014</span></li>
-      <li><strong>Microprocessor Laboratory (ADuC841)</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2011–2013</span></li>
+      <li><strong>Introduction to Computer Science</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2012–2016</span><span class="course-desc">Core CS concepts, problem-solving, and introduction to programming for engineering students.</span></li>
+      <li><strong>Object-Oriented Programming</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2013–2016</span><span class="course-desc">OOP principles — classes, inheritance, polymorphism, and design patterns in Java.</span></li>
+      <li><strong>Operating Systems</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2013–2016</span><span class="course-desc">Processes, threads, scheduling, memory management, file systems, and concurrency.</span></li>
+      <li><strong>VERILOG</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2014–2016</span><span class="course-desc">Hardware description language for digital design, simulation, and FPGA synthesis.</span></li>
+      <li><strong>Simulation and Simulation Languages</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2011–2014</span><span class="course-desc">Discrete-event simulation theory, modeling methodologies, and simulation tools.</span></li>
+      <li><strong>Microprocessor Laboratory (ADuC841)</strong> <span class="course-badge undergraduate">Undergraduate</span> <span class="course-years">2011–2013</span><span class="course-desc">Hands-on microcontroller programming, interfacing, and embedded systems experiments.</span></li>
     </ul>
   </div>
 

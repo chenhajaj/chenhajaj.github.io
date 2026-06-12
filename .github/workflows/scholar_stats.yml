@@ -1,0 +1,95 @@
+# .github/workflows/scholar_stats.yml
+#
+# Fetches citation count, h-index, and i10-index from Google Scholar
+# and commits the updated values to _data/scholar.yml.
+#
+# Schedule: every Monday at 07:00 UTC
+# Manual:   Actions → Scholar Stats → Run workflow
+#
+# No secrets required for public Scholar profiles.
+
+name: Scholar Stats
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"   # Every Monday at 07:00 UTC
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install scholarly
+        run: pip install scholarly PyYAML
+
+      - name: Fetch Scholar stats
+        id: stats
+        run: |
+          python - <<'EOF'
+          import yaml, sys, os
+          from datetime import date
+
+          SCHOLAR_ID = "Zy2cIskAAAAJ"
+          DATA_FILE  = "_data/scholar.yml"
+
+          try:
+              from scholarly import scholarly
+              author = scholarly.search_author_id(SCHOLAR_ID)
+              author = scholarly.fill(author, sections=["basics", "indices"])
+
+              citations = author.get("citedby", 0)
+              h_index   = author.get("hindex", 0)
+              i10_index = author.get("i10index", 0)
+
+              data = {
+                  "citations":    citations,
+                  "h_index":      h_index,
+                  "i10_index":    i10_index,
+                  "last_updated": str(date.today()),
+              }
+
+              with open(DATA_FILE, "w") as f:
+                  f.write("# Auto-updated by scholar_stats.yml — do not edit manually.\n")
+                  yaml.dump(data, f, default_flow_style=False, allow_unicode=True)
+
+              print(f"Citations: {citations}, h-index: {h_index}, i10: {i10_index}")
+
+              # Pass to next steps
+              env_file = os.environ.get("GITHUB_OUTPUT", "")
+              if env_file:
+                  with open(env_file, "a") as fh:
+                      fh.write(f"citations={citations}\n")
+                      fh.write(f"h_index={h_index}\n")
+                      fh.write(f"changed=true\n")
+
+          except Exception as e:
+              print(f"ERROR: {e}", file=sys.stderr)
+              # Don't fail the workflow — keep existing values
+              env_file = os.environ.get("GITHUB_OUTPUT", "")
+              if env_file:
+                  with open(env_file, "a") as fh:
+                      fh.write("changed=false\n")
+          EOF
+
+      - name: Commit updated stats
+        if: steps.stats.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/scholar.yml
+          git diff --cached --quiet || git commit -m "chore: update Scholar stats (h-index: ${{ steps.stats.outputs.h_index }}, citations: ${{ steps.stats.outputs.citations }})"
+          git push
