@@ -6,7 +6,7 @@ total_display: "$1M+"
 grants:
   - full_name: "Multi-layered Classification of PQC-Encrypted Traffic"
     organization: "Ministry of Innovation, Science and Technology"
-    role: "co-PI"
+    role: "PI"
     co_pis: ["Chen Hajaj", "Amit Dvir"]
     amount: 482900
     currency: "NIS"

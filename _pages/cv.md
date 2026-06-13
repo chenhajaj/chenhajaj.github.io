@@ -139,7 +139,7 @@ description: #Academic CV including education, academic administration, conferen
             <div class="cv-item-body">
               <h3 class="cv-item-title">Director, Data Science &amp; AI Research Center</h3>
               <p class="cv-item-org"><i class="fas fa-university"></i> Ariel University</p>
-              <p class="cv-item-desc">Founded and directed a research center that secured more than $1.2M in competitive funding, resulted in 4 patents, and established collaborations with the Israel Innovation Authority and the Ministry of Innovation.</p>
+              <p class="cv-item-desc">Co-founded and directed a multidisciplinary research center, fostering collaborations with leading Israeli industry partners, cloud service providers, and government organizations.</p>
             </div>
           </div>
 
@@ -148,7 +148,7 @@ description: #Academic CV including education, academic administration, conferen
             <div class="cv-item-body">
               <h3 class="cv-item-title">Data Science Fellow &amp; Postdoctoral Researcher</h3>
               <p class="cv-item-org"><i class="fas fa-university"></i> Vanderbilt University, USA</p>
-              <p class="cv-item-desc">Developed machine learning algorithms for cybersecurity and network traffic analysis. Also served on the Postdoc Association Committee, contributing to research policy and mentoring programs.</p>
+              <p class="cv-item-desc">Developed machine learning methodologies for research in medical data science, education, and anthropology. Additionally served on the Postdoctoral Association Committee, helping shape research policy and support postdoctoral mentoring initiatives.</p>
             </div>
           </div>
 
@@ -221,36 +221,26 @@ description: #Academic CV including education, academic administration, conferen
                 <h3 class="cv-item-title">{{ grant.full_name }}</h3>
                 <p class="cv-item-org"><i class="fas fa-landmark"></i> {{ grant.organization }}</p>
                 <p class="cv-item-desc">
-                  {% if grant.role == "PI" %}
-                    Principal Investigator: Chen Hajaj
-                  {% else %}
+                  {% if grant.co_pis %}
                     {% assign co_pi_names = "" %}
                     {% for pi in grant.co_pis %}
-                      {% if pi == "Chen Hajaj" %}
-                        {% if grant.co_pis.size == 1 %}
-                          {% assign co_pi_names = "Chen Hajaj" %}
-                        {% elsif forloop.last %}
-                          {% assign co_pi_names = co_pi_names | append: " and " | append: pi %}
-                        {% elsif forloop.first %}
-                          {% assign co_pi_names = pi %}
-                        {% else %}
-                          {% assign co_pi_names = co_pi_names | append: ", " | append: pi %}
-                        {% endif %}
+                      {% if grant.co_pis.size == 1 %}
+                        {% assign co_pi_names = pi %}
+                      {% elsif forloop.last %}
+                        {% assign co_pi_names = co_pi_names | append: " and " | append: pi %}
+                      {% elsif forloop.first %}
+                        {% assign co_pi_names = pi %}
                       {% else %}
-                        {% if co_pi_names == "" and grant.co_pis.size == 1 %}
-                          {% assign co_pi_names = pi %}
-                        {% elsif forloop.last and co_pi_names != "" %}
-                          {% assign co_pi_names = co_pi_names | append: " and " | append: pi %}
-                        {% elsif co_pi_names == "" %}
-                          {% assign co_pi_names = pi %}
-                        {% elsif forloop.first %}
-                          {% assign co_pi_names = pi %}
-                        {% else %}
-                          {% assign co_pi_names = co_pi_names | append: ", " | append: pi %}
-                        {% endif %}
+                        {% assign co_pi_names = co_pi_names | append: ", " | append: pi %}
                       {% endif %}
                     {% endfor %}
-                    Principal Investigators: {{ co_pi_names }}
+                    {% if grant.role == "PI" %}
+                      Principal Investigator: {{ co_pi_names }}
+                    {% else %}
+                      Principal Investigators: {{ co_pi_names }}
+                    {% endif %}
+                  {% else %}
+                    Principal Investigator: Chen Hajaj
                   {% endif %}
                 </p>
                 <span class="cv-grant-amount"><i class="{{ icon }}"></i> {{ grant.amount | number_to_currency | remove: "$" | remove: "," }}</span>
