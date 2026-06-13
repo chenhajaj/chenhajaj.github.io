@@ -5,11 +5,6 @@ repo_description_lines_max: 2
 
 repos:
   encrypted_traffic:
-    - name: OSF-EIMTC
-      url: https://github.com/ArielCyber/OSF-EIMTC
-      description: Open-source framework for encrypted internet and malicious traffic classification — full ML/DL pipeline, datasets, and benchmarks.
-      stars: 20
-      language: Python
     - name: When_a_RF_Beats_a_CNN_and_GRU
       url: https://github.com/ArielCyber/When_a_RF_Beats_a_CNN_and_GRU
       description: Code for comparing classical ML vs deep learning approaches for encrypted malware traffic classification.
@@ -45,6 +40,30 @@ repos:
       description: "Official implementation: Uncovering Microservice Faults — Temporal Graph Approach to Root Cause Analysis."
       stars: 0
       language: Python
+    - name: OOD_Is_Not_Magic
+      url: https://github.com/ArielCyber/OOD_Is_Not_Magic
+      description: "Out-Of-Distribution Is Not Magic: The Clash Between Rejection Rate and Model Success."
+      stars: 0
+      language: Python
+
+  frameworks_pipelines_utilities:
+    - name: OSF-EIMTC
+      url: https://github.com/ArielCyber/OSF-EIMTC
+      description: Open-source framework for encrypted internet and malicious traffic classification — full ML/DL pipeline, datasets, and benchmarks.
+      stars: 20
+      language: Python
+    - name: Embedder
+      url: https://github.com/chenhajaj/Embedder
+      description: Image embeddings from SOTA CV models (DINOv2, CLIP, SigLIP, ConvNeXt V2, EfficientNet V2).
+      stars: 0
+      language: Python
+
+  ecommerce:
+    - name: OrderOfPrices
+      url: https://github.com/chenhajaj/OrderOfPrices
+      description: Online experiment for eCommerce price ordering research.
+      stars: 0
+      language: ASP.NET
 
   api_malware:
     - name: FT-ANN
@@ -66,9 +85,4 @@ repos:
       url: https://github.com/ArielCyber/When-the-guard-failed-the-droid
       description: Code for Android malware evasion case study.
       stars: 1
-      language: Python
-    - name: OOD_Is_Not_Magic
-      url: https://github.com/ArielCyber/OOD_Is_Not_Magic
-      description: "Out-Of-Distribution Is Not Magic: The Clash Between Rejection Rate and Model Success."
-      stars: 0
       language: Python

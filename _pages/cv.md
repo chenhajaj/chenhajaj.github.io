@@ -393,7 +393,7 @@ description: #Academic CV including education, academic administration, conferen
   transition: color .2s;
 }
 
-.cv-contact-row a:hover { color: #a5f3fc; text-decoration: none; }
+.cv-contact-row a:hover { color: #7ba3e0; text-decoration: none; }
 
 .cv-contact-row i { font-size: .95rem; opacity: .9; }
 
