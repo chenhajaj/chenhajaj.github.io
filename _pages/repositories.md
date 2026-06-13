@@ -63,7 +63,7 @@ nav_order: 6
 .repo-card-meta span { display: flex; align-items: center; gap: 0.25rem; }
 </style>
 
-All open-source code is hosted under the [ArielCyber GitHub organization](https://github.com/ArielCyber).
+Open-source code is hosted under the [ArielCyber GitHub organization](https://github.com/ArielCyber) and [chenhajaj's GitHub](https://github.com/chenhajaj).
 
 ## Encrypted Traffic & Network Security
 
@@ -80,10 +80,40 @@ All open-source code is hosted under the [ArielCyber GitHub organization](https:
 {% endfor %}
 </div>
 
+## Frameworks, Pipelines & Utilities
+
+<div class="repo-grid">
+{% for repo in site.data.repositories.repos.frameworks_pipelines_utilities %}
+<a class="repo-card" href="{{ repo.url }}" target="_blank" rel="noopener">
+  <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name }}</div>
+  <div class="repo-card-desc">{{ repo.description }}</div>
+  <div class="repo-card-meta">
+    {% if repo.stars > 0 %}<span>⭐ {{ repo.stars }}</span>{% endif %}
+    {% if repo.language %}<span>{{ repo.language }}</span>{% endif %}
+  </div>
+</a>
+{% endfor %}
+</div>
+
 ## API Security & Malware Detection
 
 <div class="repo-grid">
 {% for repo in site.data.repositories.repos.api_malware %}
+<a class="repo-card" href="{{ repo.url }}" target="_blank" rel="noopener">
+  <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name }}</div>
+  <div class="repo-card-desc">{{ repo.description }}</div>
+  <div class="repo-card-meta">
+    {% if repo.stars > 0 %}<span>⭐ {{ repo.stars }}</span>{% endif %}
+    {% if repo.language %}<span>{{ repo.language }}</span>{% endif %}
+  </div>
+</a>
+{% endfor %}
+</div>
+
+## eCommerce
+
+<div class="repo-grid">
+{% for repo in site.data.repositories.repos.ecommerce %}
 <a class="repo-card" href="{{ repo.url }}" target="_blank" rel="noopener">
   <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name }}</div>
   <div class="repo-card-desc">{{ repo.description }}</div>
