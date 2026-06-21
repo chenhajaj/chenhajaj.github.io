@@ -26,11 +26,11 @@ module Jekyll
     end
 
     def render(context)
-      article_id = context[@article_id.strip]
-      scholar_id = context[@scholar_id.strip]
+      begin
+      article_id = context[@article_id.to_s.strip]
+      scholar_id = context[@scholar_id.to_s.strip]
       article_url = "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=#{scholar_id}&citation_for_view=#{scholar_id}:#{article_id}"
 
-      begin
           # If the citation count has already been fetched, return it
           if GoogleScholarCitationsTag::Citations[article_id]
             return GoogleScholarCitationsTag::Citations[article_id]

@@ -40,6 +40,7 @@ latest_posts:
           <a href="https://www.linkedin.com/in/chen-hajaj-5ba59517" title="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
           <a href="https://scholar.google.com/citations?user=Zy2cIskAAAAJ" title="Google Scholar"><i class="ai ai-google-scholar"></i> Scholar</a>
           <a href="https://orcid.org/0000-0001-9940-5654" title="ORCID" target="_blank" rel="noopener"><i class="ai ai-orcid"></i> ORCID</a>
+          <a href="https://dblp.uni-trier.de/pid/133/1819.html" title="DBLP" target="_blank" rel="noopener"><i class="ai ai-dblp"></i> DBLP</a>
           <span class="profile-office"><i class="fas fa-building"></i> Office: 58.3.42</span>
         </div>
       </div>
