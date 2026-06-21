@@ -32,6 +32,8 @@ nav_order: 6
   flex-direction: column;
   gap: 0.4rem;
   transition: transform 0.15s, box-shadow 0.15s;
+  overflow: hidden;
+  min-width: 0;
 }
 .repo-card:hover {
   transform: translateY(-2px);
@@ -45,6 +47,8 @@ nav_order: 6
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 .repo-card-name i { font-size: 0.85rem; opacity: 0.7; }
 .repo-card-desc {
@@ -70,7 +74,7 @@ Open-source code is hosted under the [ArielCyber GitHub organization](https://gi
 <div class="repo-grid">
 {% for repo in site.data.repositories.repos.encrypted_traffic %}
 <a class="repo-card" href="{{ repo.url }}" target="_blank" rel="noopener">
-  <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name }}</div>
+  <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name | replace: '-', ' ' | replace: '_', ' ' }}</div>
   <div class="repo-card-desc">{{ repo.description }}</div>
   <div class="repo-card-meta">
     {% if repo.stars > 0 %}<span>⭐ {{ repo.stars }}</span>{% endif %}
@@ -85,7 +89,7 @@ Open-source code is hosted under the [ArielCyber GitHub organization](https://gi
 <div class="repo-grid">
 {% for repo in site.data.repositories.repos.frameworks_pipelines_utilities %}
 <a class="repo-card" href="{{ repo.url }}" target="_blank" rel="noopener">
-  <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name }}</div>
+  <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name | replace: '-', ' ' | replace: '_', ' ' }}</div>
   <div class="repo-card-desc">{{ repo.description }}</div>
   <div class="repo-card-meta">
     {% if repo.stars > 0 %}<span>⭐ {{ repo.stars }}</span>{% endif %}
@@ -100,7 +104,7 @@ Open-source code is hosted under the [ArielCyber GitHub organization](https://gi
 <div class="repo-grid">
 {% for repo in site.data.repositories.repos.api_malware %}
 <a class="repo-card" href="{{ repo.url }}" target="_blank" rel="noopener">
-  <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name }}</div>
+  <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name | replace: '-', ' ' | replace: '_', ' ' }}</div>
   <div class="repo-card-desc">{{ repo.description }}</div>
   <div class="repo-card-meta">
     {% if repo.stars > 0 %}<span>⭐ {{ repo.stars }}</span>{% endif %}
@@ -115,7 +119,7 @@ Open-source code is hosted under the [ArielCyber GitHub organization](https://gi
 <div class="repo-grid">
 {% for repo in site.data.repositories.repos.ecommerce %}
 <a class="repo-card" href="{{ repo.url }}" target="_blank" rel="noopener">
-  <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name }}</div>
+  <div class="repo-card-name"><i class="fab fa-github"></i>{{ repo.name | replace: '-', ' ' | replace: '_', ' ' }}</div>
   <div class="repo-card-desc">{{ repo.description }}</div>
   <div class="repo-card-meta">
     {% if repo.stars > 0 %}<span>⭐ {{ repo.stars }}</span>{% endif %}
