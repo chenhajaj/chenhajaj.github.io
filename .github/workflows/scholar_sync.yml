@@ -170,12 +170,14 @@ jobs:
           echo "" >> _bibliography/papers.bib
           echo "% ── Auto-added by scholar_sync on $(date +%Y-%m-%d) ──────────────" >> _bibliography/papers.bib
           cat new_papers.bib >> _bibliography/papers.bib
+          rm -f new_papers.bib
 
       - name: Create Pull Request
         if: steps.check_pr.outputs.open_pr == '' && steps.fetch.outputs.new_count != '0'
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          add-paths: _bibliography/papers.bib
           branch: scholar-sync/auto-update
           delete-branch: true
           draft: true
