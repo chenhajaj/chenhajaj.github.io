@@ -108,6 +108,12 @@ jobs:
                       continue
 
                   year = str(pub.get("year") or "")
+                  if not year:
+                      # jekyll-scholar groups bibliography entries by year and
+                      # crashes the site build on a missing year -- skip these
+                      # for manual review instead of committing a broken entry.
+                      print(f"  SKIP (no year): {title}")
+                      continue
                   authors_list = [a["name"] for a in (pub.get("authors") or [])]
                   author_str = " and ".join(authors_list)
 
