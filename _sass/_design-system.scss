@@ -283,12 +283,7 @@ hr,
 .divider {
   border: none;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--global-divider-color),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--global-divider-color), transparent);
   margin: 2rem 0;
 }
 

@@ -1,9 +1,7 @@
 <div class="member-card {% if include.student.graduation_year %} alumni {% endif %}">
   <strong>{{ include.student.name }}</strong>
   {% if include.student.graduation_year %}
-    <p class="graduation-year">
-      <i class="fas fa-calendar"></i> {{ include.student.graduation_year }}
-    </p>
+    <p class="graduation-year"><i class="fas fa-calendar"></i> {{ include.student.graduation_year }}</p>
   {% endif %}
   <p class="research-area">
     <i class="fas fa-microscope"></i>
