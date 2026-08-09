@@ -8,7 +8,9 @@
 >
   <!-- Title -->
   <div class="title">
-    {% if entry.selected %}<span class="selected-badge" title="Selected publication">★</span>{% endif %}
+    {% if entry.selected -%}
+      <span class="selected-badge" title="Selected publication">★</span>
+    {%- endif %}
     {% if entry.abstract %}
       <span class="abstract-toggle">{{ entry.title }}</span>
     {% elsif entry.url %}
