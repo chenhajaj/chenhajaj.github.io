@@ -1,6 +1,4 @@
 phd_students:
-  - name: "Yehonatan Zion"
-    research_area: "Generative AI"
   - name: "Udi Aharon"
     research_area: "API Security"
   - name: "Aviad Levi"
@@ -22,6 +20,9 @@ phd_students:
   - name: "Eden Shmuel"
     research_area: "Using Machine Learning to Personalize Nutritional Treatment"
 phd_alumni:
+  - name: "Yehonatan Zion"
+    graduation_year: "2026"
+    research_area: "Generative AI"
   - name: "Or Anidjar"
     graduation_year: "2022"
     research_area: "Speaker Diarization"
@@ -36,14 +37,19 @@ masters_students:
     research_area: "Research in Progress"
   - name: "Eylon Yehiel"
     research_area: "Multi-Modal Learning for Product Attributes"
-  - name: "Yona Elbar"
-    research_area: "Pipeline Optimization of Multimodal Systems"
   - name: "Liav Cohen"
     research_area: "Few-shot ANN for Low-latency Classification in O-RAN Networks"
   - name: "Stas Shuar"
     research_area: "QUIC-based Quantum Traffic Classification "
+  - name: "Eylon Katan"
+    research_area: "Anomaly Detection on PQC"
+  - name: "Idan Buzaglo"
+    research_area: "Early Detection of Myopia"
 
 masters_alumni:
+  - name: "Yona Elbar"
+    graduation_year: "2026"
+    research_area: "Pipeline Optimization of Multimodal Systems"
   - name: "Amit Tzahar"
     graduation_year: "2025"
     research_area: "Image Restoration in Adversarially Encrypted Medical Images"
