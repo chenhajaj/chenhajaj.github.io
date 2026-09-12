@@ -172,11 +172,5 @@ featured_url: "https://doi.org/10.1016/j.comnet.2026.112739"
 
 <p>Our methods are validated on real-world datasets from commercial ISPs and academic network captures. Applications include real-time threat detection in enterprise networks, QoE optimization for streaming services, and network capacity planning — all with full encryption preserved.</p>
 
-<div class="project-publications">
-  <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
-  <div class="publications">
-    {% bibliography -q @*[projects ~= traffic-classification] %}
-  </div>
-</div>
 
 </div>
