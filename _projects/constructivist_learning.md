@@ -6,6 +6,9 @@ img: assets/img/design-new.png
 importance: 3
 category: work
 related_publications: true
+outcome: "Live-critique learning signals quantified"
+featured_label: "Education publications"
+featured_url: "/publications/?topic=Education"
 ---
 
 <style>
