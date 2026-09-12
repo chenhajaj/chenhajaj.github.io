@@ -6,6 +6,9 @@ img: assets/img/tourism-new.png
 importance: 3
 category: work
 related_publications: true
+outcome: "Vision + language + time for product similarity"
+featured_label: "Multimodal research"
+featured_url: "/publications/?topic=AI%20%26%20ML"
 ---
 
 <style>
