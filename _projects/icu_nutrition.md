@@ -6,6 +6,9 @@ img: assets/img/medical_new.png
 importance: 2
 category: work
 related_publications: true
+outcome: "Clinical prediction and privacy-preserving collaboration"
+featured_label: "Healthcare AI publications"
+featured_url: "/publications/?topic=Healthcare"
 ---
 
 <style>
