@@ -6,7 +6,7 @@ img: assets/img/encrypted_new.png
 importance: 1
 category: work
 giscus_comments: false
-related_publications: true
+related_publications: false
 outcome: "100+ application classes; retrieval-based adaptation"
 featured_label: "New Computer Networks paper"
 featured_url: "https://doi.org/10.1016/j.comnet.2026.112739"
