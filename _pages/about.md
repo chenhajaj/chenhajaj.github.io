@@ -33,7 +33,7 @@ latest_posts:
       <div class="profile-header-text">
         <h2 class="profile-name">Chen Hajaj</h2>
         <p class="profile-title">Machine Learning that adapts when data, threats, and domains change.</p>
-        <p class="profile-institution"><i class="fas fa-university"></i> Ariel University</p>
+        <p class="profile-institution"><i class="fas fa-university"></i> Associate Professor · Ariel University</p>
         <div class="profile-contact-links">
           <a href="mailto:chenha@g.ariel.ac.il" title="Email"><i class="fas fa-envelope"></i> chenha@g.ariel.ac.il</a>
           <a href="https://github.com/chenhajaj" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
@@ -135,7 +135,7 @@ latest_posts:
           <p><strong>NVIDIA University Ambassador (2024–present)</strong> — Leading GPU computing and AI education initiatives at Ariel University.</p>
           <p><strong>Head of Faculty Review Board (2021–present)</strong> — Directing research quality and ethical standards across the Faculty of Engineering.</p>
           <p><strong>Head of Data Science Track (2021–present)</strong> — Overseeing curriculum development, student programs, and industry partnerships.</p>
-          <p><strong>Director, Data Science &amp; AI Research Center (2019–2024)</strong> — Founded and directed a research center that secured over $1.2M in competitive funding, produced 4 patents, and established national collaborations with the Israel Innovation Authority and the Ministry of Innovation.</p>
+          <p><strong>Director, Data Science &amp; AI Research Center (2019–2024)</strong> — Founded and directed the center. I secured over $1.2M in competitive funding, produced 4 patents, and established national collaborations with the Israel Innovation Authority and the Ministry of Innovation.</p>
           <span class="timeline-meta">Ariel University · 2018–present</span>
         </div>
       </div>
