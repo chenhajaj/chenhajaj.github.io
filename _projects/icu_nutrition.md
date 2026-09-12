@@ -185,11 +185,5 @@ featured_url: "/publications/?topic=Healthcare"
     Left: Real-time patient monitoring generating continuous data streams. Middle: Critical care enteral nutrition delivery. Right: AI-driven analysis of complex clinical data patterns.
 </div>
 
-<div class="project-publications">
-  <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
-  <div class="publications">
-    {% bibliography -q @*[projects  ~= healthcare] %}
-  </div>
-</div>
 
 </div>
