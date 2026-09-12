@@ -72,7 +72,7 @@ latest_posts:
   <!-- About Me Section -->
   <section class="about-intro-section">
     <p class="about-lead-text">
-      I build machine-learning systems that stay useful when data, threats, and domains change — from encrypted traffic and adversarial AI to clinical decision support. I am an <strong>Associate Professor</strong> and <strong>Head of the Data Science Track</strong> at Ariel University, <strong>Head of the Faculty Review Board</strong>, and an <strong>NVIDIA University Ambassador</strong>.
+      I build machine-learning systems that stay useful when data, threats, and domains change — from encrypted traffic and adversarial AI to clinical decision support. I am an <strong>Associate Professor</strong> and <strong>Head of the Data Science Track</strong> at Ariel University, <strong>Head of the Faculty Review Board</strong>, and an <strong>NVIDIA University Ambassador</strong>. Across my research, I have secured <strong>over $1.2M in competitive funding</strong>, produced <strong>4 patents</strong>, and established national collaborations with the Israel Innovation Authority and the Ministry of Innovation.
     </p>
     <div class="featured-result">
       <div><span class="result-kicker">NEW · COMPUTER NETWORKS</span><h3>New classes in seconds, no retraining</h3><p>Classification by retrieval makes encrypted-traffic models faster to adapt and adds out-of-distribution detection in the same retrieval step.</p></div>
@@ -135,7 +135,7 @@ latest_posts:
           <p><strong>NVIDIA University Ambassador (2024–present)</strong> — Leading GPU computing and AI education initiatives at Ariel University.</p>
           <p><strong>Head of Faculty Review Board (2021–present)</strong> — Directing research quality and ethical standards across the Faculty of Engineering.</p>
           <p><strong>Head of Data Science Track (2021–present)</strong> — Overseeing curriculum development, student programs, and industry partnerships.</p>
-          <p><strong>Director, Data Science &amp; AI Research Center (2019–2024)</strong> — Founded and directed the center. I secured over $1.2M in competitive funding, produced 4 patents, and established national collaborations with the Israel Innovation Authority and the Ministry of Innovation.</p>
+          <p><strong>Director, Data Science &amp; AI Research Center (2019–2024)</strong> — Founded and directed the center.</p>
           <span class="timeline-meta">Ariel University · 2018–present</span>
         </div>
       </div>
