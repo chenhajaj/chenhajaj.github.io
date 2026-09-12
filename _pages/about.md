@@ -32,7 +32,7 @@ latest_posts:
       </div>
       <div class="profile-header-text">
         <h2 class="profile-name">Chen Hajaj</h2>
-        <p class="profile-title"><span id="typed-title" style="color:white;font-weight:700;"></span><span class="typed-cursor typed-cursor--blink" style="color:white;font-weight:700;">|</span></p>
+        <p class="profile-title">Machine learning that adapts when data, threats, and domains change.</p>
         <p class="profile-institution"><i class="fas fa-university"></i> Ariel University</p>
         <div class="profile-contact-links">
           <a href="mailto:chenha@g.ariel.ac.il" title="Email"><i class="fas fa-envelope"></i> chenha@g.ariel.ac.il</a>
@@ -41,6 +41,8 @@ latest_posts:
           <a href="https://scholar.google.com/citations?user=Zy2cIskAAAAJ" title="Google Scholar"><i class="ai ai-google-scholar"></i> Scholar</a>
           <a href="https://orcid.org/0000-0001-9940-5654" title="ORCID" target="_blank" rel="noopener"><i class="ai ai-orcid"></i> ORCID</a>
           <a href="https://dblp.uni-trier.de/pid/133/1819.html" title="DBLP" target="_blank" rel="noopener"><i class="ai ai-dblp"></i> DBLP</a>
+          <a href="/cv/" title="Curriculum vitae"><i class="fas fa-file-alt"></i> CV</a>
+          <a href="/teaching/" title="Teaching"><i class="fas fa-chalkboard-teacher"></i> Teaching</a>
           <span class="profile-office"><i class="fas fa-building"></i> Office: 58.3.42</span>
         </div>
       </div>
@@ -54,47 +56,28 @@ latest_posts:
     {% assign msc_alumni_count = site.data.students.masters_alumni | size %}
     {% assign former_ra_count = site.data.students.former_research_assistants | size %}
     {% assign total_alumni = phd_alumni_count | plus: msc_alumni_count | plus: former_ra_count %}
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-value">{{ site.data.grants.total_display }}</div>
-        <div class="stat-label">Research Grants</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">4</div>
-        <div class="stat-label">Patents</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">6</div>
-        <div class="stat-label">Conferences Chaired</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">50+</div>
-        <div class="stat-label">Publications</div>
-      </div>
-      <div class="stat-item scholar-stat" onclick="window.open('https://scholar.google.com/citations?user=Zy2cIskAAAAJ','_blank')" style="cursor:pointer;" title="View on Google Scholar">
-        <div class="stat-value">{{ site.data.scholar.h_index }}</div>
-        <div class="stat-label">h-index</div>
-      </div>
-      <div class="stat-item scholar-stat" onclick="window.open('https://scholar.google.com/citations?user=Zy2cIskAAAAJ','_blank')" style="cursor:pointer;" title="View on Google Scholar">
-        <div class="stat-value">{{ site.data.scholar.citations }}+</div>
-        <div class="stat-label">Citations</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">{{ current_students }}</div>
-        <div class="stat-label">Current Students</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">{{ total_alumni }}</div>
-        <div class="stat-label">Alumni</div>
-      </div>
+    <div class="stats-grid stats-grid--compact">
+      <div class="stat-item"><div class="stat-value">100+</div><div class="stat-label">Research works</div></div>
+      <div class="stat-item scholar-stat" onclick="window.open('https://scholar.google.com/citations?user=Zy2cIskAAAAJ','_blank')" title="Google Scholar"><div class="stat-value">{{ site.data.scholar.h_index }}</div><div class="stat-label">h-index</div></div>
+      <div class="stat-item scholar-stat" onclick="window.open('https://scholar.google.com/citations?user=Zy2cIskAAAAJ','_blank')" title="Google Scholar"><div class="stat-value">{{ site.data.scholar.citations }}+</div><div class="stat-label">Citations</div></div>
+      <div class="stat-item"><div class="stat-value">{{ current_students }}</div><div class="stat-label">Current students</div></div>
+    </div>
+    <div class="hero-actions">
+      <a class="hero-action primary" href="/projects/">Explore research</a>
+      <a class="hero-action" href="/publications/">Read selected papers</a>
+      <a class="hero-action" href="/people/#open-topics">Work with the lab</a>
     </div>
   </section>
 
   <!-- About Me Section -->
   <section class="about-intro-section">
     <p class="about-lead-text">
-      I am an <strong>Associate Professor</strong> and <strong>Head of the Data Science Track</strong> at Ariel University — working at the intersection of AI theory and real-world impact. I also serve as <strong>Head of the Faculty Review Board</strong> and <strong>NVIDIA University Ambassador</strong>.
+      I build machine-learning systems that stay useful when data, threats, and domains change — from encrypted traffic and adversarial AI to clinical decision support. I am an <strong>Associate Professor</strong> and <strong>Head of the Data Science Track</strong> at Ariel University, <strong>Head of the Faculty Review Board</strong>, and an <strong>NVIDIA University Ambassador</strong>.
     </p>
+    <div class="featured-result">
+      <div><span class="result-kicker">NEW · COMPUTER NETWORKS</span><h3>New classes in seconds, no retraining</h3><p>Classification by retrieval makes encrypted-traffic models faster to adapt and adds out-of-distribution detection in the same retrieval step.</p></div>
+      <a href="https://doi.org/10.1016/j.comnet.2026.112739" target="_blank" rel="noopener">Read the paper →</a>
+    </div>
     <div class="about-pillars">
       <div class="about-pillar">
         <div class="about-pillar-icon"><i class="fas fa-brain"></i></div>
@@ -615,6 +598,9 @@ section { margin-bottom: 4rem; }
   }
   .profile-name { font-size: 1.6rem !important; }
 }
+
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem}.hero-action{padding:.72rem 1rem;border:1px solid rgba(255,255,255,.45);border-radius:10px;color:#fff!important;font-weight:700;text-decoration:none!important}.hero-action.primary{background:#22d3c5;border-color:#22d3c5;color:#102033!important}.hero-action:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
+.stats-grid--compact{grid-template-columns:repeat(4,minmax(130px,1fr));gap:1rem}.featured-result{margin:1.5rem 0 0;padding:1.4rem 1.6rem;border-left:5px solid #22d3c5;border-radius:12px;background:linear-gradient(110deg,rgba(34,211,197,.12),rgba(75,108,183,.08));display:flex;align-items:center;justify-content:space-between;gap:1rem}.featured-result h3{margin:.2rem 0 .35rem}.featured-result p{margin:0}.featured-result>a{white-space:nowrap;font-weight:700}.result-kicker{font-size:.75rem;font-weight:800;letter-spacing:.1em;color:#0f766e}@media(max-width:700px){.stats-grid--compact{grid-template-columns:repeat(2,1fr)}.featured-result{display:block}.featured-result>a{display:inline-block;margin-top:1rem}}
 </style>
 
 <!-- Typed.js -->
