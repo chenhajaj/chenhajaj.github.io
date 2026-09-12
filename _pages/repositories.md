@@ -2,7 +2,7 @@
 layout: page
 title: Code & Software
 permalink: /software/
-description:
+description: Open-source code, datasets, and software from Chen Hajaj and the Adaptive AI Lab at Ariel University.
 nav: true
 nav_order: 7
 ---

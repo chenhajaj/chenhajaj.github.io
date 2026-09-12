@@ -1,5 +1,6 @@
 ---
 layout: page
+hide_title: true
 title: Quantifying Constructivist Learning in Studio-Based Education
 description: Data science methods that quantify learning in design studio education — measuring cognitive breakthroughs, engagement, and teaching effectiveness during live critiques.
 img: assets/img/design-new.png
@@ -12,10 +13,6 @@ featured_url: "/publications/?topic=Education"
 ---
 
 <style>
-.post-header {
-  display: none;
-}
-
 /* Project Content Styling */
 .project-content {
   max-width: 900px;
@@ -154,6 +151,8 @@ featured_url: "/publications/?topic=Education"
   </div>
 </div>
 
+<div class="project-headline-result" style="margin:-1.5rem 0 3rem;padding:1rem 1.4rem;border-left:5px solid #22a99a;border-radius:10px;background:linear-gradient(110deg,rgba(34,211,197,.12),rgba(75,108,183,.08));font-size:1.05rem;"><strong>Headline result:</strong> {{ page.outcome }}</div>
+
 <div class="project-content">
 
 <p class="lead-text">Design education is fundamentally different from traditional instruction — learning happens through making, critiquing, and iterating, not through tests. We develop data science methods that quantify these learning moments in real-time, giving educators and students objective insight into creative development.</p>
@@ -178,4 +177,17 @@ featured_url: "/publications/?topic=Education"
 <p>Methods validated in live architecture and industrial design studios at Israeli universities. The framework is generalizable to other constructivist disciplines — law clinics, medical simulations, and project-based STEM education.</p>
 
 
+
+<h2>Key publications &amp; resources</h2>
+
+<ul>
+  <li><a href="/publications/">Publications</a> — filter by the <strong>Education</strong> topic to see this project's papers.</li>
+  <li><a href="/software/">Code &amp; software</a> — lab repositories, datasets, and tools.</li>
+</ul>
+
+<h2>Collaborate with us</h2>
+
+<p>We welcome academic and industry collaborations, and motivated graduate students, on this research line. <a href="mailto:chenha@g.ariel.ac.il?subject=Collaboration%20inquiry%20—%20Quantifying Constructivist Learning">Get in touch →</a></p>
+
 </div>
+

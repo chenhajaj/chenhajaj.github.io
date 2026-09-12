@@ -1,5 +1,6 @@
 ---
 layout: page
+hide_title: true
 title: Encrypted Traffic Classification
 description: AI-powered classification of encrypted network traffic — enabling security monitoring and QoS management without compromising encryption or user privacy.
 img: assets/img/encrypted_new.png
@@ -13,10 +14,6 @@ featured_url: "https://doi.org/10.1016/j.comnet.2026.112739"
 ---
 
 <style>
-.post-header {
-  display: none;
-}
-
 /* Project Content Styling */
 .project-content {
   max-width: 900px;
@@ -155,6 +152,8 @@ featured_url: "https://doi.org/10.1016/j.comnet.2026.112739"
   </div>
 </div>
 
+<div class="project-headline-result" style="margin:-1.5rem 0 3rem;padding:1rem 1.4rem;border-left:5px solid #22a99a;border-radius:10px;background:linear-gradient(110deg,rgba(34,211,197,.12),rgba(75,108,183,.08));font-size:1.05rem;"><strong>Headline result:</strong> {{ page.outcome }}</div>
+
 <div class="project-content">
 
 <p class="lead-text">Over 90% of internet traffic is now encrypted. While encryption protects privacy, it makes traditional network monitoring impossible. We build AI systems that classify and analyze encrypted traffic without decryption — enabling security, quality of service, and compliance while preserving user privacy.</p>
@@ -173,4 +172,17 @@ featured_url: "https://doi.org/10.1016/j.comnet.2026.112739"
 <p>Our methods are validated on real-world datasets from commercial ISPs and academic network captures. Applications include real-time threat detection in enterprise networks, QoE optimization for streaming services, and network capacity planning — all with full encryption preserved.</p>
 
 
+
+<h2>Key publications &amp; resources</h2>
+
+<ul>
+  <li><a href="/publications/">Publications</a> — filter by the <strong>Encrypted Traffic</strong> topic to see this project's papers.</li>
+  <li><a href="/software/">Code &amp; software</a> — lab repositories, datasets, and tools.</li>
+</ul>
+
+<h2>Collaborate with us</h2>
+
+<p>We welcome academic and industry collaborations, and motivated graduate students, on this research line. <a href="mailto:chenha@g.ariel.ac.il?subject=Collaboration%20inquiry%20—%20Encrypted Traffic Classification">Get in touch →</a></p>
+
 </div>
+

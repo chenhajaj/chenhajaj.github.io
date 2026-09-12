@@ -9,7 +9,7 @@ last_name: Hajaj
 contact_note: >
 
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Associate Professor and Head of Data Science Track at Ariel University. Researching AI applications in cybersecurity, healthcare, eCommerce, and multimodal learning systems. NVIDIA University Ambassador. 50+ publications, $1.2M+ research funding, 4 patents.
+  Associate Professor and Head of Data Science Track at Ariel University. Researching AI applications in cybersecurity, healthcare, eCommerce, and multimodal learning systems. NVIDIA University Ambassador. 109 publications, $1.2M+ research funding, 4 patents.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.

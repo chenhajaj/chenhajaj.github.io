@@ -22,24 +22,28 @@ nav_order: 1
   <div class="filter-section">
     <div class="search-container">
       <i class="fas fa-search search-icon"></i>
-      <input type="text" id="search-input" class="search-input" placeholder="Search publications by title, author, venue...">
+      <label for="search-input" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;">Search publications</label>
+      <input type="text" id="search-input" class="search-input" placeholder="Search publications by title, author, venue..." aria-label="Search publications">
       <button id="clear-search" class="clear-btn" title="Clear search">
         <i class="fas fa-times"></i>
       </button>
     </div>
 
-    <div class="filter-controls">
+    <button type="button" id="filter-toggle" class="filter-toggle" aria-expanded="false" aria-controls="filter-controls">
+      <i class="fas fa-filter"></i> <span id="filter-toggle-text">Filter publications</span> <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="filter-controls" id="filter-controls">
     <div class="filter-group topic-pills-group">
-        <label><i class="fas fa-tags"></i> Topic:</label>
-        <div class="topic-pills" id="topic-filter-pills">
-          <button class="topic-pill active" data-value="all">All</button>
-          <button class="topic-pill" data-value="group-ai">AI &amp; ML</button>
-          <button class="topic-pill" data-value="group-security">Cybersecurity</button>
-          <button class="topic-pill" data-value="encrypted-traffic">Encrypted Traffic</button>
-          <button class="topic-pill" data-value="group-healthcare">Healthcare</button>
-          <button class="topic-pill" data-value="group-multiagent">Multi-Agent</button>
-          <button class="topic-pill" data-value="group-ecommerce">E-Commerce</button>
-          <button class="topic-pill" data-value="education">Education</button>
+        <label id="topic-filter-label"><i class="fas fa-tags"></i> Topic:</label>
+        <div class="topic-pills" id="topic-filter-pills" role="group" aria-labelledby="topic-filter-label">
+          <button type="button" class="topic-pill active" data-value="all" aria-pressed="true">All</button>
+          <button type="button" class="topic-pill" data-value="group-ai" aria-pressed="false">AI &amp; ML</button>
+          <button type="button" class="topic-pill" data-value="group-security" aria-pressed="false">Cybersecurity</button>
+          <button type="button" class="topic-pill" data-value="encrypted-traffic" aria-pressed="false">Encrypted Traffic</button>
+          <button type="button" class="topic-pill" data-value="group-healthcare" aria-pressed="false">Healthcare</button>
+          <button type="button" class="topic-pill" data-value="group-multiagent" aria-pressed="false">Multi-Agent</button>
+          <button type="button" class="topic-pill" data-value="group-ecommerce" aria-pressed="false">E-Commerce</button>
+          <button type="button" class="topic-pill" data-value="education" aria-pressed="false">Education</button>
         </div>
         <!-- hidden select kept for JS compatibility -->
         <select id="topic-filter" class="filter-select" style="display:none">
@@ -55,14 +59,14 @@ nav_order: 1
       </div>
 
       <div class="filter-group">
-        <label><i class="fas fa-calendar-alt"></i> Year:</label>
+        <label for="year-filter"><i class="fas fa-calendar-alt"></i> Year:</label>
         <select id="year-filter" class="filter-select">
           <option value="all">All Years</option>
         </select>
       </div>
 
       <div class="filter-group">
-        <label><i class="fas fa-book"></i> Type:</label>
+        <label for="type-filter"><i class="fas fa-book"></i> Type:</label>
         <select id="type-filter" class="filter-select">
           <option value="all">All Types</option>
           <option value="article">Journal Articles</option>
@@ -339,6 +343,23 @@ nav_order: 1
 
 .stat-badge i {
   font-size: 1rem;
+}
+
+.filter-toggle { display: none; }
+
+@media (max-width: 768px) {
+  .publications-header { padding: 0.6rem; margin-bottom: 0.6rem; }
+  .download-btn { padding: 0.6rem 1.2rem; }
+  .filter-section { top: 56px; }
+  .filter-toggle {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    width: 100%; padding: 0.6rem 1rem; margin-bottom: 0.75rem;
+    border: 2px solid var(--global-divider-color); border-radius: 8px;
+    background: var(--global-bg-color); color: var(--global-text-color);
+    font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  }
+  .filter-controls { display: none; }
+  .filter-section.filters-open .filter-controls { display: flex; }
 }
 
 /* No Results Message */
@@ -793,6 +814,24 @@ function initPublicationsPage() {
   const yearFilter = document.getElementById('year-filter');
   const typeFilter = document.getElementById('type-filter');
   const resetBtn = document.getElementById('reset-filters');
+  const filterToggle = document.getElementById('filter-toggle');
+  const filterToggleText = document.getElementById('filter-toggle-text');
+  const filterSection = document.querySelector('.filter-section');
+  if (filterToggle && filterSection) {
+    filterToggle.addEventListener('click', function() {
+      const open = filterSection.classList.toggle('filters-open');
+      filterToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+  function updateFilterToggleText() {
+    if (!filterToggleText) return;
+    let n = 0;
+    if (topicFilter && topicFilter.value && topicFilter.value !== 'all') n++;
+    if (yearFilter && yearFilter.value && yearFilter.value !== 'all') n++;
+    if (typeFilter && typeFilter.value && typeFilter.value !== 'all') n++;
+    if (searchInput && searchInput.value.trim() !== '') n++;
+    filterToggleText.textContent = n > 0 ? 'Filter publications (' + n + ' active)' : 'Filter publications';
+  }
   const publicationsList = document.getElementById('publications-list');
   const noResults = document.getElementById('no-results');
   const visibleCount = document.getElementById('visible-count');
@@ -964,6 +1003,7 @@ function initPublicationsPage() {
   }
 
   function updateVisibleCount() {
+    updateFilterToggleText();
     const visible = Array.from(allPublications).filter(pub => pub.style.display !== 'none').length;
     visibleCount.textContent = visible;
   }
@@ -983,10 +1023,16 @@ function initPublicationsPage() {
   topicFilter.addEventListener('change', filterPublications);
 
   // Pill buttons — sync with hidden select
+  function syncPillAria() {
+    document.querySelectorAll('.topic-pill').forEach(function(p) {
+      p.setAttribute('aria-pressed', p.classList.contains('active') ? 'true' : 'false');
+    });
+  }
   document.querySelectorAll('.topic-pill').forEach(function(pill) {
     pill.addEventListener('click', function() {
       document.querySelectorAll('.topic-pill').forEach(function(p) { p.classList.remove('active'); });
       pill.classList.add('active');
+      syncPillAria();
       topicFilter.value = pill.dataset.value;
       filterPublications();
     });
@@ -998,6 +1044,7 @@ function initPublicationsPage() {
     document.querySelectorAll('.topic-pill').forEach(function(p) { p.classList.remove('active'); });
     const allPill = document.querySelector('.topic-pill[data-value="all"]');
     if (allPill) allPill.classList.add('active');
+    syncPillAria();
   });
 
   yearFilter.addEventListener('change', filterPublications);
