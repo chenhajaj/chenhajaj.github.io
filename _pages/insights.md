@@ -2,7 +2,7 @@
 layout: page
 title: Research Notes
 permalink: /insights/
-description: Short, practical explanations of research from the Hajaj Lab.
+description: Short, practical explanations of research from the Hajaj Lab — updated as projects develop.
 nav: true
 nav_order: 6
 ---
