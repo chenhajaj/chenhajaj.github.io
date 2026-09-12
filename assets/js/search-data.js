@@ -30,19 +30,12 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/people/";
           },
-        },{id: "nav-cv",
-          title: "CV",
-          description: "",
+        },{id: "nav-research-notes",
+          title: "Research Notes",
+          description: "Short, practical explanations of research from the Hajaj Lab.",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/cv/";
-          },
-        },{id: "nav-teaching",
-          title: "Teaching",
-          description: "Courses taught at Ariel University and other institutions, covering data science, machine learning, and computer science.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/teaching/";
+            window.location.href = "/insights/";
           },
         },{id: "nav-code-amp-software",
           title: "Code &amp; Software",
@@ -200,4 +193,30 @@ ninja.data = [{
         handler: () => {
           window.open("https://www.semanticscholar.org/author/3313085", "_blank");
         },
-      },];
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
