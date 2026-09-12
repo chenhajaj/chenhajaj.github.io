@@ -176,11 +176,5 @@ featured_url: "/publications/?topic=Cybersecurity"
   <li><strong>Privacy-Preserving Detection</strong> — Federated learning and differential privacy techniques that protect sensitive data while maintaining detection performance.</li>
 </ul>
 
-<div class="project-publications">
-  <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
-  <div class="publications">
-    {% bibliography -q @*[projects ~= security] %}
-  </div>
-</div>
 
 </div>
