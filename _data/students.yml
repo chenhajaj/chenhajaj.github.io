@@ -32,7 +32,6 @@ masters_students:
   - name: "Ihab Hino"
     research_area: "Dynamic Multimodal Attribute Completion"
   - name: "Amit Stein"
-    research_area: "Research in Progress"
   - name: "Eylon Yehiel"
     research_area: "Multi-Modal Learning for Product Attributes"
   - name: "Liav Cohen"

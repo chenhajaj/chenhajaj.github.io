@@ -2,6 +2,7 @@
 layout: about
 title: About
 permalink: /
+hide_title: true
 subtitle:
 
 profile:
@@ -31,7 +32,7 @@ latest_posts:
         <img src="/assets/img/me.jpeg" alt="Chen Hajaj" class="profile-photo-img" />
       </div>
       <div class="profile-header-text">
-        <h2 class="profile-name">Chen Hajaj</h2>
+        <h1 class="profile-name">Chen Hajaj</h1>
         <p class="profile-title">Machine Learning that adapts when data, threats, and domains change.</p>
         <p class="profile-institution"><i class="fas fa-university"></i> Associate Professor · Ariel University</p>
         <div class="profile-contact-links">
@@ -39,11 +40,12 @@ latest_posts:
           <a href="https://github.com/chenhajaj" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
           <a href="https://www.linkedin.com/in/chen-hajaj-5ba59517" title="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
           <a href="https://scholar.google.com/citations?user=Zy2cIskAAAAJ" title="Google Scholar"><i class="ai ai-google-scholar"></i> Scholar</a>
-          <a href="https://orcid.org/0000-0001-9940-5654" title="ORCID" target="_blank" rel="noopener"><i class="ai ai-orcid"></i> ORCID</a>
-          <a href="https://dblp.uni-trier.de/pid/133/1819.html" title="DBLP" target="_blank" rel="noopener"><i class="ai ai-dblp"></i> DBLP</a>
-          <a href="/cv/" title="Curriculum vitae"><i class="fas fa-file-alt"></i> CV</a>
-          <a href="/teaching/" title="Teaching"><i class="fas fa-chalkboard-teacher"></i> Teaching</a>
-          <span class="profile-office"><i class="fas fa-building"></i> Office: 58.3.42</span>
+          <a class="chip-secondary" href="https://orcid.org/0000-0001-9940-5654" title="ORCID" target="_blank" rel="noopener"><i class="ai ai-orcid"></i> ORCID</a>
+          <a class="chip-secondary" href="https://dblp.uni-trier.de/pid/133/1819.html" title="DBLP" target="_blank" rel="noopener"><i class="ai ai-dblp"></i> DBLP</a>
+          <a class="chip-secondary" href="/cv/" title="Curriculum vitae"><i class="fas fa-file-alt"></i> CV</a>
+          <a class="chip-secondary" href="/teaching/" title="Teaching"><i class="fas fa-chalkboard-teacher"></i> Teaching</a>
+          <span class="profile-office chip-secondary"><i class="fas fa-building"></i> Office: 58.3.42</span>
+          <button type="button" class="chip-more-toggle" id="more-profiles-toggle" aria-expanded="false"><i class="fas fa-ellipsis-h"></i> More profiles</button>
         </div>
       </div>
     </div>
@@ -55,9 +57,9 @@ latest_posts:
     {% assign phd_alumni_count = site.data.students.phd_alumni | size %}
     {% assign msc_alumni_count = site.data.students.masters_alumni | size %}
     {% assign former_ra_count = site.data.students.former_research_assistants | size %}
-    {% assign total_alumni = phd_alumni_count | plus: msc_alumni_count | plus: former_ra_count %}
+    {% assign grad_alumni = phd_alumni_count | plus: msc_alumni_count %}
     <div class="stats-grid stats-grid--compact">
-      <div class="stat-item"><div class="stat-value">100+</div><div class="stat-label">Research works</div></div>
+      <div class="stat-item"><div class="stat-value">109</div><div class="stat-label">Publications</div></div>
       <div class="stat-item scholar-stat" onclick="window.open('https://scholar.google.com/citations?user=Zy2cIskAAAAJ','_blank')" title="Google Scholar"><div class="stat-value">{{ site.data.scholar.h_index }}</div><div class="stat-label">h-index</div></div>
       <div class="stat-item scholar-stat" onclick="window.open('https://scholar.google.com/citations?user=Zy2cIskAAAAJ','_blank')" title="Google Scholar"><div class="stat-value">{{ site.data.scholar.citations }}+</div><div class="stat-label">Citations</div></div>
       <div class="stat-item"><div class="stat-value">{{ current_students }}</div><div class="stat-label">Current students</div></div>
@@ -97,7 +99,7 @@ latest_posts:
         <div class="about-pillar-icon"><i class="fas fa-graduation-cap"></i></div>
         <div class="about-pillar-body">
           <span class="about-pillar-title">Mentorship</span>
-          <span class="about-pillar-text">Supervising <strong>{{ current_students }} current students</strong> and <strong>{{ total_alumni }} alumni</strong> across PhD and MSc programs, fostering the next generation of AI researchers.</span>
+          <span class="about-pillar-text">Supervising <strong>{{ current_students }} current students</strong>, with <strong>{{ grad_alumni }} graduate alumni</strong> and <strong>{{ former_ra_count }} former research assistants</strong> across PhD and MSc programs — fostering the next generation of AI researchers.</span>
         </div>
       </div>
     </div>
@@ -299,7 +301,6 @@ latest_posts:
 
 <style>
 /* ── About page specific styles ─────────────────────────────── */
-.post-title { display: none !important; }
 
 .about-content { max-width: 100%; margin: 0; padding: 0; }
 
@@ -581,11 +582,28 @@ section { margin-bottom: 4rem; }
   color: white; text-decoration: none; background: linear-gradient(135deg, #4b6cb7, #2c5282);
 }
 
+/* More-profiles toggle */
+.chip-more-toggle { display: none; }
+
 /* Responsive */
 @media (max-width: 768px) {
+  .hero-combined { padding: 1.4rem 1.1rem; margin-bottom: 2rem; }
+  .hero-divider { margin: 1.25rem 0; }
   .hero-profile-row { flex-direction: column; text-align: center; gap: 1.25rem; }
   .profile-photo-img { width: 110px; height: 110px; }
   .profile-contact-links { justify-content: center; }
+  .profile-contact-links .chip-secondary { display: none; }
+  .profile-contact-links.show-all .chip-secondary { display: inline-flex; }
+  .profile-contact-links.show-all .chip-secondary.profile-office { display: inline-flex; }
+  .chip-more-toggle {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.35rem 0.8rem; border-radius: 8px;
+    font-size: 0.85rem; font-weight: 500; cursor: pointer;
+    border: 1px dashed rgba(255,255,255,0.5);
+    background: transparent; color: white;
+  }
+  .profile-contact-links.show-all .chip-more-toggle { display: none; }
+  section { margin-bottom: 2.5rem; }
 }
 
 /* Small phone fixes (≤400px) */
@@ -606,6 +624,18 @@ section { margin-bottom: 4rem; }
 .hero-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem}.hero-action{padding:.72rem 1rem;border:1px solid rgba(255,255,255,.45);border-radius:10px;color:#fff!important;font-weight:700;text-decoration:none!important}.hero-action.primary{background:#22d3c5;border-color:#22d3c5;color:#102033!important}.hero-action:hover{transform:translateY(-2px);background:rgba(255,255,255,.12)}
 .stats-grid--compact{grid-template-columns:repeat(4,minmax(130px,1fr));gap:1rem}.featured-result{margin:1.5rem 0 0;padding:1.4rem 1.6rem;border-left:5px solid #22d3c5;border-radius:12px;background:linear-gradient(110deg,rgba(34,211,197,.12),rgba(75,108,183,.08));display:flex;align-items:center;justify-content:space-between;gap:1rem}.featured-result h3{margin:.2rem 0 .35rem}.featured-result p{margin:0}.featured-result>a{white-space:nowrap;font-weight:700}.result-kicker{font-size:.75rem;font-weight:800;letter-spacing:.1em;color:#0f766e}@media(max-width:700px){.stats-grid--compact{grid-template-columns:repeat(2,1fr)}.featured-result{display:block}.featured-result>a{display:inline-block;margin-top:1rem}}
 </style>
+
+<script>
+(function() {
+  var btn = document.getElementById('more-profiles-toggle');
+  if (!btn) return;
+  btn.addEventListener('click', function() {
+    var row = btn.closest('.profile-contact-links');
+    row.classList.add('show-all');
+    btn.setAttribute('aria-expanded', 'true');
+  });
+})();
+</script>
 
 <!-- Typed.js -->
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>

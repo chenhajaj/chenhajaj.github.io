@@ -2,6 +2,7 @@
 layout: page
 permalink: /contact/
 title: Contact
+description: Contact Chen Hajaj — email, office at Ariel University, and information for prospective students and collaborators.
 nav: true
 nav_order: 8
 ---

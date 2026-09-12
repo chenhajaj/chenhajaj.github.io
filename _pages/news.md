@@ -2,7 +2,7 @@
 layout: page
 title: News
 permalink: /news/
-description: Latest updates, publications, and announcements from the Hajaj Lab.
+description: Latest updates, publications, and announcements from the Adaptive AI Lab at Ariel University.
 nav: true
 nav_order: 5
 ---

@@ -5,14 +5,9 @@ title: CV
 nav: false
 nav_order: 4
 cv_pdf: CV.pdf
-description: #Academic CV including education, academic administration, conferences, patents, and grants.
+description: Academic CV of Chen Hajaj — education, academic administration, grants, patents, and conference organization at Ariel University.
+hide_title: true
 ---
-
-<style>
-  .post-title {
-    display: none !important;
-  }
-</style>
 
 <div class="cv-wrapper">
 
@@ -40,9 +35,9 @@ description: #Academic CV including education, academic administration, conferen
     <div class="cv-stat"><span class="cv-stat-n">$1.2M+</span><span class="cv-stat-l">Research Funding</span></div>
     <div class="cv-stat"><span class="cv-stat-n">4</span><span class="cv-stat-l">Patents</span></div>
     <div class="cv-stat"><span class="cv-stat-n">6</span><span class="cv-stat-l">Conferences Chaired</span></div>
-    <div class="cv-stat"><span class="cv-stat-n">50+</span><span class="cv-stat-l">Publications</span></div>
+    <div class="cv-stat"><span class="cv-stat-n">109</span><span class="cv-stat-l">Publications</span></div>
     <div class="cv-stat"><span class="cv-stat-n">17</span><span class="cv-stat-l">Current Students</span></div>
-    <div class="cv-stat"><span class="cv-stat-n">22</span><span class="cv-stat-l">Alumni</span></div>
+    <div class="cv-stat"><span class="cv-stat-n">22</span><span class="cv-stat-l">Graduate Alumni</span></div>
   </div>
 
   <!-- ══════════════════ BODY: sidebar + content ══════════════════ -->

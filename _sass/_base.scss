@@ -493,6 +493,12 @@ footer.fixed-bottom {
   }
 }
 
+@media (max-width: 768px) {
+  footer.fixed-bottom {
+    position: static;
+  }
+}
+
 footer.sticky-bottom {
   border-top: 1px solid var(--global-divider-color);
   padding-top: 40px;

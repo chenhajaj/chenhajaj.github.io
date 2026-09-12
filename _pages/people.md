@@ -2,7 +2,7 @@
 layout: page
 title: Our Lab
 permalink: /people/
-description: Current students and alumni of the Hajaj Lab at Ariel University
+description: Current students and alumni of the Adaptive AI Lab at Ariel University
 nav: true
 nav_order: 3
 ---
@@ -53,6 +53,8 @@ nav_order: 3
 .person-area-label{font-size:0.7rem;font-weight:600;color:var(--global-text-color-light);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.15rem}
 .person-area{font-size:0.82rem;color:var(--global-text-color);line-height:1.45}
 .person-year{display:inline-block;font-size:0.72rem;font-weight:600;color:var(--global-theme-color);background:rgba(75,108,183,0.08);padding:0.15rem 0.45rem;border-radius:4px;margin-top:0.4rem}
+.person-link{display:inline-flex;align-items:center;gap:0.25rem;font-size:0.72rem;font-weight:600;color:var(--global-theme-color);text-decoration:none;margin-top:0.35rem}
+.person-link:hover{text-decoration:underline}
 
 /* Join CTA */
 .join-cta{background:var(--global-theme-color);color:#fff;border-radius:12px;padding:2rem;text-align:center;margin-top:3rem}
@@ -88,7 +90,7 @@ nav_order: 3
   </div>
   <div class="people-stat">
     <div class="stat-number">{{ alumni_count }}</div>
-    <div class="stat-label">Alumni</div>
+    <div class="stat-label">Graduate Alumni</div>
   </div>
 </div>
 
@@ -100,6 +102,9 @@ nav_order: 3
     <div class="person-avatar">{{ student.name | split: ' ' | first | slice: 0 }}{{ student.name | split: ' ' | last | slice: 0 }}</div>
     <div class="person-info">
       <div class="person-name">{{ student.name }}</div>
+      {% if student.link %}<a class="person-link" href="{{ student.link }}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Profile</a>{% endif %}
+      {% if student.start_year %}<span class="person-year">Since {{ student.start_year }}</span>{% endif %}
+      {% if student.co_supervisor %}<div class="person-area-label">Co-supervisor</div><div class="person-area">{{ student.co_supervisor }}</div>{% endif %}
       {% if student.research_area %}
         <div class="person-area">{{ student.research_area }}</div>
       {% endif %}
@@ -116,6 +121,9 @@ nav_order: 3
     <div class="person-avatar">{{ student.name | split: ' ' | first | slice: 0 }}{{ student.name | split: ' ' | last | slice: 0 }}</div>
     <div class="person-info">
       <div class="person-name">{{ student.name }}</div>
+      {% if student.link %}<a class="person-link" href="{{ student.link }}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Profile</a>{% endif %}
+      {% if student.start_year %}<span class="person-year">Since {{ student.start_year }}</span>{% endif %}
+      {% if student.co_supervisor %}<div class="person-area-label">Co-supervisor</div><div class="person-area">{{ student.co_supervisor }}</div>{% endif %}
       {% if student.research_area %}
         <div class="person-area">{{ student.research_area }}</div>
       {% endif %}
@@ -132,6 +140,7 @@ nav_order: 3
     <div class="person-avatar">{{ student.name | split: ' ' | first | slice: 0 }}{{ student.name | split: ' ' | last | slice: 0 }}</div>
     <div class="person-info">
       <div class="person-name">{{ student.name }}</div>
+      {% if student.link %}<a class="person-link" href="{{ student.link }}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Profile</a>{% endif %}
       {% if student.graduation_year %}<span class="person-year">{{ student.graduation_year }}</span>{% endif %}
       {% if student.research_area %}
         <div class="person-area">{{ student.research_area }}</div>
@@ -149,6 +158,7 @@ nav_order: 3
     <div class="person-avatar">{{ student.name | split: ' ' | first | slice: 0 }}{{ student.name | split: ' ' | last | slice: 0 }}</div>
     <div class="person-info">
       <div class="person-name">{{ student.name }}</div>
+      {% if student.link %}<a class="person-link" href="{{ student.link }}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Profile</a>{% endif %}
       {% if student.graduation_year %}<span class="person-year">{{ student.graduation_year }}</span>{% endif %}
       {% if student.research_area %}
         <div class="person-area">{{ student.research_area }}</div>
@@ -167,6 +177,9 @@ nav_order: 3
     <div class="person-avatar">{{ student.name | split: ' ' | first | slice: 0 }}{{ student.name | split: ' ' | last | slice: 0 }}</div>
     <div class="person-info">
       <div class="person-name">{{ student.name }}</div>
+      {% if student.link %}<a class="person-link" href="{{ student.link }}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Profile</a>{% endif %}
+      {% if student.start_year %}<span class="person-year">Since {{ student.start_year }}</span>{% endif %}
+      {% if student.co_supervisor %}<div class="person-area-label">Co-supervisor</div><div class="person-area">{{ student.co_supervisor }}</div>{% endif %}
       {% if student.research_area %}
         <div class="person-area">{{ student.research_area }}</div>
       {% endif %}
@@ -185,6 +198,7 @@ nav_order: 3
     <div class="person-avatar">{{ student.name | split: ' ' | first | slice: 0 }}{{ student.name | split: ' ' | last | slice: 0 }}</div>
     <div class="person-info">
       <div class="person-name">{{ student.name }}</div>
+      {% if student.link %}<a class="person-link" href="{{ student.link }}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Profile</a>{% endif %}
       {% if student.graduation_year %}<span class="person-year">{{ student.graduation_year }}</span>{% endif %}
       {% if student.research_area %}
         <div class="person-area">{{ student.research_area }}</div>

@@ -1,5 +1,6 @@
 ---
 layout: page
+hide_title: true
 title: Incentive Design
 description: Mechanism design and game theory for e-commerce platforms, team formation, and kidney exchange — aligning individual incentives with collective outcomes.
 img: assets/img/incentive-new.png
@@ -13,10 +14,6 @@ featured_url: "/publications/?topic=Multi-Agent"
 ---
 
 <style>
-.post-header {
-  display: none;
-}
-
 /* Project Content Styling */
 .project-content {
   max-width: 900px;
@@ -155,6 +152,8 @@ featured_url: "/publications/?topic=Multi-Agent"
   </div>
 </div>
 
+<div class="project-headline-result" style="margin:-1.5rem 0 3rem;padding:1rem 1.4rem;border-left:5px solid #22a99a;border-radius:10px;background:linear-gradient(110deg,rgba(34,211,197,.12),rgba(75,108,183,.08));font-size:1.05rem;"><strong>Headline result:</strong> {{ page.outcome }}</div>
+
 <div class="project-content">
 
 <p class="lead-text">Rational agents pursue their own interests — but well-designed rules can make selfish behavior lead to good collective outcomes. We apply mechanism design and game theory to build systems where honesty and cooperation are the optimal strategy, from e-commerce to organ donation.</p>
@@ -176,4 +175,17 @@ featured_url: "/publications/?topic=Multi-Agent"
 <p>The information disclosure mechanisms have been implemented in real e-commerce settings. Kidney exchange work contributes to national transplant policy discussions. Team formation mechanisms are deployed in organizational settings involving thousands of participants.</p>
 
 
+
+<h2>Key publications &amp; resources</h2>
+
+<ul>
+  <li><a href="/publications/">Publications</a> — filter by the <strong>Multi-Agent</strong> topic to see this project's papers.</li>
+  <li><a href="/software/">Code &amp; software</a> — lab repositories, datasets, and tools.</li>
+</ul>
+
+<h2>Collaborate with us</h2>
+
+<p>We welcome academic and industry collaborations, and motivated graduate students, on this research line. <a href="mailto:chenha@g.ariel.ac.il?subject=Collaboration%20inquiry%20—%20Incentive Design">Get in touch →</a></p>
+
 </div>
+

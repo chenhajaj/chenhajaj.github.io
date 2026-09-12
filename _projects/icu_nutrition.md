@@ -1,5 +1,6 @@
 ---
 layout: page
+hide_title: true
 title: Medical Data Science
 description: Machine learning for critical care — predicting ICU feeding complications, phenotyping rare respiratory diseases, and enabling privacy-preserving medical data collaboration.
 img: assets/img/medical_new.png
@@ -12,10 +13,6 @@ featured_url: "/publications/?topic=Healthcare"
 ---
 
 <style>
-.post-header {
-  display: none;
-}
-
 /* Project Content Styling */
 .project-content {
   max-width: 900px;
@@ -154,6 +151,8 @@ featured_url: "/publications/?topic=Healthcare"
   </div>
 </div>
 
+<div class="project-headline-result" style="margin:-1.5rem 0 3rem;padding:1rem 1.4rem;border-left:5px solid #22a99a;border-radius:10px;background:linear-gradient(110deg,rgba(34,211,197,.12),rgba(75,108,183,.08));font-size:1.05rem;"><strong>Headline result:</strong> {{ page.outcome }}</div>
+
 <div class="project-content">
 
 <p class="lead-text">Critical care patients are among the most vulnerable — yet managing their nutrition, predicting complications, and coordinating care remains largely manual. We build machine learning systems that turn ICU data into actionable clinical decisions, improving patient outcomes through real-time prediction.</p>
@@ -172,13 +171,13 @@ featured_url: "/publications/?topic=Healthcare"
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/icu-monitoring.jpg" title="ICU patient monitoring" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/icu-monitoring.jpg" alt="ICU patient monitoring" title="ICU patient monitoring" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/enteral-feeding.jpg" title="Enteral feeding setup" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/enteral-feeding.jpg" alt="Enteral feeding setup" title="Enteral feeding setup" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/data-analysis.jpg" title="Medical data analysis" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/data-analysis.jpg" alt="Medical data analysis" title="Medical data analysis" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -186,4 +185,17 @@ featured_url: "/publications/?topic=Healthcare"
 </div>
 
 
+
+<h2>Key publications &amp; resources</h2>
+
+<ul>
+  <li><a href="/publications/">Publications</a> — filter by the <strong>Healthcare</strong> topic to see this project's papers.</li>
+  <li><a href="/software/">Code &amp; software</a> — lab repositories, datasets, and tools.</li>
+</ul>
+
+<h2>Collaborate with us</h2>
+
+<p>We welcome academic and industry collaborations, and motivated graduate students, on this research line. <a href="mailto:chenha@g.ariel.ac.il?subject=Collaboration%20inquiry%20—%20Medical Data Science">Get in touch →</a></p>
+
 </div>
+
