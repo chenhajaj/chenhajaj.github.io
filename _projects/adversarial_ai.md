@@ -175,8 +175,6 @@ featured_url: "/publications/?topic=Cybersecurity"
   <li><strong>Privacy-Preserving Detection</strong> — Federated learning and differential privacy techniques that protect sensitive data while maintaining detection performance.</li>
 </ul>
 
-
-
 <h2>Key publications &amp; resources</h2>
 
 <ul>
@@ -189,4 +187,3 @@ featured_url: "/publications/?topic=Cybersecurity"
 <p>We welcome academic and industry collaborations, and motivated graduate students, on this research line. <a href="mailto:chenha@g.ariel.ac.il?subject=Collaboration%20inquiry%20—%20Adversarial Artificial Intelligence">Get in touch →</a></p>
 
 </div>
-

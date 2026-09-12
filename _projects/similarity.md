@@ -184,8 +184,6 @@ featured_url: "/publications/?topic=AI%20%26%20ML"
     Our AI analyzes visual and textual features of destinations to build similarity judgments that match human intuition across diverse travel contexts.
 </div>
 
-
-
 <h2>Key publications &amp; resources</h2>
 
 <ul>
@@ -198,4 +196,3 @@ featured_url: "/publications/?topic=AI%20%26%20ML"
 <p>We welcome academic and industry collaborations, and motivated graduate students, on this research line. <a href="mailto:chenha@g.ariel.ac.il?subject=Collaboration%20inquiry%20—%20Multimodal Item Similarity">Get in touch →</a></p>
 
 </div>
-

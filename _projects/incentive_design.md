@@ -174,8 +174,6 @@ featured_url: "/publications/?topic=Multi-Agent"
 
 <p>The information disclosure mechanisms have been implemented in real e-commerce settings. Kidney exchange work contributes to national transplant policy discussions. Team formation mechanisms are deployed in organizational settings involving thousands of participants.</p>
 
-
-
 <h2>Key publications &amp; resources</h2>
 
 <ul>
@@ -188,4 +186,3 @@ featured_url: "/publications/?topic=Multi-Agent"
 <p>We welcome academic and industry collaborations, and motivated graduate students, on this research line. <a href="mailto:chenha@g.ariel.ac.il?subject=Collaboration%20inquiry%20—%20Incentive Design">Get in touch →</a></p>
 
 </div>
-

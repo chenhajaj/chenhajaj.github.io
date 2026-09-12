@@ -1,19 +1,23 @@
 <style>
-#selected-publications .abstract-content { display: none !important; }
-#selected-publications .entry.abstract-open .abstract-content { display: block !important; }
+  #selected-publications .abstract-content {
+    display: none !important;
+  }
+  #selected-publications .entry.abstract-open .abstract-content {
+    display: block !important;
+  }
 </style>
 <div class="publications" id="selected-publications">
   {% bibliography --group_by none --query @*[selected=true]* %}
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const list = document.getElementById('selected-publications');
-  if (!list) return;
-  list.addEventListener('click', function (event) {
-    const toggle = event.target.closest('.abstract-toggle');
-    if (!toggle) return;
-    const entry = toggle.closest('.entry');
-    if (entry) entry.classList.toggle('abstract-open');
+  document.addEventListener('DOMContentLoaded', function () {
+    const list = document.getElementById('selected-publications');
+    if (!list) return;
+    list.addEventListener('click', function (event) {
+      const toggle = event.target.closest('.abstract-toggle');
+      if (!toggle) return;
+      const entry = toggle.closest('.entry');
+      if (entry) entry.classList.toggle('abstract-open');
+    });
   });
-});
 </script>
