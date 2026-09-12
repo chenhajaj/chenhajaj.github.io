@@ -4,7 +4,7 @@ title: Research Notes
 permalink: /insights/
 description: Short, practical explanations of research from the Hajaj Lab — updated as projects develop.
 nav: true
-nav_order: 6
+nav_order: 7
 ---
 <style>.note-grid{display:grid;gap:1.25rem}.research-note{display:block!important;padding:1.5rem;border:1px solid var(--global-divider-color);border-left:5px solid #22a99a;border-radius:12px;background:var(--global-card-bg-color)}.research-note h2{margin-top:0}.note-tag{font-size:.75rem;font-weight:800;color:#0f766e;letter-spacing:.08em}.research-note:nth-child(2){border-left-color:#4f70be}.research-note:nth-child(3){border-left-color:#ef776f}</style>
 <div class="note-grid">
