@@ -177,11 +177,5 @@ featured_url: "/publications/?topic=Education"
 
 <p>Methods validated in live architecture and industrial design studios at Israeli universities. The framework is generalizable to other constructivist disciplines — law clinics, medical simulations, and project-based STEM education.</p>
 
-<div class="project-publications">
-  <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
-  <div class="publications">
-    {% bibliography -q @*[author ~= Sopher] %}
-  </div>
-</div>
 
 </div>
