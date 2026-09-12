@@ -30,6 +30,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/people/";
           },
+        },{id: "nav-research-notes",
+          title: "Research Notes",
+          description: "Short, practical explanations of research from the Hajaj Lab — updated as projects develop.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/insights/";
+          },
         },{id: "nav-code-amp-software",
           title: "Code &amp; Software",
           description: "",
