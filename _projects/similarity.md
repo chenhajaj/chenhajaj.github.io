@@ -185,11 +185,5 @@ featured_url: "/publications/?topic=AI%20%26%20ML"
     Our AI analyzes visual and textual features of destinations to build similarity judgments that match human intuition across diverse travel contexts.
 </div>
 
-<div class="project-publications">
-  <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
-  <div class="publications">
-    {% bibliography -q @*[projects ~= similarity] %}
-  </div>
-</div>
 
 </div>
