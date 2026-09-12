@@ -25,35 +25,35 @@ ninja.data = [{
           },
         },{id: "nav-our-lab",
           title: "Our Lab",
-          description: "Current students and alumni of the Hajaj Lab at Ariel University",
+          description: "Current students and alumni of the Adaptive AI Lab at Ariel University",
           section: "Navigation",
           handler: () => {
             window.location.href = "/people/";
           },
         },{id: "nav-news",
           title: "News",
-          description: "Latest updates, publications, and announcements from the Hajaj Lab.",
+          description: "Latest updates, publications, and announcements from the Adaptive AI Lab at Ariel University.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/news/";
           },
         },{id: "nav-research-notes",
           title: "Research Notes",
-          description: "Short, practical explanations of research from the Hajaj Lab — updated as projects develop.",
+          description: "Short, practical explanations of research from the Adaptive AI Lab at Ariel University — updated as projects develop.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/insights/";
           },
         },{id: "nav-code-amp-software",
           title: "Code &amp; Software",
-          description: "",
+          description: "Open-source code, datasets, and software from Chen Hajaj and the Adaptive AI Lab at Ariel University.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/software/";
           },
         },{id: "nav-contact",
           title: "Contact",
-          description: "",
+          description: "Contact Chen Hajaj — email, office at Ariel University, and information for prospective students and collaborators.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/contact/";
