@@ -66,6 +66,7 @@ nav_order: 3
   .people-stats{gap:0.9rem}
   .people-stat{padding:1rem 1.25rem;min-width:110px}
 }
+.open-topics{margin:3rem 0;padding:2rem;border-radius:16px;background:linear-gradient(135deg,#eefbf9,#eef3ff);border:1px solid #c7e7e2}.topic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:1rem 0 1.4rem}.topic-grid>div{background:#fff;border-left:4px solid #22a99a;border-radius:9px;padding:1rem}.topic-grid b,.topic-grid span{display:block}.topic-grid span{font-size:.85rem;color:#52606d;margin-top:.35rem}
 </style>
 
 {% assign phd_count = site.data.students.phd_students | size %}
@@ -193,6 +194,20 @@ nav_order: 3
 {% endfor %}
 </div>
 {% endif %}
+
+
+<section id="open-topics" class="open-topics">
+  <h2><i class="fas fa-lightbulb"></i> Proposed PhD &amp; MSc Topics</h2>
+  <p><strong>Prospective topics — contact the lab to confirm supervision and funding availability.</strong></p>
+  <div class="topic-grid">
+    <div><b>Adaptive encrypted-traffic AI</b><span>Retrieval, OOD detection, QUIC and post-quantum traffic.</span></div>
+    <div><b>Adversarial and trustworthy ML</b><span>Robust models for security, healthcare, and multimodal systems.</span></div>
+    <div><b>Clinical machine learning</b><span>Decision support, personalization, privacy, and responsible validation.</span></div>
+    <div><b>Multimodal retrieval</b><span>Vision-language representations for products, places, and recommendations.</span></div>
+    <div><b>AI + mechanism design</b><span>Incentives, marketplaces, teams, and resource allocation.</span></div>
+  </div>
+  <a class="btn-join" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20graduate%20researcher">Ask about a topic →</a>
+</section>
 
 <!-- Join CTA -->
 <div class="join-cta">
