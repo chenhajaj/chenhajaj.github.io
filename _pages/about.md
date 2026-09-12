@@ -32,7 +32,7 @@ latest_posts:
       </div>
       <div class="profile-header-text">
         <h2 class="profile-name">Chen Hajaj</h2>
-        <p class="profile-title">Machine learning that adapts when data, threats, and domains change.</p>
+        <p class="profile-title">Machine Learning that adapts when data, threats, and domains change.</p>
         <p class="profile-institution"><i class="fas fa-university"></i> Ariel University</p>
         <div class="profile-contact-links">
           <a href="mailto:chenha@g.ariel.ac.il" title="Email"><i class="fas fa-envelope"></i> chenha@g.ariel.ac.il</a>
