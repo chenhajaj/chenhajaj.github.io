@@ -134,6 +134,7 @@ horizontal: false
     height: 190px;
   }
 }
+.project-proof{margin-top:.8rem;padding:.55rem .65rem;border-radius:8px;background:#e9fbf8;color:#115e59;font-size:.78rem;font-weight:650}.project-links{margin-top:.55rem;color:#315fb8;font-size:.82rem;font-weight:700}
 </style>
 
 <!-- pages/projects.md -->
@@ -163,6 +164,8 @@ horizontal: false
         <div class="card-body">
           <h2 class="card-title">{{ project.title }}</h2>
           <p class="card-text">{{ project.description }}</p>
+          {% if project.outcome %}<div class="project-proof"><i class="fas fa-chart-line"></i> {{ project.outcome }}</div>{% endif %}
+          {% if project.featured_url %}<div class="project-links"><span href="{{ project.featured_url }}">{{ project.featured_label }} →</span></div>{% endif %}
           {% if project.github %}
           <div class="github-icon">
             <a href="{{ project.github }}" title="Code Repository">
