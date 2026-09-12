@@ -71,7 +71,7 @@ description: #Academic CV including education, academic administration, conferen
         <div class="cv-timeline">
 
           <div class="cv-item cv-item--blue">
-            <div class="cv-item-year">2010 – 2016</div>
+            <div class="cv-item-year">2016</div>
             <div class="cv-item-body">
               <h3 class="cv-item-title">Ph.D. in Computer Science</h3>
               <p class="cv-item-org"><i class="fas fa-university"></i> Bar-Ilan University, Israel</p>
@@ -81,7 +81,7 @@ description: #Academic CV including education, academic administration, conferen
           </div>
 
           <div class="cv-item cv-item--blue">
-            <div class="cv-item-year">2008 – 2010</div>
+            <div class="cv-item-year">2012</div>
             <div class="cv-item-body">
               <h3 class="cv-item-title">M.Sc. in Computer Science</h3>
               <p class="cv-item-org"><i class="fas fa-university"></i> Bar-Ilan University, Israel</p>
@@ -89,7 +89,7 @@ description: #Academic CV including education, academic administration, conferen
           </div>
 
           <div class="cv-item cv-item--blue">
-            <div class="cv-item-year">2005 – 2008</div>
+            <div class="cv-item-year">2010</div>
             <div class="cv-item-body">
               <h3 class="cv-item-title">B.Sc. in Computer Science</h3>
               <p class="cv-item-org"><i class="fas fa-university"></i> Bar-Ilan University, Israel</p>
