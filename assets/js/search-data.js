@@ -30,6 +30,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/people/";
           },
+        },{id: "nav-news",
+          title: "News",
+          description: "Latest updates, publications, and announcements from the Hajaj Lab.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/news/";
+          },
         },{id: "nav-research-notes",
           title: "Research Notes",
           description: "Short, practical explanations of research from the Hajaj Lab — updated as projects develop.",
@@ -50,13 +57,6 @@ ninja.data = [{
           section: "Navigation",
           handler: () => {
             window.location.href = "/contact/";
-          },
-        },{id: "nav-news",
-          title: "News",
-          description: "Latest updates, publications, and announcements from the Hajaj Lab.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/news/";
           },
         },{id: "news-four-papers-accepted-at-ieee-icc-2025-d-magic-gnn-based-cybersecurity-attack-detection-encrypted-traffic-classification-via-advanced-data-augmentation-pqclass-post-quantum-encryption-traffic-classification-and-optimized-file-type-detection-and-one-shot-retrieval",
           title: 'Four papers accepted at IEEE ICC 2025: D-MAGIC (GNN-based cybersecurity attack detection), Encrypted...',
