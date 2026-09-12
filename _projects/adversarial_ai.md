@@ -6,6 +6,9 @@ img: assets/img/cyber_new.png
 importance: 1
 category: work
 related_publications: true
+outcome: "Robustness across security, health, and social systems"
+featured_label: "Featured research collection"
+featured_url: "/publications/?topic=Cybersecurity"
 ---
 
 <style>
