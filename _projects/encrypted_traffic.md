@@ -171,8 +171,6 @@ featured_url: "https://doi.org/10.1016/j.comnet.2026.112739"
 
 <p>Our methods are validated on real-world datasets from commercial ISPs and academic network captures. Applications include real-time threat detection in enterprise networks, QoE optimization for streaming services, and network capacity planning — all with full encryption preserved.</p>
 
-
-
 <h2>Key publications &amp; resources</h2>
 
 <ul>
@@ -185,4 +183,3 @@ featured_url: "https://doi.org/10.1016/j.comnet.2026.112739"
 <p>We welcome academic and industry collaborations, and motivated graduate students, on this research line. <a href="mailto:chenha@g.ariel.ac.il?subject=Collaboration%20inquiry%20—%20Encrypted Traffic Classification">Get in touch →</a></p>
 
 </div>
-

@@ -184,8 +184,6 @@ featured_url: "/publications/?topic=Healthcare"
     Left: Real-time patient monitoring generating continuous data streams. Middle: Critical care enteral nutrition delivery. Right: AI-driven analysis of complex clinical data patterns.
 </div>
 
-
-
 <h2>Key publications &amp; resources</h2>
 
 <ul>
@@ -198,4 +196,3 @@ featured_url: "/publications/?topic=Healthcare"
 <p>We welcome academic and industry collaborations, and motivated graduate students, on this research line. <a href="mailto:chenha@g.ariel.ac.il?subject=Collaboration%20inquiry%20—%20Medical Data Science">Get in touch →</a></p>
 
 </div>
-

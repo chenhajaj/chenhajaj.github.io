@@ -176,8 +176,6 @@ featured_url: "/publications/?topic=Education"
 
 <p>Methods validated in live architecture and industrial design studios at Israeli universities. The framework is generalizable to other constructivist disciplines — law clinics, medical simulations, and project-based STEM education.</p>
 
-
-
 <h2>Key publications &amp; resources</h2>
 
 <ul>
@@ -190,4 +188,3 @@ featured_url: "/publications/?topic=Education"
 <p>We welcome academic and industry collaborations, and motivated graduate students, on this research line. <a href="mailto:chenha@g.ariel.ac.il?subject=Collaboration%20inquiry%20—%20Quantifying Constructivist Learning">Get in touch →</a></p>
 
 </div>
-
