@@ -9,10 +9,8 @@ phd_students:
     research_area: "Time and Spectral Time Series Analysis"
   - name: "Bar Vinder"
     research_area: "Medical Data Analysis"
-  - name: "Shira Schweitzer"
-    research_area: "Interaction between Parents and Teens during Driving"
   - name: "Zohar Shimhon"
-    research_area: "Graph Neural Networks"
+    research_area: "Sampling-based Classification"
   - name: "Tanya Zhelezni"
     research_area: "Chatbots for Funnel Optimization"
   - name: "Ohad Nir"
@@ -45,6 +43,8 @@ masters_students:
     research_area: "Anomaly Detection on PQC"
   - name: "Idan Buzaglo"
     research_area: "Early Detection of Myopia"
+  - name: "Yarin Amar"
+    research_area: "Real time cognitive feedback system in design education"
 
 masters_alumni:
   - name: "Yona Elbar"
@@ -105,9 +105,7 @@ masters_alumni:
     graduation_year: "2020"
     research_area: "URL Malware"
 
-research_assistants:
-  - name: "Yarin Amar"
-    research_area: "Design Spaces"
+research_assistants: []
 
 former_research_assistants:
   - name: "Elior Dahan"
