@@ -411,15 +411,19 @@ section { margin-bottom: 4rem; }
 .about-lead-text strong { color: var(--global-theme-color); font-weight: 700; }
 .about-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 .about-pillar {
-  display: flex; align-items: flex-start; gap: 1rem;
-  padding: 1.25rem; background: var(--global-code-bg-color);
-  border: 1px solid #e2e8f0; border-radius: 14px;
-  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative; overflow: hidden; display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.35rem; background: linear-gradient(145deg, rgba(34,211,197,.10), rgba(75,108,183,.07));
+  border: 1px solid rgba(34,169,154,.24); border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(31,47,70,.07); transition: box-shadow 0.2s, transform 0.2s;
 }
-.about-pillar:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(75,108,183,0.12); }
+.about-pillar:nth-child(2) { background: linear-gradient(145deg, rgba(75,108,183,.11), rgba(34,211,197,.06)); }
+.about-pillar:nth-child(3) { background: linear-gradient(145deg, rgba(34,211,197,.08), rgba(24,50,80,.08)); }
+.about-pillar::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 4px; background: linear-gradient(#22d3c5,#4b6cb7); }
+.about-pillar:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(31,47,70,.14); border-color: rgba(34,169,154,.42); }
 .about-pillar-icon {
-  width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--global-theme-color), #3b5998);
+  width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0;
+  background: linear-gradient(135deg, #173451, #22a99a);
+  box-shadow: 0 6px 15px rgba(24,50,80,.18);
   display: flex; align-items: center; justify-content: center;
   color: white; font-size: 1.1rem;
 }
