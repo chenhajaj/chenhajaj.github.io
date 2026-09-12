@@ -783,10 +783,247 @@ nav_order: 1
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+function initPublicationsPage() {
+  if (document.documentElement.dataset.publicationsInitialized === 'true') return;
+  document.documentElement.dataset.publicationsInitialized = 'true';
   // Initialize variables
   const searchInput = document.getElementById('search-input');
   const clearSearchBtn = document.getElementById('clear-search');
   const topicFilter = document.getElementById('topic-filter');
   const yearFilter = document.getElementById('year-filter');
-  const typeFilter = document.getElementByI
+  const typeFilter = document.getElementById('type-filter');
+  const resetBtn = document.getElementById('reset-filters');
+  const publicationsList = document.getElementById('publications-list');
+  const noResults = document.getElementById('no-results');
+  const visibleCount = document.getElementById('visible-count');
+  const totalCount = document.getElementById('total-count');
+
+  // Group year headings with their corresponding publications
+  const yearHeadings = publicationsList.querySelectorAll('h2.bibliography');
+
+  yearHeadings.forEach(function(heading) {
+    let nextElement = heading.nextElementSibling;
+    while (nextElement && !nextElement.matches('ol.bibliography')) {
+      nextElement = nextElement.nextElementSibling;
+    }
+
+    if (nextElement && nextElement.matches('ol.bibliography')) {
+      const yearCard = document.createElement('div');
+      yearCard.className = 'year-card';
+      yearCard.setAttribute('data-year', heading.textContent.trim());
+
+      heading.parentNode.insertBefore(yearCard, heading);
+      yearCard.appendChild(heading);
+      yearCard.appendChild(nextElement);
+    }
+  });
+
+  // Get all publications
+  const allPublications = document.querySelectorAll('.bibliography li');
+  const yearCards = document.querySelectorAll('.year-card');
+  
+  // Populate year filter
+  const years = new Set();
+  yearCards.forEach(card => {
+    const year = card.getAttribute('data-year');
+    if (year) years.add(year);
+  });
+  
+  Array.from(years).sort((a, b) => parseInt(b) - parseInt(a)).forEach(year => {
+    const option = document.createElement('option');
+    option.value = year;
+    option.textContent = year;
+    yearFilter.appendChild(option);
+  });
+
+  // Update counts
+  totalCount.textContent = allPublications.length;
+  updateVisibleCount();
+
+  // Get publication data
+  function getPublicationData(publication) {
+    const text = publication.textContent.toLowerCase();
+    
+    // Extract type from CSS classes first (Jekyll-Scholar adds these)
+    let type = 'misc';
+    const classList = publication.className;
+    if (classList.includes('article') || classList.includes('entry-article')) {
+      type = 'article';
+    } else if (classList.includes('inproceedings') || classList.includes('entry-inproceedings')) {
+      type = 'inproceedings';
+    } else if (publication.querySelector('.periodical')) {
+      // Fallback to text-based detection with comprehensive journal keywords
+      const periodicalText = publication.querySelector('.periodical').textContent.toLowerCase();
+      
+      const journalKeywords = [
+        'journal', 'transactions', 'research', 'review', 'letters', 
+        'ieee access', 'plos', 'nature', 'science', 'acm', 
+        'elsevier', 'springer', 'pergamon', 'mdpi', 'wiley',
+        'computers & security', 'security', 'expert systems',
+        'electronic commerce', 'heliyon', 'nutrients', 'electronics',
+        'network science', 'clinical nutrition', 'respiratory research',
+        'ssrn', 'arxiv', 'available at'
+      ];
+      
+      const conferenceKeywords = [
+        'conference', 'proceedings', 'symposium', 'workshop',
+        'icccn', 'icc', 'infocom', 'ccnc', 'usenix', 'ijcai',
+        'aaai', 'aamas', 'interspeech', 'cscml', 'caadria',
+        'fie', 'isicem', 'isbi', 'icis'
+      ];
+      
+      if (journalKeywords.some(keyword => periodicalText.includes(keyword))) {
+        type = 'article';
+      } else if (conferenceKeywords.some(keyword => periodicalText.includes(keyword))) {
+        type = 'inproceedings';
+      }
+    }
+
+    // Get year from parent card
+    const yearCard = publication.closest('.year-card');
+    const year = yearCard ? yearCard.getAttribute('data-year') : '';
+
+    // Read projects from data-projects attribute on the .entry div
+    const entryDiv = publication.querySelector('.entry');
+    const projects = entryDiv
+      ? (entryDiv.getAttribute('data-projects') || '').split(',').map(s => s.trim()).filter(Boolean)
+      : [];
+
+    return { text, type, year, projects };
+  }
+
+  const topicGroups = {
+    'group-ai': ['machine-learning', 'generative-ai', 'computer-vision', 'speech-processing', 'similarity', 'emotion-analysis'],
+    'group-security': ['security', 'traffic-classification', 'cyber-threat-intelligence'],
+    'group-healthcare': ['healthcare', 'covid-19'],
+    'group-multiagent': ['multi-agent-systems', 'game-theory'],
+    'group-ecommerce': ['e-commerce', 'human-computer-interaction'],
+  };
+
+  // Filter publications
+  function filterPublications() {
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const selectedTopic = topicFilter.value;
+    const selectedYear = yearFilter.value;
+    const selectedType = typeFilter.value;
+
+    let visiblePubs = 0;
+
+    allPublications.forEach(pub => {
+      const data = getPublicationData(pub);
+      let isVisible = true;
+
+      // Search filter
+      if (searchTerm && !data.text.includes(searchTerm)) {
+        isVisible = false;
+      }
+
+      // Topic filter
+      if (selectedTopic !== 'all') {
+        const groupTags = topicGroups[selectedTopic];
+        const matches = groupTags
+          ? data.projects.some(p => groupTags.includes(p))
+          : data.projects.includes(selectedTopic);
+        if (!matches) isVisible = false;
+      }
+
+      // Year filter
+      if (selectedYear !== 'all' && data.year !== selectedYear) {
+        isVisible = false;
+      }
+
+      // Type filter
+      if (selectedType !== 'all' && data.type !== selectedType) {
+        isVisible = false;
+      }
+
+      if (isVisible) {
+        pub.style.display = '';
+        visiblePubs++;
+      } else {
+        pub.style.display = 'none';
+      }
+    });
+
+    // Hide/show year cards based on visible publications
+    yearCards.forEach(card => {
+      const visibleInCard = Array.from(card.querySelectorAll('li')).filter(li => li.style.display !== 'none').length;
+      card.style.display = visibleInCard > 0 ? '' : 'none';
+    });
+
+    // Show/hide no results message
+    if (visiblePubs === 0) {
+      publicationsList.style.display = 'none';
+      noResults.style.display = 'block';
+    } else {
+      publicationsList.style.display = '';
+      noResults.style.display = 'none';
+    }
+
+    updateVisibleCount();
+  }
+
+  function updateVisibleCount() {
+    const visible = Array.from(allPublications).filter(pub => pub.style.display !== 'none').length;
+    visibleCount.textContent = visible;
+  }
+
+  // Event listeners
+  searchInput.addEventListener('input', function() {
+    filterPublications();
+    clearSearchBtn.classList.toggle('active', this.value.length > 0);
+  });
+
+  clearSearchBtn.addEventListener('click', function() {
+    searchInput.value = '';
+    this.classList.remove('active');
+    filterPublications();
+  });
+
+  topicFilter.addEventListener('change', filterPublications);
+
+  // Pill buttons — sync with hidden select
+  document.querySelectorAll('.topic-pill').forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.topic-pill').forEach(function(p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+      topicFilter.value = pill.dataset.value;
+      filterPublications();
+    });
+  });
+
+  // Keep pills in sync when reset is clicked
+  const _origReset = resetBtn.onclick;
+  resetBtn.addEventListener('click', function() {
+    document.querySelectorAll('.topic-pill').forEach(function(p) { p.classList.remove('active'); });
+    const allPill = document.querySelector('.topic-pill[data-value="all"]');
+    if (allPill) allPill.classList.add('active');
+  });
+
+  yearFilter.addEventListener('change', filterPublications);
+  typeFilter.addEventListener('change', filterPublications);
+
+  resetBtn.addEventListener('click', function() {
+    searchInput.value = '';
+    topicFilter.value = 'all';
+    yearFilter.value = 'all';
+    typeFilter.value = 'all';
+    clearSearchBtn.classList.remove('active');
+    filterPublications();
+  });
+
+  // Abstract toggle — click title to show/hide
+  publicationsList.addEventListener('click', function(e) {
+    const toggle = e.target.closest('.abstract-toggle');
+    if (!toggle) return;
+    const entry = toggle.closest('.entry');
+    if (entry) entry.classList.toggle('abstract-open');
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPublicationsPage, { once: true });
+} else {
+  initPublicationsPage();
+}
+</script>
+
