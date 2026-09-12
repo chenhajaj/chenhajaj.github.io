@@ -42,7 +42,7 @@ description: #Academic CV including education, academic administration, conferen
     <div class="cv-stat"><span class="cv-stat-n">6</span><span class="cv-stat-l">Conferences Chaired</span></div>
     <div class="cv-stat"><span class="cv-stat-n">50+</span><span class="cv-stat-l">Publications</span></div>
     <div class="cv-stat"><span class="cv-stat-n">17</span><span class="cv-stat-l">Current Students</span></div>
-    <div class="cv-stat"><span class="cv-stat-n">20</span><span class="cv-stat-l">Alumni</span></div>
+    <div class="cv-stat"><span class="cv-stat-n">22</span><span class="cv-stat-l">Alumni</span></div>
   </div>
 
   <!-- ══════════════════ BODY: sidebar + content ══════════════════ -->
