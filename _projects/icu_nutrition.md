@@ -5,7 +5,7 @@ description: Machine learning for critical care — predicting ICU feeding compl
 img: assets/img/medical_new.png
 importance: 2
 category: work
-related_publications: true
+related_publications: false
 outcome: "Clinical prediction and privacy-preserving collaboration"
 featured_label: "Healthcare AI publications"
 featured_url: "/publications/?topic=Healthcare"
