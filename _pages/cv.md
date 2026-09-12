@@ -2,7 +2,7 @@
 layout: page
 permalink: /cv/
 title: CV
-nav: true
+nav: false
 nav_order: 4
 cv_pdf: CV.pdf
 description: #Academic CV including education, academic administration, conferences, patents, and grants.
