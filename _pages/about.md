@@ -409,7 +409,7 @@ section { margin-bottom: 4rem; }
   border-radius: 0 10px 10px 0;
 }
 .about-lead-text strong { color: var(--global-theme-color); font-weight: 700; }
-.about-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.about-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.75rem; }
 .about-pillar {
   position: relative; overflow: hidden; display: flex; align-items: flex-start; gap: 1rem;
   padding: 1.35rem; background: linear-gradient(145deg, rgba(34,211,197,.10), rgba(75,108,183,.07));
