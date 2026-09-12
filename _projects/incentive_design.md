@@ -7,6 +7,9 @@ importance: 2
 category: work
 giscus_comments: true
 related_publications: true
+outcome: "Mechanisms for platforms, teams, and kidney exchange"
+featured_label: "Mechanism design publications"
+featured_url: "/publications/?topic=Multi-Agent"
 ---
 
 <style>
