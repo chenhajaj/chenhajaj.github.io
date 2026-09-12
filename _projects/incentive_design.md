@@ -175,11 +175,5 @@ featured_url: "/publications/?topic=Multi-Agent"
 
 <p>The information disclosure mechanisms have been implemented in real e-commerce settings. Kidney exchange work contributes to national transplant policy discussions. Team formation mechanisms are deployed in organizational settings involving thousands of participants.</p>
 
-<div class="project-publications">
-  <h3><i class="fas fa-file-alt"></i> Related Publications</h3>
-  <div class="publications">
-    {% bibliography -q @*[author ~= Sarne] %}
-  </div>
-</div>
 
 </div>
