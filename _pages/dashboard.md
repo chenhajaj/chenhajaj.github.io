@@ -37,7 +37,7 @@ robots: noindex, nofollow
   constants below and recomputing CREDENTIAL_HASH, e.g. in a browser console:
     await crypto.subtle.digest("SHA-256", new TextEncoder().encode("newuser:newpass"))
       .then(b => [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join(""))
-  Current placeholder is chen / changeme — change this before sharing the link.
+  Username/password are set below — not a placeholder.
 -->
 
 <div id="dashboard-gate" class="pd-gate">
@@ -45,8 +45,8 @@ robots: noindex, nofollow
     <div class="pd-gate-icon"><i class="fas fa-flask"></i></div>
     <h2>Research Pipeline</h2>
     <p>Sign in to see works in progress.</p>
-    <input type="text" id="dashboard-username" placeholder="Username" autocomplete="username" class="pd-input" />
-    <input type="password" id="dashboard-password" placeholder="Password" autocomplete="current-password" class="pd-input" />
+    <input type="text" id="dashboard-username" placeholder="Username" aria-label="Username" autocomplete="username" class="pd-input" />
+    <input type="password" id="dashboard-password" placeholder="Password" aria-label="Password" autocomplete="current-password" class="pd-input" />
     <button id="dashboard-unlock" class="pd-btn pd-btn-primary pd-unlock-btn">Unlock</button>
     <p id="dashboard-error" class="pd-error">Wrong username or password.</p>
   </div>
@@ -64,7 +64,7 @@ robots: noindex, nofollow
       <button id="pd-save-btn" class="pd-btn pd-btn-ghost" disabled>
         <i class="fas fa-cloud-arrow-up"></i> <span id="pd-save-label">Saved</span>
       </button>
-      <button id="pd-logout-btn" class="pd-btn pd-btn-icon" title="Lock dashboard"><i class="fas fa-lock"></i></button>
+      <button id="pd-logout-btn" class="pd-btn pd-btn-icon" title="Lock dashboard" aria-label="Lock dashboard"><i class="fas fa-lock"></i></button>
     </div>
   </div>
 
@@ -75,7 +75,7 @@ robots: noindex, nofollow
   <div class="pd-controls">
     <div class="pd-search">
       <i class="fas fa-magnifying-glass"></i>
-      <input type="text" id="pd-search" placeholder="Search owner or topic&hellip;" />
+      <input type="text" id="pd-search" placeholder="Search owner or topic&hellip;" aria-label="Search by owner or topic" />
     </div>
     <div class="pd-chips" id="pd-track-chips">
       <button class="pd-chip is-active" data-track="all">All tracks</button>
@@ -83,8 +83,8 @@ robots: noindex, nofollow
       <button class="pd-chip" data-track="conference">Conference</button>
     </div>
     <div class="pd-view-toggle">
-      <button class="pd-view-btn is-active" data-view="board" title="Board view"><i class="fas fa-table-columns"></i></button>
-      <button class="pd-view-btn" data-view="table" title="Table view"><i class="fas fa-list"></i></button>
+      <button class="pd-view-btn is-active" data-view="board" title="Board view" aria-label="Board view"><i class="fas fa-table-columns"></i></button>
+      <button class="pd-view-btn" data-view="table" title="Table view" aria-label="Table view"><i class="fas fa-list"></i></button>
     </div>
   </div>
 
@@ -389,10 +389,10 @@ robots: noindex, nofollow
   "use strict";
 
   // ---------- config ----------
-  var CREDENTIAL_HASH = "39063bf05c924f642a5b1c2e237cc40b996537229c7d2138e474afb40bed7241"; // sha256("chen:changeme")
+  var CREDENTIAL_HASH = "5f532de090d3563f54d0a737f2c6c1e8719630472cb97cffc6689b97c404e902"; // sha256("chen:cybercyber26")
   var REPO = "chenhajaj/chenhajaj.github.io";
   var DATA_PATH = "_data/pipeline.yml";
-  var TARGET_BRANCH = "wip-pipeline-dashboard"; // switch to "main" once PR #7 is merged
+  var TARGET_BRANCH = "main";
   var STATUSES = ["working", "submitted", "revisions", "accepted", "paused"];
   var STATUS_LABEL = { working: "Working", submitted: "Submitted", revisions: "In revisions", accepted: "Accepted", paused: "Paused" };
   var STATUS_ICON = { working: "fa-pen", submitted: "fa-paper-plane", revisions: "fa-rotate", accepted: "fa-circle-check", paused: "fa-pause" };
@@ -595,7 +595,7 @@ robots: noindex, nofollow
         '<td><span class="pd-status-pill" style="background: var(--pd-' + row.status + ')">' + STATUS_LABEL[row.status] + "</span></td>" +
         "<td>" + row.track.charAt(0).toUpperCase() + row.track.slice(1) + "</td>" +
         "<td>" + (row.venue ? esc(row.venue) : "&ndash;") + "</td>" +
-        '<td><button class="pd-row-edit" data-index="' + idx + '"><i class="fas fa-pen"></i></button></td>' +
+        '<td><button class="pd-row-edit" data-index="' + idx + '" aria-label="Edit ' + esc(row.topic) + '"><i class="fas fa-pen"></i></button></td>' +
       "</tr>";
     }).join("");
     body.querySelectorAll(".pd-row-edit").forEach(function (btn) {
