@@ -1,0 +1,464 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="google-site-verification" content="CF3iDj1zpdWXW6jOsd5ZD8GWQtiAjca1PbLuCo0dzEs"> <meta http-equiv="Permissions-Policy" content="interest-cohort=()"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="robots" content="noindex, nofollow"> <title> Dashboard | Chen Hajaj — Adaptive AI Lab </title> <meta name="author" content="Chen Hajaj"> <meta name="description" content="Private pipeline tracker for works in progress."> <meta name="keywords" content="artificial intelligence, machine learning, data science, healthcare AI, cybersecurity, multimodal learning, academic research, Chen Hajaj, Ariel University"> <meta property="og:site_name" content="Chen Hajaj — Adaptive AI Lab"> <meta property="og:type" content="website"> <meta property="og:title" content="Chen Hajaj — Adaptive AI Lab | Dashboard"> <meta property="og:url" content="https://chenhajaj.github.io/dashboard/"> <meta property="og:description" content="Private pipeline tracker for works in progress."> <meta property="og:image" content="https://chenhajaj.github.io/assets/img/social-card.png"> <meta property="og:locale" content="en"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="Dashboard"> <meta name="twitter:description" content="Private pipeline tracker for works in progress."> <meta name="twitter:image" content="https://chenhajaj.github.io/assets/img/social-card.png"> <script type="application/ld+json">
+    {
+        "author":
+        {
+            "@type": "Person",
+            "name": "Chen Hajaj"
+        },
+        "url": "https://chenhajaj.github.io/dashboard/",
+        "@type": "WebSite",
+        "description": "Private pipeline tracker for works in progress.",
+        "headline": "Dashboard",
+        
+        "name": "Chen Hajaj",
+        "@context": "https://schema.org"
+    }
+  </script> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?b05f9a0b7405d7c8c89c7465593dea81"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?dadeb9c5d1fd12bc8d37475657446863"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%A7%AC&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://chenhajaj.github.io/dashboard/"> <script src="/assets/js/theme.js?cefd5f34b7f2e01ade409cfe749168d9"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> Chen Hajaj — Adaptive AI Lab </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">Projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/people/">Our Lab </a> </li> <li class="nav-item "> <a class="nav-link" href="/news/">News </a> </li> <li class="nav-item "> <a class="nav-link" href="/insights/">Research Notes </a> </li> <li class="nav-item "> <a class="nav-link" href="/software/">Code &amp; Software </a> </li> <li class="nav-item "> <a class="nav-link" href="/contact/">Contact </a> </li> <li class="nav-item"> <button id="search-toggle" title="Search" aria-label="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Dashboard</h1> <p class="post-description">Private pipeline tracker for works in progress.</p> </header> <article> <div id="dashboard-gate" class="pd-gate"> <div class="pd-gate-card"> <div class="pd-gate-icon"><i class="fas fa-flask"></i></div> <h2>Research Pipeline</h2> <p>Sign in to see works in progress.</p> <input type="text" id="dashboard-username" placeholder="Username" aria-label="Username" autocomplete="username" class="pd-input"> <input type="password" id="dashboard-password" placeholder="Password" aria-label="Password" autocomplete="current-password" class="pd-input"> <button id="dashboard-unlock" class="pd-btn pd-btn-primary pd-unlock-btn">Unlock</button> <p id="dashboard-error" class="pd-error">Wrong username or password.</p> </div> </div> <div id="dashboard-content" class="pd-content" style="display: none;"> <div class="pd-toolbar"> <div class="pd-toolbar-title"> <h1> <i class="fas fa-flask"></i> Research Pipeline</h1> <p class="pd-subtitle" id="pd-subtitle">Loading…</p> </div> <div class="pd-toolbar-actions"> <button id="pd-add-btn" class="pd-btn pd-btn-primary"><i class="fas fa-plus"></i> Add paper</button> <button id="pd-save-btn" class="pd-btn pd-btn-ghost" disabled> <i class="fas fa-cloud-arrow-up"></i> <span id="pd-save-label">Saved</span> </button> <button id="pd-logout-btn" class="pd-btn pd-btn-icon" title="Lock dashboard" aria-label="Lock dashboard"><i class="fas fa-lock"></i></button> </div> </div> <div class="pd-stats" id="pd-stats"></div> <div class="pd-progress" id="pd-progress" role="img" aria-label="Pipeline status breakdown"></div> <div class="pd-controls"> <div class="pd-search"> <i class="fas fa-magnifying-glass"></i> <input type="text" id="pd-search" placeholder="Search owner or topic…" aria-label="Search by owner or topic"> </div> <div class="pd-chips" id="pd-track-chips"> <button class="pd-chip is-active" data-track="all">All tracks</button> <button class="pd-chip" data-track="journal">Journal</button> <button class="pd-chip" data-track="conference">Conference</button> </div> <div class="pd-view-toggle"> <button class="pd-view-btn is-active" data-view="board" title="Board view" aria-label="Board view"><i class="fas fa-table-columns"></i></button> <button class="pd-view-btn" data-view="table" title="Table view" aria-label="Table view"><i class="fas fa-list"></i></button> </div> </div> <div class="pd-board" id="pd-board"></div> <div class="pd-table-wrap" id="pd-table-wrap" style="display: none;"> <table class="pd-table" id="pd-table"> <thead> <tr> <th>Topic</th> <th>Owner</th> <th>Status</th> <th>Track</th> <th>Venue</th> <th></th> </tr> </thead> <tbody id="pd-table-body"></tbody> </table> </div> <p class="pd-footnote"> Source of truth: <code>_data/pipeline.yml</code>, edited from this page and committed straight to GitHub. Once a paper is actually accepted and published, move it into <code>_bibliography/papers.bib</code> so it shows up on the <a href="/publications/">Publications</a> page, and delete it here. </p> </div> <div id="pd-modal-backdrop" class="pd-modal-backdrop" style="display: none;"> <div class="pd-modal"> <div class="pd-modal-header"> <h3 id="pd-modal-title">Add paper</h3> <button class="pd-modal-close" id="pd-modal-close" aria-label="Close"><i class="fas fa-xmark"></i></button> </div> <div class="pd-modal-body"> <label class="pd-field"> <span>Topic</span> <input type="text" id="pd-f-topic" placeholder="e.g. Federated dropout"> </label> <label class="pd-field"> <span>Owner</span> <input type="text" id="pd-f-owner" placeholder="e.g. Natan"> </label> <div class="pd-field-row"> <label class="pd-field"> <span>Status</span> <select id="pd-f-status"> <option value="working">Working</option> <option value="submitted">Submitted</option> <option value="revisions">In revisions</option> <option value="accepted">Accepted</option> <option value="paused">Paused</option> </select> </label> <label class="pd-field"> <span>Track</span> <select id="pd-f-track"> <option value="journal">Journal</option> <option value="conference">Conference</option> </select> </label> </div> <label class="pd-field"> <span>Venue <em>(optional)</em></span> <input type="text" id="pd-f-venue" placeholder="e.g. AAAI"> </label> </div> <div class="pd-modal-footer"> <button class="pd-btn pd-btn-danger" id="pd-f-delete" style="display: none;"><i class="fas fa-trash"></i> Delete</button> <div class="pd-modal-footer-right"> <button class="pd-btn pd-btn-ghost" id="pd-f-cancel">Cancel</button> <button class="pd-btn pd-btn-primary" id="pd-f-save">Save paper</button> </div> </div> </div> </div> <div id="pd-token-backdrop" class="pd-modal-backdrop" style="display: none;"> <div class="pd-modal pd-modal-narrow"> <div class="pd-modal-header"> <h3> <i class="fab fa-github"></i> Connect to GitHub</h3> <button class="pd-modal-close" id="pd-token-close" aria-label="Close"><i class="fas fa-xmark"></i></button> </div> <div class="pd-modal-body"> <p class="pd-token-help"> Paste a fine-grained personal access token scoped to this repo with <strong>Contents: Read and write</strong>. It's kept only in this tab's session storage — never sent anywhere but <code>api.github.com</code>, and gone when you close the tab. </p> <a class="pd-token-link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener"> Create a token on GitHub <i class="fas fa-arrow-up-right-from-square"></i> </a> <label class="pd-field"> <span>Personal access token</span> <input type="password" id="pd-token-input" placeholder="github_pat_…" autocomplete="off"> </label> </div> <div class="pd-modal-footer"> <div class="pd-modal-footer-right"> <button class="pd-btn pd-btn-ghost" id="pd-token-cancel">Cancel</button> <button class="pd-btn pd-btn-primary" id="pd-token-save">Save &amp; continue</button> </div> </div> </div> </div> <div id="pd-toast-container" class="pd-toast-container"></div> <style>:root{--pd-working:#4f70be;--pd-submitted:#d9a441;--pd-revisions:#ef776f;--pd-accepted:#22a99a;--pd-paused:#8a8f98;--pd-bg:var(--global-bg-color,#f6f7f9);--pd-card-bg:var(--global-card-bg-color,#fff);--pd-border:var(--global-divider-color,#e5e7eb);--pd-text:var(--global-text-color,#1f2328);--pd-text-muted:var(--global-text-color-light,#6b7280);--pd-radius:12px}.pd-gate{min-height:60vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem}.pd-gate-card{background:var(--pd-card-bg);border:1px solid var(--pd-border);border-radius:var(--pd-radius);padding:2.5rem 2rem;max-width:340px;width:100%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.06)}.pd-gate-icon{width:56px;height:56px;margin:0 auto 1rem;border-radius:50%;background:linear-gradient(135deg,var(--pd-working),var(--pd-accepted));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem}.pd-gate-card h2{margin:0 0 .25rem;font-size:1.3rem}.pd-gate-card p{margin:0 0 1.25rem;color:var(--pd-text-muted);font-size:.9rem}.pd-input{width:100%;box-sizing:border-box;padding:.65rem .85rem;margin-bottom:.6rem;border:1px solid var(--pd-border);border-radius:8px;font-size:.95rem;background:var(--pd-bg);color:var(--pd-text)}.pd-unlock-btn{width:100%;margin-top:.4rem}.pd-error{display:none;color:var(--pd-revisions);font-size:.85rem;margin:.6rem 0 0}.pd-error.is-visible{display:block}.pd-btn{display:inline-flex;align-items:center;gap:.45rem;font-size:.88rem;font-weight:600;padding:.55rem 1rem;border-radius:8px;border:1px solid transparent;cursor:pointer;transition:transform .1s ease,box-shadow .15s ease,background .15s ease;white-space:nowrap}.pd-btn:active{transform:scale(0.97)}.pd-btn:disabled{opacity:.55;cursor:default;transform:none}.pd-btn-primary{background:var(--pd-working);color:#fff}.pd-btn-primary:not(:disabled):hover{box-shadow:0 4px 14px rgba(79,112,190,0.35)}.pd-btn-ghost{background:transparent;color:var(--pd-text);border-color:var(--pd-border)}.pd-btn-ghost:not(:disabled):hover{background:var(--pd-bg)}.pd-btn-danger{background:transparent;color:var(--pd-revisions);border-color:var(--pd-revisions)}.pd-btn-danger:hover{background:rgba(239,119,111,0.1)}.pd-btn-icon{padding:.55rem .7rem;background:transparent;color:var(--pd-text-muted);border-color:var(--pd-border)}.pd-btn-icon:hover{color:var(--pd-text);background:var(--pd-bg)}.pd-btn.is-dirty{background:var(--pd-submitted);color:#fff;border-color:transparent}.pd-btn.is-saving{opacity:.75}.pd-spin{animation:pd-spin .8s linear infinite}@keyframes pd-spin{to{transform:rotate(360deg)}}.pd-toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem;margin-bottom:1.5rem}.pd-toolbar-title h1{margin:0 0 .15rem;font-size:1.7rem;display:flex;align-items:center;gap:.5rem}.pd-subtitle{margin:0;color:var(--pd-text-muted);font-size:.92rem}.pd-toolbar-actions{display:flex;gap:.5rem;align-items:center}.pd-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.75rem;margin-bottom:1rem}.pd-stat{background:var(--pd-card-bg);border:1px solid var(--pd-border);border-radius:var(--pd-radius);padding:.9rem 1rem;border-top:3px solid var(--pd-stat-color,var(--pd-working));box-shadow:0 2px 8px rgba(0,0,0,0.03);transition:transform .15s ease}.pd-stat:hover{transform:translateY(-2px)}.pd-stat-num{font-size:1.6rem;font-weight:700;line-height:1}.pd-stat-label{color:var(--pd-text-muted);font-size:.78rem;margin-top:.3rem;text-transform:uppercase;letter-spacing:.03em}.pd-progress{display:flex;height:10px;border-radius:999px;overflow:hidden;margin-bottom:1.5rem;background:var(--pd-border)}.pd-progress-seg{transition:width .4s ease}.pd-controls{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin-bottom:1.25rem}.pd-search{position:relative;flex:1 1 220px;max-width:320px}.pd-search i{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);color:var(--pd-text-muted);font-size:.85rem}.pd-search input{width:100%;box-sizing:border-box;padding:.55rem .8rem .55rem 2.1rem;border:1px solid var(--pd-border);border-radius:999px;background:var(--pd-card-bg);color:var(--pd-text);font-size:.88rem}.pd-chips{display:flex;gap:.4rem}.pd-chip{border:1px solid var(--pd-border);background:var(--pd-card-bg);color:var(--pd-text-muted);border-radius:999px;padding:.4rem .85rem;font-size:.82rem;cursor:pointer;font-weight:600}.pd-chip.is-active{background:var(--pd-working);color:#fff;border-color:transparent}.pd-view-toggle{display:flex;gap:.25rem;margin-left:auto;border:1px solid var(--pd-border);border-radius:8px;padding:.2rem}.pd-view-btn{border:0;background:transparent;color:var(--pd-text-muted);padding:.35rem .6rem;border-radius:6px;cursor:pointer}.pd-view-btn.is-active{background:var(--pd-working);color:#fff}.pd-board{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;align-items:start}.pd-column{background:var(--pd-bg);border-radius:var(--pd-radius);padding:.75rem;min-height:80px}.pd-column-header{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:.85rem;padding:.2rem .3rem .7rem;border-bottom:3px solid var(--pd-col-color,var(--pd-working));margin-bottom:.6rem}
+.pd-column-count{background:var(--pd-card-bg);border:1px solid var(--pd-border);border-radius:999px;font-size:.72rem;padding:.05rem .5rem;color:var(--pd-text-muted)}.pd-cards{display:flex;flex-direction:column;gap:.55rem;min-height:40px}.pd-cards.is-drag-over{background:rgba(79,112,190,0.08);border-radius:8px;outline:2px dashed var(--pd-working);outline-offset:2px}.pd-empty-col{color:var(--pd-text-muted);font-size:.78rem;text-align:center;padding:1rem .5rem;opacity:.7}.pd-card{background:var(--pd-card-bg);border:1px solid var(--pd-border);border-radius:10px;padding:.7rem .8rem;cursor:grab;box-shadow:0 1px 3px rgba(0,0,0,0.04);transition:transform .12s ease,box-shadow .12s ease}.pd-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,0.08)}.pd-card.is-dragging{opacity:.4}.pd-card-topic{font-weight:700;font-size:.92rem;margin-bottom:.4rem}.pd-card-meta{display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem}.pd-avatar{width:20px;height:20px;border-radius:50%;color:#fff;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}.pd-owner{font-size:.8rem;color:var(--pd-text-muted)}.pd-track{font-size:.68rem;font-weight:700;padding:.1rem .45rem;border-radius:999px;text-transform:uppercase;letter-spacing:.02em;margin-left:auto}.pd-track-journal{background:rgba(79,112,190,0.15);color:var(--pd-working)}.pd-track-conference{background:rgba(34,169,154,0.15);color:var(--pd-accepted)}.pd-venue{font-size:.78rem;color:var(--pd-text-muted);margin-bottom:.35rem}.pd-venue i{width:12px}.pd-table-wrap{background:var(--pd-card-bg);border:1px solid var(--pd-border);border-radius:var(--pd-radius);overflow:hidden}.pd-table{width:100%;border-collapse:collapse;font-size:.88rem}.pd-table th{text-align:left;padding:.6rem .9rem;background:var(--pd-bg);color:var(--pd-text-muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.03em}.pd-table td{padding:.55rem .9rem;border-top:1px solid var(--pd-border)}.pd-table tr:hover td{background:var(--pd-bg)}.pd-status-pill{font-size:.72rem;font-weight:700;padding:.15rem .55rem;border-radius:999px;color:#fff;display:inline-block}.pd-row-edit{color:var(--pd-text-muted);cursor:pointer;background:0;border:0;font-size:.85rem}.pd-row-edit:hover{color:var(--pd-working)}.pd-footnote{font-size:.8rem;color:var(--pd-text-muted);margin-top:1.5rem}.pd-modal-backdrop{position:fixed;inset:0;background:rgba(15,17,21,0.5);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;z-index:1000;padding:1rem}.pd-modal{background:var(--pd-card-bg);border-radius:var(--pd-radius);max-width:420px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.25);max-height:90vh;overflow-y:auto}.pd-modal-narrow{max-width:400px}.pd-modal-header{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.2rem .8rem;border-bottom:1px solid var(--pd-border)}.pd-modal-header h3{margin:0;font-size:1.05rem}.pd-modal-close{background:0;border:0;color:var(--pd-text-muted);cursor:pointer;font-size:1rem;padding:.2rem}.pd-modal-body{padding:1.1rem 1.2rem}.pd-field{display:block;margin-bottom:.85rem;font-size:.82rem;color:var(--pd-text-muted)}.pd-field span{display:block;margin-bottom:.3rem;font-weight:600}.pd-field input,.pd-field select{width:100%;box-sizing:border-box;padding:.55rem .7rem;border:1px solid var(--pd-border);border-radius:7px;background:var(--pd-bg);color:var(--pd-text);font-size:.9rem}.pd-field-row{display:flex;gap:.7rem}.pd-field-row .pd-field{flex:1}.pd-modal-footer{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.2rem 1.1rem;border-top:1px solid var(--pd-border)}.pd-modal-footer-right{display:flex;gap:.5rem;margin-left:auto}.pd-token-help{font-size:.85rem;color:var(--pd-text-muted);margin-top:0;line-height:1.5}.pd-token-link{display:inline-block;font-size:.82rem;margin-bottom:1rem;color:var(--pd-working);text-decoration:none}.pd-token-link:hover{text-decoration:underline}.pd-toast-container{position:fixed;bottom:1.2rem;right:1.2rem;display:flex;flex-direction:column;gap:.5rem;z-index:1100}.pd-toast{background:var(--pd-text);color:var(--pd-bg);padding:.65rem 1rem;border-radius:8px;font-size:.85rem;box-shadow:0 10px 25px rgba(0,0,0,0.2);display:flex;align-items:center;gap:.5rem;animation:pd-toast-in .2s ease}.pd-toast.is-error{background:var(--pd-revisions);color:#fff}@keyframes pd-toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@media(max-width:640px){.pd-toolbar{flex-direction:column;align-items:stretch}.pd-toolbar-actions{justify-content:flex-start}.pd-controls{flex-direction:column;align-items:stretch}.pd-view-toggle{margin-left:0;align-self:flex-start}}</style> <script>
+(function () {
+  "use strict";
+
+  // ---------- config ----------
+  var CREDENTIAL_HASH = "5f532de090d3563f54d0a737f2c6c1e8719630472cb97cffc6689b97c404e902"; // sha256("chen:cybercyber26")
+  var REPO = "chenhajaj/chenhajaj.github.io";
+  var DATA_PATH = "_data/pipeline.yml";
+  var TARGET_BRANCH = "main";
+  var STATUSES = ["working", "submitted", "revisions", "accepted", "paused"];
+  var STATUS_LABEL = { working: "Working", submitted: "Submitted", revisions: "In revisions", accepted: "Accepted", paused: "Paused" };
+  var STATUS_ICON = { working: "fa-pen", submitted: "fa-paper-plane", revisions: "fa-rotate", accepted: "fa-circle-check", paused: "fa-pause" };
+
+  var PIPELINE_DATA = [{"owner":"Angelos","topic":"PQC","status":"submitted","track":"journal"},{"owner":"Aviad","topic":"First","status":"working","track":"journal"},{"owner":"Aviad","topic":"Features","status":"submitted","track":"journal"},{"owner":"Bar","topic":"Survival","status":"revisions","track":"journal"},{"owner":"Me","topic":"Time series","status":"submitted","track":"conference","venue":"CCNC"},{"owner":"Hadas","topic":"Bloom","status":"submitted","track":"journal"},{"owner":"Hadas","topic":"Sentiment","status":"working","track":"journal"},{"owner":"Hadas","topic":"LLM","status":"submitted","track":"journal","venue":"AAAI"},{"owner":"Me","topic":"FedSplit","status":"submitted","track":"journal","venue":"TNSM"},{"owner":"Me","topic":"FedSal","status":"submitted","track":"conference","venue":"AAAI"},{"owner":"Natan","topic":"Hybrid","status":"working","track":"journal"},{"owner":"Natan","topic":"Wavelet","status":"working","track":"journal"},{"owner":"Natan","topic":"Image","status":"submitted","track":"conference","venue":"INFOCOM"},{"owner":"Omri","topic":"Dementia","status":"submitted","track":"journal"},{"owner":"Ori","topic":"NeTab","status":"revisions","track":"journal"},{"owner":"Ronyt","topic":"GPT","status":"revisions","track":"journal","venue":"ACM TOCE"},{"owner":"Shimon","topic":"Lungs","status":"submitted","track":"journal"},{"owner":"Udi","topic":"GAN-like","status":"revisions","track":"journal"},{"owner":"Udi","topic":"Low\u0026Slow","status":"submitted","track":"journal","venue":"Multimedia"},{"owner":"Zion","topic":"QOE","status":"revisions","track":"conference","venue":"INFOCOM"},{"owner":"Stas","topic":"PQC","status":"submitted","track":"conference"},{"owner":"Zohar","topic":"Anomaly","status":"submitted","track":"conference","venue":"CCNC"},{"owner":"Shaked","topic":"ActiveNet","status":"working","track":"journal"},{"owner":"Matan","topic":"Federated","status":"working","track":"journal"},{"owner":"Udi","topic":"Energy","status":"working","track":"journal"},{"owner":"Omri","topic":"Myopia","status":"working","track":"journal"}];
+
+  // ---------- gate ----------
+  var gate = document.getElementById("dashboard-gate");
+  var content = document.getElementById("dashboard-content");
+  var userInput = document.getElementById("dashboard-username");
+  var passInput = document.getElementById("dashboard-password");
+  var unlockBtn = document.getElementById("dashboard-unlock");
+  var errorMsg = document.getElementById("dashboard-error");
+
+  function sha256Hex(str) {
+    var enc = new TextEncoder().encode(str);
+    return crypto.subtle.digest("SHA-256", enc).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) { return b.toString(16).padStart(2, "0"); }).join("");
+    });
+  }
+
+  function tryUnlock() {
+    var combined = (userInput.value || "").trim() + ":" + (passInput.value || "");
+    sha256Hex(combined).then(function (hash) {
+      if (hash === CREDENTIAL_HASH) {
+        sessionStorage.setItem("pd_unlocked", "1");
+        errorMsg.classList.remove("is-visible");
+        showDashboard();
+      } else {
+        errorMsg.classList.add("is-visible");
+      }
+    });
+  }
+  unlockBtn.addEventListener("click", tryUnlock);
+  passInput.addEventListener("keydown", function (e) { if (e.key === "Enter") tryUnlock(); });
+  userInput.addEventListener("keydown", function (e) { if (e.key === "Enter") passInput.focus(); });
+
+  document.getElementById("pd-logout-btn").addEventListener("click", function () {
+    sessionStorage.removeItem("pd_unlocked");
+    gate.style.display = "flex";
+    content.style.display = "none";
+    userInput.value = "";
+    passInput.value = "";
+  });
+
+  function showDashboard() {
+    gate.style.display = "none";
+    content.style.display = "block";
+    initDashboard();
+  }
+
+  if (sessionStorage.getItem("pd_unlocked") === "1") {
+    showDashboard();
+  }
+
+  // ---------- dashboard state ----------
+  var data = null;
+  var dirty = false;
+  var view = "board";
+  var trackFilter = "all";
+  var searchTerm = "";
+  var editingIndex = null; // index into `data` while modal is open, or null when adding
+  var initialized = false;
+
+  function initDashboard() {
+    if (initialized) { render(); return; }
+    initialized = true;
+    data = JSON.parse(JSON.stringify(PIPELINE_DATA));
+    wireControls();
+    wireModal();
+    wireTokenModal();
+    render();
+  }
+
+  function ownerColor(name) {
+    var palette = ["#4f70be", "#d9a441", "#ef776f", "#22a99a", "#8a6fd4", "#3f9ecc", "#c96fb0", "#6aa84f"];
+    var h = 0;
+    for (var i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
+    return palette[h % palette.length];
+  }
+  function initials(name) {
+    return name.split(/\s+/).map(function (p) { return p[0]; }).join("").slice(0, 2).toUpperCase();
+  }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function filteredData() {
+    var term = searchTerm.trim().toLowerCase();
+    return data.filter(function (r) {
+      if (trackFilter !== "all" && r.track !== trackFilter) return false;
+      if (!term) return true;
+      return (r.owner + " " + r.topic).toLowerCase().indexOf(term) !== -1;
+    });
+  }
+
+  // ---------- rendering ----------
+  function render() {
+    renderStats();
+    renderProgress();
+    if (view === "board") { renderBoard(); } else { renderTable(); }
+    updateSubtitle();
+    updateSaveButton();
+  }
+
+  function updateSubtitle() {
+    document.getElementById("pd-subtitle").textContent =
+      data.length + " work" + (data.length === 1 ? "" : "s") + " in progress, tracked from submission to publication.";
+  }
+
+  function renderStats() {
+    var el = document.getElementById("pd-stats");
+    el.innerHTML = STATUSES.map(function (s) {
+      var count = data.filter(function (r) { return r.status === s; }).length;
+      return '<div class="pd-stat" style="--pd-stat-color: var(--pd-' + s + ')">' +
+        '<div class="pd-stat-num">' + count + '</div>' +
+        '<div class="pd-stat-label">' + STATUS_LABEL[s] + '</div></div>';
+    }).join("");
+  }
+
+  function renderProgress() {
+    var el = document.getElementById("pd-progress");
+    var total = data.length || 1;
+    el.innerHTML = STATUSES.map(function (s) {
+      var count = data.filter(function (r) { return r.status === s; }).length;
+      if (!count) return "";
+      var pct = (count / total) * 100;
+      return '<div class="pd-progress-seg" style="width:' + pct + '%; background: var(--pd-' + s + ')" title="' +
+        STATUS_LABEL[s] + ": " + count + '"></div>';
+    }).join("");
+  }
+
+  function cardHtml(row) {
+    var idx = data.indexOf(row);
+    return '<div class="pd-card" draggable="true" data-index="' + idx + '">' +
+      '<div class="pd-card-topic">' + esc(row.topic) + '</div>' +
+      '<div class="pd-card-meta">' +
+        '<div class="pd-avatar" style="background:' + ownerColor(row.owner) + '">' + esc(initials(row.owner)) + '</div>' +
+        '<span class="pd-owner">' + esc(row.owner) + '</span>' +
+        '<span class="pd-track pd-track-' + row.track + '">' + row.track.slice(0, 4) + '</span>' +
+      '</div>' +
+      (row.venue ? '<div class="pd-venue"><i class="fas fa-location-dot"></i> ' + esc(row.venue) + '</div>' : "") +
+    '</div>';
+  }
+
+  function renderBoard() {
+    var board = document.getElementById("pd-board");
+    var rows = filteredData();
+    board.innerHTML = STATUSES.map(function (s) {
+      var group = rows.filter(function (r) { return r.status === s; });
+      var cards = group.length
+        ? group.map(cardHtml).join("")
+        : '<div class="pd-empty-col">No papers here</div>';
+      return '<div class="pd-column pd-column-' + s + '">' +
+        '<div class="pd-column-header" style="--pd-col-color: var(--pd-' + s + ')">' +
+          '<span><i class="fas ' + STATUS_ICON[s] + '"></i> ' + STATUS_LABEL[s] + '</span>' +
+          '<span class="pd-column-count">' + group.length + '</span>' +
+        '</div>' +
+        '<div class="pd-cards" data-status="' + s + '">' + cards + '</div>' +
+      '</div>';
+    }).join("");
+
+    board.querySelectorAll(".pd-card").forEach(function (card) {
+      card.addEventListener("click", function () { openModal(parseInt(card.dataset.index, 10)); });
+      card.addEventListener("dragstart", function (e) {
+        card.classList.add("is-dragging");
+        e.dataTransfer.setData("text/plain", card.dataset.index);
+        e.dataTransfer.effectAllowed = "move";
+      });
+      card.addEventListener("dragend", function () { card.classList.remove("is-dragging"); });
+    });
+
+    board.querySelectorAll(".pd-cards").forEach(function (col) {
+      col.addEventListener("dragover", function (e) { e.preventDefault(); col.classList.add("is-drag-over"); });
+      col.addEventListener("dragleave", function () { col.classList.remove("is-drag-over"); });
+      col.addEventListener("drop", function (e) {
+        e.preventDefault();
+        col.classList.remove("is-drag-over");
+        var idx = parseInt(e.dataTransfer.getData("text/plain"), 10);
+        var newStatus = col.dataset.status;
+        if (!isNaN(idx) && data[idx] && data[idx].status !== newStatus) {
+          data[idx].status = newStatus;
+          markDirty();
+          render();
+        }
+      });
+    });
+  }
+
+  function renderTable() {
+    var body = document.getElementById("pd-table-body");
+    var rows = filteredData();
+    body.innerHTML = rows.map(function (row) {
+      var idx = data.indexOf(row);
+      return "<tr>" +
+        "<td>" + esc(row.topic) + "</td>" +
+        "<td>" + esc(row.owner) + "</td>" +
+        '<td><span class="pd-status-pill" style="background: var(--pd-' + row.status + ')">' + STATUS_LABEL[row.status] + "</span></td>" +
+        "<td>" + row.track.charAt(0).toUpperCase() + row.track.slice(1) + "</td>" +
+        "<td>" + (row.venue ? esc(row.venue) : "&ndash;") + "</td>" +
+        '<td><button class="pd-row-edit" data-index="' + idx + '" aria-label="Edit ' + esc(row.topic) + '"><i class="fas fa-pen"></i></button></td>' +
+      "</tr>";
+    }).join("");
+    body.querySelectorAll(".pd-row-edit").forEach(function (btn) {
+      btn.addEventListener("click", function () { openModal(parseInt(btn.dataset.index, 10)); });
+    });
+  }
+
+  // ---------- controls ----------
+  function wireControls() {
+    document.getElementById("pd-search").addEventListener("input", function (e) {
+      searchTerm = e.target.value;
+      render();
+    });
+    document.querySelectorAll(".pd-chip").forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        document.querySelectorAll(".pd-chip").forEach(function (c) { c.classList.remove("is-active"); });
+        chip.classList.add("is-active");
+        trackFilter = chip.dataset.track;
+        render();
+      });
+    });
+    document.querySelectorAll(".pd-view-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".pd-view-btn").forEach(function (b) { b.classList.remove("is-active"); });
+        btn.classList.add("is-active");
+        view = btn.dataset.view;
+        document.getElementById("pd-board").style.display = view === "board" ? "grid" : "none";
+        document.getElementById("pd-table-wrap").style.display = view === "table" ? "block" : "none";
+        render();
+      });
+    });
+    document.getElementById("pd-add-btn").addEventListener("click", function () { openModal(null); });
+    document.getElementById("pd-save-btn").addEventListener("click", saveToGithub);
+  }
+
+  // ---------- add/edit modal ----------
+  function wireModal() {
+    document.getElementById("pd-modal-close").addEventListener("click", closeModal);
+    document.getElementById("pd-f-cancel").addEventListener("click", closeModal);
+    document.getElementById("pd-modal-backdrop").addEventListener("click", function (e) {
+      if (e.target.id === "pd-modal-backdrop") closeModal();
+    });
+    document.getElementById("pd-f-save").addEventListener("click", saveModalForm);
+    document.getElementById("pd-f-delete").addEventListener("click", function () {
+      if (editingIndex === null) return;
+      if (!confirm("Remove this paper from the pipeline?")) return;
+      data.splice(editingIndex, 1);
+      markDirty();
+      closeModal();
+      render();
+    });
+  }
+
+  function openModal(index) {
+    editingIndex = index;
+    var isEdit = index !== null;
+    document.getElementById("pd-modal-title").textContent = isEdit ? "Edit paper" : "Add paper";
+    document.getElementById("pd-f-delete").style.display = isEdit ? "inline-flex" : "none";
+    var row = isEdit ? data[index] : { owner: "", topic: "", status: "working", track: "journal", venue: "" };
+    document.getElementById("pd-f-topic").value = row.topic || "";
+    document.getElementById("pd-f-owner").value = row.owner || "";
+    document.getElementById("pd-f-status").value = row.status || "working";
+    document.getElementById("pd-f-track").value = row.track || "journal";
+    document.getElementById("pd-f-venue").value = row.venue || "";
+    document.getElementById("pd-modal-backdrop").style.display = "flex";
+    document.getElementById("pd-f-topic").focus();
+  }
+  function closeModal() {
+    document.getElementById("pd-modal-backdrop").style.display = "none";
+    editingIndex = null;
+  }
+  function saveModalForm() {
+    var topic = document.getElementById("pd-f-topic").value.trim();
+    var owner = document.getElementById("pd-f-owner").value.trim();
+    if (!topic || !owner) { showToast("Topic and owner are required", true); return; }
+    var row = {
+      owner: owner,
+      topic: topic,
+      status: document.getElementById("pd-f-status").value,
+      track: document.getElementById("pd-f-track").value,
+      venue: document.getElementById("pd-f-venue").value.trim(),
+    };
+    if (!row.venue) delete row.venue;
+    if (editingIndex !== null) {
+      data[editingIndex] = row;
+    } else {
+      data.push(row);
+    }
+    markDirty();
+    closeModal();
+    render();
+  }
+
+  // ---------- dirty / save state ----------
+  function markDirty() {
+    dirty = true;
+    updateSaveButton();
+  }
+  function updateSaveButton() {
+    var btn = document.getElementById("pd-save-btn");
+    var label = document.getElementById("pd-save-label");
+    btn.disabled = !dirty;
+    btn.classList.toggle("is-dirty", dirty);
+    label.textContent = dirty ? "Save to GitHub" : "Saved";
+  }
+
+  // ---------- GitHub token modal ----------
+  function wireTokenModal() {
+    document.getElementById("pd-token-close").addEventListener("click", closeTokenModal);
+    document.getElementById("pd-token-cancel").addEventListener("click", closeTokenModal);
+    document.getElementById("pd-token-backdrop").addEventListener("click", function (e) {
+      if (e.target.id === "pd-token-backdrop") closeTokenModal();
+    });
+    document.getElementById("pd-token-save").addEventListener("click", function () {
+      var token = document.getElementById("pd-token-input").value.trim();
+      if (!token) return;
+      sessionStorage.setItem("pd_gh_token", token);
+      closeTokenModal();
+      saveToGithub();
+    });
+  }
+  function openTokenModal() {
+    document.getElementById("pd-token-input").value = "";
+    document.getElementById("pd-token-backdrop").style.display = "flex";
+    document.getElementById("pd-token-input").focus();
+  }
+  function closeTokenModal() {
+    document.getElementById("pd-token-backdrop").style.display = "none";
+  }
+
+  // ---------- toasts ----------
+  function showToast(msg, isError) {
+    var container = document.getElementById("pd-toast-container");
+    var el = document.createElement("div");
+    el.className = "pd-toast" + (isError ? " is-error" : "");
+    el.innerHTML = '<i class="fas ' + (isError ? "fa-triangle-exclamation" : "fa-check") + '"></i> ' + esc(msg);
+    container.appendChild(el);
+    setTimeout(function () { el.remove(); }, isError ? 6000 : 3200);
+  }
+
+  // ---------- YAML (round-trips with _data/pipeline.yml) ----------
+  function yamlScalar(v) {
+    var s = String(v);
+    if (/^\s|\s$|[:#{}\[\],&*!|>'"%@`]/.test(s) || s === "") return JSON.stringify(s);
+    return s;
+  }
+  function toYaml(rows) {
+    var out = '# Works-in-progress pipeline (replaces the "Publications" Google Sheet).\n' +
+      "# status: working | submitted | revisions | paused | accepted\n" +
+      "# track:  journal | conference\n" +
+      "# venue:  target/actual venue, when known (optional)\n";
+    rows.forEach(function (r) {
+      out += "- owner: " + yamlScalar(r.owner) + "\n";
+      out += "  topic: " + yamlScalar(r.topic) + "\n";
+      out += "  status: " + r.status + "\n";
+      out += "  track: " + r.track + "\n";
+      if (r.venue) out += "  venue: " + yamlScalar(r.venue) + "\n";
+    });
+    return out;
+  }
+
+  // ---------- save to GitHub ----------
+  function base64EncodeUtf8(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
+  function setSaving(isSaving) {
+    var btn = document.getElementById("pd-save-btn");
+    var label = document.getElementById("pd-save-label");
+    btn.disabled = isSaving || !dirty;
+    btn.classList.toggle("is-saving", isSaving);
+    label.innerHTML = isSaving ? '<i class="fas fa-circle-notch pd-spin"></i> Saving&hellip;' : (dirty ? "Save to GitHub" : "Saved");
+  }
+
+  function saveToGithub() {
+    var token = sessionStorage.getItem("pd_gh_token");
+    if (!token) { openTokenModal(); return; }
+
+    setSaving(true);
+    var apiBase = "https://api.github.com/repos/" + REPO + "/contents/" + DATA_PATH;
+
+    fetch(apiBase + "?ref=" + encodeURIComponent(TARGET_BRANCH), {
+      headers: { Authorization: "Bearer " + token, Accept: "application/vnd.github+json" },
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("Couldn't read the current file (HTTP " + res.status + "). Check the token's repo access.");
+        return res.json();
+      })
+      .then(function (fileJson) {
+        var yamlText = toYaml(data);
+        return fetch(apiBase, {
+          method: "PUT",
+          headers: {
+            Authorization: "Bearer " + token,
+            Accept: "application/vnd.github+json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: "Update pipeline.yml via dashboard",
+            content: base64EncodeUtf8(yamlText),
+            sha: fileJson.sha,
+            branch: TARGET_BRANCH,
+          }),
+        });
+      })
+      .then(function (res) {
+        return res.json().then(function (json) {
+          if (!res.ok) throw new Error(json.message || "GitHub rejected the save (HTTP " + res.status + ")");
+          return json;
+        });
+      })
+      .then(function () {
+        dirty = false;
+        showToast("Saved to GitHub");
+      })
+      .catch(function (err) {
+        showToast(err.message || "Save failed", true);
+      })
+      .finally(function () {
+        setSaving(false);
+      });
+  }
+})();
+</script> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Chen Hajaj. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?a0db7e5d5c70cc3252b3138b0c91dcaf" type="text/javascript"></script> <script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/js/mathjax-setup.js?a5bb4e6a542c546dd929b24b8b236dfd"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script async src="https://www.googletagmanager.com/gtag/js?id=G-BMH2TRT4TL"></script> <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-BMH2TRT4TL');
+  </script> <script defer src="/assets/js/google-analytics-setup.js?12374742c4b1801ba82226e617af7e2d"></script> <script defer src="/assets/js/progress-bar.js?2f30e0e6801ea8f5036fa66e1ab0a71a" type="text/javascript"></script> <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>
+    addBackToTop();
+  </script> <script defer src="/assets/js/back-to-top-ring.js?b542ffe6fdba6d4d36a9391a11915ad9"></script> <script type="module" src="/assets/js/search/ninja-keys.min.js?230637657ac0b42e92d76e2b4c1b4764"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/js/search-setup.js?6c304f7b1992d4b60f7a07956e52f04a"></script> <script src="/assets/js/search-data.js"></script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> </body> </html>
