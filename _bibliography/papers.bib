@@ -84,6 +84,7 @@ empirically to improve learning behaviours in studio-based education.}
 @inproceedings{zion2026qoe_fps_ccnc,
   author    = {Zion, Yehonatan and Paz, Eyal and Dubin, Ran and Dvir, Amit and Hajaj, Chen},
   title     = {Quality of Experience Prediction for First Person Shooter Online Gaming: The Case Study of Call of Duty},
+  doi = {10.1109/CCNC65079.2026.11366349},
   booktitle = {Proceedings of the IEEE Consumer Communications \& Networking Conference (CCNC 2026)},
   year      = {2026},
   month     = jan,
@@ -136,24 +137,14 @@ abstract = {Music in the current digital era is consumed primarily on-demand, fo
   projects  = {machine-learning, security, computer-vision},
 abstract = {Traditional CAPTCHAs are increasingly vulnerable to deep learning-based solvers that decode text and images with high accuracy. In this work, we propose methods to strengthen adversarial CAPTCHAs without compromising human usability. First, we introduce a Precise Gradient Method (PGM) that preserves gradient magnitude (rather than discarding it via a sign operator), producing adversarial perturbations with significantly lower perceptual noise. Second, we develop intelligent target class selection, using either dataset-level confusion structure (Class Relations Network) or image-specific softmax probabilities (Distance-Based Target), to steer adversarial perturbations more efficiently. Across multiple modern architectures (MobileNets, EfficientNets, ResNet, and Vision Transformer), our framework achieves faster convergence (fewer iterations), reduced visual distortion, and notably greater robustness under iterative adversarial retraining. Experiments show that our methods consistently reduce iteration counts and perceptual distortion while significantly increasing the difficulty for automated attacks. Our results offer a practical, scalable path toward the next generation of CAPTCHA systems and contribute new insights to the adversarial machine learning landscape focused on security and usability.}
 }
-@inproceedings{marbel2025cloudy,
-  title={Cloudy with a Chance of Anomalies: Dynamic Graph Neural Network for Early Detection of Cloud Services' User Anomalies},
-  author={Marbel, Revital and Cohen, Yanir and Dubin, Ran and Dvir, Amit and Hajaj, Chen},
-  booktitle={Proceedings of the 34th International Conference on Computer Communications and Networks},
-  series={ICCCN},
-  year={2025},
-  doi={10.1109/CCNC65079.2026.11366510},
-  projects={machine-learning, security},
-abstract = {In today’s digital landscape, ensuring the security of cloud environments is critical for organizational resilience, growth, and operational efficiency. As cloud services become more prevalent, so do sophisticated attacks targeting cloud users, making early detection essential. This paper introduces a novel time-based embedding approach for Cloud Services Graph-based Anomaly Detection (CS-GAD) that leverages a Graph Neural Network (GNN) to detect anomalous user behavior. We propose a dynamic tripartite graph to model interactions among users, actions, and cloud services over time. Using behavioral patterns, our GNN generates user embeddings to enable early detection of anomalies. We evaluate this approach on a novel dataset simulating five real-world attacks: cryptojacking, billing abuse, lateral movement, monitor exploitation, and service targeting. The dataset comprises 107,116 Application Programming Interface (API) calls over 32 days, tracking 79 AWS services, with attacks embedded within legitimate cloud traffic. 
-Our results demonstrate that the proposed method achieves a lower false positive rate and higher detection accuracy than a prevailing method, as evidenced by improved accuracy, precision, recall, and F1-score.}
-}
 
 @inproceedings{lisker2025optimized,
   abstract = {File type classification is critical in digital forensics, and file carving. However, the increasing diversity of file formats challenges accurate classification. Traditional methods rely on hand-crafted features or compact neural networks but face long training times, limited training data, and lower accuracy. This paper introduces three novel, content-based file-type classification approaches to address these challenges. These approaches improve accuracy and streamline the integration of new file types using pre-trained models, enhancing both speed and reliability. The first approach utilizes Natural Language Processing (NLP) with a transformer architecture, while the second combines statistical features with a pre-trained model via transfer learning. These methods achieved accuracy rates of 72.4 % and 69.2 %, respectively, surpassing state-of-the-art Convolutional Neural Network (CNN) models. The third approach employs one-shot learning, achieving 100 % accuracy in several scenarios, enabling efficient training with minimal data.},
 
-  title={Optimized File Type Detection and One-Shot Reclassification Model},
-  author={Lisker, Simona and Botman, Ayelet and Hajaj, Chen and Dubin, Ran and Dvir, Amit},
-  booktitle={Proceedings of the IEEE International Conference on Communications},
+  title = {Optimized File Type Detection and One-Shot Retrieval},
+  pages = {1121--1126},
+  author={Lisker, Simona and Butman, Ayelet and Hajaj, Chen and Dubin, Ran and Dvir, Amit},
+  booktitle = {Proceedings of the IEEE International Conference on Communications (ICC 2025)},
   series={ICC},
   year={2025},
   doi={10.1109/icc52391.2025.11161523},
@@ -267,11 +258,12 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
   projects={machine-learning, traffic-classification, encrypted-traffic}
 }
 
-@article{lukach2024cbr,
+@misc{lukach2024cbr,
   abstract = {Encrypted network traffic Classification tackles the problem from different approaches and with different goals. One of the common approaches is using Machine learning or Deep Learning-based solutions on a fixed number of classes, leading to misclassification when an unknown class is given as input. One of the solutions for handling unknown classes is to retrain the model, however, retraining models every time they become obsolete is both resource and time-consuming. Therefore, there is a growing need to allow classification models to detect and adapt to new classes dynamically, without retraining, but instead able to detect new classes using few shots learning [1]. In this paper, we introduce Adaptive Classification By Retrieval CBR, a novel approach for encrypted network traffic classification. Our new approach is based on an ANN-based method, which allows us to effectively identify new and existing classes without retraining the model. The novel approach is simple, yet effective and achieved similar results to RF with up to 5% difference (usually less than that) in the classification tasks while having a slight decrease in the case of new samples (from new classes) without retraining. To summarize, the new method is a real-time classification, which can classify new classes without retraining. Furthermore, our solution can be used as a complementary solution alongside RF or any other machine/deep learning classification method, as an aggregated solution.},
   title={CBR--Boosting Adaptive Classification By Retrieval of Encrypted Network Traffic with Out-of-Distribution},
+  doi = {10.48550/arXiv.2403.11206},
+  howpublished = {arXiv preprint arXiv:2403.11206},
   author={Lukach, Amir and Dubin, Ran and Dvir, Amit and Hajaj, Chen},
-  journal={arXiv preprint arXiv:2403.11206},
   year={2024},
   projects={machine-learning, traffic-classification, encrypted-traffic}
 }
@@ -289,12 +281,12 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
   projects={education, human-computer-interaction}
 }
 
-@article{aharon2024few,
+@misc{aharon2024few,
   abstract = {Web applications and APIs face constant threats from malicious actors seeking to exploit vulnerabilities for illicit gains. To defend against these threats, it is essential to have anomaly detection systems that can identify a variety of malicious behaviors. However, a significant challenge in this area is the limited availability of training data. Existing datasets often do not provide sufficient coverage of the diverse API structures, parameter formats, and usage patterns encountered in real-world scenarios. As a result, models trained on these datasets often struggle to generalize and may fail to detect less common or emerging attack vectors. To enhance detection accuracy and robustness, it is crucial to access larger and more representative datasets that capture the true variability of API traffic. To address this, we introduce a GAN-inspired learning framework that extends limited API traffic datasets through targeted, domain-aware synthesis. Drawing on techniques from Natural Language Processing (NLP), our approach leverages Transformer-based architectures, particularly RoBERTa, to enhance the contextual representation of API requests and generate realistic synthetic samples aligned with security-specific semantics. We evaluate our framework on two benchmark datasets, CSIC 2010 and ATRDF 2023, and compare it with a previous data augmentation technique to assess the importance of domain-specific synthesis. In addition, we apply our augmented data to various anomaly detection models to evaluate its impact on classification performance. Our method achieves up to a 4.94% increase in F1 score on CSIC 2010 and up to 21.10% on ATRDF 2023. The source codes of this work are available at this https URL.},
 
   title={Few-Shot API Attack Detection: Overcoming Data Scarcity with GAN-Inspired Learning},
+  howpublished = {arXiv preprint arXiv:2405.11258},
   author={Aharon, Udi and Marbel, Revital and Dubin, Ran and Dvir, Amit and Hajaj, Chen},
-  journal={arXiv preprint arXiv:2405.11258},
   year={2024},
   projects={generative-ai, machine-learning, security}
 }
@@ -351,14 +343,13 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
   projects={e-commerce, machine-learning, similarity}
 }
 
-@article{zion4654236revolutionizing,
+@misc{zion4654236revolutionizing,
   title={Revolutionizing Our Way to Better Classifiers: Leveraging Synthetic Data with Generative Models for Encrypted Network Traffic Classification},
+  howpublished = {SSRN preprint 4654236},
   author={Zion, Yehonatan and Hajaj, Chen and Dvir, Amit and Ben-Artzi, Gil and Mahpod, Shahar and Dubin, Ran},
-  journal={Available at SSRN 4654236},
   year={2024},
   projects={generative-ai, machine-learning, traffic-classification, encrypted-traffic}
 }
-
 
 @article{anidjar2023speech,
   abstract = {Pretrained multilingual language models have become a common tool in transferring NLP capabilities to low-resource languages, often with adaptations. In this work, we study the performance, extensibility, and interaction of two such adaptations: vocabulary augmentation and script transliteration. Our evaluations on part-of-speech tagging, universal dependency parsing, and named entity recognition in nine diverse low-resource languages uphold the viability of these approaches while raising new questions around how to optimally adapt multilingual models to low-resource settings.},
@@ -428,10 +419,10 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
   projects={machine-learning, traffic-classification, encrypted-traffic}
 }
 
-@article{raphaeli2023protein,
+@misc{raphaeli2023protein,
   title={Protein Intake and Clinical Outcomes of Enterally Fed Critically Ill Patients},
+  howpublished = {Conference abstract, Clinical Nutrition ESPEN 54:534},
   author={Raphaeli, O and Statlander, L and Hajaj, C and Bendavid, I and Singer, Pierre},
-  journal={Clinical Nutrition ESPEN},
   volume={54},
   pages={534},
   year={2023},
@@ -469,30 +460,30 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
   projects={machine-learning, traffic-classification, encrypted-traffic}
 }
 
-@article{berger2022mamadroid2,
+@misc{berger2022mamadroid2,
   abstract = {Android malware is a continuously expanding threat to billions of mobile users around the globe. Detection systems are updated constantly to address these threats. However, a backlash takes the form of evasion attacks, in which an adversary changes malicious samples such that those samples will be misclassified as benign. This paper fully inspects a well-known Android malware detection system, MaMaDroid, which analyzes the control flow graph of the application. Changes to the portion of benign samples in the train set and models are considered to see their effect on the classifier. The changes in the ratio between benign and malicious samples have a clear effect on each one of the models, resulting in a decrease of more than 40% in their detection rate. Moreover, adopted ML models are implemented as well, including 5-NN, Decision Tree, and Adaboost. Exploration of the six models reveals a typical behavior in different cases, of tree-based models and distance-based models. Moreover, three novel attacks that manipulate the CFG and their detection rates are described for each one of the targeted models. The attacks decrease the detection rate of most of the models to 0%, with regards to different ratios of benign to malicious apps. As a result, a new version of MaMaDroid is engineered. This model fuses the CFG of the app and static analysis of features of the app. This improved model is proved to be robust against evasion attacks targeting both CFG-based models and static analysis models, achieving a detection rate of more than 90% against each one of the attacks.},
 
   title={MaMaDroid2.0--The Holes of Control Flow Graphs},
+  howpublished = {arXiv preprint arXiv:2202.13922},
   author={Berger, Harel and Hajaj, Chen and Mariconti, Enrico and Dvir, Amit},
-  journal={arXiv preprint arXiv:2202.13922},
   year={2022},
   projects={machine-learning, security}
 }
 
-@article{berger2022problem,
+@misc{berger2022problem,
   abstract = {Android is the most popular OS worldwide. Therefore, it is a target for various kinds of malware. As a countermeasure, the security community works day and night to develop appropriate Android malware detection systems, with ML-based or DL-based systems considered as some of the most common types. Against these detection systems, intelligent adversaries develop a wide set of evasion attacks, in which an attacker slightly modifies a malware sample to evade its target detection system. In this survey, we address problem-space evasion attacks in the Android OS, where attackers manipulate actual APKs, rather than their extracted feature vector. We aim to explore this kind of attacks, frequently overlooked by the research community due to a lack of knowledge of the Android domain, or due to focusing on general mathematical evasion attacks - i.e., feature-space evasion attacks. We discuss the different aspects of problem-space evasion attacks, using a new taxonomy, which focuses on key ingredients of each problem-space attack, such as the attacker model, the attacker's mode of operation, and the functional assessment of post-attack applications.},
   title={Problem-Space Evasion Attacks in the Android OS: A Survey},
+  howpublished = {arXiv preprint arXiv:2205.14576},
   author={Berger, Harel and Hajaj, Chen and Dvir, Amit},
-  journal={arXiv preprint arXiv:2205.14576},
   year={2022},
   projects={security}
 }
 
-@article{berger2022you,
+@misc{berger2022you,
   abstract = {Given the continually rising frequency of cyberattacks, the adoption of artificial intelligence methods, particularly Machine Learning (ML), Deep Learning (DL), and Reinforcement Learning (RL), has become essential in the realm of cybersecurity. These techniques have proven to be effective in detecting and mitigating cyberattacks, which can cause significant harm to individuals, organizations, and even countries. Machine learning algorithms use statistical methods to identify patterns and anomalies in large datasets, enabling security analysts to detect previously unknown threats. Deep learning, a subfield of ML, has shown great potential in improving the accuracy and efficiency of cybersecurity systems, particularly in image and speech recognition. On the other hand, RL is again a subfield of machine learning that trains algorithms to learn through trial and error, making it particularly effective in dynamic environments. We also evaluated the usage of ChatGPT-like AI tools in cyber-related problem domains on both sides, positive and negative. This article provides an overview of how ML, DL, and RL are applied in cybersecurity, including their usage in malware detection, intrusion detection, vulnerability assessment, and other areas. The state-of-the-art studies using ML, DL, and RL models are evaluated in each section based on the main idea, techniques, and important findings. It also discusses these techniques’ challenges and limitations, including data quality, interpretability, and adversarial attacks. Overall, the use of ML, DL, and RL in cybersecurity holds great promise for improving the effectiveness of security systems and enhancing our ability to protect against cyberattacks. However, it is essential to continue developing and refining these techniques to address the ever-evolving nature of cyber threats. Besides, some promising solutions that rely on machine learning, deep learning, and reinforcement learning are susceptible to adversarial attacks, underscoring the importance of factoring in this vulnerability when devising countermeasures against sophisticated cyber threats. We also concluded that ChatGPT can be a valuable tool for cybersecurity, but it should be noted that ChatGPT-like tools can also be manipulated to threaten the integrity, confidentiality, and availability of data.},
   title={Do You Think You Can Hold Me? The Real Challenge of Problem-Space Evasion Attacks},
+  howpublished = {arXiv preprint arXiv:2205.04293},
   author={Berger, Harel and Dvir, Amit and Hajaj, Chen and Ronen, Rony},
-  journal={arXiv preprint arXiv:2205.04293},
   year={2022},
   projects={machine-learning, security}
 }
@@ -537,10 +528,10 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
   projects={machine-learning, security, traffic-classification, encrypted-traffic}
 }
 
-@inproceedings{raphaeli2022using,
+@misc{raphaeli2022using,
   title={Using the Cardio-Vascular Index (CVRI) to Predict Mortality in Septic Shock},
+  howpublished = {Conference abstract, ISICEM 2022},
   author={Raphaeli, O and Bendavid, I and Hajaj, C and Statlander, L and Goldstein, A and Chen, E and Singer, P and Gabbay, U},
-  booktitle={ISICEM},
   year={2022},
   projects={healthcare, machine-learning}
 }
@@ -628,10 +619,10 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
   projects={machine-learning, traffic-classification}
 }
 
-@article{raphaeli2021feeding,
+@misc{raphaeli2021feeding,
   title={Feeding Intolerance as a Predictor of Clinical Outcomes in Critically Ill Patients: A Machine Learning Approach},
+  howpublished = {Conference abstract, Clinical Nutrition ESPEN 46:S546--S547},
   author={Raphaeli, O and Hajaj, C and Bendavid, I and Goldstein, A and Chen, E and Singer, P},
-  journal={Clinical Nutrition ESPEN},
   volume={46},
   pages={S546--S547},
   year={2021},
@@ -640,11 +631,11 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
   projects={healthcare, machine-learning}
 }
 
-@article{raphaeli2021using,
+@misc{raphaeli2021using,
   abstract = {BACKGROUND: The association between gastrointestinal intolerance during early enteral nutrition (EN) and adverse clinical outcomes in critically ill patients is controversial. We aimed to assess the prognostic value of enteral feeding intolerance (EFI) markers during early ICU stays and to predict early EN failure using a machine learning (ML) approach. METHODS: We performed a retrospective analysis of data from adult patients admitted to Beilinson Hospital ICU between January 2011 and December 2018 for more than 48 h and received EN. Clinical data, including demographics, severity scores, EFI markers, and medications, along with 72 h after admission, were analyzed by ML algorithms. Prediction performance was assessed by the area under the receiver operating characteristics (AUCROC) of a ten-fold cross-validation set. RESULTS: The datasets comprised 1584 patients. The means of the cross-validation AUCROCs for 90-day mortality and early EN failure were 0.73 (95% CI 0.71-0.75) and 0.71 (95% CI 0.67-0.74), respectively. Gastric residual volume above 250 mL on the second day was an important component of both prediction models. CONCLUSIONS: ML underlined the EFI markers that predict poor 90-day outcomes and early EN failure and supports early recognition of at-risk patients. Results have to be confirmed in further prospective and external validation studies.},
   title={Using machine learning to support early prediction of feeding intolerance in critically ill patients},
+  howpublished = {Conference abstract, ESICM LIVES 2021},
   author={Raphaeli, O and Hajaj, C and Bendavid, I and Goldstein, A and Chen, E and Singer, P},
-  journal={ESICM LIVES},
   year={2021},
   projects={healthcare, machine-learning}
 }
@@ -663,19 +654,20 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
   projects={machine-learning, security, traffic-classification}
 }
 
-@article{muehlstein2020robust,
+@misc{muehlstein2020robust,
   abstract = {Desktops and laptops can be maliciously exploited to violate privacy. In this paper, we consider the daily battle between the passive attacker who is targeting a specific user against a user that may be adversarial opponent. In this scenario, while the attacker tries to choose the best vector attack by surreptitiously monitoring the victims encrypted network traffic in order to identify users parameters such as the Operating System (OS), browser and apps. The user may use tools such as a Virtual Private Network (VPN) or even change protocols parameters to protect his/her privacy. We provide a large dataset of more than 20,000 examples for this task. We run a comprehensive set of experiments, that achieves high (above 85) classification accuracy, robustness and resilience to changes of features as a function of different network conditions at test time. We also show the effect of a small training set on the accuracy.},
   title={Robust Machine Learning for Encrypted Traffic Classification},
+  howpublished = {arXiv preprint (CoRR)},
   author={Muehlstein, Jonathan and Zion, Yehonatan and Pele, Ofir and Hajaj, Chen and Dubin, Ran and Dvir, Amit},
-  journal={CoRR},
   year={2020},
   projects={machine-learning, traffic-classification, encrypted-traffic}
 }
 
 @inproceedings{berger2020evasion,
   title={Evasion Is Not Enough: A Case Study of Android Malware},
+  doi = {10.1007/978-3-030-49785-9_11},
   author={Berger, Harel and Hajaj, Chen and Dvir, Amit},
-  booktitle={International symposium on cyber security cryptography and machine learning},
+  booktitle = {Cyber Security Cryptography and Machine Learning (CSCML 2020), LNCS},
   pages={167--174},
   year={2020},
   organization={Springer International Publishing Cham},
@@ -730,10 +722,10 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
 abstract={The problem of assigning tasks to workers is of long-standing fundamental importance. Examples of this include the classical problem of assigning computing tasks to nodes in a distributed computing environment, assigning jobs to robots, and crowdsourcing. Extensive research into this problem generally addresses important issues such as uncertainty and incentives. However, the problem of adversarial tampering with the task assignment process has not received as much attention. We are concerned with a particular adversarial setting where an attacker may target a set of workers in order to prevent the tasks assigned to these workers from being completed. When all tasks are homogeneous, we provide an efficient algorithm for computing the optimal assignment. When tasks are heterogeneous, we show that the adversarial assignment problem is NP-Hard, and present an algorithm for solving it approximately. Our theoretical results are accompanied by extensive experiments showing the effectiveness of our algorithms.}
 }
 
-@article{ye2018crowdsourcing,
+@inproceedings{ye2018crowdsourcing,
   title={A crowdsourcing framework for medical data sets},
+  booktitle = {AMIA Joint Summits on Translational Science Proceedings},
   author={Ye, Cheng and Coco, Joseph and Epishova, Anna and Hajaj, Chen and Bogardus, Henry and Novak, Laurie and Denny, Joshua and Vorobeychik, Yevgeniy and Lasko, Thomas and Malin, Bradley and others},
-  journal={AMIA Summits on Translational Science Proceedings},
   volume={2018},
   pages={273},
   year={2018},
@@ -741,10 +733,10 @@ abstract={The problem of assigning tasks to workers is of long-standing fundamen
 abstract={Crowdsourcing services like Amazon Mechanical Turk allow researchers to ask questions to crowds of workers and quickly receive high quality labeled responses. However, crowds drawn from the general public are not suitable for labeling sensitive and complex data sets, such as medical records, due to various concerns. Major challenges in building and deploying a crowdsourcing system for medical data include, but are not limited to: managing access rights to sensitive data and ensuring data privacy controls are enforced; identifying workers with the necessary expertise to analyze complex information; and efficiently retrieving relevant information in massive data sets. In this paper, we introduce a crowdsourcing framework to support the annotation of medical data sets. We further demonstrate a workflow for crowdsourcing clinical chart reviews including (1) the design and decomposition of research questions; (2) the architecture for storing and displaying sensitive data; and (3) the development of tools to support crowd workers in quickly analyzing information from complex data sets.}
 }
 
-@article{chambers2017non,
+@misc{chambers2017non,
   title={Non-Cooperative Team Formation and a Team Formation Mechanism},
+  howpublished = {SSRN working paper 3054771},
   author={Chambers, Matthew and Hajaj, Chen and Leo, Greg and Lou, Jian and Van der Linden, Martin and Vorobeychik, Yevgeniy and Wooders, Myrna H},
-  journal={Available at SSRN 3054771},
   year={2017},
   projects={game-theory, multi-agent-systems},
 abstract={We model decentralized team formation as a game in which players make offers to potential teams whose members then either accept or reject the offers. The games induce no-delay subgame perfect equilibria with unique outcomes that are individually rational and match soulmates. We provide sufficient conditions for equilibria to implement core coalition structures, and show that when each player can make a sufficiently large number of proposals, outcomes are Pareto optimal. We then design a mechanism to implement equilibrium of this game and provide sufficient conditions to ensure that truthful reporting of preferences is a strong ex post Nash equilibrium. Moreover, we show empirically that players rarely have an incentive to misreport preferences more generally. Furthermore, for the problem with cardinal preferences, we show empirically that the resulting mechanism results in significantly higher social welfare than serial dictatorship, and the outcomes are highly equitable.}
@@ -789,8 +781,11 @@ abstract={This paper presents methods for improving the attention span of worker
   projects={human-computer-interaction}
 }
 
-@misc{ceppi2017agent,
+@book{ceppi2017agent,
   title={Agent-Mediated Electronic Commerce. Designing Trading Strategies and Mechanisms for Electronic Markets},
+  doi = {10.1007/978-3-319-54229-4},
+  note = {Edited volume, AMEC/TADA 2015 and 2016 revised selected papers},
+  series = {Lecture Notes in Business Information Processing},
   author={Ceppi, Sofia and David, Esther and Hajaj, Chen and Robu, Valentin and Vetsikas, Ioannis A},
   year={2017},
   publisher={Springer},
@@ -894,11 +889,11 @@ doi={10.1145/2600057.2602864},
 abstract={The blooming of comparison shopping agents (CSAs) in recent years enables buyers in today's markets to query more than a single CSA while shopping, thus substantially expanding the list of sellers whose prices they obtain. From the individual CSA point of view, however, the multi-CSAs querying is definitely non-favorable as most of today's CSAs benefit depends on payments they receive from sellers upon transferring buyers to their websites (and making a purchase). The most straightforward way for the CSA to improve its competence is through spending more resources on getting more sellers' prices, potentially resulting in a more attractive "best price". In this paper we suggest a complementary approach that improves the attractiveness of the best price returned to the buyer without having to extend the CSAs' price database. This approach, which we term "selective price disclosure" relies on removing some of the prices known to the CSA from the list of results returned to the buyer. The advantage of this approach is in the ability to affect the buyer's beliefs regarding the probability of obtaining more attractive prices if querying additional CSAs. The paper presents two methods for choosing the subset of prices to be presented to a fully-rational buyer, attempting to overcome the computational complexity associated with evaluating all possible subsets. The effectiveness and efficiency of the methods are demonstrated using real data, collected from five CSAs for four products. Furthermore, since people are known to have an inherently bounded rationality, the two methods are also evaluated with human buyers, demonstrating that selective price-disclosing can be highly effective with people, however the subset of prices that needs to be used should be extracted in a different (and more simplistic) manner.}
 }
 
-@misc{hajaj2012three,
+@mastersthesis{hajaj2012three,
   title={Three Dimensional Group Registration of Mesh Objects},
+  school = {Bar-Ilan University},
   author={Hajaj, Chen},
   year={2012},
-  publisher={Bar Ilan University, Department of Engineering},
   projects={computer-vision, machine-learning}
 }
 
@@ -951,32 +946,10 @@ projects={computer-vision}
   projects  = {machine-learning, traffic-classification}
 }
 
-@inproceedings{zion2026quality,
-  author    = {Yehonatan Zion and Eyal Paz and Ran Dubin and A. Dvir and Chen Hajaj},
-  title     = {Quality of Experience Prediction for First-Person Shooter Online Gaming: The Case Study of Call of Duty},
-  booktitle = {Consumer Communications and Networking Conference},
-  year      = {2026},
-  doi       = {10.1109/CCNC65079.2026.11366349},
-  url       = {https://doi.org/10.1109/CCNC65079.2026.11366349},
-  selected  = {false},
-  projects  = {machine-learning},
-}
-
-@article{hajaj2026machine,
-  author    = {Chen Hajaj and Shani Alkoby and Shai Ashkenazi and Avner Herman Cohen and Y. Reichenberg and S. Kushnir and Vered Shkalim Zemer},
-  title     = {Machine Learning Tools for Predicting Pediatric Urinary Tract Infections Caused by ESBL-producing Bacteria.},
-  journal   = {The Pediatric infectious disease journal},
-  year      = {2026},
-  doi       = {10.1097/INF.0000000000005179},
-  url       = {https://doi.org/10.1097/INF.0000000000005179},
-  selected  = {false},
-  projects  = {healthcare, machine-learning},
-}
-
 @article{klein2026graphmux,
   author    = {M. Klein and Revital Marbel and Chen Hajaj and Ran Dubin and Amit Dvir},
   title     = {GraphMux: A graph-based framework for encrypted traffic classification},
-  journal   = {Comput. Networks},
+  journal = {Computer Networks},
   year      = {2026},
   doi       = {10.1016/j.comnet.2026.112370},
   url       = {https://doi.org/10.1016/j.comnet.2026.112370},
@@ -987,7 +960,9 @@ projects={computer-vision}
 @inproceedings{meiri2025outofdistribution,
   author    = {Itay Meiri and Ran Dubin and Amit Dvir and Chen Hajaj},
   title     = {Out-Of-Distribution Is Not Magic: The Clash Between Rejection Rate and Model Success},
-  booktitle = {Conference on Computer Science and Information Systems},
+  pages = {345--350},
+  series = {Annals of Computer Science and Information Systems, vol. 43},
+  booktitle = {Proceedings of the 20th Conference on Computer Science and Intelligence Systems (FedCSIS 2025)},
   year      = {2025},
   doi       = {10.15439/2025F5708},
   url       = {https://doi.org/10.15439/2025F5708},
@@ -995,46 +970,15 @@ projects={computer-vision}
   projects  = {machine-learning},
 }
 
-@article{glik2025routine,
+@misc{glik2025routine,
   author    = {A. Glik and Omry Arbiv and Keshet Prado and Orit Raphaeli and Hayim Raclaw and Roy Kait and Ofri Kait and Anat Goldstein and Chen Hajaj},
   title     = {Routine Blood Count and Chemistry can predict AD dementia risk up to Ten years Ahead},
-  journal   = {Alzheimer's & Dementia},
+  howpublished = {Conference abstract (AAIC 2025), Alzheimer's \& Dementia 21(S2):e102512},
   year      = {2025},
   doi       = {10.1002/alz70856_102512},
   url       = {https://doi.org/10.1002/alz70856_102512},
   selected  = {false},
   projects  = {healthcare, machine-learning},
-}
-
-@inproceedings{marbel2024cloudy,
-  author    = {Revital Marbel and Y. Cohen and Ran Dubin and A. Dvir and Chen Hajaj},
-  title     = {Cloudy with a Chance of Anomalies: Dynamic Graph Neural Network for Early Detection of Cloud Services’ User Anomalies},
-  booktitle = {Consumer Communications and Networking Conference},
-  year      = {2024},
-  doi       = {10.1109/CCNC65079.2026.11366510},
-  url       = {https://doi.org/10.1109/CCNC65079.2026.11366510},
-  selected  = {false},
-  projects  = {machine-learning, security},
-}
-
-@article{aharon2024robertaaugmented,
-  author    = {Udi Aharon and Revital Marbel and Ran Dubin and A. Dvir and Chen Hajaj},
-  title     = {RoBERTa-Augmented Synthesis for Detecting Malicious API Requests},
-  journal   = {},
-  year      = {2024},
-  selected  = {false},
-  projects  = {machine-learning, security},
-}
-
-@article{benshalom2023online,
-  author    = {Uzi Ben‐Shalom and Chen Hajaj and N. Davidovitch and C. Berger},
-  title     = {Online Temporary Learning Groups in Higher Education – Interactions, Compensation, and Maximisation of Achievements in an Israeli Case Study},
-  journal   = {Journal of Education Culture and Society},
-  year      = {2023},
-  doi       = {10.15503/jecs2023.1.619.633},
-  url       = {https://doi.org/10.15503/jecs2023.1.619.633},
-  selected  = {false},
-  projects  = {education, human-computer-interaction},
 }
 
 @article{berger2022patterns,
@@ -1048,30 +992,10 @@ projects={computer-vision}
   projects  = {education, human-computer-interaction},
 }
 
-@article{lichy2022when,
-  author    = {Adi Lichy and Ofek Bader and Ran Dubin and A. Dvir and Chen Hajaj},
-  title     = {When a RF Beats a CNN and GRU, Together - A Comparison of Deep Learning and Classical Machine Learning Approaches for Encrypted Malware Traffic Classification},
-  journal   = {Comput. Secur.},
-  year      = {2022},
-  doi       = {10.48550/arXiv.2206.08004},
-  url       = {https://doi.org/10.48550/arXiv.2206.08004},
-  selected  = {false},
-  projects  = {machine-learning, security, traffic-classification, encrypted-traffic},
-}
-
-@article{berger2022mamadroid,
-  author    = {Harel Berger and Chen Hajaj and Enrico Mariconti and A. Dvir},
-  title     = {MaMaDroid2.0 - The Holes of Control Flow Graphs},
-  journal   = {ArXiv},
-  year      = {2022},
-  selected  = {false},
-  projects  = {machine-learning, security},
-}
-
-@article{low2022a,
+@misc{low2022a,
   author    = {J. Lou and Chen Hajaj and Yevgeniy Vorobeychik},
   title     = {A Rotating Proposer Mechanism for Team Formation},
-  journal   = {ArXiv},
+  howpublished = {arXiv preprint arXiv:2204.04251},
   year      = {2022},
   doi       = {10.48550/arXiv.2204.04251},
   url       = {https://doi.org/10.48550/arXiv.2204.04251},
@@ -1079,190 +1003,11 @@ projects={computer-vision}
   projects  = {game-theory, multi-agent-systems},
 }
 
-@article{bader2022opensource,
-  author    = {Ofek Bader and Adi Lichy and A. Dvir and Ran Dubin and Chen Hajaj},
-  title     = {Open-Source Framework for Encrypted Internet and Malicious Traffic Classification},
-  journal   = {ArXiv},
-  year      = {2022},
-  doi       = {10.48550/arXiv.2206.10144},
-  url       = {https://doi.org/10.48550/arXiv.2206.10144},
-  selected  = {false},
-  projects  = {machine-learning, security, traffic-classification, encrypted-traffic},
-}
-
-@article{berger2020when,
-  author    = {Harel Berger and Chen Hajaj and A. Dvir},
-  title     = {When the Guard failed the Droid: A case study of Android malware},
-  journal   = {ArXiv},
-  year      = {2020},
-  selected  = {false},
-  projects  = {machine-learning, security},
-}
-
-@article{anidjar2020a,
-  author    = {O. H. Anidjar and Chen Hajaj and A. Dvir and I. Gilad},
-  title     = {A Thousand Words are Worth More Than One Recording: NLP Based Speaker Change Point Detection},
-  journal   = {ArXiv},
-  year      = {2020},
-  selected  = {false},
-  projects  = {machine-learning, speech-processing},
-}
-
-@article{coco2018crowdsourcing,
+@inproceedings{coco2018crowdsourcing,
   author    = {Joseph R. Coco and Cheng Ye and Chen Hajaj and Yevgeniy Vorobeychik and J. Denny and L. Novak and B. Malin and T. Lasko and D. Fabbri},
   title     = {Crowdsourcing Clinical Chart Reviews},
-  journal   = {American Medical Informatics Association Annual Symposium},
+  booktitle = {AMIA Annual Symposium Proceedings},
   year      = {2018},
   selected  = {false},
   projects  = {healthcare, machine-learning},
 }
-
-@article{tong2017hardening,
-  author    = {Liang Tong and Bo Li and Chen Hajaj and Chaowei Xiao and Yevgeniy Vorobeychik},
-  title     = {Hardening Classifiers against Evasion: the Good, the Bad, and the Ugly},
-  journal   = {},
-  year      = {2017},
-  selected  = {false},
-  projects  = {machine-learning, security},
-}
-
-@article{hajaj2017adversarial,
-  author    = {Chen Hajaj and Yevgeniy Vorobeychik},
-  title     = {Adversarial Task Allocation},
-  journal   = {ArXiv},
-  year      = {2017},
-  selected  = {false},
-  projects  = {game-theory, multi-agent-systems},
-}
-
-@article{tong2017a,
-  author    = {Liang Tong and Bo Li and Chen Hajaj and Chaowei Xiao and Yevgeniy Vorobeychik},
-  title     = {A Framework for Validating Models of Evasion Attacks on Machine Learning, with Application to PDF Malware Detection},
-  journal   = {},
-  year      = {2017},
-  selected  = {false},
-  projects  = {machine-learning, security},
-}
-
-@article{tong2017feature,
-  author    = {Liang Tong and Bo Li and Chen Hajaj and Yevgeniy Vorobeychik},
-  title     = {Feature Conservation in Adversarial Classifier Evasion: A Case Study},
-  journal   = {ArXiv},
-  year      = {2017},
-  selected  = {false},
-  projects  = {machine-learning, security},
-}
-
-@article{lou2017rotating,
-  author    = {Jian Lou and M. Linden and P. Batra and Chen Hajaj and Greg Leo and Yevgeniy Vorobeychik and M. Wooders},
-  title     = {Rotating Proposer Mechanisms for Team Formation},
-  journal   = {},
-  year      = {2017},
-  selected  = {false},
-  projects  = {game-theory, multi-agent-systems},
-}
-
-
-% ── Auto-added by scholar_sync on 2026-08-16 ──────────────
-@inproceedings{lisker2025optimized,
-  author    = {Simona Lisker and Ayelet Butman and Chen Hajaj and Ran Dubin and A. Dvir},
-  title     = {Optimized File Type Detection and One-Shot Retrieval},
-  booktitle = {ICC 2025 - IEEE International Conference on Communications},
-  year      = {2025},
-  doi       = {10.1109/ICC52391.2025.11161523},
-  url       = {https://doi.org/10.1109/ICC52391.2025.11161523},
-  selected  = {false},
-  projects  = {},
-}
-
-@article{lang2025measuring,
-  author    = {Ro'i Lang and O. H. Anidjar and Sahar Slonimsky and Chen Hajaj and Oz Golan and C. Matias and Alexander Diskin and Strokin Evgeny and Mor Mega},
-  title     = {Measuring and Analyzing Defects of Additive Manufactured Ti‐6Al‐4V Specimens Through Image Segmentation},
-  journal   = {Fatigue &amp; Fracture of Engineering Materials &amp; Structures},
-  year      = {2025},
-  doi       = {10.1111/ffe.70084},
-  url       = {https://doi.org/10.1111/ffe.70084},
-  selected  = {false},
-  projects  = {},
-}
-
-@inproceedings{sopher2024wip,
-  author    = {H. Sopher and Chen Hajaj and JohnS. Gero},
-  title     = {WIP: Exploring the Role of Sentiment in Tutor-Student Interaction. The Case Study of CS and Architecture Formative Studio Critiques},
-  booktitle = {Frontiers in Education Conference},
-  year      = {2024},
-  doi       = {10.1109/FIE61694.2024.10893114},
-  url       = {https://doi.org/10.1109/FIE61694.2024.10893114},
-  selected  = {false},
-  projects  = {education},
-}
-
-@article{lukach2024cbr,
-  author    = {Amir Lukach and Ran Dubin and A. Dvir and Chen Hajaj},
-  title     = {CBR - Boosting Adaptive Classification By Retrieval of Encrypted Network Traffic with Out-of-distribution},
-  journal   = {ArXiv},
-  year      = {2024},
-  doi       = {10.48550/arXiv.2403.11206},
-  url       = {https://doi.org/10.48550/arXiv.2403.11206},
-  selected  = {false},
-  projects  = {encrypted-traffic},
-}
-
-@article{hajaj2021nws,
-  author    = {Chen Hajaj and Zlatko Joveski},
-  title     = {NWS volume 9 issue 3 Cover and Front matter},
-  journal   = {Network Science},
-  year      = {2021},
-  doi       = {10.1017/nws.2021.15},
-  url       = {https://doi.org/10.1017/nws.2021.15},
-  selected  = {false},
-  projects  = {},
-}
-
-@article{ceppi2017agentmediated,
-  author    = {S. Ceppi and Esther David and Chen Hajaj and V. Robu and I. Vetsikas},
-  title     = {Agent-Mediated Electronic Commerce. Designing Trading Strategies and Mechanisms for Electronic Markets: AMEC/TADA 2015, Istanbul, Turkey, May 4, 2015, and AMEC/TADA 2016, New York, NY, USA, July 10, 2016, Revised Selected Papers},
-  journal   = {},
-  year      = {2017},
-  selected  = {false},
-  projects  = {},
-}
-
-@article{hajaj2014strategic,
-  author    = {Chen Hajaj and David Sarne},
-  title     = {Strategic information platforms: selective disclosure and the price of "free"},
-  journal   = {Proceedings of the fifteenth ACM conference on Economics and computation},
-  year      = {2014},
-  doi       = {10.1145/2600057.2602864},
-  url       = {https://doi.org/10.1145/2600057.2602864},
-  selected  = {false},
-  projects  = {},
-}
-
-% ── Auto-added by scholar_sync on 2026-08-23 ──────────────
-@inproceedings{lisker2025optimized,
-  author    = {Simona Lisker and Ayelet Butman and Chen Hajaj and Ran Dubin and A. Dvir},
-  title     = {Optimized File Type Detection and One-Shot Retrieval},
-  booktitle = {ICC 2025 - IEEE International Conference on Communications},
-  year      = {2025},
-  doi       = {10.1109/ICC52391.2025.11161523},
-  url       = {https://doi.org/10.1109/ICC52391.2025.11161523},
-  selected  = {false},
-  projects  = {},
-}
-
-@article{lang2025measuring,
-  author    = {Ro'i Lang and O. H. Anidjar and Sahar Slonimsky and Chen Hajaj and Oz Golan and C. Matias and Alexander Diskin and Strokin Evgeny and Mor Mega},
-  title     = {Measuring and Analyzing Defects of Additive Manufactured Ti‐6Al‐4V Specimens Through Image Segmentation},
-  journal   = {Fatigue &amp; Fracture of Engineering Materials &amp; Structures},
-  year      = {2025},
-  doi       = {10.1111/ffe.70084},
-  url       = {https://doi.org/10.1111/ffe.70084},
-  selected  = {false},
-  projects  = {},
-}
-
-@inproceedings{sopher2024wip,
-  author    = {H. Sopher and Chen Hajaj and JohnS. Gero},
-  title     = {WIP: Exploring the Role of Sentiment in Tutor-Student Interaction. The Case Study of CS and Architecture Formative Studio Critiques},
-  booktitle = {Frontiers in Education

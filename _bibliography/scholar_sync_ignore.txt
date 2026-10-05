@@ -1,0 +1,29 @@
+# Papers Scholar Sync must never (re-)add, with the reason each was excluded.
+#
+# One identifier per line, then "  # reason". Identifier forms:
+#   doi:<DOI>        arxiv:<arXiv id>        title:<exact or near-exact title>
+# Titles are compared after normalisation (case, punctuation, Unicode dashes,
+# a leading "WIP:" are ignored), so minor wording drift still matches.
+#
+# Add a line here whenever you delete an auto-added entry you don't want back.
+
+# --- Not publications ---------------------------------------------------------
+doi:10.1017/nws.2021.15  # Network Science issue cover/front matter, indexed under the guest editors
+
+# --- Preprints of papers already listed in published form ---------------------
+arxiv:2206.10144  # preprint of OSF-EIMTC (bader2024osf, Computer Communications 2024)
+doi:10.48550/arXiv.2206.10144  # same as above
+arxiv:2003.14123  # "When the Guard failed the Droid" = preprint of CSCML 2020 (berger2020evasion)
+title:When the Guard failed the Droid: A case study of Android malware  # same as above
+arxiv:2006.01206  # preprint of Interspeech 2021 (anidjar2021thousand)
+title:A Thousand Words are Worth More Than One Recording: NLP Based Speaker Change Point Detection  # same as above
+title:Adversarial Task Allocation  # arXiv version of IJCAI 2018 (hajaj2018adversarial)
+arxiv:1708.08327  # Tong et al. preprint of USENIX Security 2019 (tong2019improving)
+title:Feature Conservation in Adversarial Classifier Evasion: A Case Study  # earlier title of arXiv 1708.08327
+title:Hardening Classifiers against Evasion: the Good, the Bad, and the Ugly  # earlier title of arXiv 1708.08327
+title:A Framework for Validating Models of Evasion Attacks on Machine Learning, with Application to PDF Malware Detection  # earlier title of arXiv 1708.08327
+title:Rotating Proposer Mechanisms for Team Formation  # earlier version of arXiv 2204.04251 (low2022a)
+title:RoBERTa-Augmented Synthesis for Detecting Malicious API Requests  # retitled arXiv 2405.11258, listed as aharon2024few
+
+# --- Already listed under a different title or record -------------------------
+title:Agent-Mediated Electronic Commerce. Designing Trading Strategies and Mechanisms for Electronic Markets: AMEC/TADA 2015, Istanbul, Turkey, May 4, 2015, and AMEC/TADA 2016, New York, NY, USA, July 10, 2016, Revised Selected Papers  # = ceppi2017agent (edited volume)
