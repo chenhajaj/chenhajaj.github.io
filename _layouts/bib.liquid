@@ -2,6 +2,7 @@
 ---
 <div
   class="entry{% if entry.selected %} entry-selected{% endif %}"
+  data-type="{{ entry.type }}"
   {% if entry.projects %}
     data-projects="{{ entry.projects }}"
   {% endif %}
@@ -65,6 +66,18 @@
   {% elsif entry.type == 'inproceedings' -%}
     {%- if entry.booktitle -%}
       <div class="periodical">{{ entry.booktitle }}</div>
+    {%- endif -%}
+  {% elsif entry.type == 'phdthesis' -%}
+    <div class="periodical">PhD thesis{% if entry.school %}, {{ entry.school }}{% endif %}</div>
+  {% elsif entry.type == 'mastersthesis' -%}
+    <div class="periodical">MSc thesis{% if entry.school %}, {{ entry.school }}{% endif %}</div>
+  {% elsif entry.type == 'book' -%}
+    <div class="periodical">{% if entry.note %}{{ entry.note }}{% else %}Book{% endif %}{% if entry.series %}, {{ entry.series }}{% endif %}{% if entry.publisher %}, {{ entry.publisher }}{% endif %}</div>
+  {%- else -%}
+    {%- if entry.howpublished -%}
+      <div class="periodical">{{ entry.howpublished }}</div>
+    {%- elsif entry.note -%}
+      <div class="periodical">{{ entry.note }}</div>
     {%- endif -%}
   {%- endif %}
 
