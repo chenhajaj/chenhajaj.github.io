@@ -4,8 +4,9 @@
 #
 # What it does:
 #   1. Runs every Sunday at 08:00 UTC (or manually via workflow_dispatch)
-#   2. Queries your Google Scholar profile using the `scholarly` Python library
-#   3. Compares results against the existing _bibliography/papers.bib
+#   2. Queries Semantic Scholar (author 3313085) via .github/scripts/scholar_sync.py
+#   3. Compares results against _bibliography/papers.bib by DOI, arXiv id and
+#      normalised title, skipping anything in _bibliography/scholar_sync_ignore.txt
 #   4. If new entries are found, opens a DRAFT Pull Request with the additions
 #   5. You review the PR, adjust fields if needed, then merge → site rebuilds
 #
@@ -51,135 +52,30 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
-        run: pip install bibtexparser
+      - name: Report stalled sync
+        if: steps.check_pr.outputs.open_pr != ''
+        run: |
+          echo "::warning::Scholar Sync skipped: PR #${{ steps.check_pr.outputs.open_pr }} is still open. Merge or close it to resume syncing."
+          echo "### Scholar Sync skipped" >> "$GITHUB_STEP_SUMMARY"
+          echo "PR #${{ steps.check_pr.outputs.open_pr }} is still open; merge or close it to resume." >> "$GITHUB_STEP_SUMMARY"
 
+      # Logic lives in .github/scripts/scholar_sync.py (no third-party deps).
+      # It dedupes on DOI + arXiv id + normalised title, honours
+      # _bibliography/scholar_sync_ignore.txt, and fails the run on errors.
       - name: Fetch new papers from Semantic Scholar
         id: fetch
         if: steps.check_pr.outputs.open_pr == ''
-        run: |
-          python - <<'EOF'
-          import json, os, re, sys, time
-          import urllib.request
-          import bibtexparser
-
-          S2_AUTHOR_ID = "3313085"
-          BIB_PATH = "_bibliography/papers.bib"
-          S2_API = "https://api.semanticscholar.org/graph/v1"
-          FIELDS = "title,year,authors,venue,journal,externalIds,publicationTypes"
-
-          def write_gh_output(key, value):
-              gh_out = os.environ.get("GITHUB_OUTPUT", "")
-              if gh_out:
-                  with open(gh_out, "a") as fh:
-                      fh.write(f"{key}={value}\n")
-
-          def s2_get(url):
-              req = urllib.request.Request(url, headers={"User-Agent": "scholar-sync-bot/1.0"})
-              with urllib.request.urlopen(req) as resp:
-                  return json.loads(resp.read().decode("utf-8"))
-
-          try:
-              with open(BIB_PATH, "r", encoding="utf-8") as f:
-                  existing_bib = bibtexparser.load(f)
-              existing_titles = {e.get("title", "").lower().strip() for e in existing_bib.entries}
-              print(f"Existing entries: {len(existing_bib.entries)}")
-
-              papers = []
-              offset = 0
-              limit = 100
-              while True:
-                  url = (f"{S2_API}/author/{S2_AUTHOR_ID}/papers"
-                         f"?fields={FIELDS}&limit={limit}&offset={offset}")
-                  data = s2_get(url)
-                  batch = data.get("data", [])
-                  papers.extend(batch)
-                  if len(batch) < limit:
-                      break
-                  offset += limit
-                  time.sleep(0.5)
-
-              print(f"Fetched {len(papers)} papers from Semantic Scholar")
-
-              new_entries = []
-              for pub in papers:
-                  title = (pub.get("title") or "").strip()
-                  if not title or title.lower() in existing_titles:
-                      continue
-
-                  year = str(pub.get("year") or "")
-                  if not year:
-                      # jekyll-scholar groups bibliography entries by year and
-                      # crashes the site build on a missing year -- skip these
-                      # for manual review instead of committing a broken entry.
-                      print(f"  SKIP (no year): {title}")
-                      continue
-                  authors_list = [a["name"] for a in (pub.get("authors") or [])]
-                  author_str = " and ".join(authors_list)
-
-                  pub_types = pub.get("publicationTypes") or []
-                  is_conference = any(t in pub_types for t in ["Conference", "ConferencePaper"])
-                  entry_type = "inproceedings" if is_conference else "article"
-
-                  venue = pub.get("venue") or ""
-                  journal_info = pub.get("journal") or {}
-                  journal_name = journal_info.get("name") or venue
-
-                  first_last = authors_list[0].split()[-1] if authors_list else "unknown"
-                  first_last = re.sub(r"[^a-z]", "", first_last.lower())
-                  title_word = re.sub(r"[^a-z]", "", title.split()[0].lower())
-                  key = f"{first_last}{year}{title_word}"
-
-                  ext_ids = pub.get("externalIds") or {}
-                  doi = ext_ids.get("DOI", "")
-                  url_field = f"https://doi.org/{doi}" if doi else ""
-
-                  entry_lines = [
-                      f"@{entry_type}{{{key},",
-                      f"  author    = {{{author_str}}},",
-                      f"  title     = {{{title}}},",
-                  ]
-                  if entry_type == "article":
-                      entry_lines.append(f"  journal   = {{{journal_name}}},")
-                  else:
-                      entry_lines.append(f"  booktitle = {{{venue}}},")
-                  if year:
-                      entry_lines.append(f"  year      = {{{year}}},")
-                  if doi:
-                      entry_lines.append(f"  doi       = {{{doi}}},")
-                  if url_field:
-                      entry_lines.append(f"  url       = {{{url_field}}},")
-                  entry_lines.append("  selected  = {false},")
-                  entry_lines.append("  projects  = {},  % TODO: add project tags")
-                  entry_lines.append("}")
-
-                  new_entries.append("\n".join(entry_lines))
-                  print(f"  NEW: {title}")
-
-              if new_entries:
-                  with open("new_papers.bib", "w", encoding="utf-8") as f:
-                      f.write("\n\n".join(new_entries) + "\n")
-                  print(f"\nFound {len(new_entries)} new paper(s). Saved to new_papers.bib")
-                  write_gh_output("new_count", len(new_entries))
-              else:
-                  print("No new papers found.")
-                  write_gh_output("new_count", 0)
-
-          except Exception as e:
-              print(f"ERROR: {e}", file=sys.stderr)
-              write_gh_output("new_count", 0)
-          EOF
+        run: python .github/scripts/scholar_sync.py
 
       - name: Append new papers to papers.bib
-        if: steps.check_pr.outputs.open_pr == '' && steps.fetch.outputs.new_count != '0'
+        if: steps.check_pr.outputs.open_pr == '' && steps.fetch.outputs.new_count != '0' && steps.fetch.outputs.new_count != ''
         run: |
           echo "" >> _bibliography/papers.bib
-          echo "% ── Auto-added by scholar_sync on $(date +%Y-%m-%d) ──────────────" >> _bibliography/papers.bib
           cat new_papers.bib >> _bibliography/papers.bib
           rm -f new_papers.bib
 
       - name: Create Pull Request
-        if: steps.check_pr.outputs.open_pr == '' && steps.fetch.outputs.new_count != '0'
+        if: steps.check_pr.outputs.open_pr == '' && steps.fetch.outputs.new_count != '0' && steps.fetch.outputs.new_count != ''
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -189,7 +85,7 @@ jobs:
           draft: true
           title: "📚 Scholar Sync: ${{ steps.fetch.outputs.new_count }} new paper(s) detected"
           body: |
-            ## New papers found on Google Scholar
+            ## New papers found on Semantic Scholar
 
             This PR was automatically generated by the Scholar Sync workflow.
 
@@ -197,10 +93,13 @@ jobs:
 
             ### Before merging, please:
             - [ ] Review each new entry for correctness
-            - [ ] Remove duplicate or incorrect entries
+            - [ ] Remove duplicate or incorrect entries — and add each one to
+                  `_bibliography/scholar_sync_ignore.txt` with a reason, so it is not re-added
+            - [ ] Check entry types: preprints/abstracts are `@misc`, only journal papers are `@article`
             - [ ] Add `selected = {true}` to any featured papers
             - [ ] Add `abstract`, `pdf`, `code`, and `projects` fields
-            - [ ] Delete the `% ── Auto-added...` comment line
+
+            Papers the sync could not classify (no venue/year) are listed in the workflow run summary.
 
             Once merged, the site will rebuild automatically.
           commit-message: "chore: add ${{ steps.fetch.outputs.new_count }} new paper(s) from Scholar sync"
