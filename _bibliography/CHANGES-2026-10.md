@@ -77,3 +77,18 @@ Items marked *Verify* or *Restore if…* are judgement calls worth a glance.
 | `raphaeli2021feeding` | Feeding Intolerance as a Predictor of Clinical Outcomes in Critically Ill Patients: A Mach | Meeting abstract published in a journal supplement; typed as a journal article, which inflated the journal count. Retyped @misc. Crossref: supplement pages S546–S547. |
 | `raphaeli2021using` | Using machine learning to support early prediction of feeding intolerance in critically il | Meeting abstract typed as @article. Retyped @misc. |
 | `raphaeli2022using` | Using the Cardio-Vascular Index (CVRI) to Predict Mortality in Septic Shock | Meeting abstract typed as a conference paper. Retyped @misc for consistency with the other abstracts. |
+
+## Abstracts replaced (5)
+
+All five came in with the bulk "Add abstracts" commit of 2026-05-24 (`9ad70fd`), which matched by title and picked up abstracts of similarly named papers.
+
+| Key | Title | Wrong abstract was | Correct abstract source |
+|---|---|---|---|
+| `anidjar2023speech` | Speech and Multilingual Natural Language Framework for Speaker Change Detection and Diarization | An unrelated paper on adapting multilingual language models to low-resource languages (POS tagging, parsing, NER) | Ariel University research portal |
+| `hajaj2024art` | The Art of Time-Bending | An unrelated paper on online hyperparameter tuning of kernel ridge regression for traffic *forecasting* | Ariel University research portal |
+| `berger2022you` | Do You Think You Can Hold Me? | A broad ML/DL/RL-in-cybersecurity survey mentioning ChatGPT (released after this May 2022 preprint) | arXiv 2205.04293 |
+| `berger2023breaking` | Breaking the Structure of MaMaDroid | The abstract of the original MaMaDroid paper (Mariconti et al.), not this attack on it | Ariel University research portal |
+| `hason2020robust` | Robust Malicious Domain Detection (CSCML 2020) | The abstract of HinDom (Sun et al., arXiv 1909.01590) | Ben-Gurion University research portal |
+
+Checked: 33 of the other abstracts match Semantic Scholar's record; the remaining 26 were read against their titles and look right.
+Not changed: `aharon2026uncovering_microservice_faults`. Its abstract describes "ST-GraphRCA" for IoT edge clusters, which may be another group's method; no public version of the ICC 2026 paper exists to compare against.
