@@ -883,10 +883,18 @@ function initPublicationsPage() {
   function getPublicationData(publication) {
     const text = publication.textContent.toLowerCase();
     
-    // Extract type from CSS classes first (Jekyll-Scholar adds these)
+    // Use the real BibTeX entry type emitted by _layouts/bib.liquid (data-type).
+    // Only @article counts as a journal article, only @inproceedings as a
+    // conference paper; preprints, abstracts, patents, theses and books are
+    // 'misc'. The keyword guessing below is a fallback for markup without
+    // data-type. It used to classify arXiv/SSRN/abstract venues as journals.
     let type = 'misc';
+    const typedEntry = publication.querySelector('[data-type]');
     const classList = publication.className;
-    if (classList.includes('article') || classList.includes('entry-article')) {
+    if (typedEntry) {
+      const t = typedEntry.getAttribute('data-type');
+      type = (t === 'article' || t === 'inproceedings') ? t : 'misc';
+    } else if (classList.includes('article') || classList.includes('entry-article')) {
       type = 'article';
     } else if (classList.includes('inproceedings') || classList.includes('entry-inproceedings')) {
       type = 'inproceedings';
@@ -900,8 +908,7 @@ function initPublicationsPage() {
         'elsevier', 'springer', 'pergamon', 'mdpi', 'wiley',
         'computers & security', 'security', 'expert systems',
         'electronic commerce', 'heliyon', 'nutrients', 'electronics',
-        'network science', 'clinical nutrition', 'respiratory research',
-        'ssrn', 'arxiv', 'available at'
+        'network science', 'respiratory research'
       ];
       
       const conferenceKeywords = [
