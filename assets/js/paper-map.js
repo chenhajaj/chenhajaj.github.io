@@ -235,12 +235,26 @@
       if (animDone || !started) draw(0);
     }
 
-    function hit(x, y) {
+    // tolerance: extra reach in px; touch uses a larger one so small squares
+    // on phones are still easy to tap (nearest square within reach wins).
+    function hit(x, y, tolerance) {
+      var reach = tolerance || 2;
+      var best = null;
+      var bestD = Infinity;
       for (var i = 0; i < squares.length; i++) {
         var sq = squares[i];
         if (x >= sq.x - 2 && x <= sq.x + sq.s + 2 && y >= sq.y - 2 && y <= sq.y + sq.s + 2) return sq;
+        if (reach > 2) {
+          var dx = Math.max(sq.x - x, 0, x - (sq.x + sq.s));
+          var dy = Math.max(sq.y - y, 0, y - (sq.y + sq.s));
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d <= reach && d < bestD) {
+            best = sq;
+            bestD = d;
+          }
+        }
       }
-      return null;
+      return best;
     }
 
     function yearAt(x, y) {
@@ -327,7 +341,7 @@
     });
     el.addEventListener("pointerup", function (e) {
       var pt = point(e);
-      var sq = hit(pt.x, pt.y);
+      var sq = hit(pt.x, pt.y, e.pointerType === "touch" ? 18 : 2);
       if (sq) {
         if (e.pointerType === "touch" && hover !== sq) {
           setHover(sq, null);
@@ -359,6 +373,72 @@
       }
       activeYear = d.year && d.year !== "all" ? d.year : null;
       redraw();
+    });
+
+    // Keyboard: Tab to the map, arrow keys move between papers (left/right by
+    // paper, up/down within a year), Enter opens, Escape leaves the paper.
+    el.tabIndex = 0;
+    el.setAttribute("role", "group");
+    el.setAttribute("aria-roledescription", "paper map");
+    el.setAttribute(
+      "aria-label",
+      (el.getAttribute("aria-label") || "Paper map") + " Use the arrow keys to move between papers and Enter to open one."
+    );
+    function litSquares() {
+      return squares.filter(lit);
+    }
+    el.addEventListener("keydown", function (e) {
+      var list = litSquares();
+      if (!list.length) return;
+      var i = list.indexOf(hover);
+      var next = null;
+      switch (e.key) {
+        case "ArrowRight":
+          next = list[i < 0 ? list.length - 1 : Math.min(list.length - 1, i + 1)];
+          break;
+        case "ArrowLeft":
+          next = list[i < 0 ? list.length - 1 : Math.max(0, i - 1)];
+          break;
+        case "ArrowUp":
+        case "ArrowDown":
+          if (i < 0) {
+            // Start at the bottom of the newest year's column.
+            var newest = list[list.length - 1].p.year;
+            next = list.filter(function (sq) {
+              return sq.p.year === newest;
+            })[0];
+            break;
+          }
+          var same = list.filter(function (sq) {
+            return sq.p.year === hover.p.year;
+          });
+          var j = same.indexOf(hover) + (e.key === "ArrowUp" ? 1 : -1);
+          next = same[Math.max(0, Math.min(same.length - 1, j))];
+          break;
+        case "Home":
+          next = list[0];
+          break;
+        case "End":
+          next = list[list.length - 1];
+          break;
+        case "Enter":
+        case " ":
+          if (hover) {
+            e.preventDefault();
+            activate(hover);
+          }
+          return;
+        case "Escape":
+          setHover(null, null);
+          return;
+        default:
+          return;
+      }
+      e.preventDefault();
+      if (next) setHover(next, null);
+    });
+    el.addEventListener("blur", function () {
+      setHover(null, null);
     });
 
     var chips = Array.prototype.slice.call(group.querySelectorAll(".legend-chip[data-line]"));

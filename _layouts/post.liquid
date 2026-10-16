@@ -13,7 +13,7 @@ layout: default
       {% endif %}
     </header>
     <div class="prose">
-      {{ content }}
+      {{ content | strip_emoji }}
     </div>
   </article>
 </div>

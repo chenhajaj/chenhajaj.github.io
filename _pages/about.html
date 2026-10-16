@@ -114,7 +114,7 @@ featured:
         {%- for item in sorted_news limit: 6 -%}
           <li class="dated">
             <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%b %Y' }}</time>
-            <div class="dated-body">{{ item.content | markdownify | remove: '<p>' | remove: '</p>' | strip }}</div>
+            <div class="dated-body">{{ item.content | markdownify | remove: '<p>' | remove: '</p>' | strip_emoji | strip }}</div>
           </li>
         {%- endfor -%}
       </ul>
