@@ -2,9 +2,10 @@
 # `also` lists other URL prefixes that should highlight the item.
 - title: Research
   url: /projects/
-  also: [/software/]
 - title: Publications
   url: /publications/
+- title: Code
+  url: /software/
 - title: Lab
   url: /people/
 - title: Teaching
@@ -15,3 +16,5 @@
   url: /news/
 - title: CV
   url: /cv/
+- title: Contact
+  url: /contact/
