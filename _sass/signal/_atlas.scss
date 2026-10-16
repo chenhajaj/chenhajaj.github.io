@@ -506,3 +506,338 @@
 .band-wide .band-head p {
   margin-top: 0;
 }
+
+// ------------------------------------------------------------ publications ----
+
+// The square before each paper title: the same square as in the paper map.
+.pub-mark {
+  display: inline-block;
+  width: 0.62em;
+  height: 0.62em;
+  margin-right: 0.5em;
+  border-radius: 2px;
+  background: var(--c, var(--line-other));
+  vertical-align: 0.06em;
+}
+
+.pub-mark.is-selected {
+  box-shadow:
+    0 0 0 2px var(--paper),
+    0 0 0 3.5px var(--c, var(--line-other));
+}
+
+.choice-name {
+  margin-right: auto;
+}
+
+.choice-dot {
+  display: inline-block;
+  width: 0.62rem;
+  height: 0.62rem;
+  margin-right: 0.5rem;
+  border-radius: 2px;
+  background: var(--c);
+  vertical-align: 0.02em;
+}
+
+.pubs-map {
+  margin: 0 0 var(--s-6);
+}
+
+.pubs-canvas {
+  position: relative;
+  height: 150px;
+}
+
+.pubs-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pubs-map figcaption,
+.line-map figcaption {
+  margin-top: var(--s-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+// Brief highlight when the map jumps to a paper.
+@keyframes pub-flash {
+  from {
+    background-color: color-mix(in srgb, var(--c, var(--cobalt)) 22%, transparent);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+.pub.is-flash {
+  animation: pub-flash 1.8s ease-out;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pub.is-flash {
+    animation: none;
+    outline: 2px solid var(--focus);
+    outline-offset: 4px;
+  }
+}
+
+// --------------------------------------------------------- co-author network ----
+
+// A night band that runs to the screen edges from inside the page wrapper.
+.atlas-band {
+  margin-block: clamp(2rem, 5vw, 3.5rem);
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+  padding-inline: clamp(0.75rem, 2vw, 1.5rem);
+  background: var(--night);
+  box-shadow: 0 0 0 100vmax var(--night);
+  clip-path: inset(0 -100vmax);
+  overflow: visible;
+}
+
+.network-canvas {
+  position: relative;
+  height: clamp(480px, 62vw, 620px);
+  margin-top: var(--s-5);
+  touch-action: none;
+  user-select: none;
+}
+
+.network-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.network-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-5);
+  margin-top: var(--s-5);
+}
+
+.network-tools .atlas-legend {
+  margin-top: 0;
+  flex: 1 1 32rem;
+}
+
+.chip-ring {
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid var(--on-night);
+  border-radius: 50%;
+}
+
+.network-find {
+  flex: 0 1 16rem;
+  font-family: var(--font-sans);
+}
+
+.network-find label {
+  display: block;
+  margin-bottom: var(--s-1);
+  font-size: var(--fs-xs);
+  color: var(--on-night-2);
+}
+
+.network-find input {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0 var(--s-3);
+  border: 1px solid var(--on-night-rule);
+  border-radius: var(--radius);
+  background: rgba(214, 222, 255, 0.06);
+  color: var(--on-night);
+  font: inherit;
+  font-size: var(--fs-sm);
+  color-scheme: dark;
+}
+
+.network-find input:focus-visible {
+  outline: 2px solid var(--on-night);
+  outline-offset: 2px;
+}
+
+.network-find-status {
+  min-height: 1.2em;
+  margin-top: var(--s-1);
+  font-size: var(--fs-xs);
+  color: var(--on-night-2);
+}
+
+.network-top {
+  margin-top: var(--s-5);
+  max-width: 70ch;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--on-night-2);
+}
+
+.atlas-band .atlas-head h2 {
+  color: var(--on-night);
+}
+
+// --------------------------------------------------------- research pages ----
+
+.project-hero {
+  // Solid night band; the line colour runs along the top edge, the headline
+  // pill and the map, rather than tinting the background.
+  background: var(--night);
+  border-top: 4px solid var(--c);
+}
+
+.project-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--s-6) clamp(1.5rem, 5vw, 4rem);
+}
+
+.project-hero .crumb {
+  color: var(--on-night-2);
+}
+
+.project-hero .crumb:hover {
+  color: var(--on-night);
+}
+
+.project-hero h1 {
+  max-width: 18ch;
+  font-size: clamp(2.25rem, 1.3rem + 3.4vw, 3.75rem);
+  font-variation-settings: "wdth" 114;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  text-wrap: balance;
+  color: var(--on-night);
+}
+
+.project-hero .lead {
+  margin-top: var(--s-5);
+  max-width: 52ch;
+  color: var(--on-night-2);
+}
+
+.project-hero .headline-result {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  margin-top: var(--s-5);
+  padding: var(--s-2) var(--s-4);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c) 18%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent);
+  color: var(--on-night);
+  font-size: var(--fs-sm);
+}
+
+.project-hero-img {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  // 2:1 framing of the 16:9 illustrations crops the bottom, including the corner mark.
+  aspect-ratio: 2 / 1;
+  box-shadow: 0 0 0 1px var(--on-night-rule);
+}
+
+.project-hero-img figure,
+.project-hero-img picture {
+  display: block;
+  height: 100%;
+  margin: 0;
+}
+
+.project-hero-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+}
+
+.line-map {
+  margin: clamp(2rem, 5vw, 3rem) 0 0;
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--on-night-rule);
+}
+
+.line-canvas {
+  position: relative;
+  height: 150px;
+  margin-top: var(--s-5);
+}
+
+.line-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.line-map figcaption {
+  color: var(--on-night-2);
+}
+
+@media (max-width: 860px) {
+  .project-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .line-canvas {
+    height: 190px;
+  }
+}
+
+// ------------------------------------------------------------------ motion ----
+// Cross-page transitions: research card image grows into the research page
+// header (and back). Browsers without view transitions just navigate.
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  .site-header {
+    view-transition-name: site-header;
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: 420ms;
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.1, 1);
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 260ms;
+  }
+}
+
+// Charts grow and numbers count up when they scroll into view. .motion-ok is
+// set on <html> by an inline script only when the visitor allows motion, so
+// without JavaScript everything is simply shown.
+.spark rect {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.motion-ok .line-card .spark rect:not(.spark-base) {
+  transform: scaleY(0);
+  transition: transform 640ms cubic-bezier(0.2, 0.7, 0.1, 1);
+  transition-delay: calc(var(--i, 0) * 28ms + 120ms);
+}
+
+.motion-ok .line-card.is-inview .spark rect:not(.spark-base) {
+  transform: scaleY(1);
+}
+
+@media (max-width: 640px) {
+  .atlas-stats dd {
+    font-size: var(--fs-xl);
+  }
+}

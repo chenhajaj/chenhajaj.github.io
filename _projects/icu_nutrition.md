@@ -7,7 +7,7 @@ importance: 2
 category: work
 outcome: "Clinical prediction and privacy-preserving collaboration"
 featured_label: "Healthcare AI publications"
-featured_url: "/publications/?topic=Healthcare"
+featured_url: "/publications/?line=medical"
 papers_query: "@*[projects~=healthcare|covid-19]*"
 ---
 

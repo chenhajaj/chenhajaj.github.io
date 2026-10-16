@@ -5,6 +5,7 @@ permalink: /people/
 description: Current students and alumni of the Adaptive AI Lab at Ariel University, and open PhD and MSc topics.
 nav: true
 nav_order: 3
+scripts: [coauthor-network]
 ---
 
 {%- assign s = site.data.students -%}
@@ -17,6 +18,47 @@ nav_order: 3
   The Adaptive AI Lab at Ariel University has {{ phd_count }} PhD and {{ msc_count }} MSc students{% if ra_count > 0 %} and {{ ra_count }} research assistants{% endif %}.
   {{ alumni_count }} graduate students have completed their degrees here.
 </p>
+
+{%- assign r = site.data.research -%}
+<section class="atlas atlas-band" aria-labelledby="network">
+  <div class="paper-map-group">
+    <div class="atlas-head">
+      <h2 id="network">{{ r.collaborators }} co-authors</h2>
+      <p>Everyone Chen has published with. Bigger and closer means more papers together; a white ring marks a student of the lab.</p>
+    </div>
+    <div
+      class="network-canvas"
+      id="coauthor-network"
+      data-photo="{{ '/assets/img/me-480.webp' | relative_url }}"
+      role="img"
+      aria-label="Network of Chen Hajaj's {{ r.collaborators }} co-authors. Most frequent:{% for p in r.top_people limit: 5 %} {{ p.name }} ({{ p.count }} papers){% unless forloop.last %},{% endunless %}{% endfor %}."
+    >
+      <canvas aria-hidden="true"></canvas>
+    </div>
+    <div class="network-tools">
+      <div class="atlas-legend" role="group" aria-label="Highlight co-authors">
+        {%- for l in r.lines -%}
+          <button type="button" class="legend-chip" data-line="{{ l.key }}" aria-pressed="false" style="--c: var(--line-{{ l.key }}-bright)">
+            <span class="chip-dot" aria-hidden="true"></span>{{ l.name }}
+          </button>
+        {%- endfor -%}
+        <button type="button" class="legend-chip" data-line="lab" aria-pressed="false" style="--c: var(--on-night)">
+          <span class="chip-ring" aria-hidden="true"></span>Lab students <span class="chip-count">{{ r.students_coauthors }}</span>
+        </button>
+      </div>
+      <div class="network-find">
+        <label for="find-coauthor">Find a co-author</label>
+        <input id="find-coauthor" type="search" autocomplete="off" spellcheck="false">
+        <p class="network-find-status" aria-live="polite"></p>
+      </div>
+    </div>
+    <p class="network-top">
+      Most frequent co-authors:
+      {% for p in r.top_people limit: 6 %}{{ p.name }} ({{ p.count }}){% unless forloop.last %}, {% endunless %}{% endfor %}.
+    </p>
+  </div>
+</section>
+{% include research_data.liquid %}
 
 <section class="band" aria-labelledby="current">
   <div class="band-head">

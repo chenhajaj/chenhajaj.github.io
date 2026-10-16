@@ -219,16 +219,6 @@
   text-decoration: underline;
 }
 
-.pub-selected {
-  display: inline-block;
-  width: 0.5em;
-  height: 0.5em;
-  margin-right: 0.45em;
-  border-radius: 50%;
-  background: var(--cobalt);
-  vertical-align: 0.12em;
-}
-
 .pub-authors {
   margin-top: var(--s-1);
   font-size: var(--fs-md);
@@ -642,10 +632,6 @@ ol.bibliography {
 
 .repo-meta {
   margin-top: var(--s-1);
-}
-
-.pub-list-selected .pub-selected {
-  display: none;
 }
 
 .pub-list-selected ol.bibliography {

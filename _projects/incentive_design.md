@@ -7,7 +7,7 @@ importance: 2
 category: work
 outcome: "Mechanisms for platforms, teams, and kidney exchange"
 featured_label: "Mechanism design publications"
-featured_url: "/publications/?topic=Multi-Agent"
+featured_url: "/publications/?line=incentives"
 papers_query: "@*[projects~=multi-agent-systems|game-theory]*"
 ---
 

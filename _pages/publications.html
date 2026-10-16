@@ -3,9 +3,10 @@ layout: page
 permalink: /publications/
 title: Publications
 description: Full list of publications by Chen Hajaj on machine learning, cybersecurity, healthcare AI and multi-agent systems, with abstracts and BibTeX.
-lead: Journal articles, conference papers, preprints and patents, newest first. Filter by topic or type, or search titles, authors, venues and abstracts.
+lead: Journal articles, conference papers, preprints and patents, newest first. Filter by research line, type or year, or search titles, authors, venues and abstracts.
 nav: true
 nav_order: 1
+scripts: [paper-map]
 ---
 
 <div class="pubs-layout">
@@ -18,16 +19,13 @@ nav_order: 1
       </div>
 
       <fieldset class="filter-group">
-        <legend>Topic</legend>
+        <legend>Research line</legend>
         <div class="choice-list">
-          <label class="choice"><input type="radio" name="topic" value="all" checked> All topics <span class="count"></span></label>
-          <label class="choice"><input type="radio" name="topic" value="traffic"> Encrypted traffic <span class="count"></span></label>
-          <label class="choice"><input type="radio" name="topic" value="security"> Cybersecurity <span class="count"></span></label>
-          <label class="choice"><input type="radio" name="topic" value="health"> Healthcare <span class="count"></span></label>
-          <label class="choice"><input type="radio" name="topic" value="ai"> AI and machine learning <span class="count"></span></label>
-          <label class="choice"><input type="radio" name="topic" value="agents"> Multi-agent systems <span class="count"></span></label>
-          <label class="choice"><input type="radio" name="topic" value="commerce"> E-commerce and HCI <span class="count"></span></label>
-          <label class="choice"><input type="radio" name="topic" value="education"> Education <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="line" value="all" checked> All lines <span class="count"></span></label>
+          {%- for l in site.data.research_lines.lines %}
+          <label class="choice" style="--c: var(--line-{{ l.key }})"><input type="radio" name="line" value="{{ l.key }}"> <span class="choice-name"><span class="choice-dot" aria-hidden="true"></span>{{ l.name }}</span> <span class="count"></span></label>
+          {%- endfor %}
+          <label class="choice" style="--c: var(--line-other)"><input type="radio" name="line" value="other"> <span class="choice-name"><span class="choice-dot" aria-hidden="true"></span>{{ site.data.research_lines.other.name }}</span> <span class="count"></span></label>
         </div>
       </fieldset>
 
@@ -60,6 +58,22 @@ nav_order: 1
   </aside>
 
   <div>
+    <figure class="pubs-map paper-map-group">
+      <div
+        class="paper-map pubs-canvas"
+        id="pubs-map"
+        data-click="scroll"
+        data-years="filter"
+        data-animate="view"
+        data-max-size="16"
+        role="img"
+        aria-label="Chart of {{ site.data.research.papers }} papers by year and research line. Use the Year filter for the same view."
+      >
+        <canvas aria-hidden="true"></canvas>
+      </div>
+      <figcaption>Each square is a paper. Click a year to show only that year, or a square to jump to the paper.</figcaption>
+    </figure>
+    {% include research_data.liquid %}
     <div class="results-bar">
       <p id="pub-count" aria-live="polite"></p>
       <button class="reset-button" id="pub-reset" type="button" hidden>Clear filters</button>
@@ -69,7 +83,7 @@ nav_order: 1
     </div>
     <div class="empty-state" id="pub-empty" hidden>
       <h2>No publications match</h2>
-      <p>Try a shorter search or another topic, or clear the filters to see the full list.</p>
+      <p>Try a shorter search or another research line, or clear the filters to see the full list.</p>
     </div>
   </div>
 </div>
