@@ -580,6 +580,12 @@ ol.bibliography {
   overflow-x: auto;
 }
 
+.data-table .role,
+.data-table .amount,
+.data-table .num {
+  white-space: nowrap;
+}
+
 @media (max-width: 640px) {
   .data-table.stack thead {
     position: absolute;
