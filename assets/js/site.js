@@ -55,6 +55,24 @@
     });
   }
 
+  // The name in the header always leads to the top of the home page. On the
+  // home page itself it scrolls up in place instead of reloading.
+  var wordmark = document.querySelector(".wordmark");
+  if (wordmark && document.body.classList.contains("page-home")) {
+    wordmark.addEventListener("click", function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      var smooth = !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+      window.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+      if (window.history && history.replaceState && location.hash) history.replaceState(null, "", location.pathname + location.search);
+      var name = document.getElementById("hero-name");
+      if (name) {
+        name.setAttribute("tabindex", "-1");
+        name.focus({ preventScroll: true });
+      }
+    });
+  }
+
   var header = document.getElementById("site-header");
   if (header) {
     var onScroll = function () {
