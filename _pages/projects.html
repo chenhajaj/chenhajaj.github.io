@@ -14,7 +14,6 @@ nav_order: 2
     {%- assign slug = project.url | split: '/' | last -%}
     <li>
       <a class="line-row line-row-large" href="{{ project.url | relative_url }}">
-        <div class="fingerprint fingerprint-mini" data-seed="{{ slug }}" data-bar="1.5" data-step="3" data-axis="0.5"></div>
         <div>
           <h2 class="line-title">{{ project.title }}</h2>
           <p class="line-desc">{{ project.description }}</p>

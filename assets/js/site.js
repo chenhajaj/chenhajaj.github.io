@@ -1,15 +1,13 @@
 /*
  * Site behaviour for chenhajaj.github.io (no dependencies).
  *  1. Theme toggle and mobile menu
- *  2. Flow fingerprints: deterministic drawings of a network flow
- *  3. Publication panels (abstract / BibTeX) and copy buttons
- *  4. Publications page filters
+ *  2. Publication panels (abstract / BibTeX) and copy buttons
+ *  3. Publications page filters
  */
 (function () {
   "use strict";
 
   var root = document.documentElement;
-  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ------------------------------------------------------------ 1. frame */
 
@@ -65,172 +63,7 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  /* ----------------------------------------------------- 2. fingerprints */
-
-  function hash(str) {
-    var h = 2166136261;
-    for (var i = 0; i < str.length; i++) {
-      h ^= str.charCodeAt(i);
-      h = Math.imul(h, 16777619);
-    }
-    return h >>> 0;
-  }
-
-  function rng(seed) {
-    var a = seed >>> 0;
-    return function () {
-      a = (a + 0x6d2b79f5) >>> 0;
-      var t = a;
-      t = Math.imul(t ^ (t >>> 15), t | 1);
-      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-
-  // Build a packet sequence that looks like a real encrypted connection:
-  // a handshake, request/response bursts, idle gaps and, optionally, a
-  // change of regime (the "shift") late in the flow.
-  function makeFlow(slots, seed, shiftAt) {
-    var r = rng(seed);
-    var flow = new Array(slots);
-    var i = 0;
-    var MTU = 1500;
-    // Each seed gets its own "application": burst length, request size,
-    // idle gaps and upload share all vary, so every research line has a
-    // recognisably different trace.
-    var burstMean = 2 + r() * 9;
-    var reqMax = 160 + r() * 1100;
-    var ackRate = 0.2 + r() * 0.6;
-    var gapRate = 0.1 + r() * 0.45;
-    var upShare = 0.15 + r() * 0.3;
-
-    function put(dir, size, shifted) {
-      if (i < slots) flow[i++] = { dir: dir, size: Math.max(40, Math.min(MTU, size)), shift: !!shifted };
-    }
-    function gap(n) {
-      for (var k = 0; k < n && i < slots; k++) flow[i++] = null;
-    }
-
-    // Handshake: client hello, server hello + certificate, finish
-    put(1, 220 + r() * 300);
-    put(-1, 1400 + r() * 100);
-    put(-1, 1200 + r() * 300);
-    put(-1, 300 + r() * 600);
-    put(1, 80 + r() * 60);
-    put(1, 120 + r() * 200);
-    gap(1 + Math.floor(r() * 2));
-
-    var shiftSlot = shiftAt ? Math.floor(slots * shiftAt) : slots + 1;
-
-    while (i < slots) {
-      var shifted = i >= shiftSlot;
-      if (!shifted) {
-        // request(s), then a response burst of near-MTU packets with a short tail
-        put(1, 90 + r() * reqMax);
-        if (r() < upShare) put(1, 90 + r() * reqMax);
-        var burst = 1 + Math.floor(r() * burstMean * 2);
-        for (var b = 0; b < burst; b++) put(-1, b < burst - 1 ? 1250 + r() * 250 : 200 + r() * 900);
-        if (r() < ackRate) put(1, 60 + r() * 40);
-        if (r() < gapRate) gap(1 + Math.floor(r() * 3));
-      } else {
-        // a different application: steady, medium-sized packets both ways
-        var run = 4 + Math.floor(r() * 6);
-        for (var s = 0; s < run; s++) {
-          put(r() < 0.42 ? 1 : -1, 620 + r() * 520, true);
-        }
-        gap(r() < 0.2 ? 1 : 0);
-      }
-    }
-    return { flow: flow, shiftSlot: shiftSlot };
-  }
-
-  var SVGNS = "http://www.w3.org/2000/svg";
-
-  function drawFingerprint(el, animate) {
-    var w = Math.max(80, Math.round(el.clientWidth));
-    var h = Math.max(24, Math.round(el.clientHeight));
-    var bar = parseFloat(el.getAttribute("data-bar") || "2");
-    var step = parseFloat(el.getAttribute("data-step") || "4");
-    var shiftAt = parseFloat(el.getAttribute("data-shift") || "0");
-    var seed = hash(el.getAttribute("data-seed") || "flow");
-    var slots = Math.floor(w / step);
-    var data = makeFlow(slots, seed, shiftAt);
-    var axis = Math.round(h * parseFloat(el.getAttribute("data-axis") || "0.42")) + 0.5;
-    var upMax = axis - 2;
-    var downMax = h - axis - 2;
-
-    var svg = document.createElementNS(SVGNS, "svg");
-    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
-    svg.setAttribute("width", w);
-    svg.setAttribute("height", h);
-    svg.setAttribute("aria-hidden", "true");
-    svg.setAttribute("focusable", "false");
-
-    var line = document.createElementNS(SVGNS, "line");
-    line.setAttribute("class", "fp-axis");
-    line.setAttribute("x1", 0);
-    line.setAttribute("x2", w);
-    line.setAttribute("y1", axis);
-    line.setAttribute("y2", axis);
-    svg.appendChild(line);
-
-    var shiftIndex = 0;
-    for (var k = 0; k < data.flow.length; k++) {
-      var p = data.flow[k];
-      if (!p) continue;
-      var bh = (p.size / 1500) * (p.dir > 0 ? upMax : downMax);
-      var rect = document.createElementNS(SVGNS, "rect");
-      rect.setAttribute("x", (k * step).toFixed(1));
-      rect.setAttribute("width", bar);
-      rect.setAttribute("height", bh.toFixed(1));
-      rect.setAttribute("y", (p.dir > 0 ? axis - 0.5 - bh : axis + 0.5).toFixed(1));
-      var cls = "fp-bar " + (p.dir > 0 ? "is-up" : "is-down");
-      if (p.shift) cls += " is-shift";
-      rect.setAttribute("class", cls);
-      if (animate) rect.style.setProperty("--i", k);
-      svg.appendChild(rect);
-      if (p.shift && !shiftIndex) shiftIndex = k;
-    }
-
-    if (shiftAt && data.shiftSlot < slots) {
-      var mx = data.shiftSlot * step - step / 2;
-      var marker = document.createElementNS(SVGNS, "line");
-      marker.setAttribute("class", "fp-marker");
-      marker.setAttribute("x1", mx);
-      marker.setAttribute("x2", mx);
-      marker.setAttribute("y1", 0);
-      marker.setAttribute("y2", h);
-      svg.appendChild(marker);
-    }
-
-    el.style.setProperty("--n", data.shiftSlot);
-    el.textContent = "";
-    el.appendChild(svg);
-    if (animate) el.classList.add("is-animated");
-    else el.classList.remove("is-animated");
-  }
-
-  var prints = Array.prototype.slice.call(document.querySelectorAll(".fingerprint[data-seed]"));
-  prints.forEach(function (el) {
-    drawFingerprint(el, !reduceMotion && el.hasAttribute("data-animate"));
-  });
-
-  if (prints.length && "ResizeObserver" in window) {
-    var widths = new WeakMap();
-    var ro = new ResizeObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var el = entry.target;
-        var w = Math.round(entry.contentRect.width);
-        if (widths.has(el) && Math.abs(widths.get(el) - w) > 6) drawFingerprint(el, false);
-        widths.set(el, w);
-      });
-    });
-    prints.forEach(function (el) {
-      ro.observe(el);
-    });
-  }
-
-  /* -------------------------------------------- 3. publication panels */
+  /* -------------------------------------------- 2. publication panels */
 
   document.addEventListener("click", function (e) {
     var toggle = e.target.closest(".pub-toggle");
@@ -270,7 +103,7 @@
     }
   });
 
-  /* ------------------------------------------- 4. publications filters */
+  /* ------------------------------------------- 3. publications filters */
 
   var filterForm = document.getElementById("pub-filters");
   if (!filterForm) return;
