@@ -7,7 +7,7 @@ importance: 3
 category: work
 outcome: "Live-critique learning signals quantified"
 featured_label: "Education publications"
-featured_url: "/publications/?topic=Education"
+featured_url: "/publications/?line=learning"
 papers_query: "@*[projects~=education]*"
 ---
 

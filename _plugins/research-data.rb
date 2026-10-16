@@ -30,6 +30,14 @@ module ResearchData
     "#{first} #{last}".strip
   end
 
+  # "Chen Hajaj", "C Hajaj" and "C. Hajaj" all become "c-hajaj".
+  def self.person_id(name)
+    parts = name.downcase.delete(".").split(/\s+/).reject(&:empty?)
+    return name.downcase if parts.empty?
+
+    "#{parts.first[0]}-#{parts.last}"
+  end
+
   def self.kind(entry)
     type = entry.type.to_s.downcase
     return "patent" if type == "misc" && entry.fields.key?(:number) && clean(entry[:howpublished]) =~ /patent/i
@@ -86,10 +94,48 @@ module ResearchData
       summary = lines.map do |l|
         in_line = papers.select { |p| p["lines"].include?(l["key"]) }
         per_year = (first_year..last_year).map { |y| in_line.count { |p| p["year"] == y } }
-        l.merge("count" => in_line.size, "per_year" => per_year, "url" => "/projects/#{l['project']}/")
+        line_years = in_line.map { |p| p["year"] }
+        coauthors = in_line.flat_map { |p| p["authors"].map { |a| ResearchData.person_id(a) } }.uniq - ["c-hajaj"]
+        l.merge("count" => in_line.size, "per_year" => per_year, "url" => "/projects/#{l['project']}/",
+                "first" => line_years.min, "last" => line_years.max, "coauthors" => coauthors.size)
       end
 
-      collaborators = papers.flat_map { |p| p["authors"] }.reject { |a| a =~ /Hajaj/ }.uniq.size
+      # People: merge name variants, count papers shared with Chen, mark lab members.
+      me = "c-hajaj"
+      lab = {}
+      students = site.data["students"] || {}
+      { "phd_students" => "PhD student", "masters_students" => "MSc student",
+        "research_assistants" => "Research assistant", "phd_alumni" => "PhD graduate",
+        "masters_alumni" => "MSc graduate", "former_research_assistants" => "Former research assistant" }.each do |group, role|
+        (students[group] || []).each { |st| lab[ResearchData.person_id(st["name"].to_s)] ||= role }
+      end
+      people = {}
+      papers.each do |p|
+        p["author_ids"] = p["authors"].map { |a| ResearchData.person_id(a) }.uniq
+        p["authors"].each do |a|
+          id = ResearchData.person_id(a)
+          person = (people[id] ||= { "id" => id, "names" => [], "papers" => [], "lines" => Hash.new(0), "years" => [] })
+          person["names"] << a
+        end
+        p["author_ids"].each do |id|
+          person = people[id]
+          person["papers"] << p["key"]
+          person["lines"][p["line"]] += 1
+          person["years"] << p["year"]
+        end
+      end
+      people_list = people.values.reject { |pp| pp["id"] == me }.map do |pp|
+        {
+          "id" => pp["id"],
+          "name" => pp["names"].max_by { |n| [n.delete(".").length, n] },
+          "count" => pp["papers"].size,
+          "line" => pp["lines"].max_by { |k, v| [v, k == "other" ? 0 : 1] }&.first || "other",
+          "first" => pp["years"].min, "last" => pp["years"].max,
+          "role" => lab[pp["id"]]
+        }.compact
+      end
+      people_list.sort_by! { |pp| [-pp["count"], pp["name"]] }
+      collaborators = people_list.size
 
       site.data["research"] = {
         "papers" => papers.size,
@@ -97,6 +143,8 @@ module ResearchData
         "last_year" => last_year,
         "collaborators" => collaborators,
         "other_count" => papers.count { |p| p["line"] == "other" },
+        "top_people" => people_list.first(12),
+        "students_coauthors" => people_list.count { |pp| pp["role"] },
         "lines" => summary,
         "by_project" => summary.to_h { |l| [l["project"], l] }
       }
@@ -105,7 +153,8 @@ module ResearchData
         "first_year" => first_year, "last_year" => last_year,
         "lines" => summary.map { |l| l.slice("key", "name", "color", "url", "count") },
         "other" => cfg["other"],
-        "papers" => papers
+        "papers" => papers,
+        "people" => people_list
       }
       # Inline copy for pages that draw the map without an extra request.
       # "</" is escaped so the JSON is safe inside a <script> element.

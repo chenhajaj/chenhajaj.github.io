@@ -7,7 +7,7 @@ importance: 1
 category: work
 outcome: "Robustness across security, health, and social systems"
 featured_label: "Featured research collection"
-featured_url: "/publications/?topic=Cybersecurity"
+featured_url: "/publications/?line=adversarial"
 papers_query: "@*[projects~=security|cyber-threat-intelligence]*"
 ---
 

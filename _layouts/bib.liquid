@@ -3,7 +3,8 @@
 {%- comment -%}
   One publication, rendered by jekyll-scholar. Used by the publications page,
   the home page "Selected papers" list and the per-project paper lists.
-  data-kind feeds the type filter; data-projects feeds the topic filter.
+  data-kind feeds the type filter; data-lines feeds the research-line filter;
+  data-line (the first matching line) sets the colour of the square.
 {%- endcomment -%}
 {%- assign venue_text = entry.howpublished | append: ' ' | append: entry.note | downcase -%}
 {%- case entry.type -%}
@@ -34,6 +35,25 @@
       {%- assign kind_label = 'Other' -%}
     {%- endif -%}
 {%- endcase -%}
+{%- comment -%} Research line: the first line in _data/research_lines.yml whose tags
+  appear in the entry's `projects` field (same rule as _plugins/research-data.rb). {%- endcomment -%}
+{%- assign ptags = entry.projects | downcase -%}
+{%- assign line_keys = '' -%}
+{%- assign primary = 'other' -%}
+{%- assign primary_name = site.data.research_lines.other.name -%}
+{%- for l in site.data.research_lines.lines -%}
+  {%- assign hit = false -%}
+  {%- for t in l.tags -%}
+    {%- if ptags contains t -%}{%- assign hit = true -%}{%- endif -%}
+  {%- endfor -%}
+  {%- if hit -%}
+    {%- assign line_keys = line_keys | append: l.key | append: ',' -%}
+    {%- if primary == 'other' -%}
+      {%- assign primary = l.key -%}
+      {%- assign primary_name = l.name -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
 {%- if entry.doi -%}
   {%- capture main_url -%}https://doi.org/{{ entry.doi }}{%- endcapture -%}
 {%- elsif entry.url -%}
@@ -49,14 +69,21 @@
   data-kind="{{ kind }}"
   data-year="{{ entry.year }}"
   data-projects="{{ entry.projects | remove: ' ' }}"
+  data-line="{{ primary }}"
+  style="--c: var(--line-{{ primary }})"
+  data-lines="{{ line_keys }}"
   {% if entry.selected %}
     data-selected="true"
   {% endif %}
 >
   <h3 class="pub-title">
-    {%- if entry.selected -%}
-      <span class="pub-selected" title="Selected publication"></span><span class="visually-hidden">Selected: </span>
-    {%- endif -%}
+    <span
+      class="pub-mark{% if entry.selected %} is-selected{% endif %}"
+      style="--c: var(--line-{{ primary }})"
+      title="{{ primary_name }}{% if entry.selected %}, selected publication{% endif %}"
+      aria-hidden="true"
+    ></span>
+    {%- if entry.selected -%}<span class="visually-hidden">Selected: </span>{%- endif -%}
     {%- if main_url -%}
       <a href="{{ main_url }}">{{ entry.title }}</a>
     {%- else -%}

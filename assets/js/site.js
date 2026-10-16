@@ -1,6 +1,7 @@
 /*
  * Site behaviour for chenhajaj.github.io (no dependencies).
  *  1. Theme toggle and mobile menu
+ *  -  Motion: count-up numbers, charts that grow into view
  *  2. Publication panels (abstract / BibTeX) and copy buttons
  *  3. Publications page filters
  */
@@ -63,6 +64,41 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  /* ----------------------------------------------------------- motion */
+  // Numbers count up and card charts grow when they first scroll into view.
+  // Only when the visitor allows motion (the inline script sets .motion-ok).
+  if (root.classList.contains("motion-ok") && "IntersectionObserver" in window) {
+    var countUp = function (el) {
+      var target = parseFloat(el.getAttribute("data-count"));
+      if (!isFinite(target) || target <= 0) return;
+      var final = el.textContent;
+      var t0 = null;
+      var step = function (t) {
+        if (t0 === null) t0 = t;
+        var k = Math.min(1, (t - t0) / 1100);
+        var e = 1 - Math.pow(1 - k, 3);
+        el.textContent = k < 1 ? Math.round(target * e).toLocaleString("en-US") : final;
+        if (k < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    };
+    var seen = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          seen.unobserve(el);
+          el.classList.add("is-inview");
+          if (el.hasAttribute("data-count")) countUp(el);
+        });
+      },
+      { threshold: 0.4 }
+    );
+    Array.prototype.forEach.call(document.querySelectorAll(".line-card, [data-count]"), function (el) {
+      seen.observe(el);
+    });
+  }
+
   /* -------------------------------------------- 2. publication panels */
 
   document.addEventListener("click", function (e) {
@@ -118,40 +154,27 @@
   var togglePanel = document.getElementById("filters-toggle");
   var filtersBox = document.getElementById("filters");
 
-  // Topic options group the free-form `projects` tags used in papers.bib.
-  var TOPICS = {
-    ai: {
-      label: "AI and machine learning",
-      tags: ["machine-learning", "generative-ai", "computer-vision", "speech-processing", "similarity", "emotion-analysis"],
-    },
-    security: {
-      label: "Cybersecurity",
-      tags: ["security", "cybersecurity", "traffic-classification", "cyber-threat-intelligence", "encrypted-traffic"],
-    },
-    traffic: { label: "Encrypted traffic", tags: ["encrypted-traffic", "traffic-classification"] },
-    health: { label: "Healthcare", tags: ["healthcare", "covid-19"] },
-    agents: { label: "Multi-agent systems", tags: ["multi-agent-systems", "game-theory"] },
-    commerce: { label: "E-commerce and HCI", tags: ["e-commerce", "human-computer-interaction"] },
-    education: { label: "Education", tags: ["education"] },
-  };
-  // Old links used labels such as ?topic=Cybersecurity
-  var TOPIC_ALIASES = {
-    "ai & ml": "ai",
-    ai: "ai",
-    "group-ai": "ai",
-    cybersecurity: "security",
-    "group-security": "security",
-    security: "security",
+  // Research lines come from data-lines on each paper (set in _layouts/bib.liquid
+  // from _data/research_lines.yml). Old links used ?topic=...; map them to lines.
+  var TOPIC_TO_LINE = {
+    traffic: "traffic",
     "encrypted traffic": "traffic",
     "encrypted-traffic": "traffic",
-    healthcare: "health",
-    "group-healthcare": "health",
-    "multi-agent": "agents",
-    "group-multiagent": "agents",
-    "e-commerce": "commerce",
-    "group-ecommerce": "commerce",
-    education: "education",
+    security: "adversarial",
+    cybersecurity: "adversarial",
+    "group-security": "adversarial",
+    health: "medical",
+    healthcare: "medical",
+    "group-healthcare": "medical",
+    agents: "incentives",
+    "multi-agent": "incentives",
+    "group-multiagent": "incentives",
+    commerce: "similarity",
+    "e-commerce": "similarity",
+    "group-ecommerce": "similarity",
+    education: "learning",
   };
+  var mapEl = document.getElementById("pubs-map");
 
   var records = pubs.map(function (el) {
     var text = ["pub-title", "pub-authors", "pub-venue"].map(function (c) {
@@ -159,32 +182,31 @@
       return n ? n.textContent : "";
     });
     var abs = el.querySelector('[id^="abs-"]');
-    var tags = (el.getAttribute("data-projects") || "").split(",").filter(Boolean);
     return {
       el: el,
+      key: (el.id || "").replace(/^pub-/, ""),
+      line: el.getAttribute("data-line") || "other",
+      lines: (el.getAttribute("data-lines") || "").split(",").filter(Boolean),
       li: el.closest("li") || el,
       year: el.getAttribute("data-year"),
       kind: el.getAttribute("data-kind"),
-      tags: tags,
       hay: (text.join(" ") + " " + (abs ? abs.textContent : "")).toLowerCase(),
     };
   });
 
-  function inTopic(rec, topic) {
-    if (!topic || topic === "all") return true;
-    var t = TOPICS[topic];
-    if (!t) return true;
-    for (var i = 0; i < rec.tags.length; i++) if (t.tags.indexOf(rec.tags[i]) !== -1) return true;
-    return false;
+  function inLine(rec, line) {
+    if (!line || line === "all") return true;
+    if (line === "other") return rec.line === "other";
+    return rec.lines.indexOf(line) !== -1;
   }
 
   // Counts next to each option (over the whole list, so they never jump around)
-  Array.prototype.forEach.call(filterForm.querySelectorAll('input[name="topic"]'), function (input) {
+  Array.prototype.forEach.call(filterForm.querySelectorAll('input[name="line"]'), function (input) {
     var c =
       input.value === "all"
         ? records.length
         : records.filter(function (r) {
-            return inTopic(r, input.value);
+            return inLine(r, input.value);
           }).length;
     var out = input.parentNode.querySelector(".count");
     if (out) out.textContent = c;
@@ -218,11 +240,11 @@
     });
 
   function current() {
-    var topic = filterForm.querySelector('input[name="topic"]:checked');
+    var line = filterForm.querySelector('input[name="line"]:checked');
     var kind = filterForm.querySelector('input[name="kind"]:checked');
     return {
       q: search.value.trim().toLowerCase(),
-      topic: topic ? topic.value : "all",
+      line: line ? line.value : "all",
       kind: kind ? kind.value : "all",
       year: yearSel.value,
     };
@@ -232,17 +254,26 @@
     var s = current();
     var terms = s.q ? s.q.split(/\s+/) : [];
     var shown = 0;
+    var keys = [];
     records.forEach(function (r) {
       var ok =
-        inTopic(r, s.topic) &&
+        inLine(r, s.line) &&
         (s.kind === "all" || r.kind === s.kind) &&
         (s.year === "all" || r.year === s.year) &&
         terms.every(function (t) {
           return r.hay.indexOf(t) !== -1;
         });
       r.li.hidden = !ok;
-      if (ok) shown++;
+      if (ok) {
+        shown++;
+        keys.push(r.key);
+      }
     });
+    if (mapEl) {
+      mapEl.dispatchEvent(
+        new CustomEvent("papermap:filter", { detail: { keys: shown === records.length ? null : keys, year: s.year } })
+      );
+    }
     // Hide year headings with nothing left under them
     Array.prototype.forEach.call(list.querySelectorAll("ol.bibliography"), function (ol) {
       var any = ol.querySelector("li:not([hidden])");
@@ -251,7 +282,7 @@
       if (h && h.matches("h2.bibliography")) h.hidden = !any;
     });
 
-    var active = (s.q ? 1 : 0) + (s.topic !== "all" ? 1 : 0) + (s.kind !== "all" ? 1 : 0) + (s.year !== "all" ? 1 : 0);
+    var active = (s.q ? 1 : 0) + (s.line !== "all" ? 1 : 0) + (s.kind !== "all" ? 1 : 0) + (s.year !== "all" ? 1 : 0);
     countEl.innerHTML =
       shown === records.length
         ? "<strong>" + records.length + "</strong> publications"
@@ -263,7 +294,7 @@
     if (updateUrl && window.history && history.replaceState) {
       var params = new URLSearchParams();
       if (s.q) params.set("q", search.value.trim());
-      if (s.topic !== "all") params.set("topic", s.topic);
+      if (s.line !== "all") params.set("line", s.line);
       if (s.kind !== "all") params.set("type", s.kind);
       if (s.year !== "all") params.set("year", s.year);
       var qs = params.toString();
@@ -279,10 +310,8 @@
   // Read initial state from the URL
   var params = new URLSearchParams(location.search);
   if (params.get("q")) search.value = params.get("q");
-  if (params.get("topic")) {
-    var t = params.get("topic").toLowerCase();
-    check("topic", TOPICS[t] ? t : TOPIC_ALIASES[t] || "all");
-  }
+  if (params.get("line")) check("line", params.get("line").toLowerCase());
+  else if (params.get("topic")) check("line", TOPIC_TO_LINE[params.get("topic").toLowerCase()] || "all");
   if (params.get("type")) {
     var ty = params.get("type").toLowerCase();
     var legacy = { article: "journal", inproceedings: "conference", misc: "preprint" };
@@ -302,6 +331,13 @@
   });
   filterForm.addEventListener("submit", function (e) {
     e.preventDefault();
+  });
+  // Clicking a year column in the map filters by that year (or clears it).
+  document.addEventListener("papermap:year", function (e) {
+    var yr = e.detail && e.detail.year;
+    if (!yr) return;
+    yearSel.value = yr === "all" || yearSel.querySelector('option[value="' + yr + '"]') ? yr : "all";
+    apply(true);
   });
   resetBtn.addEventListener("click", function () {
     filterForm.reset();

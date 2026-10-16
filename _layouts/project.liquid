@@ -2,16 +2,54 @@
 layout: default
 ---
 {%- assign slug = page.url | split: '/' | last -%}
-<div class="wrap">
-  <header class="project-head">
-    <a class="crumb" href="{{ '/projects/' | relative_url }}">Research</a>
-    <h1>{{ page.title }}</h1>
-    <p class="lead">{{ page.description }}</p>
-    {% if page.outcome %}
-      <p class="headline-result"><strong>Headline result:</strong> {{ page.outcome }}.</p>
-    {% endif %}
-  </header>
+{%- assign line = site.data.research.by_project[slug] -%}
+{%- assign key = line.key | default: 'other' -%}
+<section class="atlas project-hero" aria-labelledby="project-title" style="--c: var(--line-{{ key }}-bright)">
+  <div class="wrap">
+    <div class="project-hero-grid">
+      <div class="project-hero-text">
+        <a class="crumb" href="{{ '/projects/' | relative_url }}">Research</a>
+        <h1 id="project-title">{{ page.title }}</h1>
+        <p class="lead">{{ page.description }}</p>
+        {% if page.outcome %}
+          <p class="headline-result"><strong>Headline result:</strong> {{ page.outcome }}.</p>
+        {% endif %}
+      </div>
+      {%- if page.img -%}
+        <div class="project-hero-img" style="view-transition-name: line-{{ slug }}">
+          {% include figure.liquid path=page.img alt="" sizes="(max-width: 860px) 92vw, 520px" loading="eager" %}
+        </div>
+      {%- endif -%}
+    </div>
 
+    {%- if line -%}
+      <figure class="line-map paper-map-group">
+        <dl class="atlas-stats">
+          <div><dt>Papers</dt><dd class="num" data-count="{{ line.count }}">{{ line.count }}</dd></div>
+          <div><dt>Years</dt><dd class="num">{{ line.first }} to {{ line.last }}</dd></div>
+          <div><dt>Co-authors</dt><dd class="num" data-count="{{ line.coauthors }}">{{ line.coauthors }}</dd></div>
+        </dl>
+        <div
+          class="paper-map line-canvas"
+          data-line="{{ key }}"
+          data-surface="night"
+          data-animate="load"
+          data-max-size="22"
+          data-pubs="{{ '/publications/' | relative_url }}"
+          role="img"
+          aria-label="Chart of the {{ line.count }} papers in this line by year, from {{ line.first }} to {{ line.last }}."
+        >
+          <canvas aria-hidden="true"></canvas>
+        </div>
+        <figcaption>Each square is one of these {{ line.count }} papers. Hover to read it, click to open it.</figcaption>
+      </figure>
+      {% include research_data.liquid %}
+      <script src="{{ '/assets/js/paper-map.js' | relative_url | bust_file_cache }}" defer></script>
+    {%- endif -%}
+  </div>
+</section>
+
+<div class="wrap">
   <section class="band" aria-labelledby="overview">
     <div class="band-head">
       <h2 id="overview">Overview</h2>

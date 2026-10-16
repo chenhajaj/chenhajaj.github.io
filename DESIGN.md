@@ -23,10 +23,30 @@ paper and click to open it; legend chips highlight one line. It is real data
 added, and it tells the lab's story at a glance: output growing from one paper
 a year to about a dozen across six lines.
 
-- Code: `assets/js/research-map.js` (canvas, no libraries), styles in
-  `_sass/signal/_atlas.scss`, data from `_plugins/research-data.rb`.
-- The squares drop into place once on load; skipped for
-  `prefers-reduced-motion`. No other automatic motion on the site.
+- Code: `assets/js/paper-map.js` (canvas, no libraries), styles in
+  `_sass/signal/_atlas.scss`, data from `_plugins/research-data.rb`
+  (inlined on each page by `_includes/research_data.liquid`).
+- The same map appears in three places: the home page (all papers, click
+  opens a paper), Publications (click a year to filter, click a square to
+  jump to the paper; it dims to whatever the filters show) and each research
+  page (only that line's papers).
+- The Lab page has a co-author network (`assets/js/coauthor-network.js`):
+  128 people, sized and placed by papers shared with Chen, coloured by their
+  main research line, with lab students ringed. Hover, drag, search by name,
+  or highlight a line.
+
+## Motion
+
+Motion is tied to content and answers what the visitor does. All of it is off
+under `prefers-reduced-motion` (the `motion-ok` class on `<html>` gates it).
+
+- Map squares drop into their year column (on load in the hero, on scroll
+  into view elsewhere); the network settles into place.
+- Numbers under the maps count up once when they come into view.
+- Papers-per-year bars on research cards grow when the card scrolls in.
+- Clicking a research card expands its illustration into the research page
+  header (cross-document View Transitions; browsers without them just load
+  the page).
 - Decoration must carry information. An earlier random "flow fingerprint"
   drawing was removed in October 2026 because it looked like data but was not.
 
@@ -81,7 +101,7 @@ Dark mode follows the system unless the visitor picks a theme with the toggle
 
 | What                     | Where                                                                                                                                                                                    |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Publications             | `_bibliography/papers.bib` (kept in sync by the Scholar Sync workflow). `selected = {true}` puts a paper on the home page; `projects = {...}` tags feed topic filters and project pages. |
+| Publications             | `_bibliography/papers.bib` (kept in sync by the Scholar Sync workflow). `selected = {true}` puts a paper on the home page; `projects = {...}` tags set each paper's research line, colour and filters. |
 | Research lines           | `_projects/*.md`. `papers_query` decides which papers appear on the project page and the paper count.                                                                                    |
 | Students and alumni      | `_data/students.yml`                                                                                                                                                                     |
 | Open PhD/MSc topics      | `_data/open_topics.yml`                                                                                                                                                                  |

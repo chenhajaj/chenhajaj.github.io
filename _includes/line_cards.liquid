@@ -14,7 +14,7 @@
     <li>
       <a class="line-card" href="{{ project.url | relative_url }}" style="--c: var(--line-{{ key }})">
         {%- if project.img -%}
-          <div class="line-card-img">
+          <div class="line-card-img" style="view-transition-name: line-{{ slug }}">
             {% include figure.liquid path=project.img alt="" sizes="(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 360px" loading="lazy" %}
           </div>
         {%- endif -%}
@@ -35,7 +35,7 @@
               {%- for n in line.per_year -%}
                 {%- assign h = n | times: 26 | divided_by: peak -%}
                 {%- if n > 0 and h < 3 -%}{%- assign h = 3 -%}{%- endif -%}
-                <rect x="{{ forloop.index0 | times: 8 }}" y="{{ 28 | minus: h }}" width="6" height="{{ h }}" rx="1"></rect>
+                <rect x="{{ forloop.index0 | times: 8 }}" y="{{ 28 | minus: h }}" width="6" height="{{ h }}" rx="1" style="--i: {{ forloop.index0 }}"></rect>
               {%- endfor -%}
             </svg>
             <span class="line-card-count"><strong class="num">{{ line.count }}</strong> papers, {{ r.first_year }} to {{ r.last_year }}</span>

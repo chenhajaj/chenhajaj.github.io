@@ -7,7 +7,7 @@ importance: 3
 category: work
 outcome: "Vision + language + time for product similarity"
 featured_label: "Multimodal research"
-featured_url: "/publications/?topic=AI%20%26%20ML"
+featured_url: "/publications/?line=similarity"
 papers_query: "@*[projects~=similarity]*"
 ---
 

@@ -8,6 +8,9 @@
           var t = localStorage.getItem('theme');
           if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
         } catch (e) {}
+        if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+          document.documentElement.classList.add('motion-ok');
+        }
       })();
     </script>
     <link rel="preload" href="{{ '/assets/fonts/archivo-normal-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>

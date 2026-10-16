@@ -3,7 +3,7 @@ layout: about
 title: About
 permalink: /
 show_pub_year: true
-scripts: [research-map]
+scripts: [paper-map]
 description: Chen Hajaj is an Associate Professor at Ariel University who builds machine learning that keeps working when data, threats, and domains change, from encrypted traffic and adversarial AI to clinical decision support.
 
 # Featured result on the home page. Edit these lines to swap it.
@@ -45,14 +45,16 @@ featured:
       </div>
     </div>
 
-    <figure class="atlas-map">
+    <figure class="atlas-map paper-map-group">
       <figcaption class="atlas-head">
         <h2>{{ r.papers }} papers since {{ r.first_year }}</h2>
         <p>Each square is a paper, coloured by research line. Hover or tap one to read it.</p>
       </figcaption>
       <div
-        class="atlas-canvas"
+        class="atlas-canvas paper-map"
         id="research-map"
+        data-surface="night"
+        data-animate="load"
         data-pubs="{{ '/publications/' | relative_url }}"
         role="img"
         aria-label="Chart of {{ r.papers }} papers from {{ r.first_year }} to {{ r.last_year }}, grouped by year and coloured by research line. Output grew from one paper a year to about a dozen."
@@ -71,15 +73,15 @@ featured:
           </button>
         {%- endif -%}
       </div>
-      <script type="application/json" id="research-data">{{ site.data.research_json }}</script>
+      {% include research_data.liquid %}
     </figure>
 
     <div class="atlas-foot">
       <dl class="atlas-stats">
-        <div><dt>Citations</dt><dd class="num">{{ site.data.scholar.citations | default: 0 | thousands }}</dd></div>
-        <div><dt>h-index</dt><dd class="num">{{ site.data.scholar.h_index }}</dd></div>
-        <div><dt>Co-authors</dt><dd class="num">{{ r.collaborators }}</dd></div>
-        <div><dt>Students in the lab</dt><dd class="num">{{ current_students }}</dd></div>
+        <div><dt>Citations</dt><dd class="num" data-count="{{ site.data.scholar.citations | default: 0 }}">{{ site.data.scholar.citations | default: 0 | thousands }}</dd></div>
+        <div><dt>h-index</dt><dd class="num" data-count="{{ site.data.scholar.h_index }}">{{ site.data.scholar.h_index }}</dd></div>
+        <div><dt>Co-authors</dt><dd class="num" data-count="{{ r.collaborators }}">{{ r.collaborators }}</dd></div>
+        <div><dt>Students in the lab</dt><dd class="num" data-count="{{ current_students }}">{{ current_students }}</dd></div>
       </dl>
       <ul class="inline-links atlas-links" aria-label="Contact and profiles">
         <li><a href="mailto:chenha@g.ariel.ac.il">chenha@g.ariel.ac.il</a></li>
