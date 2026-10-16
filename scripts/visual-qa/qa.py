@@ -33,7 +33,7 @@ from playwright.sync_api import sync_playwright
 PAGES = [
     "", "publications", "people", "projects", "projects/encrypted_traffic",
     "teaching", "cv", "news", "insights", "insights/deployable-classifier",
-    "software", "contact",
+    "software", "contact", "accessibility", "privacy",
 ]
 VIEWPORTS = [
     ("desktop", {"width": 1440, "height": 900}, "light"),

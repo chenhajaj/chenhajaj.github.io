@@ -301,10 +301,16 @@
     });
 
     var active = (s.q ? 1 : 0) + (s.line !== "all" ? 1 : 0) + (s.kind !== "all" ? 1 : 0) + (s.year !== "all" ? 1 : 0);
-    countEl.innerHTML =
-      shown === records.length
-        ? "<strong>" + records.length + "</strong> publications"
-        : "Showing <strong>" + shown + "</strong> of " + records.length + " publications";
+    // Built with DOM nodes, not innerHTML, so no text is ever parsed as HTML.
+    var strong = document.createElement("strong");
+    countEl.textContent = "";
+    if (shown === records.length) {
+      strong.textContent = String(records.length);
+      countEl.append(strong, " publications");
+    } else {
+      strong.textContent = String(shown);
+      countEl.append("Showing ", strong, " of " + records.length + " publications");
+    }
     resetBtn.hidden = active === 0;
     empty.hidden = shown !== 0;
     if (togglePanel) togglePanel.textContent = active ? "Filter publications (" + active + " active)" : "Filter publications";

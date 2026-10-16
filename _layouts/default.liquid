@@ -39,14 +39,23 @@
       <script src="{{ script | prepend: '/assets/js/' | append: '.js' | relative_url | bust_file_cache }}" defer></script>
     {%- endfor %}
     {% if site.enable_google_analytics and jekyll.environment == 'production' %}
-      <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
       <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-          dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', '{{ site.google_analytics }}');
+        // Visit statistics (Google Analytics 4). Not loaded when the browser
+        // sends Do Not Track or Global Privacy Control. See /privacy/.
+        (function () {
+          var n = navigator;
+          if (n.doNotTrack === '1' || window.doNotTrack === '1' || n.globalPrivacyControl === true) return;
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () {
+            dataLayer.push(arguments);
+          };
+          gtag('js', new Date());
+          gtag('config', '{{ site.google_analytics }}');
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}';
+          document.head.appendChild(s);
+        })();
       </script>
     {% endif %}
   </body>

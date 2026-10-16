@@ -1,0 +1,36 @@
+# Refreshes _data/orcid.yml (verified peer reviews, education, employment)
+# from the public ORCID record. Schedule: Mondays 07:30 UTC, or run by hand
+# from Actions → ORCID Sync. No secrets needed.
+name: ORCID Sync
+
+on:
+  schedule:
+    - cron: "30 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install PyYAML
+      - name: Fetch ORCID record
+        run: python .github/scripts/orcid_sync.py --report
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/orcid.yml
+          # Ignore a change that is only the date stamp.
+          if git diff --cached -U0 _data/orcid.yml | grep -E '^[+-][^+-]' | grep -v 'last_updated' | grep -q .; then
+            git commit -m "chore: update ORCID data"
+            git push
+          else
+            echo "No change in ORCID data."
+          fi

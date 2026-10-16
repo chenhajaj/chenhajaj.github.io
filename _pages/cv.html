@@ -202,10 +202,37 @@ patents:
     <ul class="tag-list">
       {% for c in page.service.program_committees %}<li>{{ c }}</li>{% endfor %}
     </ul>
-    <h3 class="service-head">Journal reviewing</h3>
-    <ul class="tag-list">
-      {% for j in page.service.journals %}<li>{{ j }}</li>{% endfor %}
-    </ul>
+    {%- assign o = site.data.orcid -%}
+    {%- if o.reviews -%}
+      <h3 class="service-head">Journal reviewing <span class="count">{{ o.reviews_total }} verified reviews</span></h3>
+      <div class="table-scroll">
+        <table class="data-table reviews-table">
+          <thead>
+            <tr><th scope="col">Journal</th><th scope="col" class="num">Reviews</th><th scope="col">Years</th></tr>
+          </thead>
+          <tbody>
+            {%- for r in o.reviews -%}
+              <tr>
+                <td class="title-cell">{{ r.venue }}</td>
+                <td class="num">{{ r.count }}</td>
+                <td class="num">{% if r.first == r.last %}{{ r.first }}{% else %}{{ r.first }} to {{ r.last }}{% endif %}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+      <p class="meta table-note">Verified on <a href="https://orcid.org/{{ o.orcid }}">ORCID</a>, updated {{ o.last_updated | date: '%-d %B %Y' }}.</p>
+      {%- assign listed = o.reviews | map: 'venue' | join: '|' | downcase -%}
+      {%- capture more -%}{%- for j in page.service.journals -%}{%- assign jl = j | downcase | replace: 'acm ', '' | replace: 'ieee ', '' -%}{%- unless listed contains jl -%}{{ j }}|{%- endunless -%}{%- endfor -%}{%- endcapture -%}
+      {%- assign more = more | split: '|' -%}
+      {%- if more.size > 0 -%}
+        <h3 class="service-head">Also reviewed for</h3>
+        <ul class="tag-list">{% for j in more %}<li>{{ j }}</li>{% endfor %}</ul>
+      {%- endif -%}
+    {%- else -%}
+      <h3 class="service-head">Journal reviewing</h3>
+      <ul class="tag-list">{% for j in page.service.journals %}<li>{{ j }}</li>{% endfor %}</ul>
+    {%- endif -%}
   </div>
 </section>
 

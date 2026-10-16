@@ -496,3 +496,22 @@
   font-size: var(--fs-sm);
   color: var(--ink-2);
 }
+
+.tag-list + .service-head,
+.table-note + .service-head {
+  margin-top: var(--s-6);
+}
+
+.service-head .count {
+  margin-left: var(--s-2);
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.service-head + .table-scroll {
+  margin-top: var(--s-3);
+}
+
+.table-note {
+  margin-top: var(--s-2);
+}

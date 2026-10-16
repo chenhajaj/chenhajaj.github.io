@@ -18,8 +18,14 @@ module ResearchData
     "patent" => "patent", "misc" => "preprint", "unpublished" => "preprint"
   }.freeze
 
+  # LaTeX accent commands (\`e, \'{e}, \"o ...) become the accented letter.
+  ACCENTS = { "`" => "\u0300", "'" => "\u0301", "^" => "\u0302", "~" => "\u0303", '"' => "\u0308" }.freeze
+
   def self.clean(text)
-    text.to_s.gsub(/\\&/, "&").gsub(/\\[a-zA-Z]+\s*/, "").delete("{}").gsub(/\s+/, " ").strip
+    text.to_s
+        .gsub(/\\([`'^~"])\s*\{?([a-zA-Z])\}?/) { "#{Regexp.last_match(2)}#{ACCENTS[Regexp.last_match(1)]}" }
+        .gsub(/\\&/, "&").gsub(/\\[a-zA-Z]+\s*/, "").delete("{}").gsub(/\s+/, " ").strip
+        .unicode_normalize(:nfc)
   end
 
   def self.person(name)
