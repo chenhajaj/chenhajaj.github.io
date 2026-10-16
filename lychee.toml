@@ -1,7 +1,0 @@
-# Exclude Liquid template expressions that lychee picks up as URLs
-exclude = [
-  "\\{\\{.*\\}\\}",
-]
-
-# Retry transient failures
-max_retries = 3
