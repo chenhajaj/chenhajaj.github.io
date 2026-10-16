@@ -24,9 +24,9 @@ lines:
     color: ["#0e9384", "#3fd1bd"]
 
   - key: similarity
-    name: Item similarity
+    name: E-commerce and multimodal AI
     project: similarity
-    tags: [similarity]
+    tags: [similarity, consumer-behavior]
     color: ["#c2307e", "#f37ab8"]
 
   - key: adversarial
@@ -38,7 +38,7 @@ lines:
   - key: incentives
     name: Incentive design
     project: incentive_design
-    tags: [multi-agent-systems, game-theory]
+    tags: [multi-agent-systems, game-theory, crowdsourcing]
     color: ["#c46a00", "#ffb547"]
 
   - key: learning
@@ -46,6 +46,12 @@ lines:
     project: constructivist_learning
     tags: [education]
     color: ["#7a45c9", "#b996ff"]
+
+  - key: speech
+    name: Speech and audio
+    project: speech_audio
+    tags: [speech-processing, emotion-analysis]
+    color: ["#4d7c0f", "#a3e635"]
 
 other:
   name: Other

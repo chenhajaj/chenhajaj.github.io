@@ -8,7 +8,7 @@ category: work
 outcome: "Mechanisms for platforms, teams, and kidney exchange"
 featured_label: "Mechanism design publications"
 featured_url: "/publications/?line=incentives"
-papers_query: "@*[projects~=multi-agent-systems|game-theory]*"
+papers_query: "@*[projects~=multi-agent-systems|game-theory|crowdsourcing]*"
 ---
 
 <p class="intro">Rational agents pursue their own interests — but well-designed rules can make selfish behavior lead to good collective outcomes. We apply mechanism design and game theory to build systems where honesty and cooperation are the optimal strategy, from e-commerce to organ donation.</p>
