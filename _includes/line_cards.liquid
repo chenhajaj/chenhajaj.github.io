@@ -1,0 +1,47 @@
+{%- comment -%}
+  Research line cards. Colour, paper count and papers-per-year chart come from
+  site.data.research (built from papers.bib by _plugins/research-data.rb).
+  include params: level (heading level, default 3), outcome (true to show it)
+{%- endcomment -%}
+{%- assign level = include.level | default: 3 -%}
+{%- assign r = site.data.research -%}
+{%- assign projects = site.projects | sort: 'importance' -%}
+<ul class="line-cards">
+  {%- for project in projects -%}
+    {%- assign slug = project.url | split: '/' | last -%}
+    {%- assign line = r.by_project[slug] -%}
+    {%- assign key = line.key | default: 'other' -%}
+    <li>
+      <a class="line-card" href="{{ project.url | relative_url }}" style="--c: var(--line-{{ key }})">
+        {%- if project.img -%}
+          <div class="line-card-img">
+            {% include figure.liquid path=project.img alt="" sizes="(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 360px" loading="lazy" %}
+          </div>
+        {%- endif -%}
+        <div class="line-card-body">
+          <h{{ level }} class="line-card-title">{{ project.title }}</h{{ level }}>
+          <p class="line-card-desc">{{ project.description }}</p>
+          {%- if include.outcome and project.outcome -%}
+            <p class="line-card-outcome">{{ project.outcome }}</p>
+          {%- endif -%}
+        </div>
+        {%- if line -%}
+          {%- assign peak = 1 -%}
+          {%- for n in line.per_year -%}{%- if n > peak -%}{%- assign peak = n -%}{%- endif -%}{%- endfor -%}
+          {%- assign years = line.per_year | size -%}
+          <div class="line-card-foot">
+            <svg class="spark" viewBox="0 0 {{ years | times: 8 }} 29" preserveAspectRatio="none" aria-hidden="true">
+              <rect class="spark-base" x="0" y="28" width="{{ years | times: 8 | minus: 2 }}" height="1"></rect>
+              {%- for n in line.per_year -%}
+                {%- assign h = n | times: 26 | divided_by: peak -%}
+                {%- if n > 0 and h < 3 -%}{%- assign h = 3 -%}{%- endif -%}
+                <rect x="{{ forloop.index0 | times: 8 }}" y="{{ 28 | minus: h }}" width="6" height="{{ h }}" rx="1"></rect>
+              {%- endfor -%}
+            </svg>
+            <span class="line-card-count"><strong class="num">{{ line.count }}</strong> papers, {{ r.first_year }} to {{ r.last_year }}</span>
+          </div>
+        {%- endif -%}
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>

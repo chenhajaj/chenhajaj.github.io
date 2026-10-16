@@ -1,0 +1,52 @@
+# Research lines: one colour each, used everywhere the line appears
+# (home page map, research cards, project pages, publication topics).
+#
+# A paper's "line" is the first entry below whose tags match the paper's
+# `projects = {...}` field in _bibliography/papers.bib. Order matters.
+# Papers that match none are shown in the neutral "other" colour.
+#
+# project: the slug of the matching page in _projects/
+# tags:    bib `projects` tags that put a paper in this line; keep them the
+#          same as `papers_query` in the project page so counts agree
+# color:   [light theme, dark theme]
+
+lines:
+  - key: traffic
+    name: Encrypted traffic
+    project: encrypted_traffic
+    tags: [encrypted-traffic, traffic-classification]
+    color: ["#2f5bea", "#7d9bff"]
+
+  - key: medical
+    name: Medical AI
+    project: icu_nutrition
+    tags: [healthcare, covid-19]
+    color: ["#0e9384", "#3fd1bd"]
+
+  - key: similarity
+    name: Item similarity
+    project: similarity
+    tags: [similarity]
+    color: ["#c2307e", "#f37ab8"]
+
+  - key: adversarial
+    name: Adversarial AI
+    project: adversarial_ai
+    tags: [security, cyber-threat-intelligence]
+    color: ["#d93a2b", "#ff7a66"]
+
+  - key: incentives
+    name: Incentive design
+    project: incentive_design
+    tags: [multi-agent-systems, game-theory]
+    color: ["#c46a00", "#ffb547"]
+
+  - key: learning
+    name: Design education
+    project: constructivist_learning
+    tags: [education]
+    color: ["#7a45c9", "#b996ff"]
+
+other:
+  name: Other
+  color: ["#6b7385", "#8f98ab"]

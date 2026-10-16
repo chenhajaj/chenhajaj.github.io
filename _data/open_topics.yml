@@ -1,11 +1,17 @@
 # Open PhD and MSc topics, shown on the home page and the Lab page.
+# line: research line key from _data/research_lines.yml (sets the colour)
 - title: Adaptive encrypted-traffic AI
+  line: traffic
   text: Retrieval, out-of-distribution detection, QUIC and post-quantum traffic.
 - title: Adversarial and trustworthy ML
+  line: adversarial
   text: Robust models for security, healthcare and multimodal systems.
 - title: Clinical machine learning
+  line: medical
   text: Decision support, personalization, privacy and responsible validation.
 - title: Multimodal retrieval
+  line: similarity
   text: Vision-language representations for products, places and recommendations.
 - title: AI and mechanism design
+  line: incentives
   text: Incentives, marketplaces, teams and resource allocation.

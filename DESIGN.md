@@ -15,16 +15,29 @@ route people to papers, the lab, or an email.
 
 ## The one bold idea
 
-**The name, set large.** On the home page "Chen Hajaj" is set in Archivo at its
-widest and heaviest (`wdth` 120). That is the only display moment on the site;
-everything else stays quiet so the name and the research record carry it.
+**The research map.** The home page opens on a deep night-blue band with the
+name set large and, under it, every paper as a coloured square: one column per
+year, one colour per research line. Visitors hover or tap a square to read the
+paper and click to open it; legend chips highlight one line. It is real data
+(built from `papers.bib` at build time), so it updates itself as papers are
+added, and it tells the lab's story at a glance: output growing from one paper
+a year to about a dozen across six lines.
 
-- No decorative graphics, generated patterns or illustrations beside content.
-  An earlier "flow fingerprint" drawing (random packet traces on the home page
-  and next to each research line) was removed in October 2026 because it
-  looked like data but showed nothing about the research.
-- No automatic motion. Motion only answers what the visitor does (opening a
-  panel, the mobile menu).
+- Code: `assets/js/research-map.js` (canvas, no libraries), styles in
+  `_sass/signal/_atlas.scss`, data from `_plugins/research-data.rb`.
+- The squares drop into place once on load; skipped for
+  `prefers-reduced-motion`. No other automatic motion on the site.
+- Decoration must carry information. An earlier random "flow fingerprint"
+  drawing was removed in October 2026 because it looked like data but was not.
+
+## Research line colours
+
+Each research line has one colour, set in `_data/research_lines.yml` (light
+and dark values) and exposed as `--line-<key>` CSS variables by
+`_includes/line_colors.liquid`. The same colour marks the line everywhere: map
+squares, legend chips, research cards and their papers-per-year charts, the
+featured paper and the open PhD/MSc topics. Use these colours for marks and
+fills, not for small text.
 
 ## Colour
 
@@ -56,9 +69,12 @@ Dark mode follows the system unless the visitor picks a theme with the toggle
 - `.band`: the main section pattern. Heading (and a short note or link) in a
   left column that sticks while you scroll; content in the right nine columns.
   Collapses to one column under 860px.
-- Rows separated by hairlines (`.rows`, `.entries`, `.pub`). No cards, no
-  nested boxes, no shadows, no coloured side stripes.
-- One radius (6px) for interactive controls and photos only.
+- Lists are rows separated by hairlines (`.rows`, `.entries`, `.pub`).
+- Cards are used only for things you click through to or that are featured:
+  research line cards and the featured paper. They take a light wash of their
+  line colour and a 14px radius. No nested cards, no shadows on cards, no
+  coloured side stripes.
+- 6px radius for controls; 14px for cards and the portrait.
 - One primary button per section at most.
 
 ## Content sources (edit these, not the templates)
@@ -73,7 +89,8 @@ Dark mode follows the system unless the visitor picks a theme with the toggle
 | News                     | `_news/*.md`                                                                                                                                                                             |
 | Research notes           | `_pages/note-*.md` with `layout: note`                                                                                                                                                   |
 | CV entries, teaching     | front matter of `_pages/cv.html` and `_pages/teaching.html`                                                                                                                              |
-| Home page featured paper | `featured:` in the front matter of `_pages/about.html`                                                                                                                                   |
+| Home page featured paper | `featured:` in the front matter of `_pages/about.html` (`line:` sets its colour)                                                                                                         |
+| Research line colours    | `_data/research_lines.yml` (tags must match each project's `papers_query`)                                                                                                               |
 | Navigation               | `_data/navigation.yml`                                                                                                                                                                   |
 | Citation count, h-index  | `_data/scholar.yml` (updated by the Scholar stats workflow)                                                                                                                              |
 
