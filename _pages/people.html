@@ -1,0 +1,69 @@
+---
+layout: page
+title: The lab
+permalink: /people/
+description: Current students and alumni of the Adaptive AI Lab at Ariel University, and open PhD and MSc topics.
+nav: true
+nav_order: 3
+---
+
+{%- assign s = site.data.students -%}
+{%- assign phd_count = s.phd_students | size -%}
+{%- assign msc_count = s.masters_students | size -%}
+{%- assign ra_count = s.research_assistants | size -%}
+{%- assign alumni_count = s.phd_alumni | size | plus: s.masters_alumni.size -%}
+
+<p class="lead lab-lead">
+  The Adaptive AI Lab at Ariel University has {{ phd_count }} PhD and {{ msc_count }} MSc students{% if ra_count > 0 %} and {{ ra_count }} research assistants{% endif %}.
+  {{ alumni_count }} graduate students have completed their degrees here.
+</p>
+
+<section class="band" aria-labelledby="current">
+  <div class="band-head">
+    <h2 id="current">Current students</h2>
+  </div>
+  <div class="band-body">
+    <h3 class="subhead">PhD students <span class="count">{{ phd_count }}</span></h3>
+    {% include people_list.liquid people=s.phd_students %}
+
+    <h3 class="subhead">MSc students <span class="count">{{ msc_count }}</span></h3>
+    {% include people_list.liquid people=s.masters_students %}
+
+    {% if ra_count > 0 %}
+      <h3 class="subhead">Research assistants <span class="count">{{ ra_count }}</span></h3>
+      {% include people_list.liquid people=s.research_assistants %}
+    {% endif %}
+  </div>
+</section>
+
+<section class="band" aria-labelledby="open-topics" id="join">
+  <div class="band-head">
+    <h2 id="open-topics">Join the lab</h2>
+  </div>
+  <div class="band-body">
+    <p class="prose-block">
+      We take PhD and MSc students who want to build machine learning that holds up after deployment.
+      These topics are open now. Supervision and funding depend on the project, so write first and we will talk it through.
+    </p>
+    <div class="topics-wrap">
+      {% include open_topics.liquid %}
+    </div>
+    <div class="actions">
+      <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20graduate%20student">Email Chen about a topic</a>
+      <a class="button button-quiet" href="{{ '/projects/' | relative_url }}">See the research lines</a>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="alumni">
+  <div class="band-head">
+    <h2 id="alumni">Alumni</h2>
+  </div>
+  <div class="band-body">
+    {% include alumni_table.liquid people=s.phd_alumni title="PhD graduates" %}
+    {% include alumni_table.liquid people=s.masters_alumni title="MSc graduates" %}
+    {% if s.former_research_assistants.size > 0 %}
+      {% include alumni_table.liquid people=s.former_research_assistants title="Former research assistants" when="Years" %}
+    {% endif %}
+  </div>
+</section>

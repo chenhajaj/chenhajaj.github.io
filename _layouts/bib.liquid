@@ -1,119 +1,140 @@
 ---
 ---
-<div
-  class="entry{% if entry.selected %} entry-selected{% endif %}"
-  data-type="{{ entry.type }}"
-  {% if entry.projects %}
-    data-projects="{{ entry.projects }}"
+{%- comment -%}
+  One publication, rendered by jekyll-scholar. Used by the publications page,
+  the home page "Selected papers" list and the per-project paper lists.
+  data-kind feeds the type filter; data-projects feeds the topic filter.
+{%- endcomment -%}
+{%- assign venue_text = entry.howpublished | append: ' ' | append: entry.note | downcase -%}
+{%- case entry.type -%}
+  {%- when 'article' -%}
+    {%- assign kind = 'journal' -%}
+    {%- assign kind_label = 'Journal' -%}
+  {%- when 'inproceedings' -%}
+    {%- assign kind = 'conference' -%}
+    {%- assign kind_label = 'Conference' -%}
+  {%- when 'phdthesis', 'mastersthesis' -%}
+    {%- assign kind = 'thesis' -%}
+    {%- assign kind_label = 'Thesis' -%}
+  {%- when 'book' -%}
+    {%- assign kind = 'book' -%}
+    {%- assign kind_label = 'Book' -%}
+  {%- else -%}
+    {%- if venue_text contains 'patent' -%}
+      {%- assign kind = 'patent' -%}
+      {%- assign kind_label = 'Patent' -%}
+    {%- elsif venue_text contains 'abstract' -%}
+      {%- assign kind = 'abstract' -%}
+      {%- assign kind_label = 'Abstract' -%}
+    {%- elsif venue_text contains 'preprint' or venue_text contains 'working paper' or venue_text contains 'arxiv' or venue_text contains 'ssrn' -%}
+      {%- assign kind = 'preprint' -%}
+      {%- assign kind_label = 'Preprint' -%}
+    {%- else -%}
+      {%- assign kind = 'other' -%}
+      {%- assign kind_label = 'Other' -%}
+    {%- endif -%}
+{%- endcase -%}
+{%- if entry.doi -%}
+  {%- capture main_url -%}https://doi.org/{{ entry.doi }}{%- endcapture -%}
+{%- elsif entry.url -%}
+  {%- assign main_url = entry.url -%}
+{%- elsif entry.pdf -%}
+  {%- assign main_url = entry.pdf -%}
+{%- else -%}
+  {%- assign main_url = null -%}
+{%- endif -%}
+<article
+  class="pub"
+  id="pub-{{ entry.key }}"
+  data-kind="{{ kind }}"
+  data-year="{{ entry.year }}"
+  data-projects="{{ entry.projects | remove: ' ' }}"
+  {% if entry.selected %}
+    data-selected="true"
   {% endif %}
 >
-  <!-- Title -->
-  <div class="title">
-    {% if entry.selected -%}
-      <span class="selected-badge" title="Selected publication">★</span>
-    {%- endif %}
-    {% if entry.abstract %}
-      <span class="abstract-toggle">{{ entry.title }}</span>
-    {% elsif entry.url %}
-      <a href="{{ entry.url }}">{{ entry.title }}</a>
-    {% else %}
+  <h3 class="pub-title">
+    {%- if entry.selected -%}
+      <span class="pub-selected" title="Selected publication"></span><span class="visually-hidden">Selected: </span>
+    {%- endif -%}
+    {%- if main_url -%}
+      <a href="{{ main_url }}">{{ entry.title }}</a>
+    {%- else -%}
       {{ entry.title }}
-    {% endif %}
-  </div>
+    {%- endif -%}
+  </h3>
 
-  <!-- Year -->
-  <div class="year">{{ entry.year }}</div>
-
-  <!-- Author -->
-  <div class="author">
-    {% assign author_array_size = entry.author_array | size %}
-    {% assign author_array_limit = author_array_size %}
-    {% if site.max_author_limit and author_array_size > site.max_author_limit %}
-      {% assign author_array_limit = site.max_author_limit %}
-    {% endif %}
-
-    {%- for author in entry.author_array limit: author_array_limit -%}
-      {% assign author_is_self = false %}
-      {%- assign author_last_name = author.last | regex_replace: '[*∗†‡§¶‖&^]', '' -%}
-      {%- assign author_last_html = author.last | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' -%}
-      {% if site.scholar.last_name contains author_last_name %}
-        {% if site.scholar.first_name contains author.first %}
-          {% assign author_is_self = true %}
-        {% endif %}
+  <p class="pub-authors">
+    {%- assign n = entry.author_array | size -%}
+    {%- for author in entry.author_array -%}
+      {%- assign last_clean = author.last | regex_replace: '[*∗†‡§¶‖&^]', '' -%}
+      {%- assign is_me = false -%}
+      {%- if site.scholar.last_name contains last_clean and site.scholar.first_name contains author.first -%}{%- assign is_me = true -%}{%- endif -%}
+      {%- if forloop.first == false -%}
+        {%- if forloop.last -%}
+          {%- if n > 2 -%},{%- endif %} and
+        {% else -%}
+          ,
+        {% endif -%}
       {%- endif -%}
-
-      {%- if forloop.length > 1 -%}
-        {% if forloop.first == false %},&nbsp;{% endif %}
-        {%- if forloop.last and author_array_limit == author_array_size %}and&nbsp;{% endif -%}
-      {% endif %}
-      {%- if author_is_self -%}
-        <em>
+      {%- if is_me -%}
+        <strong class="me">
           {{- author.first }}
-          {{ author_last_html -}}
-        </em>
+          {{ last_clean -}}
+        </strong>
       {%- else -%}
-        {{- author.first }}
-        {{ author_last_html -}}
+        {{ author.first }}
+        {{ last_clean }}
       {%- endif -%}
     {%- endfor -%}
-  </div>
+  </p>
 
-  <!-- Periodical -->
-  {% if entry.type == 'article' -%}
-    {%- if entry.journal -%}
-      <div class="periodical">{{ entry.journal }}</div>
-    {%- endif -%}
-  {% elsif entry.type == 'inproceedings' -%}
-    {%- if entry.booktitle -%}
-      <div class="periodical">{{ entry.booktitle }}</div>
-    {%- endif -%}
-  {% elsif entry.type == 'phdthesis' -%}
-    <div class="periodical">
+  <p class="pub-venue">
+    <span class="pub-kind">{{ kind_label }}</span>
+    {%- if entry.type == 'article' and entry.journal -%}
+      <cite>{{ entry.journal }}</cite>
+    {%- elsif entry.type == 'inproceedings' and entry.booktitle -%}
+      <cite>{{ entry.booktitle }}</cite>
+    {%- elsif entry.type == 'phdthesis' -%}
       PhD thesis{% if entry.school %}, {{ entry.school }}{% endif %}
-    </div>
-  {% elsif entry.type == 'mastersthesis' -%}
-    <div class="periodical">
+    {%- elsif entry.type == 'mastersthesis' -%}
       MSc thesis{% if entry.school %}, {{ entry.school }}{% endif %}
-    </div>
-  {% elsif entry.type == 'book' -%}
-    <div class="periodical">
+    {%- elsif entry.type == 'book' -%}
       {% if entry.note %}{{ entry.note }}{% else %}Book{% endif -%}
-      {%- if entry.series %}, {{ entry.series }}{% endif -%}
       {%- if entry.publisher %}, {{ entry.publisher }}{% endif %}
-    </div>
-  {%- else -%}
-    {%- if entry.howpublished -%}
-      <div class="periodical">{{ entry.howpublished }}</div>
+    {%- elsif entry.howpublished -%}
+      {{ entry.howpublished }}
     {%- elsif entry.note -%}
-      <div class="periodical">{{ entry.note }}</div>
+      {{ entry.note }}
     {%- endif -%}
-  {%- endif %}
+    {%- if include.show_year or page.show_pub_year -%}
+      , <span class="num">{{ entry.year }}</span>
+    {%- endif -%}
+  </p>
 
-  <!-- Abstract (shown on title click) -->
-  {% if entry.abstract %}
-    <div class="abstract-content hidden">
-      {{ entry.abstract }}
-    </div>
-  {% endif %}
-
-  <!-- Links -->
-  <div class="links">
-    {% if entry.abstract %}
-      <span class="btn btn-sm z-depth-0 abstract-toggle-btn abstract-toggle">Abstract</span>
-    {% endif %}
-    {% unless entry.doi %}
-      {% if entry.url %}
-        <a class="btn btn-sm z-depth-0" href="{{ entry.url }}" target="_blank" rel="noopener">Link</a>
-      {% endif %}
-    {% endunless %}
-    {% if entry.pdf %}
-      <a class="btn btn-sm z-depth-0 pdf" href="{{ entry.pdf }}">PDF</a>
-    {% endif %}
-    {% if entry.code %}
-      <a class="btn btn-sm z-depth-0 code" href="{{ entry.code }}">Code</a>
-    {% endif %}
-    {% if entry.doi %}
-      <a class="btn btn-sm z-depth-0" href="https://doi.org/{{ entry.doi }}" target="_blank" rel="noopener">DOI</a>
-    {% endif %}
+  <div class="pub-actions">
+    {%- if entry.abstract -%}
+      <button class="pub-toggle" type="button" aria-expanded="false" aria-controls="abs-{{ entry.key }}">Abstract</button>
+    {%- endif -%}
+    <button class="pub-toggle" type="button" aria-expanded="false" aria-controls="bib-{{ entry.key }}">BibTeX</button>
+    {%- if entry.doi -%}
+      <a href="https://doi.org/{{ entry.doi }}">DOI</a>
+    {%- elsif entry.url -%}
+      <a href="{{ entry.url }}">Link</a>
+    {%- endif -%}
+    {%- if entry.pdf -%}
+      <a href="{{ entry.pdf }}">PDF</a>
+    {%- endif -%}
+    {%- if entry.code -%}
+      <a href="{{ entry.code }}">Code</a>
+    {%- endif -%}
   </div>
-</div>
+
+  {%- if entry.abstract -%}
+    <div class="pub-panel" id="abs-{{ entry.key }}" hidden>{{ entry.abstract }}</div>
+  {%- endif -%}
+  <div class="pub-panel" id="bib-{{ entry.key }}" hidden>
+    <pre>{{ entry.bibtex | clean_bibtex | xml_escape }}</pre>
+    <button class="copy-button" type="button" data-copy="bib-{{ entry.key }}">Copy BibTeX</button>
+  </div>
+</article>

@@ -1,30 +1,51 @@
-{% capture footer_contents %}
-  &copy; Copyright {{ site.time | date: '%Y' }}
-  {{ site.first_name }}
-  {{ site.middle_name }}
-  {{ site.last_name }}. {{ site.footer_text }}
-  {% if site.impressum_path %}
-    <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
-  {% endif %}
-  {% if site.last_updated %}
-    Last updated: {{ 'now' | date: '%B %d, %Y' }}.
-  {% endif %}
-{% endcapture %}
-
-{% if site.footer_fixed %}
-  <footer class="fixed-bottom" role="contentinfo">
-    <div class="container mt-0">
-      {{ footer_contents }}
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-name">
+          {{ site.first_name }}
+          {{ site.last_name }}
+        </p>
+        <p>
+          Associate Professor, Industrial Engineering and Management<br>
+          Ariel University, Ariel, Israel
+        </p>
+        <p>
+          Office 58.3.42<br>
+          <a href="mailto:{{ site.email | default: 'chenha@g.ariel.ac.il' }}">chenha@g.ariel.ac.il</a>
+        </p>
+      </div>
+      <nav aria-label="Site">
+        <ul class="footer-links">
+          <li><a href="{{ '/projects/' | relative_url }}">Research</a></li>
+          <li><a href="{{ '/publications/' | relative_url }}">Publications</a></li>
+          <li><a href="{{ '/people/' | relative_url }}">Lab</a></li>
+          <li><a href="{{ '/teaching/' | relative_url }}">Teaching</a></li>
+          <li><a href="{{ '/software/' | relative_url }}">Code and software</a></li>
+          <li><a href="{{ '/insights/' | relative_url }}">Research notes</a></li>
+          <li><a href="{{ '/news/' | relative_url }}">News</a></li>
+          <li><a href="{{ '/cv/' | relative_url }}">CV</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+          <li><a href="{{ '/feed.xml' | relative_url }}">Feed</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Profiles">
+        <ul class="footer-links">
+          <li><a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}">Google Scholar</a></li>
+          <li><a href="https://github.com/{{ site.data.socials.github_username }}">GitHub</a></li>
+          <li><a href="https://orcid.org/{{ site.data.socials.orcid_id }}">ORCID</a></li>
+          <li><a href="{{ site.data.socials.dblp_url }}">DBLP</a></li>
+          <li><a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}">LinkedIn</a></li>
+          <li><a href="{{ site.data.socials.research_gate_profile }}">ResearchGate</a></li>
+          <li><a href="https://www.semanticscholar.org/author/{{ site.data.socials.semanticscholar_id }}">Semantic Scholar</a></li>
+          <li><a href="{{ site.data.socials.scopus_id }}">Scopus</a></li>
+        </ul>
+      </nav>
     </div>
-  </footer>
-{% else %}
-  <footer class="sticky-bottom mt-5" role="contentinfo">
-    {% if site.newsletter.enabled %}
-      {% include newsletter.liquid %}
-    {% endif %}
-
-    <div class="container">
-      {{ footer_contents }}
-    </div>
-  </footer>
-{% endif %}
+    <p class="footer-meta">
+      © {{ site.time | date: '%Y' }}
+      {{ site.first_name }}
+      {{ site.last_name }}. Updated {{ site.time | date: '%-d %B %Y' }}.
+    </p>
+  </div>
+</footer>

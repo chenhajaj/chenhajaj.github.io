@@ -1,0 +1,11 @@
+# Open PhD and MSc topics, shown on the home page and the Lab page.
+- title: Adaptive encrypted-traffic AI
+  text: Retrieval, out-of-distribution detection, QUIC and post-quantum traffic.
+- title: Adversarial and trustworthy ML
+  text: Robust models for security, healthcare and multimodal systems.
+- title: Clinical machine learning
+  text: Decision support, personalization, privacy and responsible validation.
+- title: Multimodal retrieval
+  text: Vision-language representations for products, places and recommendations.
+- title: AI and mechanism design
+  text: Incentives, marketplaces, teams and resource allocation.

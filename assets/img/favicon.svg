@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bg { fill: #f7f8fa; } .up { fill: #141b2d; } .dn { fill: #2440c8; } .sh { fill: #d4850c; }
+    @media (prefers-color-scheme: dark) { .bg { fill: #0d1322; } .up { fill: #e8ebf1; } .dn { fill: #9aacff; } .sh { fill: #f0b24a; } }
+  </style>
+  <rect class="bg" width="32" height="32" rx="6"/>
+  <rect class="up" x="5" y="9" width="3" height="5"/>
+  <rect class="dn" x="10" y="15" width="3" height="12"/>
+  <rect class="dn" x="15" y="15" width="3" height="10"/>
+  <rect class="up" x="15" y="7" width="3" height="7"/>
+  <rect class="sh" x="20" y="10" width="3" height="4"/>
+  <rect class="sh" x="25" y="15" width="3" height="7"/>
+</svg>

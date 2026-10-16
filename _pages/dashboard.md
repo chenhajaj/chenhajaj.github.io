@@ -6,6 +6,9 @@ description: Private pipeline tracker for works in progress.
 nav: false
 nav_order: 99
 robots: noindex, nofollow
+legacy_icons: true
+hide_title: true
+sitemap: false
 ---
 
 <!--

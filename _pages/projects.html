@@ -1,0 +1,47 @@
+---
+layout: page
+title: Research
+permalink: /projects/
+description: Research lines of the Adaptive AI Lab at Ariel University in encrypted traffic, adversarial AI, medical data science, incentive design, multimodal similarity and learning analytics.
+lead: Six lines of work, held together by one question. How do you build models that stay reliable when the data, the threats or the domain change after deployment?
+nav: true
+nav_order: 2
+---
+
+<ul class="rows research-index">
+  {%- assign projects = site.projects | sort: 'importance' -%}
+  {%- for project in projects -%}
+    {%- assign slug = project.url | split: '/' | last -%}
+    <li>
+      <a class="line-row line-row-large" href="{{ project.url | relative_url }}">
+        <div class="fingerprint fingerprint-mini" data-seed="{{ slug }}" data-bar="1.5" data-step="3" data-axis="0.5"></div>
+        <div>
+          <h2 class="line-title">{{ project.title }}</h2>
+          <p class="line-desc">{{ project.description }}</p>
+          {%- if project.outcome -%}
+            <p class="line-outcome">{{ project.outcome }}</p>
+          {%- endif -%}
+        </div>
+        {%- if project.papers_query -%}
+          <span class="line-count">{% bibliography_count -f papers -q {{ project.papers_query }} %} papers</span>
+        {%- endif -%}
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>
+
+<section class="band" aria-labelledby="code">
+  <div class="band-head">
+    <h2 id="code">Code and data</h2>
+  </div>
+  <div class="band-body">
+    <p class="prose-block">
+      Most of our tools, datasets and baselines are open source, under the
+      <a href="https://github.com/ArielCyber">ArielCyber</a> organization and
+      <a href="https://github.com/{{ site.data.socials.github_username }}">Chen's GitHub</a>.
+    </p>
+    <div class="actions">
+      <a class="button button-quiet" href="{{ '/software/' | relative_url }}">Browse code and software</a>
+    </div>
+  </div>
+</section>
