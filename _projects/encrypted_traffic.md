@@ -5,23 +5,24 @@ description: AI-powered classification of encrypted network traffic — enabling
 img: assets/img/encrypted_new.png
 importance: 1
 category: work
-outcome: "100+ application classes; retrieval-based adaptation"
+outcome: "Retrieval-based adaptation and post-quantum traffic classification"
 featured_label: "New Computer Networks paper"
 featured_url: "https://doi.org/10.1016/j.comnet.2026.112739"
 papers_query: "@*[projects~=encrypted-traffic|traffic-classification]*"
 ---
 
-<p class="intro">Over 90% of internet traffic is now encrypted. While encryption protects privacy, it makes traditional network monitoring impossible. We build AI systems that classify and analyze encrypted traffic without decryption — enabling security, quality of service, and compliance while preserving user privacy.</p>
+<p class="intro">Most internet traffic is now encrypted. Encryption protects privacy, but it also blinds the tools operators use to keep networks secure and fast. We build machine learning that classifies and analyses encrypted traffic without decrypting it, and keeps working as applications, protocols and threats change.</p>
 
 <h3>Key Contributions</h3>
 
 <ul>
-  <li><strong>PQClass: Post-Quantum Traffic Classification</strong> — The first system to classify traffic encrypted with post-quantum algorithms (CRYSTALS-Kyber, NTRU), ensuring network visibility during the quantum cryptography transition.</li>
-  <li><strong>GAN-Based Data Synthesis</strong> — Generative adversarial networks that produce realistic encrypted traffic datasets, addressing the scarcity of shareable labeled data in this domain.</li>
-  <li><strong>Spectral Analysis for Protocol Identification</strong> — Frequency-domain analysis of packet inter-arrival times and sizes reveals application fingerprints inside TLS 1.3 and ESNI without any payload inspection.</li>
-  <li><strong>Zero-Day Attack Detection</strong> — SimCSE-based contrastive learning builds traffic representations that generalize to unseen attack patterns without retraining on labeled attack data.</li>
+  <li><strong>New classes without retraining</strong>: classification by retrieval lets an encrypted-traffic model add new application classes in seconds and flag out-of-distribution traffic in the same retrieval step (Computer Networks, 2026).</li>
+  <li><strong>Post-quantum traffic</strong>: PQClass, which the paper presents as the first pipeline for classifying encrypted internet traffic of recently NIST-approved post-quantum algorithms (IEEE ICC 2025).</li>
+  <li><strong>Learning from little labelled data</strong>: data augmentation and early prediction for traffic classification (Expert Systems with Applications, 2024; IEEE ICC 2025).</li>
+  <li><strong>Signal processing views of traffic</strong>: STFT-TC and DWT-TC turn packet time series into short-time Fourier and wavelet representations for encrypted traffic classification (IEEE CCNC 2024).</li>
+  <li><strong>Contrastive traffic representations</strong>: SimCSE-style embeddings learned from raw packets for malicious and VPN traffic detection and zero-day attack detection (IEEE Access, 2022).</li>
 </ul>
 
 <h3>Impact</h3>
 
-<p>Our methods are validated on real-world datasets from commercial ISPs and academic network captures. Applications include real-time threat detection in enterprise networks, QoE optimization for streaming services, and network capacity planning — all with full encryption preserved.</p>
+<p>Applications include threat detection, quality-of-experience monitoring (for example, predicting game QoE from network traffic, IEEE CCNC 2026) and network management, all without decrypting user traffic. Our tools are open source, including OSF-EIMTC, a framework for standardized encrypted traffic classification (Computer Communications, 2024).</p>

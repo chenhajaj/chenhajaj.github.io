@@ -8,39 +8,56 @@ hide_title: true
 
 # Edit CV entries here. Grants come from _data/grants.yml and
 # publications from _bibliography/papers.bib.
+positions:
+  - when: "2025 to now"
+    what: "Associate Professor"
+    where: "Department of Industrial Engineering and Management, Ariel University"
+  - when: "2022 to 2025"
+    what: "Senior Lecturer (tenured)"
+    where: "Department of Industrial Engineering and Management, Ariel University"
+  - when: "2018 to 2022"
+    what: "Lecturer"
+    where: "Department of Industrial Engineering and Management, Ariel University"
+  - when: "2017 to 2018"
+    what: "Data Science Fellow"
+    where: "Vanderbilt University, USA"
+    note: "Data think tanks with the Tennessee Education Research Alliance (TERA) and on anthropogenic landscape features in South America."
+  - when: "2016 to 2018"
+    what: "Postdoctoral Researcher"
+    where: "Electrical Engineering and Computer Science, Vanderbilt University, USA"
+    note: "Host: Prof. Yevgeniy Vorobeychik. Adversarial machine learning, game theory and crowdsourcing for medical data. Served on the Postdoctoral Association Committee."
+
 education:
   - when: "2016"
     what: "PhD in Computer Science"
     where: "Bar-Ilan University, Israel"
-    note: "Specialized in game theory and mechanism design. Thesis focused on strategyproof mechanisms and algorithmic game theory with applications to electronic commerce. Advisor: Prof. David Sarne."
+    note: "Thesis: Intelligent Mechanisms for Platforms in Modern Markets. Advisors: Prof. David Sarne and Prof. Avinatan Hassidim."
   - when: "2012"
-    what: "MSc in Computer Science"
+    what: "MSc in Electrical Engineering"
     where: "Bar-Ilan University, Israel"
+    note: "Thesis: Three-Dimensional Group Registration of Mesh Objects. Advisor: Prof. Yosi Keller."
   - when: "2010"
-    what: "BSc in Computer Science"
+    what: "BSc in Computer Engineering"
     where: "Bar-Ilan University, Israel"
+    note: "Exceptional Final Project Award."
 
 administration:
-  - when: "2024 to now"
+  - when: "2025 to now"
     what: "NVIDIA University Ambassador"
     where: "Ariel University"
-    note: "Leading GPU computing and AI education initiatives, fostering academia–industry collaboration with NVIDIA's research and educational programs."
-  - when: "2021 to now"
-    what: "Head of the Faculty Review Board"
+    note: "Representing Ariel University in NVIDIA's academic ambassador program, championing GPU-accelerated computing and AI research and teaching."
+  - when: "2022 to now"
+    what: "Chair, Faculty of Engineering Review Board"
     where: "Faculty of Engineering, Ariel University"
-    note: "Directing research quality standards and ethical oversight across all engineering departments."
+    note: "Overseeing academic standards and program evaluation for the Faculty of Engineering."
   - when: "2021 to now"
     what: "Head of the Data Science Track"
     where: "Department of Industrial Engineering and Management, Ariel University"
-    note: "Overseeing curriculum development, student programs, and strategic industry partnerships for the data science specialization."
-  - when: "2019 to 2024"
-    what: "Director, Data Science and AI Research Center"
+    note: "Overseeing curriculum development, student programs, and industry partnerships for the data science specialization."
+  - when: "2018 to 2024"
+    what: "Director, Data Science Research Center"
     where: "Ariel University"
-    note: "Co-founded and directed a multidisciplinary research center, fostering collaborations with leading Israeli industry partners, cloud service providers, and government organizations."
-  - when: "2016 to 2018"
-    what: "Data Science Fellow and Postdoctoral Researcher"
-    where: "Vanderbilt University, USA"
-    note: "Developed machine learning methodologies for research in medical data science, education, and anthropology. Served on the Postdoctoral Association Committee, helping shape research policy and support postdoctoral mentoring."
+    note: "Directed interdisciplinary data science research initiatives and research collaborations across the university."
 
 conferences:
   - when: "2022"
@@ -61,6 +78,39 @@ conferences:
   - when: "2016"
     what: "Workshop Co-chair"
     where: "Agent-Mediated Electronic Commerce (AMEC) Workshop"
+  - when: "2018"
+    what: "Organizer"
+    where: "Vanderbilt Data Science Symposium"
+  - when: "2017"
+    what: "Organizer"
+    where: "Vanderbilt Postdoc Association Symposium"
+
+awards:
+  - when: "2017"
+    what: "Most Visionary Paper Award"
+    where: "Workshop on Cooperative Games in Multiagent Systems (CoopMAS)"
+  - when: "2016"
+    what: "Best Paper Finalist"
+    where: "AAAI Conference on Human Computation and Crowdsourcing (HCOMP)"
+  - when: "2015"
+    what: "Prof. Rahamimoff Program for Young Scientists"
+    where: "U.S.-Israel Binational Science Foundation (BSF)"
+  - when: "2015"
+    what: "Selim and Rachel Benin Scholarship Fund"
+    where: "Bar-Ilan University"
+  - when: "2013"
+    what: "Rachel and Reuven Jacobs Excellence Scholarship"
+    where: "Bar-Ilan University"
+  - when: "2012"
+    what: "Doctoral Fellowship of Excellence"
+    where: "Bar-Ilan University"
+  - when: "2010"
+    what: "Exceptional Final Project Award, Computer Engineering"
+    where: "Bar-Ilan University"
+
+service:
+  program_committees: [ILAIS, ICIS, AAAI, AAMAS, ACM EC, AMIA, AMEC, CPSCom, GameSec, ICAART, IJCAI, SODA, ECAI, IEEE GLOBECOM, IEEE CCNC, IEEE ICC]
+  journals: ["Annals of Mathematics and Artificial Intelligence", "Artificial Intelligence Review", "Computer Networks", "Computers & Security", "ACM Computing Surveys", "Expert Systems with Applications", "Health Systems", "Journal of Artificial Intelligence Research (JAIR)", "Journal of Information Security and Applications", "IEEE Transactions on Knowledge and Data Engineering"]
 
 patents:
   - when: "2024"
@@ -90,7 +140,7 @@ patents:
   </div>
 </header>
 
-{% assign sections = "education|Education,administration|Academic appointments and administration,conferences|Conference and workshop organization" | split: "," %}
+{% assign sections = "positions|Academic positions,education|Education,administration|Leadership and administration,conferences|Conference and workshop organization" | split: "," %}
 {% for pair in sections %}
   {% assign parts = pair | split: "|" %}
   {% assign key = parts[0] %}
@@ -124,9 +174,45 @@ patents:
   </div>
 </section>
 
+<section class="band" aria-labelledby="awards" id="cv-awards">
+  <div class="band-head">
+    <h2 id="awards">Awards and fellowships</h2>
+  </div>
+  <div class="band-body">
+    <ol class="entries">
+      {% for e in page.awards %}
+        <li class="entry-row">
+          <span class="entry-when">{{ e.when }}</span>
+          <div>
+            <p class="entry-what">{{ e.what }}</p>
+            <p class="entry-where">{{ e.where }}</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="service" id="cv-service">
+  <div class="band-head">
+    <h2 id="service">Reviewing and program committees</h2>
+  </div>
+  <div class="band-body">
+    <h3 class="service-head">Program committees</h3>
+    <ul class="tag-list">
+      {% for c in page.service.program_committees %}<li>{{ c }}</li>{% endfor %}
+    </ul>
+    <h3 class="service-head">Journal reviewing</h3>
+    <ul class="tag-list">
+      {% for j in page.service.journals %}<li>{{ j }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
 <section class="band" aria-labelledby="patents" id="cv-patents">
   <div class="band-head">
     <h2 id="patents">Patents and patent applications</h2>
+    <p>Published applications also appear under Publications.</p>
   </div>
   <div class="band-body">
     <ol class="entries">

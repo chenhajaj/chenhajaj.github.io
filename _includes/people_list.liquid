@@ -9,6 +9,11 @@
         {%- endif -%}
       </p>
       <p class="person-topic">{{ p.research_area | strip }}</p>
+      {%- if p.program == 'project' -%}
+        <p class="person-extra">Non-thesis MSc, final project{% if p.institution %}, {{ p.institution }}{% endif %}</p>
+      {%- elsif p.institution -%}
+        <p class="person-extra">{{ p.institution }}</p>
+      {%- endif -%}
       {%- if p.co_supervisor or p.start_year -%}
         <p class="person-extra">
           {%- if p.start_year -%}Since {{ p.start_year }}{%- endif -%}

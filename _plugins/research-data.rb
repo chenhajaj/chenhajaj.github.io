@@ -38,13 +38,25 @@ module ResearchData
     "#{parts.first[0]}-#{parts.last}"
   end
 
+  # Same classification as _layouts/bib.liquid, so counts match the
+  # Publications page type filter.
   def self.kind(entry)
-    type = entry.type.to_s.downcase
-    return "patent" if type == "misc" && entry.fields.key?(:number) && clean(entry[:howpublished]) =~ /patent/i
-    return "abstract" if clean(entry[:keywords]) =~ /abstract/i
-
-    KINDS.fetch(type, "preprint")
+    case entry.type.to_s.downcase
+    when "article" then "journal"
+    when "inproceedings", "incollection" then "conference"
+    when "phdthesis", "mastersthesis" then "thesis"
+    when "book" then "book"
+    else
+      venue = "#{clean(entry[:howpublished])} #{clean(entry[:note])}".downcase
+      if venue.include?("patent") then "patent"
+      elsif venue.include?("abstract") then "abstract"
+      elsif venue =~ /preprint|working paper|arxiv|ssrn/ then "preprint"
+      else "other"
+      end
+    end
   end
+
+  REFEREED = %w[journal conference].freeze
 
   class Generator < Jekyll::Generator
     safe true
@@ -96,7 +108,8 @@ module ResearchData
         per_year = (first_year..last_year).map { |y| in_line.count { |p| p["year"] == y } }
         line_years = in_line.map { |p| p["year"] }
         coauthors = in_line.flat_map { |p| p["authors"].map { |a| ResearchData.person_id(a) } }.uniq - ["c-hajaj"]
-        l.merge("count" => in_line.size, "per_year" => per_year, "url" => "/projects/#{l['project']}/",
+        primary = papers.count { |p| p["line"] == l["key"] }
+        l.merge("count" => in_line.size, "primary" => primary, "per_year" => per_year, "url" => "/projects/#{l['project']}/",
                 "first" => line_years.min, "last" => line_years.max, "coauthors" => coauthors.size)
       end
 
@@ -106,8 +119,11 @@ module ResearchData
       students = site.data["students"] || {}
       { "phd_students" => "PhD student", "masters_students" => "MSc student",
         "research_assistants" => "Research assistant", "phd_alumni" => "PhD graduate",
-        "masters_alumni" => "MSc graduate", "former_research_assistants" => "Former research assistant" }.each do |group, role|
-        (students[group] || []).each { |st| lab[ResearchData.person_id(st["name"].to_s)] ||= role }
+        "masters_alumni" => "MSc graduate", "pre_phd_alumni" => "Pre-PhD research student",
+        "former_research_assistants" => "Former research assistant" }.each do |group, role|
+        (students[group] || []).each do |st|
+          ([st["name"]] + (st["aliases"] || [])).each { |n| lab[ResearchData.person_id(n.to_s)] ||= role }
+        end
       end
       people = {}
       papers.each do |p|
@@ -143,6 +159,10 @@ module ResearchData
         "last_year" => last_year,
         "collaborators" => collaborators,
         "other_count" => papers.count { |p| p["line"] == "other" },
+        "refereed" => papers.count { |p| REFEREED.include?(p["kind"]) },
+        "journals" => papers.count { |p| p["kind"] == "journal" },
+        "conferences" => papers.count { |p| p["kind"] == "conference" },
+        "non_refereed" => papers.count { |p| !REFEREED.include?(p["kind"]) },
         "top_people" => people_list.first(12),
         "students_coauthors" => people_list.count { |pp| pp["role"] },
         "lines" => summary,
@@ -151,7 +171,7 @@ module ResearchData
 
       json = {
         "first_year" => first_year, "last_year" => last_year,
-        "lines" => summary.map { |l| l.slice("key", "name", "color", "url", "count") },
+        "lines" => summary.map { |l| l.slice("key", "name", "color", "url", "count", "primary") },
         "other" => cfg["other"],
         "papers" => papers,
         "people" => people_list

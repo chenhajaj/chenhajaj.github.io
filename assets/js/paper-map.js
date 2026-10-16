@@ -40,6 +40,7 @@
   });
   var years = [];
   for (var y = data.first_year; y <= data.last_year; y++) years.push(y);
+  var KIND_LABEL = { preprint: "Preprint", abstract: "Abstract", thesis: "Thesis", patent: "Patent", book: "Edited book", other: "Other" };
 
   function roundRect(ctx, x, y, w, h, r) {
     ctx.beginPath();
@@ -212,9 +213,20 @@
         var alpha = e * (lit(sq) ? 1 : 0.16);
         if (alpha <= 0) return;
         ctx.globalAlpha = alpha;
-        ctx.fillStyle = colors[sq.p.line] || colors.other;
-        roundRect(ctx, sq.x, sq.y - (1 - e) * 36, sq.s, sq.s, Math.min(4, sq.s / 4));
-        ctx.fill();
+        var c = colors[sq.p.line] || colors.other;
+        var yOff = sq.y - (1 - e) * 36;
+        if (sq.p.kind === "journal" || sq.p.kind === "conference") {
+          ctx.fillStyle = c;
+          roundRect(ctx, sq.x, yOff, sq.s, sq.s, Math.min(4, sq.s / 4));
+          ctx.fill();
+        } else {
+          // Preprints, abstracts, theses, patents and books: hollow squares.
+          var lw = Math.max(1.5, sq.s / 7);
+          ctx.lineWidth = lw;
+          ctx.strokeStyle = c;
+          roundRect(ctx, sq.x + lw / 2, yOff + lw / 2, sq.s - lw, sq.s - lw, Math.min(3.5, sq.s / 4));
+          ctx.stroke();
+        }
         if (hover === sq) {
           ctx.globalAlpha = 1;
           ctx.lineWidth = 2;
@@ -277,7 +289,7 @@
       [
         ["tip-line", names[p.line] || names.other],
         ["tip-title", p.title],
-        ["tip-meta", (p.venue ? p.venue + ", " : "") + p.year],
+        ["tip-meta", (KIND_LABEL[p.kind] ? KIND_LABEL[p.kind] + ". " : "") + (p.venue ? p.venue + ", " : "") + p.year],
         ["tip-open", action],
       ].forEach(function (part) {
         var d = document.createElement("div");

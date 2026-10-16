@@ -21,7 +21,8 @@ featured:
 {%- assign msc_count = s.masters_students | size -%}
 {%- assign ra_count = s.research_assistants | size -%}
 {%- assign current_students = phd_count | plus: msc_count | plus: ra_count -%}
-{%- assign grad_alumni = s.phd_alumni | size | plus: s.masters_alumni.size -%}
+{%- assign msc_thesis_alumni = s.masters_alumni | where: 'program', 'thesis' -%}
+{%- assign msc_project_alumni = s.masters_alumni | where: 'program', 'project' -%}
 {%- assign former_ra = s.former_research_assistants | size -%}
 
 {%- assign r = site.data.research -%}
@@ -47,8 +48,11 @@ featured:
 
     <figure class="atlas-map paper-map-group">
       <figcaption class="atlas-head">
-        <h2>{{ r.papers }} papers since {{ r.first_year }}</h2>
-        <p>Each square is a paper, coloured by research line. Hover or tap one to read it.</p>
+        <h2>{{ r.refereed }} peer-reviewed papers since {{ r.first_year }}</h2>
+        <p>
+          {{ r.journals }} journal articles and {{ r.conferences }} conference papers, each a square coloured by its main research line.
+          Hollow squares are the {{ r.non_refereed }} preprints, abstracts, theses, patents and books. Hover or tap one to read it.
+        </p>
       </figcaption>
       <div
         class="atlas-canvas paper-map"
@@ -57,14 +61,14 @@ featured:
         data-animate="load"
         data-pubs="{{ '/publications/' | relative_url }}"
         role="img"
-        aria-label="Chart of {{ r.papers }} papers from {{ r.first_year }} to {{ r.last_year }}, grouped by year and coloured by research line. Output grew from one paper a year to about a dozen."
+        aria-label="Chart of {{ r.papers }} publications from {{ r.first_year }} to {{ r.last_year }}, {{ r.refereed }} of them peer-reviewed, grouped by year and coloured by research line. Output grew from one paper a year to about a dozen."
       >
         <canvas aria-hidden="true"></canvas>
       </div>
       <div class="atlas-legend" role="group" aria-label="Highlight a research line">
         {%- for l in r.lines -%}
           <button type="button" class="legend-chip" data-line="{{ l.key }}" aria-pressed="false" style="--c: var(--line-{{ l.key }}-bright)">
-            <span class="chip-dot" aria-hidden="true"></span>{{ l.name }} <span class="chip-count">{{ l.count }}</span>
+            <span class="chip-dot" aria-hidden="true"></span>{{ l.name }} <span class="chip-count">{{ l.primary }}</span>
           </button>
         {%- endfor -%}
         {%- if r.other_count > 0 -%}
@@ -124,7 +128,7 @@ featured:
   <section class="band band-wide" aria-labelledby="research" id="research-lines">
     <div class="band-head">
       <h2 id="research">Research</h2>
-      <p>Seven lines of work, each with its own page and the papers behind it.</p>
+      <p>Seven lines of work, each with its own page and the papers behind it. Some papers belong to two lines.</p>
     </div>
     <div class="band-body">
       {% include line_cards.liquid %}
@@ -148,8 +152,9 @@ featured:
     </div>
     <div class="band-body">
       <p class="lead">
-        {{ phd_count }} PhD and {{ msc_count }} MSc students work in the lab today. {{ grad_alumni }} graduate students
-        and {{ former_ra }} research assistants have finished their work here.
+        {{ phd_count }} PhD and {{ msc_count }} MSc students work in the lab today. {{ s.phd_alumni.size }} PhD and
+        {{ msc_thesis_alumni.size }} thesis MSc students have graduated, alongside {{ msc_project_alumni.size }} MSc final projects
+        and {{ former_ra }} research assistants.
       </p>
       <p class="prose-block">
         We are looking for PhD and MSc students who want to build models that survive contact with the real world.
@@ -183,10 +188,10 @@ featured:
           <span class="entry-when">2018 to now</span>
           <div>
             <p class="entry-what">Ariel University</p>
-            <p class="entry-where">Associate Professor, Industrial Engineering and Management</p>
+            <p class="entry-where">Industrial Engineering and Management. Lecturer 2018, Senior Lecturer (tenured) 2022, Associate Professor 2025.</p>
             <p class="entry-note">
-              Head of the Faculty Review Board and of the Data Science track since 2021. NVIDIA University Ambassador
-              since 2024. Founded and directed the Data Science and AI Research Center, 2019 to 2024.
+              Head of the Data Science track since 2021 and Chair of the Faculty of Engineering Review Board since 2022.
+              NVIDIA University Ambassador since 2025. Directed the Data Science Research Center, 2018 to 2024.
             </p>
           </div>
         </li>
@@ -194,16 +199,16 @@ featured:
           <span class="entry-when">2016 to 2018</span>
           <div>
             <p class="entry-what">Vanderbilt University</p>
-            <p class="entry-where">Data Science Fellow and postdoctoral researcher</p>
-            <p class="entry-note">Machine learning for cybersecurity and network traffic analysis. Served on the Postdoctoral Association Committee.</p>
+            <p class="entry-where">Postdoctoral researcher with Prof. Yevgeniy Vorobeychik, and Data Science Fellow</p>
+            <p class="entry-note">Adversarial machine learning, game theory and crowdsourcing for medical data. Served on the Postdoctoral Association Committee.</p>
           </div>
         </li>
         <li class="entry-row">
           <span class="entry-when">2010 to 2016</span>
           <div>
             <p class="entry-what">Bar-Ilan University</p>
-            <p class="entry-where">PhD in Computer Science</p>
-            <p class="entry-note">Game theory and mechanism design for strategic decision-making in competitive and cooperative settings.</p>
+            <p class="entry-where">PhD in Computer Science (2016), MSc in Electrical Engineering (2012), BSc in Computer Engineering (2010)</p>
+            <p class="entry-note">PhD with Prof. David Sarne and Prof. Avinatan Hassidim on intelligent mechanisms for platforms in modern markets.</p>
           </div>
         </li>
       </ol>

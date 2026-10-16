@@ -1,7 +1,6 @@
-# Research grants — Full details with PI role and organization
-# total_display: what shows on the site (e.g. "$1.5M+")
-
-total_display: "$1M+"
+# Research grants: full details with role and organization.
+# The site shows totals per currency (no conversion). Fellowships such as the
+# BSF Rahamimoff program are listed on the CV page, not here.
 
 grants:
   - full_name: "Multi-layered Classification of PQC-Encrypted Traffic"
@@ -50,10 +49,3 @@ grants:
     amount: 100000
     currency: "USD"
     year: 2019
-  
-  - full_name: "Strategy Proof Mechanisms for Kidney Exchange"
-    organization: "BSF"
-    role: "PI"
-    amount: 4000
-    currency: "USD"
-    year: 2015

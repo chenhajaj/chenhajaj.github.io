@@ -8,7 +8,7 @@
       <tr>
         <th scope="col">{{ include.when | default: 'Graduated' }}</th>
         <th scope="col">Name</th>
-        <th scope="col">Thesis topic</th>
+        <th scope="col">{{ include.topic | default: "Topic" }}</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +21,7 @@
             {%- else -%}
               {{- p.name -}}
             {%- endif %}
+            {%- if p.institution %}<span class="sub">{{ p.institution }}</span>{% endif %}
           </td>
           <td class="title-cell">{{ p.research_area }}</td>
         </tr>

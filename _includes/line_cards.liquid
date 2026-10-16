@@ -38,7 +38,7 @@
                 <rect x="{{ forloop.index0 | times: 8 }}" y="{{ 28 | minus: h }}" width="6" height="{{ h }}" rx="1" style="--i: {{ forloop.index0 }}"></rect>
               {%- endfor -%}
             </svg>
-            <span class="line-card-count"><strong class="num">{{ line.count }}</strong> papers, {{ r.first_year }} to {{ r.last_year }}</span>
+            <span class="line-card-count"><strong class="num">{{ line.count }}</strong> papers, {% if line.first == line.last %}{{ line.first }}{% else %}{{ line.first }} to {{ line.last }}{% endif %}</span>
           </div>
         {%- endif -%}
       </a>
