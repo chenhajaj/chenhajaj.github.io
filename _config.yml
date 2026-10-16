@@ -181,6 +181,10 @@ exclude:
   - README.md
   - readme_preview/
   - vendor
+  - scripts/
+  - requirements.txt
+  - lychee.toml
+  - assets/fonts/README.md
 keep_files:
   - CNAME
   - .nojekyll

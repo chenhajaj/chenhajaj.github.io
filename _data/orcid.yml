@@ -1,0 +1,60 @@
+# Auto-updated by .github/scripts/orcid_sync.py from the public ORCID record.
+# Do not edit by hand; change the record on orcid.org instead.
+orcid: 0000-0001-9940-5654
+last_updated: '2026-10-16'
+reviews:
+- venue: Computer Networks
+  count: 10
+  first: 2024
+  last: 2026
+- venue: Computers & Security
+  count: 6
+  first: 2023
+  last: 2025
+- venue: Expert Systems with Applications
+  count: 6
+  first: 2023
+  last: 2026
+- venue: ACM Computing Surveys
+  count: 2
+  first: 2025
+  last: 2026
+- venue: IEEE Transactions on Knowledge and Data Engineering
+  count: 2
+  first: 2024
+  last: 2024
+- venue: Annals of Mathematics and Artificial Intelligence
+  count: 1
+  first: 2020
+  last: 2020
+- venue: Health Systems
+  count: 1
+  first: 2024
+  last: 2024
+- venue: Journal of Information Security and Applications
+  count: 1
+  first: 2025
+  last: 2025
+education:
+- role: PhD
+  organization: Bar-Ilan University
+  department: Computer Science
+  start: '2012'
+  end: '2016'
+- role: M.Sc.
+  organization: Bar-Ilan University
+  department: Computer Engineering
+  start: '2010'
+  end: '2012'
+- role: B.Sc.
+  organization: Bar-Ilan University
+  department: Computer Engineering
+  start: '2006'
+  end: '2010'
+employment:
+- role: null
+  organization: Ariel University
+  department: The Department of Industrial Engineering & Management
+  start: null
+  end: null
+reviews_total: 29

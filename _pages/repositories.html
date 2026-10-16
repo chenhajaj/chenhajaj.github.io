@@ -33,12 +33,12 @@ groups:
           {% for repo in repos %}
             <li>
               <a class="repo" href="{{ repo.url }}">
-                <p class="repo-name">{{ repo.name | replace: '-', ' ' | replace: '_', ' ' }}</p>
+                <p class="repo-name">{{ repo.title | default: repo.name }}</p>
                 {% if repo.description %}<p class="repo-desc">{{ repo.description }}</p>{% endif %}
                 <p class="repo-meta meta">
                   {{ repo.url | remove: 'https://github.com/' }}
                   {%- if repo.language %}, {{ repo.language }}{% endif -%}
-                  {%- if repo.stars > 0 %}, {{ repo.stars }} {% if repo.stars == 1 %}star{% else %}stars{% endif %}{% endif -%}
+                  {%- if repo.stars >= 5 %}, {{ repo.stars }} {% if repo.stars == 1 %}star{% else %}stars{% endif %}{% endif -%}
                 </p>
               </a>
             </li>
