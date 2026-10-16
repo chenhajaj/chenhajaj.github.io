@@ -1,18 +1,6 @@
 // =============================================================================
-// Signal: compatibility variables for pages that still use the old theme names
-// (the private /dashboard/ page). Keep until those pages are migrated.
+// Signal: compatibility classes still used by figures in project pages
 // =============================================================================
-
-:root {
-  --global-bg-color: var(--paper);
-  --global-card-bg-color: var(--paper);
-  --global-code-bg-color: var(--paper-2);
-  --global-divider-color: var(--rule);
-  --global-text-color: var(--ink);
-  --global-text-color-light: var(--ink-3);
-  --global-theme-color: var(--cobalt);
-  --global-hover-color: var(--cobalt-ink);
-}
 
 // Images from the old figure include
 .img-fluid {
