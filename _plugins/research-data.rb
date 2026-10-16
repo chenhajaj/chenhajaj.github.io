@@ -105,7 +105,7 @@ module ResearchData
         "first_year" => first_year, "last_year" => last_year,
         "lines" => summary.map { |l| l.slice("key", "name", "color", "url", "count") },
         "other" => cfg["other"],
-        "papers" => papers.map { |p| p.reject { |k, _| k == "lines" } }
+        "papers" => papers
       }
       # Inline copy for pages that draw the map without an extra request.
       # "</" is escaped so the JSON is safe inside a <script> element.
