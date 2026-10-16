@@ -1,14 +1,14 @@
 ---
 layout: project
-title: A Multimodal Approach for Measuring Item Similarity
-description: Multimodal AI that fuses computer vision and NLP to measure item similarity the way humans do — powering smarter recommendations in tourism, e-commerce, and real estate.
+title: E-commerce and Multimodal AI
+description: Multimodal AI that fuses computer vision and NLP to measure item similarity the way humans do, and studies of how people shop online across devices, for smarter recommendations in tourism, e-commerce, and real estate.
 img: assets/img/tourism-new.png
 importance: 3
 category: work
 outcome: "Vision + language + time for product similarity"
 featured_label: "Multimodal research"
 featured_url: "/publications/?line=similarity"
-papers_query: "@*[projects~=similarity]*"
+papers_query: "@*[projects~=similarity|consumer-behavior]*"
 ---
 
 <p class="intro">When humans judge similarity, they consider appearance, function, atmosphere, and context simultaneously. Simple text matching or category tags miss most of this. We develop multimodal AI that fuses computer vision and NLP to measure item similarity the way people actually experience it.</p>
@@ -30,6 +30,7 @@ papers_query: "@*[projects~=similarity]*"
 <ul>
   <li><strong>Tourism &amp; Travel Recommendations</strong> — Suggesting alternative destinations when a user's top choice is unavailable, matched on experience rather than category. Validated against real booking patterns.</li>
   <li><strong>E-commerce &amp; Real Estate</strong> — Finding visually and contextually similar products or properties at different price points, improving discovery and reducing search abandonment.</li>
+  <li><strong>Shopping Across Devices</strong> — How the conversion funnel differs between mobile and desktop consumers, and what that means for online retailers (Electronic Commerce Research and Applications, 2022).</li>
 </ul>
 
 <div class="figure-row">
