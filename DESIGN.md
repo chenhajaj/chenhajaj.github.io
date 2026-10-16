@@ -15,37 +15,28 @@ route people to papers, the lab, or an email.
 
 ## The one bold idea
 
-The **flow fingerprint**: a drawing of one encrypted network connection as a
-traffic classifier sees it. Packet sizes over time, client to server above the
-axis (ink), server to client below (cobalt). On the home page an amber section
-shows the traffic changing, which is the lab's theme: models that keep working
-when data, threats and domains change.
+**The name, set large.** On the home page "Chen Hajaj" is set in Archivo at its
+widest and heaviest (`wdth` 120). That is the only display moment on the site;
+everything else stays quiet so the name and the research record carry it.
 
-- Drawn client-side by `drawFingerprint()` in `assets/js/site.js` from a seed,
-  so the same seed always gives the same drawing.
-- Each research line, research note and the 404 page gets its own seed (its
-  URL slug) and so its own trace. Do not reuse the hero seed elsewhere.
-- Markup: `<div class="fingerprint fingerprint-band" data-seed="..."
-data-bar="2" data-step="4" data-shift="0.6"></div>`. `data-shift` adds the
-  amber change; `data-animate` plays the single page-load sweep (home only);
-  `data-axis` moves the axis (0 to 1, default 0.42).
-- The animation respects `prefers-reduced-motion`. It is the only automatic
-  motion on the site; keep it that way.
-
-Everything else stays quiet so that this carries the identity.
+- No decorative graphics, generated patterns or illustrations beside content.
+  An earlier "flow fingerprint" drawing (random packet traces on the home page
+  and next to each research line) was removed in October 2026 because it
+  looked like data but showed nothing about the research.
+- No automatic motion. Motion only answers what the visitor does (opening a
+  panel, the mobile menu).
 
 ## Colour
 
 | Token                 | Light                 | Dark                  | Use                                    |
 | --------------------- | --------------------- | --------------------- | -------------------------------------- |
 | `--paper`             | `#f7f8fa`             | `#0d1322`             | page background                        |
-| `--ink`               | `#141b2d`             | `#e8ebf1`             | text, upstream bars                    |
+| `--ink`               | `#141b2d`             | `#e8ebf1`             | text                                   |
 | `--ink-2` / `--ink-3` | `#454f63` / `#5d6679` | `#b3bbca` / `#98a1b3` | secondary text, meta                   |
 | `--rule`              | `#d9dde5`             | `#263049`             | hairlines between rows                 |
-| `--cobalt`            | `#2440c8`             | `#9aacff`             | links, buttons, downstream bars, focus |
-| `--amber`             | `#d4850c`             | `#f0b24a`             | only the "shift" in fingerprints       |
+| `--cobalt`            | `#2440c8`             | `#9aacff`             | links, buttons, focus                  |
 
-All text pairs meet WCAG AA in both themes. Amber is never used for text or UI.
+All text pairs meet WCAG AA in both themes.
 Dark mode follows the system unless the visitor picks a theme with the toggle
 (stored in `localStorage.theme`).
 
@@ -53,7 +44,7 @@ Dark mode follows the system unless the visitor picks a theme with the toggle
 
 - **Archivo** (variable, width axis used): names, headings, navigation,
   labels, publication titles. The name on the home page is set wide
-  (`wdth` 120) and heavy; that and the fingerprint are the only display moments.
+  (`wdth` 120) and heavy; that is the only display moment.
 - **Source Serif 4**: reading text, authors, venues, descriptions.
 - Scale in `_tokens.scss` (`--fs-*`). Body is 18px serif with 1.62 leading.
   Keep reading text under about 66 characters per line (`--measure`).

@@ -38,16 +38,6 @@ featured:
       </div>
     </div>
 
-    <figure class="hero-trace">
-      <div class="fingerprint fingerprint-hero" data-seed="chen-hajaj-flow" data-bar="2" data-step="4" data-shift="0.7" data-animate></div>
-      <figcaption class="fingerprint-caption">
-        One encrypted connection, the way a traffic classifier sees it: packet sizes over time,
-        <span class="swatch swatch-up"></span>client to server above the line and
-        <span class="swatch swatch-down"></span>server to client below. At the
-        <span class="swatch swatch-shift"></span>amber section the traffic changes. Models that hold up there are what the lab works on.
-      </figcaption>
-    </figure>
-
     <div class="hero-foot">
       <ul class="inline-links" aria-label="Contact and profiles">
         <li><a href="mailto:chenha@g.ariel.ac.il">chenha@g.ariel.ac.il</a></li>
@@ -101,7 +91,6 @@ featured:
           {%- assign slug = project.url | split: '/' | last -%}
           <li>
             <a class="line-row" href="{{ project.url | relative_url }}">
-              <div class="fingerprint fingerprint-mini" data-seed="{{ slug }}" data-bar="1.5" data-step="3" data-axis="0.5"></div>
               <div>
                 <h3 class="line-title">{{ project.title }}</h3>
                 <p class="line-desc">{{ project.description }}</p>

@@ -53,17 +53,13 @@
   background: var(--paper-2);
 }
 
-.hero-trace {
-  margin-top: clamp(2rem, 5vw, 3.5rem);
-}
-
 .hero-foot {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   gap: var(--s-4) var(--s-6);
-  margin-top: var(--s-6);
+  margin-top: clamp(2rem, 5vw, 3.5rem);
 }
 
 .hero-stats {
@@ -350,10 +346,6 @@
   max-width: 60ch;
 }
 
-.project-head .fingerprint {
-  margin-top: var(--s-6);
-}
-
 .headline-result {
   margin-top: var(--s-5);
   max-width: 62ch;
@@ -454,11 +446,6 @@
 
 .not-found {
   padding-block: clamp(3rem, 10vw, 7rem);
-}
-
-.not-found .fingerprint {
-  margin-block: var(--s-6);
-  max-width: 36rem;
 }
 
 .prose .intro {
