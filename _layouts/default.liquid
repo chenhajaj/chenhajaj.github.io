@@ -13,6 +13,7 @@
     <link rel="preload" href="{{ '/assets/fonts/archivo-normal-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{{ '/assets/fonts/source-serif-4-normal-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url | bust_css_cache }}">
+    {% include line_colors.liquid %}
     {% if page.legacy_icons %}
       <link
         rel="stylesheet"
@@ -39,6 +40,9 @@
     {% include footer.liquid %}
 
     <script src="{{ '/assets/js/site.js' | relative_url | bust_file_cache }}" defer></script>
+    {%- for script in page.scripts %}
+      <script src="{{ script | prepend: '/assets/js/' | append: '.js' | relative_url | bust_file_cache }}" defer></script>
+    {%- endfor %}
     {% if site.enable_google_analytics and jekyll.environment == 'production' %}
       <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
       <script>

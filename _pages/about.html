@@ -3,6 +3,7 @@ layout: about
 title: About
 permalink: /
 show_pub_year: true
+scripts: [research-map]
 description: Chen Hajaj is an Associate Professor at Ariel University who builds machine learning that keeps working when data, threats, and domains change, from encrypted traffic and adversarial AI to clinical decision support.
 
 # Featured result on the home page. Edit these lines to swap it.
@@ -12,6 +13,7 @@ featured:
   text: "Classification by retrieval lets an encrypted-traffic model add new application classes without retraining, and flags out-of-distribution traffic in the same retrieval step."
   url: "https://doi.org/10.1016/j.comnet.2026.112739"
   label: "Read the paper"
+  line: traffic # research line key from _data/research_lines.yml (sets the colour)
 ---
 
 {%- assign s = site.data.students -%}
@@ -22,24 +24,64 @@ featured:
 {%- assign grad_alumni = s.phd_alumni | size | plus: s.masters_alumni.size -%}
 {%- assign former_ra = s.former_research_assistants | size -%}
 
-<div class="wrap">
-  <section class="hero" aria-labelledby="hero-name">
-    <div class="hero-grid">
-      <div>
+{%- assign r = site.data.research -%}
+<section class="atlas" aria-labelledby="hero-name">
+  <div class="wrap">
+    <div class="atlas-intro">
+      <div class="atlas-text">
         <h1 class="hero-name" id="hero-name">Chen Hajaj</h1>
         <p class="hero-claim">Machine learning that keeps working when data, threats, and domains change.</p>
         <p class="hero-roles">
           Associate Professor of Industrial Engineering and Management at Ariel University. I lead the
           Adaptive AI Lab, head the Data Science track, and serve as an NVIDIA University Ambassador.
         </p>
+        <div class="actions atlas-actions">
+          <a class="button button-bright" href="#research-lines">Explore the research</a>
+          <a class="button button-ghost" href="{{ '/people/' | relative_url }}#join">Join the lab</a>
+        </div>
       </div>
-      <div class="hero-photo">
-        {% include figure.liquid path="assets/img/me.jpeg" alt="Chen Hajaj" sizes="(max-width: 640px) 120px, 240px" loading="eager" %}
+      <div class="atlas-photo">
+        {% include figure.liquid path="assets/img/me.jpeg" alt="Chen Hajaj" sizes="(max-width: 640px) 112px, 260px" loading="eager" %}
       </div>
     </div>
 
-    <div class="hero-foot">
-      <ul class="inline-links" aria-label="Contact and profiles">
+    <figure class="atlas-map">
+      <figcaption class="atlas-head">
+        <h2>{{ r.papers }} papers since {{ r.first_year }}</h2>
+        <p>Each square is a paper, coloured by research line. Hover or tap one to read it.</p>
+      </figcaption>
+      <div
+        class="atlas-canvas"
+        id="research-map"
+        data-pubs="{{ '/publications/' | relative_url }}"
+        role="img"
+        aria-label="Chart of {{ r.papers }} papers from {{ r.first_year }} to {{ r.last_year }}, grouped by year and coloured by research line. Output grew from one paper a year to about a dozen."
+      >
+        <canvas aria-hidden="true"></canvas>
+      </div>
+      <div class="atlas-legend" role="group" aria-label="Highlight a research line">
+        {%- for l in r.lines -%}
+          <button type="button" class="legend-chip" data-line="{{ l.key }}" aria-pressed="false" style="--c: var(--line-{{ l.key }}-bright)">
+            <span class="chip-dot" aria-hidden="true"></span>{{ l.name }} <span class="chip-count">{{ l.count }}</span>
+          </button>
+        {%- endfor -%}
+        {%- if r.other_count > 0 -%}
+          <button type="button" class="legend-chip" data-line="other" aria-pressed="false" style="--c: var(--line-other-bright)">
+            <span class="chip-dot" aria-hidden="true"></span>{{ site.data.research_lines.other.name }} <span class="chip-count">{{ r.other_count }}</span>
+          </button>
+        {%- endif -%}
+      </div>
+      <script type="application/json" id="research-data">{{ site.data.research_json }}</script>
+    </figure>
+
+    <div class="atlas-foot">
+      <dl class="atlas-stats">
+        <div><dt>Citations</dt><dd class="num">{{ site.data.scholar.citations | default: 0 | thousands }}</dd></div>
+        <div><dt>h-index</dt><dd class="num">{{ site.data.scholar.h_index }}</dd></div>
+        <div><dt>Co-authors</dt><dd class="num">{{ r.collaborators }}</dd></div>
+        <div><dt>Students in the lab</dt><dd class="num">{{ current_students }}</dd></div>
+      </dl>
+      <ul class="inline-links atlas-links" aria-label="Contact and profiles">
         <li><a href="mailto:chenha@g.ariel.ac.il">chenha@g.ariel.ac.il</a></li>
         <li><a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}">Google Scholar</a></li>
         <li><a href="https://github.com/{{ site.data.socials.github_username }}">GitHub</a></li>
@@ -48,20 +90,18 @@ featured:
         <li><a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}">LinkedIn</a></li>
         <li><a href="{{ '/cv/' | relative_url }}">CV</a></li>
       </ul>
-      <p class="hero-stats">
-        <strong class="num">{{ site.data.scholar.citations | default: 0 | thousands }}</strong> citations and an h-index of
-        <strong class="num">{{ site.data.scholar.h_index }}</strong> on Google Scholar
-      </p>
     </div>
-  </section>
+  </div>
+</section>
 
+<div class="wrap">
   <section class="band" aria-labelledby="now">
     <div class="band-head">
       <h2 id="now">Now</h2>
       <p><a href="{{ '/news/' | relative_url }}">All news</a></p>
     </div>
     <div class="band-body">
-      <article class="feature">
+      <article class="feature" style="--c: var(--line-{{ page.featured.line | default: 'other' }})">
         <p class="meta">New paper in {{ page.featured.venue }}</p>
         <h3>{{ page.featured.title }}</h3>
         <p>{{ page.featured.text }}</p>
@@ -79,29 +119,13 @@ featured:
     </div>
   </section>
 
-  <section class="band" aria-labelledby="research">
+  <section class="band band-wide" aria-labelledby="research" id="research-lines">
     <div class="band-head">
       <h2 id="research">Research</h2>
-      <p>Six lines of work. Each one has its own page with the papers behind it.</p>
+      <p>Six lines of work, each with its own page and the papers behind it.</p>
     </div>
     <div class="band-body">
-      <ul class="rows">
-        {%- assign projects = site.projects | sort: 'importance' -%}
-        {%- for project in projects -%}
-          {%- assign slug = project.url | split: '/' | last -%}
-          <li>
-            <a class="line-row" href="{{ project.url | relative_url }}">
-              <div>
-                <h3 class="line-title">{{ project.title }}</h3>
-                <p class="line-desc">{{ project.description }}</p>
-              </div>
-              {%- if project.papers_query -%}
-                <span class="line-count">{% bibliography_count -f papers -q {{ project.papers_query }} %} papers</span>
-              {%- endif -%}
-            </a>
-          </li>
-        {%- endfor -%}
-      </ul>
+      {% include line_cards.liquid %}
     </div>
   </section>
 

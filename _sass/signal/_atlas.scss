@@ -1,0 +1,508 @@
+// =============================================================================
+// Signal: colour and engagement layer
+//   .atlas       home page hero: deep band with the interactive research map
+//   .line-cards  research line cards (home and /projects/)
+//   .feature, .topics  coloured by research line through --c
+// Research line colours (--line-<key>) come from _data/research_lines.yml via
+// _includes/line_colors.liquid.
+// =============================================================================
+
+:root {
+  // The night band looks the same in both themes.
+  --night: #101a4d;
+  --night-2: #19256a;
+  --on-night: #f3f5ff;
+  --on-night-2: #c3cbef;
+  --on-night-rule: rgba(214, 222, 255, 0.18);
+  --radius-lg: 14px;
+}
+
+// ------------------------------------------------------------------ atlas ----
+
+.atlas {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2rem, 5vw, 3.75rem) clamp(2.5rem, 5vw, 4rem);
+  background:
+    radial-gradient(120% 80% at 85% 0%, var(--night-2) 0%, transparent 60%),
+    var(--night);
+  color: var(--on-night);
+}
+
+.atlas :focus-visible {
+  outline-color: var(--on-night);
+}
+
+.atlas-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(8rem, 16vw, 13.5rem);
+  align-items: end;
+  gap: var(--s-6) clamp(1.5rem, 5vw, 4rem);
+}
+
+.atlas .hero-name {
+  font-size: var(--fs-display);
+  font-weight: 780;
+  font-variation-settings: "wdth" 120;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
+  color: var(--on-night);
+}
+
+.atlas .hero-claim {
+  margin-top: var(--s-5);
+  max-width: 26ch;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: var(--on-night);
+}
+
+.atlas .hero-roles {
+  margin-top: var(--s-5);
+  max-width: 60ch;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  color: var(--on-night-2);
+}
+
+.atlas-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+}
+
+.button-bright {
+  background: var(--on-night);
+  border-color: var(--on-night);
+  color: var(--night);
+}
+
+.button-bright:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--night);
+}
+
+.button-ghost {
+  background: transparent;
+  border-color: rgba(214, 222, 255, 0.45);
+  color: var(--on-night);
+}
+
+.button-ghost:hover {
+  background: rgba(214, 222, 255, 0.12);
+  border-color: var(--on-night);
+  color: var(--on-night);
+}
+
+.atlas-photo figure {
+  margin: 0;
+}
+
+.atlas-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 0 1px var(--on-night-rule);
+}
+
+// The map
+
+.atlas-map {
+  margin: clamp(2rem, 4.5vw, 3rem) 0 0;
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--on-night-rule);
+}
+
+.atlas-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-2) var(--s-5);
+}
+
+.atlas-head h2 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  font-variation-settings: "wdth" 108;
+  letter-spacing: -0.01em;
+  color: var(--on-night);
+}
+
+.atlas-head p {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: var(--on-night-2);
+}
+
+.atlas-canvas {
+  position: relative;
+  margin-top: var(--s-5);
+  height: 212px;
+  touch-action: manipulation;
+}
+
+.atlas-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.atlas-canvas:focus-visible {
+  outline-offset: 6px;
+}
+
+.atlas-tip {
+  position: absolute;
+  z-index: 2;
+  width: max-content;
+  max-width: min(22rem, calc(100% - 1rem));
+  padding: var(--s-3) var(--s-4);
+  border-radius: 10px;
+  background: #ffffff;
+  color: #141b2d;
+  box-shadow:
+    0 10px 30px rgba(5, 10, 40, 0.35),
+    0 0 0 1px rgba(5, 10, 40, 0.06);
+  font-family: var(--font-sans);
+  pointer-events: none;
+}
+
+.atlas-tip .tip-line {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: #454f63;
+}
+
+.atlas-tip .tip-line::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 2px;
+  background: var(--c);
+}
+
+.atlas-tip .tip-title {
+  margin-top: var(--s-1);
+  font-size: var(--fs-sm);
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.atlas-tip .tip-meta {
+  margin-top: var(--s-1);
+  font-family: var(--font-serif);
+  font-size: var(--fs-xs);
+  font-style: italic;
+  line-height: 1.4;
+  color: #454f63;
+}
+
+.atlas-tip .tip-open {
+  margin-top: var(--s-2);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: #2440c8;
+}
+
+.atlas-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-5);
+}
+
+.legend-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 2.25rem;
+  padding: 0 var(--s-4);
+  border: 1px solid var(--on-night-rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--on-night);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease;
+}
+
+.legend-chip:hover {
+  border-color: var(--c);
+}
+
+.legend-chip[aria-pressed="true"] {
+  border-color: var(--c);
+  background: color-mix(in srgb, var(--c) 22%, transparent);
+}
+
+.chip-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 3px;
+  background: var(--c);
+}
+
+.chip-count {
+  color: var(--on-night-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.atlas-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-5) var(--s-7);
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+.atlas-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4) clamp(1.5rem, 4vw, 3rem);
+  margin: 0;
+}
+
+.atlas-stats div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.atlas-stats dt {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--on-night-2);
+}
+
+.atlas-stats dd {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  font-variation-settings: "wdth" 110;
+  line-height: 1.05;
+  color: var(--on-night);
+}
+
+.atlas-links a {
+  color: var(--on-night);
+}
+
+.atlas-links a:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .atlas-intro {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .atlas-photo {
+    order: -1;
+    width: 7rem;
+  }
+
+  .atlas-canvas {
+    height: 300px;
+  }
+
+  .atlas-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .legend-chip {
+    font-size: var(--fs-xs);
+    padding: 0 var(--s-3);
+  }
+}
+
+// ------------------------------------------------------------- line cards ----
+
+.line-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: var(--s-5);
+  padding: 0;
+  list-style: none;
+}
+
+.line-cards > li {
+  display: flex;
+}
+
+.line-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--c) 24%, var(--paper));
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--c) 7%, var(--paper));
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 160ms ease;
+}
+
+.line-card:hover {
+  border-color: var(--c);
+  color: inherit;
+}
+
+.line-card-img {
+  aspect-ratio: 2.15 / 1;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--c) 30%, var(--paper));
+}
+
+.line-card-img figure,
+.line-card-img picture {
+  display: block;
+  height: 100%;
+  margin: 0;
+}
+
+.line-card-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  // Show the upper part of each illustration; this also crops the corner mark.
+  object-position: 50% 12%;
+  transition: transform 400ms ease;
+}
+
+.line-card-body {
+  flex: 1;
+  padding: var(--s-5) var(--s-5) var(--s-3);
+}
+
+.line-card-title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-lg);
+  font-weight: 680;
+  line-height: var(--lh-tight);
+  text-wrap: balance;
+}
+
+.line-card:hover .line-card-title {
+  text-decoration: underline;
+  text-decoration-color: var(--c);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+.line-card-desc {
+  margin-top: var(--s-2);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.line-card-outcome {
+  margin-top: var(--s-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.line-card-foot {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--s-3);
+  padding: 0 var(--s-5) var(--s-5);
+}
+
+.spark {
+  width: 7.5rem;
+  height: 1.75rem;
+  flex: none;
+}
+
+.spark rect {
+  fill: var(--c);
+}
+
+.spark .spark-base {
+  fill: color-mix(in srgb, var(--c) 35%, transparent);
+}
+
+.line-card-count {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--ink-2);
+}
+
+.line-card-count strong {
+  font-size: var(--fs-sm);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .line-card:hover .line-card-img img {
+    transform: scale(1.04);
+  }
+}
+
+// --------------------------------------------- feature, topics (coloured) ----
+
+.feature {
+  padding: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--c, var(--cobalt)) 9%, var(--paper));
+  border: 1px solid color-mix(in srgb, var(--c, var(--cobalt)) 22%, var(--paper));
+  margin-bottom: var(--s-6);
+}
+
+.feature .meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.feature .meta::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 3px;
+  background: var(--c, var(--cobalt));
+}
+
+.topics li {
+  border-top: 3px solid var(--c, var(--ink));
+}
+
+// A band whose body spans the full width under its heading (home research cards).
+.band-wide {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.band-wide .band-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-2) var(--s-5);
+}
+
+.band-wide .band-head p {
+  margin-top: 0;
+}

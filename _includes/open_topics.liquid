@@ -1,6 +1,6 @@
 <ul class="topics">
   {%- for topic in site.data.open_topics -%}
-    <li>
+    <li style="--c: var(--line-{{ topic.line | default: 'other' }})">
       <strong>{{ topic.title }}</strong>
       <span>{{ topic.text }}</span>
     </li>

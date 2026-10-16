@@ -1,0 +1,30 @@
+{%- comment -%}
+  Research line colours from _data/research_lines.yml, as CSS custom properties.
+  --line-<key>         theme colour (light value, or dark value in dark theme)
+  --line-<key>-bright  the dark-theme value, for use on dark surfaces in any theme
+{%- endcomment -%}
+{%- assign rl = site.data.research_lines -%}
+<style>
+  :root {
+    {%- for l in rl.lines %}
+    --line-{{ l.key }}: {{ l.color[0] }};
+    --line-{{ l.key }}-bright: {{ l.color[1] }};
+    {%- endfor %}
+    --line-other: {{ rl.other.color[0] }};
+    --line-other-bright: {{ rl.other.color[1] }};
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      {%- for l in rl.lines %}
+      --line-{{ l.key }}: {{ l.color[1] }};
+      {%- endfor %}
+      --line-other: {{ rl.other.color[1] }};
+    }
+  }
+  :root[data-theme="dark"] {
+    {%- for l in rl.lines %}
+    --line-{{ l.key }}: {{ l.color[1] }};
+    {%- endfor %}
+    --line-other: {{ rl.other.color[1] }};
+  }
+</style>

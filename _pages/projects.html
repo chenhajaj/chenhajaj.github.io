@@ -8,26 +8,7 @@ nav: true
 nav_order: 2
 ---
 
-<ul class="rows research-index">
-  {%- assign projects = site.projects | sort: 'importance' -%}
-  {%- for project in projects -%}
-    {%- assign slug = project.url | split: '/' | last -%}
-    <li>
-      <a class="line-row line-row-large" href="{{ project.url | relative_url }}">
-        <div>
-          <h2 class="line-title">{{ project.title }}</h2>
-          <p class="line-desc">{{ project.description }}</p>
-          {%- if project.outcome -%}
-            <p class="line-outcome">{{ project.outcome }}</p>
-          {%- endif -%}
-        </div>
-        {%- if project.papers_query -%}
-          <span class="line-count">{% bibliography_count -f papers -q {{ project.papers_query }} %} papers</span>
-        {%- endif -%}
-      </a>
-    </li>
-  {%- endfor -%}
-</ul>
+{% include line_cards.liquid level=2 outcome=true %}
 
 <section class="band" aria-labelledby="code">
   <div class="band-head">
