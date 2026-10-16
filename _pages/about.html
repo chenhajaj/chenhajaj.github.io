@@ -31,7 +31,7 @@ featured:
     <div class="atlas-intro">
       <div class="atlas-text">
         <h1 class="hero-name" id="hero-name">Chen Hajaj</h1>
-        <p class="hero-claim">Machine learning that keeps working when data, threats, and domains change.</p>
+        <p class="hero-claim" data-encrypt>Machine learning that keeps working when data, threats, and domains change.</p>
         <p class="hero-roles">
           Associate Professor of Industrial Engineering and Management at Ariel University. I lead the
           Adaptive AI Lab, head the Data Science track, and serve as an NVIDIA University Ambassador.
@@ -96,6 +96,21 @@ featured:
         <li><a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}">LinkedIn</a></li>
         <li><a href="{{ '/cv/' | relative_url }}">CV</a></li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<section class="venues" aria-labelledby="venues-label">
+  <div class="wrap venues-inner">
+    <h2 class="venues-label" id="venues-label">Published in</h2>
+    <div class="marquee">
+      <div class="marquee-track">
+        <ul class="marquee-list" aria-labelledby="venues-label">
+          {%- for v in site.data.venues %}
+            <li><a href="{{ '/publications/' | relative_url }}?q={{ v.q | url_encode }}">{{ v.name }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -183,7 +198,7 @@ featured:
       <p><a href="{{ '/cv/' | relative_url }}">Full CV</a></p>
     </div>
     <div class="band-body">
-      <ol class="entries">
+      <ol class="entries timeline">
         <li class="entry-row">
           <span class="entry-when">2018 to now</span>
           <div>
@@ -207,7 +222,7 @@ featured:
           <span class="entry-when">2010 to 2016</span>
           <div>
             <p class="entry-what">Bar-Ilan University</p>
-            <p class="entry-where">PhD in Computer Science (2016), MSc in Electrical Engineering (2012), BSc in Computer Engineering (2010)</p>
+            <p class="entry-where">PhD in Computer Science (2016), MSc in Computer Engineering (2012), BSc in Computer Engineering (2010)</p>
             <p class="entry-note">PhD with Prof. David Sarne and Prof. Avinatan Hassidim on intelligent mechanisms for platforms in modern markets.</p>
           </div>
         </li>

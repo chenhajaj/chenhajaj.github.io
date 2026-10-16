@@ -1,9 +1,23 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
-
-"PhysRev":
-  url: https://journals.aps.org/
-
-"Vision":
-  color: "#009f36"
+# Venues for the "Published in" strip on the home page.
+# name: what the strip shows. q: search text for /publications/?q=...
+# (must appear in the paper's venue, title or abstract). Only list venues
+# with at least one paper in _bibliography/papers.bib.
+- { name: "USENIX Security", q: "USENIX" }
+- { name: "Computer Networks", q: "Computer Networks" }
+- { name: "IJCAI", q: "Joint Conference on Artificial Intelligence" }
+- { name: "Computers & Security", q: "Computers & Security" }
+- { name: "AAAI", q: "AAAI" }
+- { name: "Expert Systems with Applications", q: "Expert Systems with Applications" }
+- { name: "ACM EC", q: "Economics and Computation" }
+- { name: "IEEE Access", q: "IEEE Access" }
+- { name: "AAMAS", q: "Autonomous Agents" }
+- { name: "IEEE/ACM TASLP", q: "Transactions on Audio" }
+- { name: "IEEE INFOCOM", q: "INFOCOM" }
+- { name: "Electronic Commerce Research and Applications", q: "Electronic Commerce Research" }
+- { name: "IEEE ICC", q: "International Conference on Communications" }
+- { name: "Interspeech", q: "Interspeech" }
+- { name: "AMIA", q: "AMIA" }
+- { name: "Computer Communications", q: "Computer Communications" }
+- { name: "IEEE CCNC", q: "Consumer Communications" }
+- { name: "IEEE ISBI", q: "Biomedical Imaging" }
+- { name: "Nutrients", q: "Nutrients" }

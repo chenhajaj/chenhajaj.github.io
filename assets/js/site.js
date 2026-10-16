@@ -1,7 +1,8 @@
 /*
  * Site behaviour for chenhajaj.github.io (no dependencies).
  *  1. Theme toggle and mobile menu
- *  -  Motion: count-up numbers, charts that grow into view
+ *  -  Motion and effects: number ticker, encrypted text, aurora, spotlight
+ *     cards, scroll-velocity venue strip, scroll timeline (21st.dev ideas)
  *  2. Publication panels (abstract / BibTeX) and copy buttons
  *  3. Publications page filters
  */
@@ -83,38 +84,234 @@
   }
 
   /* ----------------------------------------------------------- motion */
-  // Numbers count up and card charts grow when they first scroll into view.
-  // Only when the visitor allows motion (the inline script sets .motion-ok).
-  if (root.classList.contains("motion-ok") && "IntersectionObserver" in window) {
-    var countUp = function (el) {
-      var target = parseFloat(el.getAttribute("data-count"));
-      if (!isFinite(target) || target <= 0) return;
-      var final = el.textContent;
+  // Effects ported from 21st.dev ideas (see _sass/signal/_effects.scss).
+  // Motion runs only when the visitor allows it (the inline script in the
+  // layout sets .motion-ok); content is always readable without it.
+  var motionOk = root.classList.contains("motion-ok");
+  var finePointer = !!(window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  var hasIO = "IntersectionObserver" in window;
+
+  function each(sel, fn) {
+    Array.prototype.forEach.call(document.querySelectorAll(sel), fn);
+  }
+
+  function clamp01(v) {
+    return v < 0 ? 0 : v > 1 ? 1 : v;
+  }
+
+  // Run fn at most once per frame.
+  function perFrame(fn) {
+    var queued = false;
+    return function () {
+      if (queued) return;
+      queued = true;
+      window.requestAnimationFrame(function () {
+        queued = false;
+        fn();
+      });
+    };
+  }
+
+  // Number ticker: a number counts up once it is fully on screen. Screen
+  // readers get the final value; the moving copy is hidden from them, and its
+  // width is reserved so nothing beside it moves.
+  function prepareTicker(el) {
+    var target = parseFloat(el.getAttribute("data-count"));
+    if (!isFinite(target) || target <= 0) return null;
+    var final = el.textContent.trim();
+    el.style.minWidth = el.offsetWidth + "px";
+    el.textContent = "";
+    var sr = document.createElement("span");
+    sr.className = "visually-hidden";
+    sr.textContent = final;
+    var shown = document.createElement("span");
+    shown.setAttribute("aria-hidden", "true");
+    shown.textContent = "0";
+    el.append(sr, shown);
+    return function run() {
       var t0 = null;
       var step = function (t) {
         if (t0 === null) t0 = t;
-        var k = Math.min(1, (t - t0) / 1100);
-        var e = 1 - Math.pow(1 - k, 3);
-        el.textContent = k < 1 ? Math.round(target * e).toLocaleString("en-US") : final;
+        var k = Math.min(1, (t - t0) / 1600);
+        var e = k === 1 ? 1 : 1 - Math.pow(2, -10 * k);
+        shown.textContent = k < 1 ? Math.round(target * e).toLocaleString("en-US") : final;
         if (k < 1) window.requestAnimationFrame(step);
       };
       window.requestAnimationFrame(step);
     };
+  }
+
+  if (motionOk && hasIO) {
     var seen = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
-          var el = entry.target;
-          seen.unobserve(el);
-          el.classList.add("is-inview");
-          if (el.hasAttribute("data-count")) countUp(el);
+          seen.unobserve(entry.target);
+          entry.target.classList.add("is-inview");
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.35 }
     );
-    Array.prototype.forEach.call(document.querySelectorAll(".line-card, [data-count]"), function (el) {
+    each(".line-card, .feature", function (el) {
       seen.observe(el);
     });
+
+    var full = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          full.unobserve(entry.target);
+          if (entry.target._tick) entry.target._tick();
+        });
+      },
+      { threshold: 1 }
+    );
+    each("[data-count]", function (el) {
+      el._tick = prepareTicker(el);
+      if (el._tick) full.observe(el);
+    });
+  }
+
+  // Encrypted text: [data-encrypt] scrambles into cipher glyphs and decrypts
+  // left to right, once, in under two seconds. The real text never moves.
+  function decrypt(el) {
+    var text = el.textContent.replace(/\s+/g, " ").trim();
+    var GLYPHS = "01<>/{}[]#%&*+=$@ABCDEF0123456789";
+    var pick = function () {
+      return GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length));
+    };
+    var sr = document.createElement("span");
+    sr.className = "visually-hidden";
+    sr.textContent = text;
+    var shown = document.createElement("span");
+    shown.setAttribute("aria-hidden", "true");
+    var chars = [];
+    for (var i = 0; i < text.length; i++) {
+      var c = text.charAt(i);
+      if (c === " ") {
+        shown.appendChild(document.createTextNode(" "));
+        continue;
+      }
+      var span = document.createElement("span");
+      span.className = "enc-ch";
+      span.textContent = c;
+      span.setAttribute("data-g", pick());
+      shown.appendChild(span);
+      chars.push({ el: span, at: 220 + chars.length * 18 + Math.random() * 240 });
+    }
+    el.textContent = "";
+    el.append(sr, shown);
+    var t0 = null;
+    var last = 0;
+    var step = function (t) {
+      if (t0 === null) t0 = t;
+      var dt = t - t0;
+      var shuffle = t - last > 55;
+      if (shuffle) last = t;
+      var left = 0;
+      chars.forEach(function (ch) {
+        if (!ch.el.hasAttribute("data-g")) return;
+        if (dt >= ch.at) ch.el.removeAttribute("data-g");
+        else {
+          left++;
+          if (shuffle) ch.el.setAttribute("data-g", pick());
+        }
+      });
+      if (left) window.requestAnimationFrame(step);
+      else el.textContent = text;
+    };
+    window.requestAnimationFrame(step);
+  }
+  if (motionOk) each("[data-encrypt]", decrypt);
+
+  // Aurora: the hero's colour fields lean toward the pointer and drift as the
+  // page scrolls. No timer-driven motion.
+  var atlas = document.querySelector(".atlas:not(.atlas-band)");
+  if (atlas && motionOk) {
+    if (finePointer) {
+      atlas.addEventListener(
+        "pointermove",
+        function (e) {
+          var r = atlas.getBoundingClientRect();
+          atlas.style.setProperty("--px", ((((e.clientX - r.left) / r.width) * 2 - 1) * 1).toFixed(3));
+          atlas.style.setProperty("--py", ((((e.clientY - r.top) / r.height) * 2 - 1) * 1).toFixed(3));
+        },
+        { passive: true }
+      );
+    }
+    var auroraScroll = perFrame(function () {
+      atlas.style.setProperty("--sy", clamp01(window.scrollY / Math.max(1, atlas.offsetHeight)).toFixed(3));
+    });
+    window.addEventListener("scroll", auroraScroll, { passive: true });
+  }
+
+  // Spotlight cards: a glow and lit border follow the pointer.
+  if (finePointer) {
+    document.addEventListener(
+      "pointermove",
+      function (e) {
+        var card = e.target.closest && e.target.closest(".line-card");
+        if (!card) return;
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", Math.round(e.clientX - r.left) + "px");
+        card.style.setProperty("--my", Math.round(e.clientY - r.top) + "px");
+      },
+      { passive: true }
+    );
+  }
+
+  // Marquee: the venue list glides sideways only while the page scrolls,
+  // and keyboard focus lays it out flat so every link can be seen.
+  var marquee = document.querySelector(".venues .marquee");
+  if (marquee && motionOk) {
+    var mTrack = marquee.querySelector(".marquee-track");
+    var mList = mTrack.querySelector(".marquee-list");
+    var mCopy = mList.cloneNode(true);
+    mCopy.setAttribute("aria-hidden", "true");
+    mCopy.removeAttribute("aria-labelledby");
+    Array.prototype.forEach.call(mCopy.querySelectorAll("a"), function (a) {
+      a.setAttribute("tabindex", "-1");
+    });
+    mTrack.appendChild(mCopy);
+    marquee.classList.add("is-live");
+    var glide = perFrame(function () {
+      var half = mList.offsetWidth;
+      if (!half) return;
+      marquee.style.setProperty("--mq-x", -((window.scrollY * 0.45) % half).toFixed(1) + "px");
+    });
+    window.addEventListener("scroll", glide, { passive: true });
+    glide();
+    marquee.addEventListener("focusin", function () {
+      marquee.classList.remove("is-live");
+      mCopy.hidden = true;
+    });
+    marquee.addEventListener("focusout", function (e) {
+      if (marquee.contains(e.relatedTarget)) return;
+      mCopy.hidden = false;
+      marquee.classList.add("is-live");
+    });
+  }
+
+  // Scroll timeline: the rail fills and dots light as entries pass the
+  // reading line (62% down the window).
+  var timelines = document.querySelectorAll(".timeline");
+  if (timelines.length && motionOk) {
+    var drawTimelines = perFrame(function () {
+      var line = window.innerHeight * 0.62;
+      Array.prototype.forEach.call(timelines, function (tl) {
+        var r = tl.getBoundingClientRect();
+        tl.style.setProperty("--p", clamp01((line - r.top) / Math.max(1, r.height)).toFixed(3));
+        Array.prototype.forEach.call(tl.children, function (row) {
+          row.classList.toggle("is-lit", row.getBoundingClientRect().top + 24 < line);
+        });
+      });
+    });
+    Array.prototype.forEach.call(timelines, function (tl) {
+      tl.classList.add("is-live");
+    });
+    window.addEventListener("scroll", drawTimelines, { passive: true });
+    window.addEventListener("resize", drawTimelines);
+    drawTimelines();
   }
 
   /* -------------------------------------------- 2. publication panels */

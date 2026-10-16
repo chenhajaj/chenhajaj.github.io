@@ -1,0 +1,389 @@
+// =============================================================================
+// Signal: effects layer
+// Vanilla ports of ideas from 21st.dev components (Aceternity UI and Magic UI,
+// both MIT): aurora background, encrypted text, number ticker, spotlight card,
+// scroll-velocity marquee, scroll timeline and border beam. Written from scratch for this site;
+// no React or Tailwind.
+//
+// Rules: nothing here hides content. Each effect is decoration on top of
+// content that is already readable without JavaScript. Anything that moves on
+// its own runs only under .motion-ok (set when the visitor has not asked for
+// reduced motion) and either stops within five seconds or follows the
+// visitor's own scrolling or pointer.
+// =============================================================================
+
+// ------------------------------------------------------- aurora (hero) ----
+// Soft fields in the research-line colours behind the hero. They drift a
+// little with the pointer and with scrolling, never on a timer.
+
+.atlas > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.atlas:not(.atlas-band)::before {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(34% 30% at 80% 14%, color-mix(in srgb, var(--line-traffic-bright) 58%, transparent), transparent 70%),
+    radial-gradient(26% 22% at 46% 2%, color-mix(in srgb, var(--line-learning-bright) 40%, transparent), transparent 70%),
+    radial-gradient(30% 26% at 72% 74%, color-mix(in srgb, var(--line-medical-bright) 36%, transparent), transparent 70%),
+    radial-gradient(26% 24% at 8% 66%, color-mix(in srgb, var(--line-similarity-bright) 34%, transparent), transparent 70%),
+    radial-gradient(22% 20% at 46% 96%, color-mix(in srgb, var(--line-incentives-bright) 26%, transparent), transparent 70%);
+  filter: blur(30px);
+  transform: translate3d(calc(var(--px, 0) * 2.5%), calc(var(--py, 0) * 2% + var(--sy, 0) * -6%), 0)
+    scale(calc(1.04 + var(--sy, 0) * 0.06));
+  transition: transform 1.4s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+.motion-ok .atlas:not(.atlas-band)::before {
+  animation: aurora-in 1.6s ease-out both;
+}
+
+@keyframes aurora-in {
+  from {
+    opacity: 0;
+  }
+}
+
+// ---------------------------------------------- encrypted text (hero) ----
+// The hero claim scrambles into cipher glyphs and decrypts left to right.
+// The real text stays in place (transparent) so nothing shifts; the glyph is
+// drawn over it. Screen readers get a plain copy (see site.js).
+
+.enc-ch {
+  position: relative;
+}
+
+.enc-ch[data-g] {
+  color: transparent;
+}
+
+.enc-ch[data-g]::after {
+  content: attr(data-g);
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.82em;
+  line-height: inherit;
+  color: var(--line-traffic-bright);
+}
+
+.enc-ch:nth-child(7n + 2)[data-g]::after { color: var(--line-medical-bright); }
+.enc-ch:nth-child(7n + 3)[data-g]::after { color: var(--line-similarity-bright); }
+.enc-ch:nth-child(7n + 4)[data-g]::after { color: var(--line-adversarial-bright); }
+.enc-ch:nth-child(7n + 5)[data-g]::after { color: var(--line-incentives-bright); }
+.enc-ch:nth-child(7n + 6)[data-g]::after { color: var(--line-learning-bright); }
+.enc-ch:nth-child(7n)[data-g]::after { color: var(--line-speech-bright); }
+
+// ------------------------------------------------------- number ticker ----
+
+.atlas-stats dd,
+[data-count] {
+  font-variant-numeric: tabular-nums;
+}
+
+// ----------------------------------------------- spotlight research cards ----
+// A glow and a lit border follow the pointer, in the card's line colour.
+
+.line-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.line-card::before,
+.line-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.line-card::before {
+  z-index: -1;
+  background: radial-gradient(
+    440px circle at var(--mx, 50%) var(--my, 30%),
+    color-mix(in srgb, var(--c) 15%, transparent),
+    transparent 65%
+  );
+}
+
+.line-card::after {
+  z-index: 2;
+  padding: 1.5px;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 30%), var(--c), transparent 70%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .line-card:hover::before,
+  .line-card:hover::after {
+    opacity: 1;
+  }
+}
+
+.line-card:focus-visible::after {
+  opacity: 1;
+}
+
+// ----------------------------------------------------- venues marquee ----
+
+.venues {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-2);
+}
+
+.venues-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3) var(--s-5);
+  padding-block: var(--s-4);
+}
+
+.venues-label {
+  flex: none;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.marquee {
+  flex: 1;
+  min-width: 0;
+}
+
+.marquee-track {
+  display: flex;
+}
+
+.marquee-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.marquee-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  white-space: nowrap;
+}
+
+.marquee-list li::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  border-radius: 2px;
+  background: var(--line-traffic);
+}
+
+.marquee-list li:nth-child(7n + 2)::before { background: var(--line-adversarial); }
+.marquee-list li:nth-child(7n + 3)::before { background: var(--line-incentives); }
+.marquee-list li:nth-child(7n + 4)::before { background: var(--line-medical); }
+.marquee-list li:nth-child(7n + 5)::before { background: var(--line-learning); }
+.marquee-list li:nth-child(7n + 6)::before { background: var(--line-similarity); }
+.marquee-list li:nth-child(7n)::before { background: var(--line-speech); }
+
+.marquee-list a {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 620;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.marquee-list a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+// Moving version: only when motion is allowed and the script has duplicated
+// the list. It glides sideways only while the page is scrolled (like Magic
+// UI's scroll-based velocity text), so it never moves on its own.
+.marquee.is-live {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+.marquee.is-live .marquee-track {
+  width: max-content;
+  transform: translate3d(var(--mq-x, 0px), 0, 0);
+  will-change: transform;
+}
+
+.marquee.is-live .marquee-list {
+  flex-wrap: nowrap;
+  padding-right: var(--s-6);
+}
+
+@media (max-width: 640px) {
+  .venues-inner {
+    flex-wrap: wrap;
+  }
+
+  .venues-label {
+    flex-basis: 100%;
+  }
+
+  .marquee {
+    order: 3;
+    flex-basis: 100%;
+  }
+}
+
+// ----------------------------------------------------- scroll timeline ----
+// A rail beside dated entries fills in the line colours as the reader
+// scrolls past, and each entry's dot lights up.
+
+.timeline {
+  position: relative;
+  padding-left: 1.75rem;
+  --p: 1;
+}
+
+.timeline::before,
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: 0.4rem;
+  top: 0;
+  width: 2px;
+  border-radius: 2px;
+}
+
+.timeline::before {
+  bottom: 0;
+  background: var(--rule);
+}
+
+.timeline::after {
+  height: calc(var(--p) * 100%);
+  background: linear-gradient(180deg, var(--line-traffic), var(--line-learning) 50%, var(--line-medical));
+}
+
+.timeline > .entry-row {
+  position: relative;
+}
+
+.timeline > .entry-row::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.75rem + 0.4rem + 1px - 0.4rem);
+  top: calc(var(--s-4) + 0.48rem);
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid var(--rule-strong);
+  border-radius: 50%;
+  background: var(--paper);
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.timeline:not(.is-live) > .entry-row::before,
+.timeline > .entry-row.is-lit::before {
+  border-color: var(--line-traffic);
+  background: var(--line-traffic);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--line-traffic) 18%, transparent);
+}
+
+.timeline > .entry-row:nth-child(3n + 2).is-lit::before,
+.timeline:not(.is-live) > .entry-row:nth-child(3n + 2)::before {
+  border-color: var(--line-learning);
+  background: var(--line-learning);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--line-learning) 18%, transparent);
+}
+
+.timeline > .entry-row:nth-child(3n).is-lit::before,
+.timeline:not(.is-live) > .entry-row:nth-child(3n)::before {
+  border-color: var(--line-medical);
+  background: var(--line-medical);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--line-medical) 18%, transparent);
+}
+
+// --------------------------------------------- border beam (featured) ----
+// A short light travels round the featured result twice when it scrolls
+// into view (under five seconds), and again while it is hovered.
+
+@property --beam {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.feature {
+  position: relative;
+}
+
+.motion-ok .feature::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px;
+  pointer-events: none;
+  opacity: 0;
+  background: conic-gradient(
+    from var(--beam),
+    transparent 0 72%,
+    color-mix(in srgb, var(--c, var(--cobalt)) 55%, transparent) 84%,
+    var(--c, var(--cobalt)) 92%,
+    transparent 96%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+.motion-ok .feature.is-inview::after {
+  opacity: 1;
+  animation:
+    beam 2.3s linear 2,
+    beam-out 0.5s ease 4.4s forwards;
+}
+
+.motion-ok .feature:hover::after {
+  opacity: 1;
+  animation: beam 2.3s linear infinite;
+}
+
+@keyframes beam {
+  to {
+    --beam: 360deg;
+  }
+}
+
+@keyframes beam-out {
+  to {
+    opacity: 0;
+  }
+}

@@ -42,8 +42,26 @@ under `prefers-reduced-motion` (the `motion-ok` class on `<html>` gates it).
 
 - Map squares drop into their year column (on load in the hero, on scroll
   into view elsewhere); the network settles into place.
-- Numbers under the maps count up once when they come into view.
+- Numbers under the maps tick up once they are fully in view (screen readers
+  get the final value).
 - Papers-per-year bars on research cards grow when the card scrolls in.
+- Effects ported from 21st.dev components (Aceternity UI, Magic UI; MIT),
+  rewritten in plain CSS and JS in `_sass/signal/_effects.scss` and `site.js`:
+  - the hero claim decrypts from cipher glyphs once on load (`data-encrypt`),
+    a nod to the encrypted-traffic work;
+  - aurora fields in the research-line colours behind the hero, which lean
+    toward the pointer and drift with scrolling;
+  - spotlight research cards: a glow and lit border follow the pointer in
+    the card's line colour;
+  - "Published in" venue strip (`_data/venues.yml`), linking to a search on
+    /publications/. It moves only while the page scrolls; an auto-looping
+    marquee was tried and dropped as attention-seeking;
+  - scroll timeline on Background and CV entries: the rail fills and dots
+    light as entries pass;
+  - border beam round the featured result, twice on arrival (under five
+    seconds) and while hovered.
+- Nothing moves on a timer for more than five seconds, so no pause control is
+  needed (WCAG 2.2.2).
 - Clicking a research card expands its illustration into the research page
   header (cross-document View Transitions; browsers without them just load
   the page).
