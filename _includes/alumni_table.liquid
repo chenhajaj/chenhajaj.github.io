@@ -1,0 +1,30 @@
+<h3 class="subhead">
+  {{ include.title }}
+  <span class="count">{{ include.people | size }}</span>
+</h3>
+<div class="table-scroll">
+  <table class="data-table alumni-table">
+    <thead>
+      <tr>
+        <th scope="col">{{ include.when | default: 'Graduated' }}</th>
+        <th scope="col">Name</th>
+        <th scope="col">Thesis topic</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for p in include.people -%}
+        <tr>
+          <td class="num">{{ p.graduation_year }}</td>
+          <td class="name-cell">
+            {% if p.link -%}
+              <a href="{{ p.link }}">{{ p.name }}</a>
+            {%- else -%}
+              {{- p.name -}}
+            {%- endif %}
+          </td>
+          <td class="title-cell">{{ p.research_area }}</td>
+        </tr>
+      {%- endfor -%}
+    </tbody>
+  </table>
+</div>

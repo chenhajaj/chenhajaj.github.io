@@ -1,0 +1,29 @@
+---
+layout: page
+title: News
+permalink: /news/
+description: Latest papers, awards and announcements from the Adaptive AI Lab at Ariel University.
+lead: Papers, awards and announcements from the lab.
+nav: true
+nav_order: 5
+---
+
+{%- assign sorted_news = site.news | sort: 'date' | reverse -%}
+{%- assign current_year = '' -%}
+{%- for item in sorted_news -%}
+  {%- unless item.path contains '_TEMPLATE' -%}
+    {%- assign y = item.date | date: '%Y' -%}
+    {%- if y != current_year -%}
+      {%- unless forloop.first -%}</ul></div></section>{%- endunless -%}
+      <section class="band" aria-labelledby="y{{ y }}">
+        <div class="band-head"><h2 id="y{{ y }}" class="num">{{ y }}</h2></div>
+        <div class="band-body"><ul class="rows">
+      {%- assign current_year = y -%}
+    {%- endif -%}
+    <li class="dated">
+      <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%-d %B' }}</time>
+      <div class="dated-body">{{ item.content | markdownify | remove: '<p>' | remove: '</p>' | strip }}</div>
+    </li>
+    {%- if forloop.last -%}</ul></div></section>{%- endif -%}
+  {%- endunless -%}
+{%- endfor -%}

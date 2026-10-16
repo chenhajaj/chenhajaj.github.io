@@ -1,0 +1,21 @@
+<ul class="people-cols">
+  {%- for p in include.people -%}
+    <li class="person">
+      <p class="person-name">
+        {%- if p.link -%}
+          <a href="{{ p.link }}">{{ p.name }}</a>
+        {%- else -%}
+          {{ p.name }}
+        {%- endif -%}
+      </p>
+      <p class="person-topic">{{ p.research_area | strip }}</p>
+      {%- if p.co_supervisor or p.start_year -%}
+        <p class="person-extra">
+          {%- if p.start_year -%}Since {{ p.start_year }}{%- endif -%}
+          {%- if p.start_year and p.co_supervisor -%}. {% endif -%}
+          {%- if p.co_supervisor -%}Co-supervised with {{ p.co_supervisor }}{%- endif -%}
+        </p>
+      {%- endif -%}
+    </li>
+  {%- endfor -%}
+</ul>

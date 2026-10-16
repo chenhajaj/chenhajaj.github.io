@@ -1,0 +1,50 @@
+---
+layout: page
+title: Code and software
+permalink: /software/
+description: Open-source code, datasets and software from Chen Hajaj and the Adaptive AI Lab at Ariel University.
+nav: false
+groups:
+  - key: encrypted_traffic
+    title: Encrypted traffic and network security
+  - key: frameworks_pipelines_utilities
+    title: Frameworks, pipelines and utilities
+  - key: api_malware
+    title: API security and malware detection
+  - key: ecommerce
+    title: E-commerce
+---
+
+<p class="lead software-lead">
+  Open-source code from the lab, hosted under the <a href="https://github.com/ArielCyber">ArielCyber</a> organization
+  and <a href="https://github.com/{{ site.data.socials.github_username }}">Chen's GitHub</a>.
+</p>
+
+{% for group in page.groups %}
+  {% assign repos = site.data.repositories.repos[group.key] %}
+  {% if repos and repos.size > 0 %}
+    <section class="band" aria-labelledby="{{ group.key }}">
+      <div class="band-head">
+        <h2 id="{{ group.key }}">{{ group.title }}</h2>
+        <p>{{ repos.size }} {% if repos.size == 1 %}repository{% else %}repositories{% endif %}</p>
+      </div>
+      <div class="band-body">
+        <ul class="rows">
+          {% for repo in repos %}
+            <li>
+              <a class="repo" href="{{ repo.url }}">
+                <p class="repo-name">{{ repo.name | replace: '-', ' ' | replace: '_', ' ' }}</p>
+                {% if repo.description %}<p class="repo-desc">{{ repo.description }}</p>{% endif %}
+                <p class="repo-meta meta">
+                  {{ repo.url | remove: 'https://github.com/' }}
+                  {%- if repo.language %}, {{ repo.language }}{% endif -%}
+                  {%- if repo.stars > 0 %}, {{ repo.stars }} {% if repo.stars == 1 %}star{% else %}stars{% endif %}{% endif -%}
+                </p>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  {% endif %}
+{% endfor %}

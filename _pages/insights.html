@@ -1,0 +1,22 @@
+---
+layout: page
+title: Research notes
+permalink: /insights/
+description: Short, practical explanations of research from the Adaptive AI Lab at Ariel University, updated as projects develop.
+lead: Short explanations of what our papers mean in practice, updated as projects develop.
+nav: true
+nav_order: 7
+---
+
+{%- assign notes = site.pages | where: 'layout', 'note' | sort: 'date' | reverse -%}
+<ul class="rows notes-list">
+  {%- for note in notes -%}
+    <li>
+      <a class="note-row" href="{{ note.url | relative_url }}">
+        <p class="meta">{{ note.topic }}, {{ note.date | date: '%B %Y' }}</p>
+        <h2>{{ note.title }}</h2>
+        <p>{{ note.summary }}</p>
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>

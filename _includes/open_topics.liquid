@@ -1,0 +1,8 @@
+<ul class="topics">
+  {%- for topic in site.data.open_topics -%}
+    <li>
+      <strong>{{ topic.title }}</strong>
+      <span>{{ topic.text }}</span>
+    </li>
+  {%- endfor -%}
+</ul>

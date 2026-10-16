@@ -1,0 +1,53 @@
+---
+layout: default
+---
+{%- assign slug = page.url | split: '/' | last -%}
+<div class="wrap">
+  <header class="project-head">
+    <a class="crumb" href="{{ '/projects/' | relative_url }}">Research</a>
+    <h1>{{ page.title }}</h1>
+    <p class="lead">{{ page.description }}</p>
+    {% if page.outcome %}
+      <p class="headline-result"><strong>Headline result:</strong> {{ page.outcome }}.</p>
+    {% endif %}
+    <div class="fingerprint fingerprint-band" data-seed="{{ slug }}" data-bar="2" data-step="4"></div>
+  </header>
+
+  <section class="band" aria-labelledby="overview">
+    <div class="band-head">
+      <h2 id="overview">Overview</h2>
+    </div>
+    <div class="band-body prose project-prose">
+      {{ content }}
+    </div>
+  </section>
+
+  {% if page.papers_query %}
+    <section class="band" aria-labelledby="papers">
+      <div class="band-head">
+        <h2 id="papers">Papers</h2>
+        <p>{% bibliography_count -f papers -q {{ page.papers_query }} %} publications, newest first.</p>
+        <p><a href="{{ '/publications/' | relative_url }}">All publications</a></p>
+      </div>
+      <div class="band-body pub-list">
+        {% bibliography -f papers -q {{ page.papers_query }} --group_by year --group_order descending %}
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="band" aria-labelledby="collaborate">
+    <div class="band-head">
+      <h2 id="collaborate">Work on this</h2>
+    </div>
+    <div class="band-body">
+      <p class="prose-block">
+        The lab takes on PhD and MSc students and works with academic and industry partners on this line of research. Write with a short note on your
+        background and what you would like to work on.
+      </p>
+      <div class="actions">
+        <a class="button" href="mailto:chenha@g.ariel.ac.il?subject={{ page.title | uri_escape }}">Email Chen about this project</a>
+        <a class="button button-quiet" href="{{ '/software/' | relative_url }}">Code and datasets</a>
+      </div>
+    </div>
+  </section>
+</div>

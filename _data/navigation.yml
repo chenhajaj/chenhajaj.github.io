@@ -1,0 +1,17 @@
+# Main navigation, in display order.
+# `also` lists other URL prefixes that should highlight the item.
+- title: Research
+  url: /projects/
+  also: [/software/]
+- title: Publications
+  url: /publications/
+- title: Lab
+  url: /people/
+- title: Teaching
+  url: /teaching/
+- title: Notes
+  url: /insights/
+- title: News
+  url: /news/
+- title: CV
+  url: /cv/

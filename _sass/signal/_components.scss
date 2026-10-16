@@ -1,0 +1,808 @@
+// =============================================================================
+// Signal: components
+// =============================================================================
+
+// --------------------------------------------------------------- buttons ----
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-height: 2.75rem;
+  padding: 0 var(--s-5);
+  border: 1px solid var(--cobalt);
+  border-radius: var(--radius);
+  background: var(--cobalt);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease;
+}
+
+.button:hover {
+  background: var(--cobalt-ink);
+  border-color: var(--cobalt-ink);
+  color: var(--paper);
+}
+
+.button-quiet {
+  background: transparent;
+  color: var(--cobalt);
+  border-color: var(--rule-strong);
+}
+
+.button-quiet:hover {
+  background: var(--cobalt-wash);
+  border-color: var(--cobalt);
+  color: var(--cobalt-ink);
+}
+
+.link-sans {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 550;
+}
+
+// Inline list of plain text links ("Email, Scholar, GitHub ...")
+.inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.meta {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-ui);
+  color: var(--ink-3);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+// ----------------------------------------------------------- fingerprint ----
+// A drawing of one network flow: packet sizes over time, upstream above the
+// axis and downstream below. Drawn by assets/js/site.js into an <svg>.
+
+.fingerprint {
+  position: relative;
+  width: 100%;
+  color: var(--ink);
+}
+
+.fingerprint svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.fingerprint .fp-axis {
+  stroke: var(--rule-strong);
+  stroke-width: 1;
+}
+
+.fingerprint .fp-bar {
+  fill: var(--ink);
+}
+
+.fingerprint .fp-bar.is-down {
+  fill: var(--cobalt);
+}
+
+.fingerprint .fp-bar.is-shift {
+  fill: var(--amber);
+}
+
+.fingerprint .fp-marker {
+  stroke: var(--amber);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+.fingerprint-hero {
+  height: clamp(96px, 14vw, 156px);
+}
+
+.fingerprint-mini {
+  height: 44px;
+}
+
+.fingerprint-band {
+  height: clamp(72px, 10vw, 112px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fingerprint.is-animated .fp-bar {
+    transform-box: fill-box;
+    transform-origin: 0 100%;
+    animation: fp-grow 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--i) * 4ms);
+  }
+
+  .fingerprint.is-animated .fp-bar.is-up {
+    transform-origin: 0 100%;
+  }
+
+  .fingerprint.is-animated .fp-bar.is-down {
+    transform-origin: 0 0;
+  }
+
+  .fingerprint.is-animated .fp-bar.is-shift {
+    animation-name: fp-grow, fp-shift;
+    animation-duration: 520ms, 700ms;
+    animation-delay: calc(var(--i) * 4ms), calc(var(--n) * 4ms + 300ms);
+    animation-fill-mode: both, both;
+  }
+
+  .fingerprint.is-animated .fp-bar.is-shift.is-down {
+    animation-name: fp-grow, fp-shift-down;
+  }
+
+  .fingerprint.is-animated .fp-marker {
+    animation: fp-fade 600ms ease both;
+    animation-delay: calc(var(--n) * 4ms + 500ms);
+  }
+}
+
+@keyframes fp-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes fp-shift {
+  from {
+    fill: var(--ink);
+  }
+  to {
+    fill: var(--amber);
+  }
+}
+
+@keyframes fp-shift-down {
+  from {
+    fill: var(--cobalt);
+  }
+  to {
+    fill: var(--amber);
+  }
+}
+
+@keyframes fp-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fingerprint-caption {
+  margin-top: var(--s-3);
+  max-width: 62ch;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+.swatch {
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  margin-right: 0.3em;
+  border-radius: 1px;
+  vertical-align: -0.02em;
+}
+
+.swatch-up {
+  background: var(--ink);
+}
+
+.swatch-down {
+  background: var(--cobalt);
+}
+
+.swatch-shift {
+  background: var(--amber);
+}
+
+// ---------------------------------------------------------- row lists ----
+// Generic list of rows divided by hairlines (research lines, news, notes).
+
+.rows {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.rows > li {
+  border-bottom: 1px solid var(--rule);
+}
+
+// Research line row: a whole-row link with a mini fingerprint.
+.line-row {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-2) var(--s-5);
+  padding-block: var(--s-5);
+  color: inherit;
+  text-decoration: none;
+}
+
+.line-row:hover {
+  color: inherit;
+}
+
+.line-row:hover .line-title {
+  color: var(--cobalt);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.line-title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-lg);
+  font-weight: 650;
+  line-height: var(--lh-tight);
+}
+
+.line-desc {
+  margin-top: var(--s-2);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.line-count {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .line-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .line-row .fingerprint-mini {
+    max-width: 9rem;
+  }
+}
+
+// News / dated rows
+.dated {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: var(--s-1) var(--s-4);
+  padding-block: var(--s-4);
+}
+
+.dated time {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  line-height: 1.75rem;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dated-body {
+  max-width: 66ch;
+  font-size: var(--fs-md);
+  line-height: 1.55;
+}
+
+@media (max-width: 520px) {
+  .dated {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dated time {
+    line-height: var(--lh-ui);
+  }
+}
+
+// Featured result (a single highlighted paper)
+.feature {
+  padding: var(--s-5) 0 var(--s-6);
+}
+
+.feature h3 {
+  font-size: var(--fs-xl);
+  font-variation-settings: "wdth" 104;
+  max-width: 24ch;
+}
+
+.feature p {
+  margin-top: var(--s-3);
+  max-width: 58ch;
+  font-size: var(--fs-md);
+  color: var(--ink-2);
+}
+
+.feature .meta {
+  margin-bottom: var(--s-2);
+}
+
+.feature .button {
+  margin-top: var(--s-5);
+}
+
+// ---------------------------------------------------------- publications ----
+
+.pub {
+  padding-block: var(--s-5);
+  border-bottom: 1px solid var(--rule);
+}
+
+.pub-title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 620;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.pub-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.pub-title a:hover {
+  color: var(--cobalt);
+  text-decoration: underline;
+}
+
+.pub-selected {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.45em;
+  border-radius: 50%;
+  background: var(--cobalt);
+  vertical-align: 0.12em;
+}
+
+.pub-authors {
+  margin-top: var(--s-1);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.pub-authors .me {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.pub-venue {
+  margin-top: var(--s-1);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.pub-kind {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 550;
+  color: var(--ink-3);
+}
+
+.pub-kind::after {
+  content: "";
+  display: inline-block;
+  width: 1.25em;
+}
+
+.pub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-4);
+  margin-top: var(--s-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 550;
+}
+
+.pub-actions a,
+.pub-toggle {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cobalt);
+  font: inherit;
+  text-decoration: none;
+}
+
+.pub-actions a:hover,
+.pub-toggle:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.pub-toggle::after {
+  content: "";
+  width: 0.4em;
+  height: 0.4em;
+  margin-left: 0.45em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-0.15em) rotate(45deg);
+  transition: transform 140ms ease;
+}
+
+.pub-toggle[aria-expanded="true"]::after {
+  transform: translateY(0.1em) rotate(-135deg);
+}
+
+.pub-panel {
+  margin-top: var(--s-3);
+  max-width: var(--measure);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.pub-panel pre {
+  font-size: var(--fs-xs);
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--ink);
+}
+
+.copy-button {
+  margin-top: var(--s-2);
+  min-height: 2rem;
+  padding: 0 var(--s-3);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 550;
+}
+
+.copy-button:hover {
+  border-color: var(--cobalt);
+  color: var(--cobalt);
+}
+
+// jekyll-scholar output: <h2 class="bibliography">2026</h2><ol class="bibliography">
+ol.bibliography {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pub-list h2.bibliography {
+  padding-top: var(--s-6);
+  font-size: var(--fs-2xl);
+  font-variation-settings: "wdth" 118;
+  font-weight: 760;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.pub-list h2.bibliography:first-child {
+  padding-top: 0;
+}
+
+.pub-list ol.bibliography {
+  border-top: 1px solid var(--rule-strong);
+  margin-top: var(--s-3);
+}
+
+// ---------------------------------------------------------------- tables ----
+
+.data-table {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-ui);
+}
+
+.data-table caption {
+  text-align: left;
+  padding-bottom: var(--s-3);
+  color: var(--ink-3);
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--s-3) var(--s-4) var(--s-3) 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--rule);
+}
+
+.data-table thead th {
+  font-weight: 550;
+  color: var(--ink-3);
+  border-bottom-color: var(--rule-strong);
+}
+
+.data-table td:last-child,
+.data-table th:last-child {
+  padding-right: 0;
+}
+
+.data-table .amount {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.data-table .title-cell {
+  font-family: var(--font-serif);
+  font-size: var(--fs-md);
+  color: var(--ink);
+}
+
+.data-table .sub {
+  display: block;
+  margin-top: var(--s-1);
+  color: var(--ink-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+}
+
+.data-table tfoot td {
+  border-bottom: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+@media (max-width: 640px) {
+  .data-table.stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .data-table.stack tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--s-1) var(--s-4);
+    padding-block: var(--s-3);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .data-table.stack td {
+    padding: 0;
+    border: 0;
+  }
+
+  .data-table.stack td.title-cell {
+    grid-column: 1 / -1;
+  }
+}
+
+// ---------------------------------------------------------- entry lists ----
+// CV style entries: date in a narrow column, content beside it.
+
+.entries {
+  list-style: none;
+  padding: 0;
+}
+
+.entry-row {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: var(--s-1) var(--s-5);
+  padding-block: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.entries > .entry-row:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.entry-when {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  line-height: 1.75rem;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.entry-what {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 620;
+  line-height: 1.4;
+}
+
+.entry-where {
+  font-size: var(--fs-md);
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+.entry-note {
+  margin-top: var(--s-2);
+  max-width: 62ch;
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+@media (max-width: 560px) {
+  .entry-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .entry-when {
+    line-height: var(--lh-ui);
+  }
+}
+
+// ---------------------------------------------------------------- people ----
+
+.people-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 4vw, 3rem);
+  padding: 0;
+  list-style: none;
+}
+
+.person {
+  padding-block: var(--s-3);
+  border-bottom: 1px solid var(--rule);
+  break-inside: avoid;
+}
+
+.person-name {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 620;
+  line-height: 1.4;
+}
+
+.person-topic {
+  font-size: var(--fs-md);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.person-topic:empty {
+  display: none;
+}
+
+.person-extra {
+  margin-top: var(--s-1);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+@media (max-width: 640px) {
+  .people-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.subhead {
+  margin: var(--s-6) 0 var(--s-3);
+  font-size: var(--fs-md);
+  font-weight: 650;
+  font-family: var(--font-sans);
+}
+
+.subhead:first-child {
+  margin-top: 0;
+}
+
+.subhead .count {
+  margin-left: var(--s-2);
+  font-weight: 450;
+  color: var(--ink-3);
+}
+
+// Topic list (open PhD / MSc topics)
+.topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--s-5) var(--s-6);
+  padding: 0;
+  list-style: none;
+}
+
+.topics li {
+  padding-top: var(--s-3);
+  border-top: 2px solid var(--ink);
+}
+
+.topics strong {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.topics span {
+  display: block;
+  margin-top: var(--s-1);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+// ---------------------------------------------------------- repo listing ----
+
+.repo {
+  display: block;
+  padding-block: var(--s-4);
+  color: inherit;
+  text-decoration: none;
+}
+
+.repo:hover .repo-name {
+  color: var(--cobalt);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.repo-name {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 620;
+}
+
+.repo-desc {
+  margin-top: var(--s-1);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.repo-meta {
+  margin-top: var(--s-1);
+}
+
+.pub-list-selected .pub-selected {
+  display: none;
+}
+
+.pub-list-selected ol.bibliography {
+  border-top: 1px solid var(--rule-strong);
+}
+
+.inline-links a {
+  text-decoration: none;
+}
+
+.inline-links a:hover {
+  text-decoration: underline;
+}

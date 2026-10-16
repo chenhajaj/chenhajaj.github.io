@@ -167,6 +167,7 @@ kramdown:
 include: ["_pages", "_scripts"]
 exclude:
   - CONTRIBUTING.md
+  - DESIGN.md
   - CUSTOMIZE.md
   - FAQ.md
   - Gemfile
@@ -218,6 +219,7 @@ sass:
 
 jekyll-minifier:
   compress_javascript: false # set to false since we are using terser as the js minifier
+  compress_css: false # Sass already compresses; the CSS minifier strips spaces inside clamp() and breaks it
   exclude: ["robots.txt", "assets/js/search/*.js"]
 
 # -----------------------------------------------------------------------------

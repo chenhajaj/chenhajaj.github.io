@@ -1,0 +1,75 @@
+---
+layout: page
+permalink: /publications/
+title: Publications
+description: Full list of publications by Chen Hajaj on machine learning, cybersecurity, healthcare AI and multi-agent systems, with abstracts and BibTeX.
+lead: Journal articles, conference papers, preprints and patents, newest first. Filter by topic or type, or search titles, authors, venues and abstracts.
+nav: true
+nav_order: 1
+---
+
+<div class="pubs-layout">
+  <aside class="filters" id="filters" aria-label="Filter publications">
+    <button class="filters-toggle" id="filters-toggle" type="button" aria-expanded="false" aria-controls="pub-filters">Filter publications</button>
+    <form class="filters-panel" id="pub-filters" role="search">
+      <div class="filter-group search-wrap">
+        <label class="filter-label" for="pub-search">Search</label>
+        <input class="search-field" id="pub-search" type="search" name="q" autocomplete="off" spellcheck="false">
+      </div>
+
+      <fieldset class="filter-group">
+        <legend>Topic</legend>
+        <div class="choice-list">
+          <label class="choice"><input type="radio" name="topic" value="all" checked> All topics <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="topic" value="traffic"> Encrypted traffic <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="topic" value="security"> Cybersecurity <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="topic" value="health"> Healthcare <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="topic" value="ai"> AI and machine learning <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="topic" value="agents"> Multi-agent systems <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="topic" value="commerce"> E-commerce and HCI <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="topic" value="education"> Education <span class="count"></span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="filter-group">
+        <legend>Type</legend>
+        <div class="choice-list">
+          <label class="choice"><input type="radio" name="kind" value="all" checked> All types <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="kind" value="journal"> Journal articles <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="kind" value="conference"> Conference papers <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="kind" value="preprint"> Preprints <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="kind" value="patent"> Patents <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="kind" value="abstract"> Abstracts <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="kind" value="book"> Books <span class="count"></span></label>
+          <label class="choice"><input type="radio" name="kind" value="thesis"> Theses <span class="count"></span></label>
+        </div>
+      </fieldset>
+
+      <div class="filter-group">
+        <label class="filter-label" for="pub-year">Year</label>
+        <select class="select-field" id="pub-year" name="year">
+          <option value="all">All years</option>
+        </select>
+      </div>
+
+      <p class="filter-group meta">
+        <a href="{{ '/assets/pdf/pub.pdf' | relative_url }}">Download the full list (PDF)</a><br>
+        <a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}">Google Scholar profile</a>
+      </p>
+    </form>
+  </aside>
+
+  <div>
+    <div class="results-bar">
+      <p id="pub-count" aria-live="polite"></p>
+      <button class="reset-button" id="pub-reset" type="button" hidden>Clear filters</button>
+    </div>
+    <div class="pub-list" id="pub-list">
+      {% bibliography -f papers --group_by year --group_order descending %}
+    </div>
+    <div class="empty-state" id="pub-empty" hidden>
+      <h2>No publications match</h2>
+      <p>Try a shorter search or another topic, or clear the filters to see the full list.</p>
+    </div>
+  </div>
+</div>

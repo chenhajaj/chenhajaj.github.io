@@ -1,0 +1,197 @@
+---
+layout: about
+title: About
+permalink: /
+show_pub_year: true
+description: Chen Hajaj is an Associate Professor at Ariel University who builds machine learning that keeps working when data, threats, and domains change, from encrypted traffic and adversarial AI to clinical decision support.
+
+# Featured result on the home page. Edit these lines to swap it.
+featured:
+  venue: "Computer Networks, 2026"
+  title: "New traffic classes in seconds, without retraining"
+  text: "Classification by retrieval lets an encrypted-traffic model add new application classes without retraining, and flags out-of-distribution traffic in the same retrieval step."
+  url: "https://doi.org/10.1016/j.comnet.2026.112739"
+  label: "Read the paper"
+---
+
+{%- assign s = site.data.students -%}
+{%- assign phd_count = s.phd_students | size -%}
+{%- assign msc_count = s.masters_students | size -%}
+{%- assign ra_count = s.research_assistants | size -%}
+{%- assign current_students = phd_count | plus: msc_count | plus: ra_count -%}
+{%- assign grad_alumni = s.phd_alumni | size | plus: s.masters_alumni.size -%}
+{%- assign former_ra = s.former_research_assistants | size -%}
+
+<div class="wrap">
+  <section class="hero" aria-labelledby="hero-name">
+    <div class="hero-grid">
+      <div>
+        <h1 class="hero-name" id="hero-name">Chen Hajaj</h1>
+        <p class="hero-claim">Machine learning that keeps working when data, threats, and domains change.</p>
+        <p class="hero-roles">
+          Associate Professor of Industrial Engineering and Management at Ariel University. I lead the
+          Adaptive AI Lab, head the Data Science track, and serve as an NVIDIA University Ambassador.
+        </p>
+      </div>
+      <div class="hero-photo">
+        {% include figure.liquid path="assets/img/me.jpeg" alt="Chen Hajaj" sizes="(max-width: 640px) 120px, 240px" loading="eager" %}
+      </div>
+    </div>
+
+    <figure class="hero-trace">
+      <div class="fingerprint fingerprint-hero" data-seed="chen-hajaj-flow" data-bar="2" data-step="4" data-shift="0.7" data-animate></div>
+      <figcaption class="fingerprint-caption">
+        One encrypted connection, the way a traffic classifier sees it: packet sizes over time,
+        <span class="swatch swatch-up"></span>client to server above the line and
+        <span class="swatch swatch-down"></span>server to client below. At the
+        <span class="swatch swatch-shift"></span>amber section the traffic changes. Models that hold up there are what the lab works on.
+      </figcaption>
+    </figure>
+
+    <div class="hero-foot">
+      <ul class="inline-links" aria-label="Contact and profiles">
+        <li><a href="mailto:chenha@g.ariel.ac.il">chenha@g.ariel.ac.il</a></li>
+        <li><a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}">Google Scholar</a></li>
+        <li><a href="https://github.com/{{ site.data.socials.github_username }}">GitHub</a></li>
+        <li><a href="https://orcid.org/{{ site.data.socials.orcid_id }}">ORCID</a></li>
+        <li><a href="{{ site.data.socials.dblp_url }}">DBLP</a></li>
+        <li><a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}">LinkedIn</a></li>
+        <li><a href="{{ '/cv/' | relative_url }}">CV</a></li>
+      </ul>
+      <p class="hero-stats">
+        <strong class="num">{{ site.data.scholar.citations | default: 0 | thousands }}</strong> citations and an h-index of
+        <strong class="num">{{ site.data.scholar.h_index }}</strong> on Google Scholar
+      </p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="now">
+    <div class="band-head">
+      <h2 id="now">Now</h2>
+      <p><a href="{{ '/news/' | relative_url }}">All news</a></p>
+    </div>
+    <div class="band-body">
+      <article class="feature">
+        <p class="meta">New paper in {{ page.featured.venue }}</p>
+        <h3>{{ page.featured.title }}</h3>
+        <p>{{ page.featured.text }}</p>
+        <a class="button" href="{{ page.featured.url }}">{{ page.featured.label }}</a>
+      </article>
+      <ul class="rows">
+        {%- assign sorted_news = site.news | sort: 'date' | reverse -%}
+        {%- for item in sorted_news limit: 6 -%}
+          <li class="dated">
+            <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%b %Y' }}</time>
+            <div class="dated-body">{{ item.content | markdownify | remove: '<p>' | remove: '</p>' | strip }}</div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="research">
+    <div class="band-head">
+      <h2 id="research">Research</h2>
+      <p>Six lines of work. Each one has its own page with the papers behind it.</p>
+    </div>
+    <div class="band-body">
+      <ul class="rows">
+        {%- assign projects = site.projects | sort: 'importance' -%}
+        {%- for project in projects -%}
+          {%- assign slug = project.url | split: '/' | last -%}
+          <li>
+            <a class="line-row" href="{{ project.url | relative_url }}">
+              <div class="fingerprint fingerprint-mini" data-seed="{{ slug }}" data-bar="1.5" data-step="3" data-axis="0.5"></div>
+              <div>
+                <h3 class="line-title">{{ project.title }}</h3>
+                <p class="line-desc">{{ project.description }}</p>
+              </div>
+              {%- if project.papers_query -%}
+                <span class="line-count">{% bibliography_count -f papers -q {{ project.papers_query }} %} papers</span>
+              {%- endif -%}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="selected">
+    <div class="band-head">
+      <h2 id="selected">Selected papers</h2>
+      <p><a href="{{ '/publications/' | relative_url }}">All publications</a></p>
+    </div>
+    <div class="band-body pub-list pub-list-selected">
+      {% bibliography -f papers --group_by none --query @*[selected=true]* %}
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="lab">
+    <div class="band-head">
+      <h2 id="lab">The lab</h2>
+      <p><a href="{{ '/people/' | relative_url }}">Students and alumni</a></p>
+    </div>
+    <div class="band-body">
+      <p class="lead">
+        {{ phd_count }} PhD and {{ msc_count }} MSc students work in the lab today. {{ grad_alumni }} graduate students
+        and {{ former_ra }} research assistants have finished their work here.
+      </p>
+      <p class="prose-block">
+        We are looking for PhD and MSc students who want to build models that survive contact with the real world.
+        Topics we are recruiting for now:
+      </p>
+      <div class="topics-wrap">{% include open_topics.liquid %}</div>
+      <div class="actions">
+        <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20graduate%20student">Email Chen about a topic</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="funding">
+    <div class="band-head">
+      <h2 id="funding">Funding</h2>
+      <p>Competitive grants as PI or co-PI.</p>
+    </div>
+    <div class="band-body">
+      {% include grants_table.liquid %}
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="path">
+    <div class="band-head">
+      <h2 id="path">Background</h2>
+      <p><a href="{{ '/cv/' | relative_url }}">Full CV</a></p>
+    </div>
+    <div class="band-body">
+      <ol class="entries">
+        <li class="entry-row">
+          <span class="entry-when">2018 to now</span>
+          <div>
+            <p class="entry-what">Ariel University</p>
+            <p class="entry-where">Associate Professor, Industrial Engineering and Management</p>
+            <p class="entry-note">
+              Head of the Faculty Review Board and of the Data Science track since 2021. NVIDIA University Ambassador
+              since 2024. Founded and directed the Data Science and AI Research Center, 2019 to 2024.
+            </p>
+          </div>
+        </li>
+        <li class="entry-row">
+          <span class="entry-when">2016 to 2018</span>
+          <div>
+            <p class="entry-what">Vanderbilt University</p>
+            <p class="entry-where">Data Science Fellow and postdoctoral researcher</p>
+            <p class="entry-note">Machine learning for cybersecurity and network traffic analysis. Served on the Postdoctoral Association Committee.</p>
+          </div>
+        </li>
+        <li class="entry-row">
+          <span class="entry-when">2010 to 2016</span>
+          <div>
+            <p class="entry-what">Bar-Ilan University</p>
+            <p class="entry-where">PhD in Computer Science</p>
+            <p class="entry-note">Game theory and mechanism design for strategic decision-making in competitive and cooperative settings.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+</div>

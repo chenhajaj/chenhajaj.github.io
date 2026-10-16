@@ -1,0 +1,84 @@
+---
+layout: page
+permalink: /teaching/
+title: Teaching
+description: Courses taught by Chen Hajaj at Ariel University, Vanderbilt University and Bar-Ilan University, covering machine learning, data science and computer science.
+lead: Machine learning, data science and computer science courses at three universities since 2011.
+nav: false
+
+# Edit the course list here. `years` is optional.
+teaching:
+  - institution: Ariel University
+    period: "2018 to now"
+    courses:
+      - name: "Machine Learning"
+        level: Undergraduate
+        text: "Supervised & unsupervised learning, decision trees, SVMs, neural networks, and model evaluation."
+      - name: "Advanced Topics in Machine Learning"
+        level: Undergraduate
+        text: "Deep learning, CNNs, RNNs, transformers, and applied project work on real datasets."
+      - name: "Introduction to Computing (Python)"
+        level: Undergraduate
+        text: "Programming fundamentals, algorithms, and data structures using Python for first-year students."
+      - name: "Search Engines and Recommendation Systems"
+        level: Undergraduate
+        text: "Information retrieval, indexing, ranking algorithms, collaborative filtering, and content-based recommendations."
+  - institution: Vanderbilt University
+    period: "2016 to 2018"
+    courses:
+      - name: "Advanced Artificial Intelligence"
+        level: Graduate
+        text: "Search, planning, probabilistic reasoning, machine learning, and AI ethics for graduate students."
+      - name: "Computational Economics"
+        level: Graduate
+        text: "Game theory, mechanism design, auctions, and algorithmic approaches to economic modeling."
+  - institution: Bar-Ilan University
+    period: "2011 to 2016"
+    courses:
+      - name: "Introduction to Computer Science"
+        level: Undergraduate
+        years: "2012–2016"
+        text: "Core CS concepts, problem-solving, and introduction to programming for engineering students."
+      - name: "Object-Oriented Programming"
+        level: Undergraduate
+        years: "2013–2016"
+        text: "OOP principles: classes, inheritance, polymorphism, and design patterns in Java."
+      - name: "Operating Systems"
+        level: Undergraduate
+        years: "2013–2016"
+        text: "Processes, threads, scheduling, memory management, file systems, and concurrency."
+      - name: "VERILOG"
+        level: Undergraduate
+        years: "2014–2016"
+        text: "Hardware description language for digital design, simulation, and FPGA synthesis."
+      - name: "Simulation and Simulation Languages"
+        level: Undergraduate
+        years: "2011–2014"
+        text: "Discrete-event simulation theory, modeling methodologies, and simulation tools."
+      - name: "Microprocessor Laboratory (ADuC841)"
+        level: Undergraduate
+        years: "2011–2013"
+        text: "Hands-on microcontroller programming, interfacing, and embedded systems experiments."
+---
+
+{% for place in page.teaching %}
+  <section class="band" aria-labelledby="t-{{ forloop.index }}">
+    <div class="band-head">
+      <h2 id="t-{{ forloop.index }}">{{ place.institution }}</h2>
+      <p>{{ place.period }}</p>
+    </div>
+    <div class="band-body">
+      <ul class="entries">
+        {% for c in place.courses %}
+          <li class="entry-row">
+            <span class="entry-when">{{ c.level }}{% if c.years %}<br>{{ c.years }}{% endif %}</span>
+            <div>
+              <p class="entry-what">{{ c.name }}</p>
+              <p class="entry-where">{{ c.text }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endfor %}
