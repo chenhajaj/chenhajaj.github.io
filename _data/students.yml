@@ -10,6 +10,7 @@ phd_students:
   - name: "Bar Vinder"
     research_area: "Medical Data Analysis"
   - name: "Zohar Shimhon"
+    aliases: ["Zohar Simhon"]  # spelling used in papers
     research_area: "Sampling-based Classification"
   - name: "Tanya Zhelezni"
     research_area: "Chatbots for Funnel Optimization"
@@ -28,79 +29,119 @@ phd_alumni:
     graduation_year: "2022"
     research_area: "APK Security"
 
+# aliases: other spellings of the name used in papers (links the co-author graph).
+# MSc entries: program is "thesis" (research MSc) or "project" (non-thesis
+# MSc with a final project). institution is shown when it is not Ariel.
 masters_students:
   - name: "Ihab Hino"
+    program: thesis
     research_area: "Dynamic Multimodal Attribute Completion"
   - name: "Amit Stein"
+    program: thesis
   - name: "Eylon Yehiel"
+    program: thesis
     research_area: "Multi-Modal Learning for Product Attributes"
   - name: "Liav Cohen"
+    program: project
+    institution: "Afeka College"
     research_area: "Few-shot ANN for Low-latency Classification in O-RAN Networks"
   - name: "Stas Shuar"
     research_area: "QUIC-based Quantum Traffic Classification "
   - name: "Eylon Katan"
     research_area: "Anomaly Detection on PQC"
   - name: "Idan Buzaglo"
+    program: thesis
     research_area: "Early Detection of Myopia"
   - name: "Yarin Amar"
     research_area: "Real time cognitive feedback system in design education"
 
 masters_alumni:
   - name: "Yona Elbar"
+    program: thesis
     graduation_year: "2026"
     research_area: "Pipeline Optimization of Multimodal Systems"
   - name: "Amit Tzahar"
+    program: project
+    institution: "Afeka College"
     graduation_year: "2025"
     research_area: "Image Restoration in Adversarially Encrypted Medical Images"
   - name: "Stav Gal Elhadif"
+    program: project
+    institution: "Afeka College"
     graduation_year: "2025"
     research_area: "LLMs & Explainability"
   - name: "Bar Ben David"
+    program: project
+    institution: "Afeka College"
     graduation_year: "2024"
     research_area: "Speech Emotion Recognition using Computer Vision Methods"
   - name: "Ben-Ron Udi"
+    program: project
+    institution: "Afeka College"
     graduation_year: "2024"
     research_area: "Image-based Time Series Prediction"
   - name: "Adi Lichi"
+    aliases: ["Adi Lichy"]  # spelling used in papers
+    program: thesis
     graduation_year: "2024"
     research_area: "Encrypted Traffic Classification"
   - name: "Porat Aharon"
+    program: thesis
     graduation_year: "2023"
     research_area: "Image-based Traffic Classification"
   - name: "Chen Shiener"
+    program: project
+    institution: "Afeka College"
     graduation_year: "2023"
     research_area: "Reinforcement Learning"
   - name: "Michael Gudovsky"
+    program: project
+    institution: "Afeka College"
     graduation_year: "2023"
     research_area: "Adversarial Examples"
   - name: "Nathanel Guinzburg"
+    program: project
+    institution: "Afeka College"
     graduation_year: "2023"
     research_area: "XAI and URL Classification"
   - name: "Bar Vinder"
+    program: thesis
     graduation_year: "2023"
     research_area: "A Method for Evaluating the Performance and Design Optimizing of a Miniature Heart Pump"
   - name: "Ofir Yosef"
+    program: thesis
+    institution: "Bar-Ilan University"
     graduation_year: "2023"
     research_area: "Detecting Parallel Covert Data Transmission Channel in Video Conferencing using Machine Learning"
   - name: "Ariel Yechezkel"
+    program: project
     graduation_year: "2022"
     research_area: "ICU Mortality"
   - name: "Tal Abed"
+    program: project
     graduation_year: "2022"
     research_area: "Machine Learning"
   - name: "Ofek Bader"
+    program: thesis
     graduation_year: "2022"
     research_area: "An Open-Source Framework for Encrypted Internet and Malicious Traffic Classification"
   - name: "Rotem Bar"
+    program: project
+    institution: "Afeka College"
     graduation_year: "2022"
     research_area: "Language-based Traffic Classification"
   - name: "Pavel Shochet"
+    program: project
+    institution: "Afeka College"
     graduation_year: "2022"
     research_area: "Towards a Classification Model for the Detection of Anxiety & Depression in Twitter"
   - name: "Eliran Barai"
+    program: project
+    institution: "Afeka College"
     graduation_year: "2021"
     research_area: "Shared E-scooter Demand Prediction"
   - name: "Nitay Hason"
+    program: thesis
     graduation_year: "2020"
     research_area: "URL Malware"
 
@@ -134,3 +175,15 @@ former_research_assistants:
   - name: "Segev Zilberstain"
     graduation_year: "2020"
     research_area: "E-Commerce"
+
+# Pre-PhD research students (from the CV).
+pre_phd_alumni:
+  - name: "Zafrir Avrahami"
+    graduation_year: "2023-2024"
+    research_area: "OSINT for proactive cybersecurity"
+  - name: "Omri Arbiv"
+    graduation_year: "2022-2024"
+    research_area: "Medical Data Science (continued to PhD)"
+  - name: "Meir Litman"
+    graduation_year: "2020-2023"
+    research_area: "Adversarial CAPTCHAs"

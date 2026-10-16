@@ -12,11 +12,12 @@ scripts: [coauthor-network]
 {%- assign phd_count = s.phd_students | size -%}
 {%- assign msc_count = s.masters_students | size -%}
 {%- assign ra_count = s.research_assistants | size -%}
-{%- assign alumni_count = s.phd_alumni | size | plus: s.masters_alumni.size -%}
+{%- assign msc_thesis_alumni = s.masters_alumni | where: 'program', 'thesis' -%}
+{%- assign msc_project_alumni = s.masters_alumni | where: 'program', 'project' -%}
 
 <p class="lead lab-lead">
   The Adaptive AI Lab at Ariel University has {{ phd_count }} PhD and {{ msc_count }} MSc students{% if ra_count > 0 %} and {{ ra_count }} research assistants{% endif %}.
-  {{ alumni_count }} graduate students have completed their degrees here.
+  {{ s.phd_alumni.size }} PhD students and {{ msc_thesis_alumni.size }} thesis MSc students have graduated, and {{ msc_project_alumni.size }} non-thesis MSc students completed their final projects here.
 </p>
 
 {%- assign r = site.data.research -%}
@@ -24,7 +25,7 @@ scripts: [coauthor-network]
   <div class="paper-map-group">
     <div class="atlas-head">
       <h2 id="network">{{ r.collaborators }} co-authors</h2>
-      <p>Everyone Chen has published with. Bigger and closer means more papers together; a white ring marks a student of the lab.</p>
+      <p>Everyone Chen has published with. Bigger and closer means more papers together; a white ring marks a current or former student of the lab.</p>
     </div>
     <div
       class="network-canvas"
@@ -43,7 +44,7 @@ scripts: [coauthor-network]
           </button>
         {%- endfor -%}
         <button type="button" class="legend-chip" data-line="lab" aria-pressed="false" style="--c: var(--on-night)">
-          <span class="chip-ring" aria-hidden="true"></span>Lab students <span class="chip-count">{{ r.students_coauthors }}</span>
+          <span class="chip-ring" aria-hidden="true"></span>Student co-authors <span class="chip-count">{{ r.students_coauthors }}</span>
         </button>
       </div>
       <div class="network-find">
@@ -102,8 +103,12 @@ scripts: [coauthor-network]
     <h2 id="alumni">Alumni</h2>
   </div>
   <div class="band-body">
-    {% include alumni_table.liquid people=s.phd_alumni title="PhD graduates" %}
-    {% include alumni_table.liquid people=s.masters_alumni title="MSc graduates" %}
+    {% include alumni_table.liquid people=s.phd_alumni title="PhD graduates" topic="Thesis topic" %}
+    {% include alumni_table.liquid people=msc_thesis_alumni title="MSc graduates (thesis)" topic="Thesis topic" %}
+    {% include alumni_table.liquid people=msc_project_alumni title="MSc final projects (non-thesis)" topic="Project topic" when="Completed" %}
+    {% if s.pre_phd_alumni.size > 0 %}
+      {% include alumni_table.liquid people=s.pre_phd_alumni title="Pre-PhD research students" when="Years" %}
+    {% endif %}
     {% if s.former_research_assistants.size > 0 %}
       {% include alumni_table.liquid people=s.former_research_assistants title="Former research assistants" when="Years" %}
     {% endif %}

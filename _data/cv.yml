@@ -1,3 +1,5 @@
+# Not used by the current site templates (kept for reference). The CV page
+# reads its entries from the front matter of _pages/cv.html.
 - title: General Information
   type: map
   contents:
@@ -11,16 +13,16 @@
   contents:
     - title: NVIDIA University Ambassador
       institution: Ariel University
-      year: 2024 - present
-    - title: Head of the Faculty review board
+      year: 2025 - present
+    - title: Chair, Faculty of Engineering Review Board
       institution: Ariel University, Faculty of Engineering
-      year: 2021 - present
+      year: 2022 - present
     - title: Head of Data Science track
       institution: Ariel University, Industrial Engineering and Management
       year: 2021 - present
-    - title: Director of the Data Science and Artificial Intelligence Research Center
+    - title: Director, Data Science Research Center
       institution: Ariel University
-      year: 2019 - 2024
+      year: 2018 - 2024
     - title: Data Science fellow
       institution: Vanderbilt University
       year: 2017 - 2018
