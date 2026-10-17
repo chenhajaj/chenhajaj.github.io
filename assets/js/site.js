@@ -783,7 +783,7 @@
   else if (params.get("topic")) check("line", TOPIC_TO_LINE[params.get("topic").toLowerCase()] || "all");
   if (params.get("type")) {
     var ty = params.get("type").toLowerCase();
-    var legacy = { article: "journal", inproceedings: "conference", misc: "preprint" };
+    var legacy = { article: "journal", inproceedings: "conference", misc: "preprint", workshop: "short", abstract: "short" };
     check("kind", legacy[ty] || ty);
   }
   if (params.get("year")) yearSel.value = params.get("year");

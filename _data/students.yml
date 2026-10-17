@@ -38,6 +38,7 @@ masters_students:
     research_area: "Dynamic Multimodal Attribute Completion"
   - name: "Amit Stein"
     program: thesis
+    research_area: "Multimodal Recommendation for User and Item Cold Start"
   - name: "Eylon Yehiel"
     program: thesis
     research_area: "Multi-Modal Learning for Product Attributes"

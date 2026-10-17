@@ -77,7 +77,9 @@
 <article
   class="pub"
   id="pub-{{ entry.key }}"
-  data-kind="{{ kind }}"
+  {%- comment -%} Short papers, workshop papers and abstracts share one filter group. {%- endcomment -%}
+  {%- if kind == 'workshop' or kind == 'abstract' -%}{%- assign filter_kind = 'short' -%}{%- else -%}{%- assign filter_kind = kind -%}{%- endif %}
+  data-kind="{{ filter_kind }}"
   data-year="{{ entry.year }}"
   data-projects="{{ entry.projects | remove: ' ' }}"
   data-line="{{ primary }}"
