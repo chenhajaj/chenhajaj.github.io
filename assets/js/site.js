@@ -76,8 +76,11 @@
 
   var header = document.getElementById("site-header");
   if (header) {
+    // .is-floating turns the header into a floating pill on wide screens
+    // (Aceternity's resizable navbar; styles in _effects.scss).
     var onScroll = function () {
       header.classList.toggle("is-scrolled", window.scrollY > 8);
+      header.classList.toggle("is-floating", window.scrollY > 120);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -342,6 +345,125 @@
       mCopy.hidden = false;
       marquee.classList.add("is-live");
     });
+  }
+
+  // 3D tilt (Aceternity's 3D card): research cards lean toward the pointer.
+  if (finePointer && motionOk) {
+    each(".line-card", function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        card.classList.add("is-tilting");
+        card.style.setProperty("--rx", (-y * 6).toFixed(2) + "deg");
+        card.style.setProperty("--ry", (x * 8).toFixed(2) + "deg");
+      });
+      card.addEventListener("pointerleave", function () {
+        card.classList.remove("is-tilting");
+        card.style.setProperty("--rx", "0deg");
+        card.style.setProperty("--ry", "0deg");
+      });
+    });
+  }
+
+  // Dot-grid card (Magic UI's interactive dot pattern): dots light near the
+  // pointer.
+  if (finePointer) {
+    each(".join-card", function (card) {
+      card.addEventListener(
+        "pointermove",
+        function (e) {
+          var r = card.getBoundingClientRect();
+          card.style.setProperty("--mx", Math.round(e.clientX - r.left) + "px");
+          card.style.setProperty("--my", Math.round(e.clientY - r.top) + "px");
+        },
+        { passive: true }
+      );
+    });
+  }
+
+  // Blur-fade reveals (Magic UI's blur fade): blocks arrive from a soft blur
+  // the first time they scroll into view, a few at a time in order.
+  if (motionOk && hasIO) {
+    var revealSel = [
+      "main .band > .band-head",
+      "main .band > .band-body > *",
+      "main .rows > li",
+      "main .page-head > *",
+      "main .note-head > *",
+      "main .note-body .prose > *",
+    ].join(",");
+    var reveals = Array.prototype.filter.call(document.querySelectorAll(revealSel), function (el) {
+      return !el.closest(".atlas, .atlas-band") && !el.querySelector(".rows");
+    });
+    var revealObs = new IntersectionObserver(
+      function (entries) {
+        var batch = 0;
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          revealObs.unobserve(entry.target);
+          entry.target.style.setProperty("--d", String(Math.min(batch++, 6)));
+          entry.target.classList.add("is-shown");
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+    );
+    reveals.forEach(function (el) {
+      el.classList.add("reveal");
+      revealObs.observe(el);
+    });
+  }
+
+  // Flip words (Aceternity): [data-flip] runs once through its words when it
+  // is fully in view (under five seconds) and rests on the last one. Screen
+  // readers get the final phrase only.
+  if (motionOk && hasIO) {
+    each("[data-flip]", function (el) {
+      var words = el.getAttribute("data-flip").split("|");
+      var final = words[words.length - 1];
+      el.textContent = "";
+      var sr = document.createElement("span");
+      sr.className = "visually-hidden";
+      sr.textContent = final;
+      var shownWord = document.createElement("span");
+      shownWord.className = "flip-word";
+      shownWord.setAttribute("aria-hidden", "true");
+      shownWord.textContent = final;
+      el.append(sr, shownWord);
+      var watch = new IntersectionObserver(
+        function (entries) {
+          if (!entries[0].isIntersecting) return;
+          watch.disconnect();
+          words.forEach(function (w, i) {
+            setTimeout(function () {
+              shownWord.classList.remove("is-in");
+              void shownWord.offsetWidth;
+              shownWord.textContent = w;
+              shownWord.classList.add("is-in");
+              if (i < words.length - 1) el.setAttribute("data-step", String(i));
+              else el.removeAttribute("data-step");
+            }, i * 1100);
+          });
+        },
+        { threshold: 1 }
+      );
+      watch.observe(el);
+    });
+  }
+
+  // Tracing beam (Aceternity) beside research notes: fills with reading.
+  var tracings = document.querySelectorAll(".tracing");
+  if (tracings.length && motionOk) {
+    var drawTracing = perFrame(function () {
+      var line = window.innerHeight * 0.55;
+      Array.prototype.forEach.call(tracings, function (t) {
+        var r = t.getBoundingClientRect();
+        t.style.setProperty("--p", clamp01((line - r.top) / Math.max(1, r.height)).toFixed(3));
+      });
+    });
+    window.addEventListener("scroll", drawTracing, { passive: true });
+    window.addEventListener("resize", drawTracing);
+    drawTracing();
   }
 
   // Scroll timeline: the rail fills and dots light as entries pass the

@@ -430,3 +430,285 @@
     opacity: 0;
   }
 }
+
+// =============================================================================
+// Round two (October 2026): more 21st.dev ideas, same rules as above.
+// =============================================================================
+
+// ------------------------------------------- floating navbar (desktop) ----
+// Aceternity's resizable navbar: once the page scrolls, the header lifts into
+// a floating pill. The header keeps its height, so nothing below it moves.
+
+@media (min-width: 861px) {
+  .site-header {
+    height: var(--header-h);
+    transition:
+      background-color 300ms ease,
+      border-color 160ms ease,
+      backdrop-filter 300ms ease;
+  }
+
+  .site-header .wrap {
+    border: 1px solid transparent;
+    transition:
+      max-width 450ms cubic-bezier(0.2, 0.7, 0.1, 1),
+      min-height 450ms cubic-bezier(0.2, 0.7, 0.1, 1),
+      padding 450ms cubic-bezier(0.2, 0.7, 0.1, 1),
+      border-radius 450ms ease,
+      background-color 300ms ease,
+      border-color 300ms ease,
+      box-shadow 300ms ease,
+      transform 450ms cubic-bezier(0.2, 0.7, 0.1, 1);
+  }
+
+  .site-header.is-floating {
+    background: transparent;
+    border-bottom-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    pointer-events: none;
+  }
+
+  .site-header.is-floating .wrap {
+    pointer-events: auto;
+    max-width: min(calc(var(--wrap) - 5rem), calc(100% - 1.5rem));
+    min-height: 3.25rem;
+    padding-inline: 1.4rem 0.6rem;
+    border-color: var(--rule);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--paper) 95%, transparent);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow:
+      0 12px 32px -14px rgba(16, 26, 77, 0.32),
+      0 2px 6px rgba(16, 26, 77, 0.06);
+    transform: translateY(0.45rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header .wrap {
+    transition: none !important;
+  }
+}
+
+// ------------------------------------------------------- 3D tilt cards ----
+// Aceternity's 3D card: research cards lean a few degrees toward the
+// pointer. The image floats slightly above the card.
+
+.motion-ok .line-cards {
+  perspective: 1100px;
+}
+
+.motion-ok .line-card {
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+  transition:
+    transform 500ms cubic-bezier(0.2, 0.7, 0.1, 1),
+    border-color 160ms ease;
+}
+
+.motion-ok .line-card.is-tilting {
+  transition:
+    transform 90ms linear,
+    border-color 160ms ease;
+}
+
+// --------------------------------------------------- blur-fade reveals ----
+// Magic UI's blur fade: sections arrive from a soft blur as they scroll in.
+// The script adds .reveal only when motion is allowed; afterwards the filter
+// and transform are removed entirely so nothing stays composited.
+
+.motion-ok .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(6px);
+  transition:
+    opacity 700ms cubic-bezier(0.2, 0.7, 0.1, 1),
+    transform 700ms cubic-bezier(0.2, 0.7, 0.1, 1),
+    filter 700ms cubic-bezier(0.2, 0.7, 0.1, 1);
+  transition-delay: calc(var(--d, 0) * 70ms);
+}
+
+.motion-ok .reveal.is-shown {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+// --------------------------------------------------------- flip words ----
+// Aceternity's flip words: the lab line runs once through what our models
+// have to survive, then rests on the original phrase.
+
+.flip {
+  display: inline-block;
+  font-weight: 650;
+  color: var(--cobalt);
+  white-space: nowrap;
+}
+
+.flip-word {
+  display: inline-block;
+}
+
+.motion-ok .flip-word.is-in {
+  animation: flip-in 420ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+
+.flip[data-step="0"] { color: var(--line-adversarial); }
+.flip[data-step="1"] { color: var(--line-traffic); }
+.flip[data-step="2"] { color: var(--line-medical); }
+
+@keyframes flip-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.45em);
+    filter: blur(4px);
+  }
+}
+
+// ---------------------------------------------------- shimmer buttons ----
+// Magic UI's shimmer button: a light sweeps across a button on hover, and
+// once across the hero's main button after the page settles.
+
+.button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.38) 48%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.38) 52%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+}
+
+.button-bright::after {
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    color-mix(in srgb, var(--line-traffic-bright) 45%, transparent) 50%,
+    transparent 70%
+  );
+}
+
+.motion-ok .button:hover::after,
+.motion-ok .button:focus-visible::after {
+  animation: shimmer 900ms ease-out;
+}
+
+.motion-ok .atlas-actions .button-bright::after {
+  animation: shimmer 1100ms ease-out 2.4s;
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+// -------------------------------------------------- dot-grid lab card ----
+// Magic UI's interactive dot pattern: the recruiting block sits on a dot
+// grid; dots near the pointer light up in the lab colour.
+
+.join-card {
+  position: relative;
+  isolation: isolate;
+  margin-top: var(--s-5);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  background: var(--paper-2);
+}
+
+.join-card > .prose-block {
+  margin-top: 0;
+}
+
+.join-card::before,
+.join-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-size: 18px 18px;
+}
+
+.join-card::before {
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 16%, transparent) 1px, transparent 1.5px);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 100% 0%, #000 10%, transparent 75%);
+  mask-image: radial-gradient(ellipse 90% 80% at 100% 0%, #000 10%, transparent 75%);
+}
+
+.join-card::after {
+  opacity: 0;
+  transition: opacity 260ms ease;
+  background-image:
+    radial-gradient(var(--cobalt) 1.4px, transparent 1.9px),
+    radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--cobalt) 10%, transparent), transparent 70%);
+  background-size:
+    18px 18px,
+    100% 100%;
+  -webkit-mask-image: radial-gradient(180px circle at var(--mx, 50%) var(--my, 50%), #000, transparent 75%);
+  mask-image: radial-gradient(180px circle at var(--mx, 50%) var(--my, 50%), #000, transparent 75%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .join-card:hover::after {
+    opacity: 1;
+  }
+}
+
+// ------------------------------------------------ tracing beam (notes) ----
+// Aceternity's tracing beam: beside a research note, a beam fills down the
+// left margin as the reader goes, with a glowing head at the reading point.
+
+@media (min-width: 1000px) {
+  .tracing {
+    position: relative;
+    --p: 1;
+  }
+
+  .tracing::before,
+  .tracing::after {
+    content: "";
+    position: absolute;
+    left: -2.5rem;
+    top: 0;
+    width: 2px;
+    border-radius: 2px;
+  }
+
+  .tracing::before {
+    bottom: var(--s-7);
+    background: var(--rule);
+  }
+
+  .tracing::after {
+    height: calc((100% - var(--s-7)) * var(--p));
+    background: linear-gradient(180deg, transparent, var(--line-traffic) 12%, var(--line-learning) 60%, var(--line-similarity));
+    box-shadow: 0 6px 14px -2px color-mix(in srgb, var(--line-similarity) 60%, transparent);
+  }
+}
+
+@media print {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

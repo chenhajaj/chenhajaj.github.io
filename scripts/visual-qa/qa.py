@@ -124,6 +124,10 @@ def main():
                 if scheme == "dark":
                     set_dark(page)
                 page.wait_for_timeout(2500)  # let the one page-load animation finish
+                # Scroll-in reveals (blur fade) would hide content below the fold
+                # from axe and the full-page screenshot; show it all first.
+                page.evaluate("document.querySelectorAll('.reveal').forEach(e => e.classList.add('is-shown'))")
+                page.wait_for_timeout(900)
                 name = (path or "home").replace("/", "_")
                 page.screenshot(path=f"{args.out}/{vp_name}_{name}.png", full_page=True)
                 page.screenshot(path=f"{args.out}/{vp_name}_{name}_fold.png")
