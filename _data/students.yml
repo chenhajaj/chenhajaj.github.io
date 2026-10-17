@@ -33,6 +33,15 @@ phd_alumni:
 # MSc entries: program is "thesis" (research MSc) or "project" (non-thesis
 # MSc with a final project). institution is shown when it is not Ariel.
 masters_students:
+  - name: "Rafael Ben Lulu"
+    program: thesis
+    research_area: "API Security"
+  - name: "Shaked Michael"
+    program: thesis
+    research_area: "Access-based Encrypted Traffic Classification"
+  - name: "Dvir Opatowsky"
+    program: thesis
+    research_area: "QoE Prediction for FPS Online Games"
   - name: "Ihab Hino"
     program: thesis
     research_area: "Dynamic Multimodal Attribute Completion"
