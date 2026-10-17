@@ -2,7 +2,7 @@
  * Site behaviour for chenhajaj.github.io (no dependencies).
  *  1. Theme toggle and mobile menu
  *  -  Motion and effects: number ticker, encrypted text, aurora, spotlight
- *     cards, scroll-velocity venue strip, scroll timeline (21st.dev ideas)
+ *     cards, rotating venue strip, scroll timeline (21st.dev ideas)
  *  2. Publication panels (abstract / BibTeX) and copy buttons
  *  3. Publications page filters
  */
@@ -260,9 +260,12 @@
     );
   }
 
-  // Marquee: the venue list glides sideways only while the page scrolls,
-  // and keyboard focus lays it out flat so every link can be seen.
-  var marquee = document.querySelector(".venues .marquee");
+  // Marquee: the venue list rotates continuously and speeds up while the page
+  // scrolls (Magic UI's scroll-based velocity). Hover pauses it, the button
+  // stops it (remembered for the next visit), and keyboard focus lays it out
+  // flat so every link can be seen.
+  var venues = document.querySelector(".venues");
+  var marquee = venues && venues.querySelector(".marquee");
   if (marquee && motionOk) {
     var mTrack = marquee.querySelector(".marquee-track");
     var mList = mTrack.querySelector(".marquee-list");
@@ -274,19 +277,68 @@
     });
     mTrack.appendChild(mCopy);
     marquee.classList.add("is-live");
-    var glide = perFrame(function () {
-      var half = mList.offsetWidth;
-      if (!half) return;
-      marquee.style.setProperty("--mq-x", -((window.scrollY * 0.45) % half).toFixed(1) + "px");
+    venues.classList.add("has-marquee");
+
+    var pauseBtn = venues.querySelector(".marquee-pause");
+    var stopped = false;
+    var hovered = false;
+    var flat = false;
+    var offset = 0;
+    var boost = 0;
+    var lastY = window.scrollY;
+    var lastT = null;
+    var BASE = 38; // pixels per second
+    var setStopped = function (on) {
+      stopped = on;
+      pauseBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    };
+    try {
+      setStopped(localStorage.getItem("marquee-paused") === "1");
+    } catch (e) {
+      setStopped(false);
+    }
+    pauseBtn.addEventListener("click", function () {
+      setStopped(!stopped);
+      try {
+        localStorage.setItem("marquee-paused", stopped ? "1" : "0");
+      } catch (e) {}
     });
-    window.addEventListener("scroll", glide, { passive: true });
-    glide();
+    marquee.addEventListener("mouseenter", function () {
+      hovered = true;
+    });
+    marquee.addEventListener("mouseleave", function () {
+      hovered = false;
+    });
+    window.addEventListener(
+      "scroll",
+      function () {
+        var y = window.scrollY;
+        boost = Math.min(900, boost + Math.abs(y - lastY) * 6);
+        lastY = y;
+      },
+      { passive: true }
+    );
+    var spin = function (t) {
+      if (lastT === null) lastT = t;
+      var dt = Math.min(0.1, (t - lastT) / 1000);
+      lastT = t;
+      boost *= Math.pow(0.04, dt);
+      var half = mList.offsetWidth;
+      if (!stopped && !hovered && !flat && half && !document.hidden) {
+        offset = (offset + (BASE + boost) * dt) % half;
+        marquee.style.setProperty("--mq-x", (-offset).toFixed(1) + "px");
+      }
+      window.requestAnimationFrame(spin);
+    };
+    window.requestAnimationFrame(spin);
     marquee.addEventListener("focusin", function () {
+      flat = true;
       marquee.classList.remove("is-live");
       mCopy.hidden = true;
     });
     marquee.addEventListener("focusout", function (e) {
       if (marquee.contains(e.relatedTarget)) return;
+      flat = false;
       mCopy.hidden = false;
       marquee.classList.add("is-live");
     });

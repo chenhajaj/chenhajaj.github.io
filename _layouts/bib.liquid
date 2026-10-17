@@ -35,6 +35,17 @@
       {%- assign kind_label = 'Other' -%}
     {%- endif -%}
 {%- endcase -%}
+{%- comment -%} An explicit `category` field in papers.bib overrides the guess above
+  (same rule as _plugins/research-data.rb). {%- endcomment -%}
+{%- if entry.category -%}
+  {%- assign kind = entry.category | downcase -%}
+  {%- case kind -%}
+    {%- when 'workshop' -%}{%- assign kind_label = 'Workshop' -%}
+    {%- when 'conference' -%}{%- assign kind_label = 'Conference' -%}
+    {%- when 'journal' -%}{%- assign kind_label = 'Journal' -%}
+    {%- else -%}{%- assign kind_label = kind | capitalize -%}
+  {%- endcase -%}
+{%- endif -%}
 {%- comment -%} Research line: the first line in _data/research_lines.yml whose tags
   appear in the entry's `projects` field (same rule as _plugins/research-data.rb). {%- endcomment -%}
 {%- assign ptags = entry.projects | downcase -%}

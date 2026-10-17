@@ -40,7 +40,7 @@
   });
   var years = [];
   for (var y = data.first_year; y <= data.last_year; y++) years.push(y);
-  var KIND_LABEL = { preprint: "Preprint", abstract: "Abstract", thesis: "Thesis", patent: "Patent", book: "Edited book", other: "Other" };
+  var KIND_LABEL = { workshop: "Short paper or workshop", preprint: "Preprint", abstract: "Abstract", thesis: "Thesis", patent: "Patent", book: "Edited book", other: "Other" };
 
   function roundRect(ctx, x, y, w, h, r) {
     ctx.beginPath();

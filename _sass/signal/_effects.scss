@@ -2,14 +2,14 @@
 // Signal: effects layer
 // Vanilla ports of ideas from 21st.dev components (Aceternity UI and Magic UI,
 // both MIT): aurora background, encrypted text, number ticker, spotlight card,
-// scroll-velocity marquee, scroll timeline and border beam. Written from scratch for this site;
-// no React or Tailwind.
+// marquee with scroll-based velocity, scroll timeline and border beam.
+// Written from scratch for this site; no React or Tailwind.
 //
 // Rules: nothing here hides content. Each effect is decoration on top of
 // content that is already readable without JavaScript. Anything that moves on
 // its own runs only under .motion-ok (set when the visitor has not asked for
-// reduced motion) and either stops within five seconds or follows the
-// visitor's own scrolling or pointer.
+// reduced motion) and either stops within five seconds, follows the
+// visitor's own scrolling or pointer, or has a pause button (the venue strip).
 // =============================================================================
 
 // ------------------------------------------------------- aurora (hero) ----
@@ -221,8 +221,8 @@
 }
 
 // Moving version: only when motion is allowed and the script has duplicated
-// the list. It glides sideways only while the page is scrolled (like Magic
-// UI's scroll-based velocity text), so it never moves on its own.
+// the list. It rotates continuously and speeds up with scrolling (Magic UI's
+// scroll-based velocity). Hover, keyboard focus or the button pauses it.
 .marquee.is-live {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
@@ -240,13 +240,56 @@
   padding-right: var(--s-6);
 }
 
+.marquee-pause {
+  flex: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.marquee-pause:hover {
+  color: var(--ink);
+  border-color: var(--ink-3);
+}
+
+.marquee-pause svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  fill: currentColor;
+}
+
+.marquee-pause .icon-play,
+.marquee-pause[aria-pressed="true"] .icon-pause {
+  display: none;
+}
+
+.marquee-pause[aria-pressed="true"] .icon-play {
+  display: block;
+}
+
+.venues.has-marquee .marquee-pause {
+  display: inline-flex;
+}
+
 @media (max-width: 640px) {
   .venues-inner {
     flex-wrap: wrap;
   }
 
   .venues-label {
-    flex-basis: 100%;
+    flex: 1 1 0;
+  }
+
+  .marquee-pause {
+    order: 2;
   }
 
   .marquee {

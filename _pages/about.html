@@ -34,7 +34,7 @@ featured:
         <p class="hero-claim" data-encrypt>Machine learning that keeps working when data, threats, and domains change.</p>
         <p class="hero-roles">
           Associate Professor of Industrial Engineering and Management at Ariel University. I lead the
-          Adaptive AI Lab, head the Data Science track, and serve as an NVIDIA University Ambassador.
+          Adaptive AI Lab, head the Data Science track of the department's undergraduate and graduate programs, chair the Faculty of Engineering Review Board, and serve as an NVIDIA University Ambassador.
         </p>
         <div class="actions atlas-actions">
           <a class="button button-bright" href="#research-lines">Explore the research</a>
@@ -48,10 +48,10 @@ featured:
 
     <figure class="atlas-map paper-map-group">
       <figcaption class="atlas-head">
-        <h2>{{ r.refereed }} peer-reviewed papers since {{ r.first_year }}</h2>
+        <h2>{{ r.refereed }} refereed journal and conference papers since {{ r.first_year }}</h2>
         <p>
           {{ r.journals }} journal articles and {{ r.conferences }} conference papers, each a square coloured by its main research line.
-          Hollow squares are the {{ r.non_refereed }} preprints, abstracts, theses, patents and books. Hover or tap one to read it.
+          Hollow squares are the {{ r.workshops }} short papers and workshop papers, and {{ r.other_items }} preprints, abstracts, theses, patents and books. Hover or tap one to read it.
         </p>
       </figcaption>
       <div
@@ -61,7 +61,7 @@ featured:
         data-animate="load"
         data-pubs="{{ '/publications/' | relative_url }}"
         role="img"
-        aria-label="Chart of {{ r.papers }} publications from {{ r.first_year }} to {{ r.last_year }}, {{ r.refereed }} of them peer-reviewed, grouped by year and coloured by research line. Output grew from one paper a year to about a dozen."
+        aria-label="Chart of {{ r.papers }} publications from {{ r.first_year }} to {{ r.last_year }}, {{ r.refereed }} of them refereed journal and conference papers, grouped by year and coloured by research line. Output grew from one paper a year to about a dozen."
       >
         <canvas aria-hidden="true"></canvas>
       </div>
@@ -112,6 +112,10 @@ featured:
         </ul>
       </div>
     </div>
+    <button type="button" class="marquee-pause" aria-pressed="false" aria-label="Pause the venue list">
+      <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"></rect><rect x="9.5" y="2" width="3.5" height="12" rx="1"></rect></svg>
+      <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11a.8.8 0 0 0 1.2.7l9-5.5a.8.8 0 0 0 0-1.4l-9-5.5A.8.8 0 0 0 4 2.5z"></path></svg>
+    </button>
   </div>
 </section>
 
@@ -205,7 +209,7 @@ featured:
             <p class="entry-what">Ariel University</p>
             <p class="entry-where">Industrial Engineering and Management. Lecturer 2018, Senior Lecturer (tenured) 2022, Associate Professor 2025.</p>
             <p class="entry-note">
-              Head of the Data Science track since 2021 and Chair of the Faculty of Engineering Review Board since 2022.
+              Head of the Data Science track of the department's undergraduate and graduate programs since 2021, and Chair of the Faculty Review Board, Faculty of Engineering, since 2022.
               NVIDIA University Ambassador since 2025. Directed the Data Science Research Center, 2018 to 2024.
             </p>
           </div>

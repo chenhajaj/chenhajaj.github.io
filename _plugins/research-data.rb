@@ -47,6 +47,11 @@ module ResearchData
   # Same classification as _layouts/bib.liquid, so counts match the
   # Publications page type filter.
   def self.kind(entry)
+    # An explicit `category = {...}` in papers.bib wins (used to follow the
+    # CV: e.g. workshop papers, or clinical conference papers).
+    forced = clean(entry[:category]).downcase
+    return forced unless forced.empty?
+
     case entry.type.to_s.downcase
     when "article" then "journal"
     when "inproceedings", "incollection" then "conference"
@@ -168,7 +173,9 @@ module ResearchData
         "refereed" => papers.count { |p| REFEREED.include?(p["kind"]) },
         "journals" => papers.count { |p| p["kind"] == "journal" },
         "conferences" => papers.count { |p| p["kind"] == "conference" },
+        "workshops" => papers.count { |p| p["kind"] == "workshop" },
         "non_refereed" => papers.count { |p| !REFEREED.include?(p["kind"]) },
+        "other_items" => papers.count { |p| !REFEREED.include?(p["kind"]) && p["kind"] != "workshop" },
         "top_people" => people_list.first(12),
         "students_coauthors" => people_list.count { |pp| pp["role"] },
         "lines" => summary,

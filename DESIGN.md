@@ -54,14 +54,15 @@ under `prefers-reduced-motion` (the `motion-ok` class on `<html>` gates it).
   - spotlight research cards: a glow and lit border follow the pointer in
     the card's line colour;
   - "Published in" venue strip (`_data/venues.yml`), linking to a search on
-    /publications/. It moves only while the page scrolls; an auto-looping
-    marquee was tried and dropped as attention-seeking;
+    /publications/. It rotates continuously (Chen's call) and speeds up with
+    scrolling; hover pauses it and a pause button stops it (WCAG 2.2.2), the
+    choice is remembered, and keyboard focus lays it out flat;
   - scroll timeline on Background and CV entries: the rail fills and dots
     light as entries pass;
   - border beam round the featured result, twice on arrival (under five
     seconds) and while hovered.
-- Nothing moves on a timer for more than five seconds, so no pause control is
-  needed (WCAG 2.2.2).
+- Apart from the venue strip, which has a pause button, nothing moves on a
+  timer for more than five seconds (WCAG 2.2.2).
 - Clicking a research card expands its illustration into the research page
   header (cross-document View Transitions; browsers without them just load
   the page).
