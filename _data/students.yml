@@ -1,4 +1,5 @@
 phd_students:
+  - name: "Shira Schweitzer"
   - name: "Udi Aharon"
     research_area: "API Security"
   - name: "Aviad Levi"
@@ -33,6 +34,8 @@ phd_alumni:
 # MSc entries: program is "thesis" (research MSc) or "project" (non-thesis
 # MSc with a final project). institution is shown when it is not Ariel.
 masters_students:
+  - name: "Tuvia Smadar"
+    program: thesis
   - name: "Ihab Hino"
     program: thesis
     research_area: "Dynamic Multimodal Attribute Completion"
