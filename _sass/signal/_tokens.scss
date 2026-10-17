@@ -51,6 +51,9 @@
   --gutter: clamp(1rem, 4vw, 2.5rem);
   --radius: 6px;
   --header-h: 4rem;
+  // Motion curves (Emil Kowalski's design-engineering defaults)
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1); // entering, exiting, UI response
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); // moving on screen
 
   color-scheme: light;
 }

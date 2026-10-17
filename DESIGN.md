@@ -63,6 +63,32 @@ under `prefers-reduced-motion` (the `motion-ok` class on `<html>` gates it).
     seconds) and while hovered.
 - Apart from the venue strip, which has a pause button, nothing moves on a
   timer for more than five seconds (WCAG 2.2.2).
+- More from 21st.dev (October 2026): floating pill header on scroll (desktop),
+  3D tilt on research cards, blur-fade reveals, flip words in the lab line,
+  shimmer on buttons, dot-grid "join the lab" card, tracing beam on notes.
+
+### Motion rules (Emil Kowalski's design-engineering skills)
+
+The skills live in `.claude/skills/` (emil-design-eng, review-animations,
+animation-performance, mobile-native, improve-animations,
+find-animation-opportunities; MIT). Rules this site follows:
+
+- Easing tokens: `--ease-out` (cubic-bezier(0.23, 1, 0.32, 1)) for anything
+  entering or responding, `--ease-in-out` for movement on screen, `linear`
+  for constant motion (the venue strip). Never `ease-in`, never
+  `transition: all`.
+- Animate `transform` and `opacity` only. The floating header fades and lifts
+  a pill layer; it never animates width or padding.
+- Never drive per-frame motion through a CSS variable on a parent (it
+  restyles every child). Pointer and scroll effects write `transform` on one
+  element, spring-smoothed (`follower()` in site.js). The venue strip is a
+  Web Animation, so it runs off the main thread.
+- No `filter: blur()` on large layers (the aurora uses soft gradients only);
+  animated blur stays at 6 px or less.
+- Pressable controls scale to 0.97 on `:active` (160 ms).
+- Hover motion only under `(hover: hover) and (pointer: fine)`; phones get no
+  sticky zooms or shimmers after a tap.
+- Reduced motion keeps colour and opacity changes and drops movement.
 - Clicking a research card expands its illustration into the research page
   header (cross-document View Transitions; browsers without them just load
   the page).

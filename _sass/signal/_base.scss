@@ -214,3 +214,19 @@ button {
     transition-duration: 0.01ms !important;
   }
 }
+
+// Feel native on phones: no grey tap flash (pressables have :active feedback
+// instead), no font inflation in landscape, and no double-tap zoom delay on
+// controls.
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+a,
+button,
+label,
+[role="button"] {
+  touch-action: manipulation;
+}

@@ -115,6 +115,42 @@
     };
   }
 
+  // Spring-like follower for decorative pointer and scroll tracking: values
+  // ease toward their targets each frame, and the loop stops once settled.
+  // It writes `transform` straight onto one element (no inherited CSS
+  // variables, which would restyle every child on each frame).
+  function follower(keys, stiffness, apply) {
+    var aim = {};
+    var cur = {};
+    var running = false;
+    keys.forEach(function (k) {
+      aim[k] = 0;
+      cur[k] = 0;
+    });
+    var step = function () {
+      var moving = false;
+      keys.forEach(function (k) {
+        var d = aim[k] - cur[k];
+        if (Math.abs(d) > 0.001) {
+          cur[k] += d * stiffness;
+          moving = true;
+        } else {
+          cur[k] = aim[k];
+        }
+      });
+      apply(cur);
+      if (moving) window.requestAnimationFrame(step);
+      else running = false;
+    };
+    return function (target) {
+      for (var k in target) aim[k] = target[k];
+      if (!running) {
+        running = true;
+        window.requestAnimationFrame(step);
+      }
+    };
+  }
+
   // Number ticker: a number counts up once it is fully on screen. Screen
   // readers get the final value; the moving copy is hidden from them, and its
   // width is reserved so nothing beside it moves.
@@ -229,23 +265,30 @@
 
   // Aurora: the hero's colour fields lean toward the pointer and drift as the
   // page scrolls. No timer-driven motion.
-  var atlas = document.querySelector(".atlas:not(.atlas-band)");
-  if (atlas && motionOk) {
+  var aurora = document.querySelector(".atlas-aurora");
+  if (aurora && motionOk) {
+    var heroBox = aurora.parentNode;
+    var moveAurora = follower(["x", "y", "s"], 0.08, function (v) {
+      aurora.style.transform =
+        "translate3d(" + (v.x * 2.5).toFixed(3) + "%," + (v.y * 2 - v.s * 6).toFixed(3) + "%,0) scale(" + (1.04 + v.s * 0.06).toFixed(4) + ")";
+    });
     if (finePointer) {
-      atlas.addEventListener(
+      heroBox.addEventListener(
         "pointermove",
         function (e) {
-          var r = atlas.getBoundingClientRect();
-          atlas.style.setProperty("--px", ((((e.clientX - r.left) / r.width) * 2 - 1) * 1).toFixed(3));
-          atlas.style.setProperty("--py", ((((e.clientY - r.top) / r.height) * 2 - 1) * 1).toFixed(3));
+          var r = heroBox.getBoundingClientRect();
+          moveAurora({ x: ((e.clientX - r.left) / r.width) * 2 - 1, y: ((e.clientY - r.top) / r.height) * 2 - 1 });
         },
         { passive: true }
       );
     }
-    var auroraScroll = perFrame(function () {
-      atlas.style.setProperty("--sy", clamp01(window.scrollY / Math.max(1, atlas.offsetHeight)).toFixed(3));
-    });
-    window.addEventListener("scroll", auroraScroll, { passive: true });
+    window.addEventListener(
+      "scroll",
+      function () {
+        moveAurora({ s: clamp01(window.scrollY / Math.max(1, heroBox.offsetHeight)) });
+      },
+      { passive: true }
+    );
   }
 
   // Spotlight cards: a glow and lit border follow the pointer.
@@ -263,13 +306,14 @@
     );
   }
 
-  // Marquee: the venue list rotates continuously and speeds up while the page
-  // scrolls (Magic UI's scroll-based velocity). Hover pauses it, the button
-  // stops it (remembered for the next visit), and keyboard focus lays it out
-  // flat so every link can be seen.
+  // Marquee: the venue list rotates continuously as a linear Web Animation
+  // (runs off the main thread) and speeds up while the page scrolls (Magic
+  // UI's scroll-based velocity). Hover pauses it, the button stops it
+  // (remembered for the next visit), and keyboard focus lays it out flat so
+  // every link can be seen.
   var venues = document.querySelector(".venues");
   var marquee = venues && venues.querySelector(".marquee");
-  if (marquee && motionOk) {
+  if (marquee && motionOk && marquee.animate) {
     var mTrack = marquee.querySelector(".marquee-track");
     var mList = mTrack.querySelector(".marquee-list");
     var mCopy = mList.cloneNode(true);
@@ -283,23 +327,38 @@
     venues.classList.add("has-marquee");
 
     var pauseBtn = venues.querySelector(".marquee-pause");
+    var SPEED = 38; // pixels per second
     var stopped = false;
     var hovered = false;
-    var flat = false;
-    var offset = 0;
+    var anim = null;
     var boost = 0;
+    var decaying = false;
     var lastY = window.scrollY;
-    var lastT = null;
-    var BASE = 38; // pixels per second
+    var sync = function () {
+      if (!anim) return;
+      if (stopped || hovered) anim.pause();
+      else anim.play();
+    };
+    var start = function () {
+      var half = mList.offsetWidth;
+      if (!half) return;
+      anim = mTrack.animate([{ transform: "translate3d(0,0,0)" }, { transform: "translate3d(-50%,0,0)" }], {
+        duration: (half / SPEED) * 1000,
+        iterations: Infinity,
+        easing: "linear",
+      });
+      sync();
+    };
     var setStopped = function (on) {
       stopped = on;
       pauseBtn.setAttribute("aria-pressed", on ? "true" : "false");
+      sync();
     };
     try {
-      setStopped(localStorage.getItem("marquee-paused") === "1");
-    } catch (e) {
-      setStopped(false);
-    }
+      stopped = localStorage.getItem("marquee-paused") === "1";
+    } catch (e) {}
+    pauseBtn.setAttribute("aria-pressed", stopped ? "true" : "false");
+    start();
     pauseBtn.addEventListener("click", function () {
       setStopped(!stopped);
       try {
@@ -308,60 +367,67 @@
     });
     marquee.addEventListener("mouseenter", function () {
       hovered = true;
+      sync();
     });
     marquee.addEventListener("mouseleave", function () {
       hovered = false;
+      sync();
     });
+    // Scrolling adds speed (up to 4x), which bleeds off in real time: about
+    // 90% gone after 0.6 s, however slow the device's frames are.
+    var lastT = 0;
+    var decay = function (t) {
+      var dt = lastT ? Math.min(0.25, (t - lastT) / 1000) : 0.016;
+      lastT = t;
+      boost *= Math.pow(0.02, dt);
+      if (boost < 0.02) boost = 0;
+      if (anim) anim.updatePlaybackRate ? anim.updatePlaybackRate(1 + boost) : (anim.playbackRate = 1 + boost);
+      if (boost > 0) window.requestAnimationFrame(decay);
+      else {
+        decaying = false;
+        lastT = 0;
+      }
+    };
     window.addEventListener(
       "scroll",
       function () {
         var y = window.scrollY;
-        boost = Math.min(900, boost + Math.abs(y - lastY) * 6);
+        boost = Math.min(3, boost + Math.abs(y - lastY) * 0.01);
         lastY = y;
+        if (!decaying) {
+          decaying = true;
+          window.requestAnimationFrame(decay);
+        }
       },
       { passive: true }
     );
-    var spin = function (t) {
-      if (lastT === null) lastT = t;
-      var dt = Math.min(0.1, (t - lastT) / 1000);
-      lastT = t;
-      boost *= Math.pow(0.04, dt);
-      var half = mList.offsetWidth;
-      if (!stopped && !hovered && !flat && half && !document.hidden) {
-        offset = (offset + (BASE + boost) * dt) % half;
-        marquee.style.setProperty("--mq-x", (-offset).toFixed(1) + "px");
-      }
-      window.requestAnimationFrame(spin);
-    };
-    window.requestAnimationFrame(spin);
     marquee.addEventListener("focusin", function () {
-      flat = true;
+      if (anim) anim.cancel();
+      anim = null;
       marquee.classList.remove("is-live");
       mCopy.hidden = true;
     });
     marquee.addEventListener("focusout", function (e) {
       if (marquee.contains(e.relatedTarget)) return;
-      flat = false;
       mCopy.hidden = false;
       marquee.classList.add("is-live");
+      start();
     });
   }
 
-  // 3D tilt (Aceternity's 3D card): research cards lean toward the pointer.
+  // 3D tilt (Aceternity's 3D card): research cards lean toward the pointer,
+  // spring-smoothed rather than glued to it.
   if (finePointer && motionOk) {
     each(".line-card", function (card) {
+      var tilt = follower(["x", "y"], 0.16, function (v) {
+        card.style.transform = Math.abs(v.x) + Math.abs(v.y) < 0.01 ? "" : "rotateX(" + v.y.toFixed(2) + "deg) rotateY(" + v.x.toFixed(2) + "deg)";
+      });
       card.addEventListener("pointermove", function (e) {
         var r = card.getBoundingClientRect();
-        var x = (e.clientX - r.left) / r.width - 0.5;
-        var y = (e.clientY - r.top) / r.height - 0.5;
-        card.classList.add("is-tilting");
-        card.style.setProperty("--rx", (-y * 6).toFixed(2) + "deg");
-        card.style.setProperty("--ry", (x * 8).toFixed(2) + "deg");
+        tilt({ x: ((e.clientX - r.left) / r.width - 0.5) * 8, y: -((e.clientY - r.top) / r.height - 0.5) * 6 });
       });
       card.addEventListener("pointerleave", function () {
-        card.classList.remove("is-tilting");
-        card.style.setProperty("--rx", "0deg");
-        card.style.setProperty("--ry", "0deg");
+        tilt({ x: 0, y: 0 });
       });
     });
   }
@@ -451,14 +517,22 @@
     });
   }
 
-  // Tracing beam (Aceternity) beside research notes: fills with reading.
+  // Tracing beam (Aceternity) beside research notes: a fill element scales
+  // down the margin with reading (transform only).
   var tracings = document.querySelectorAll(".tracing");
   if (tracings.length && motionOk) {
+    var fills = Array.prototype.map.call(tracings, function (t) {
+      var fill = document.createElement("span");
+      fill.className = "trace-fill";
+      fill.setAttribute("aria-hidden", "true");
+      t.appendChild(fill);
+      return fill;
+    });
     var drawTracing = perFrame(function () {
       var line = window.innerHeight * 0.55;
-      Array.prototype.forEach.call(tracings, function (t) {
+      Array.prototype.forEach.call(tracings, function (t, i) {
         var r = t.getBoundingClientRect();
-        t.style.setProperty("--p", clamp01((line - r.top) / Math.max(1, r.height)).toFixed(3));
+        fills[i].style.transform = "scaleY(" + clamp01((line - r.top) / Math.max(1, r.height)).toFixed(3) + ")";
       });
     });
     window.addEventListener("scroll", drawTracing, { passive: true });
