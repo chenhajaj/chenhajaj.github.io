@@ -401,7 +401,10 @@
         ["tip-title", n.name],
         [
           "tip-meta",
-          n.count + (n.count === 1 ? " paper" : " papers") + " together" + (n.first ? ", " + (n.first === n.last ? n.first : n.first + " to " + n.last) : ""),
+          n.count +
+            (n.count === 1 ? " paper" : " papers") +
+            " together" +
+            (n.first ? ", " + (n.first === n.last ? n.first : n.first + " to " + n.last) : ""),
         ],
       ];
     }

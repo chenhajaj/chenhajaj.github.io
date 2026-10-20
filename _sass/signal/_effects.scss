@@ -71,12 +71,24 @@
   color: var(--line-traffic-bright);
 }
 
-.enc-ch:nth-child(7n + 2)[data-g]::after { color: var(--line-medical-bright); }
-.enc-ch:nth-child(7n + 3)[data-g]::after { color: var(--line-similarity-bright); }
-.enc-ch:nth-child(7n + 4)[data-g]::after { color: var(--line-adversarial-bright); }
-.enc-ch:nth-child(7n + 5)[data-g]::after { color: var(--line-incentives-bright); }
-.enc-ch:nth-child(7n + 6)[data-g]::after { color: var(--line-learning-bright); }
-.enc-ch:nth-child(7n)[data-g]::after { color: var(--line-speech-bright); }
+.enc-ch:nth-child(7n + 2)[data-g]::after {
+  color: var(--line-medical-bright);
+}
+.enc-ch:nth-child(7n + 3)[data-g]::after {
+  color: var(--line-similarity-bright);
+}
+.enc-ch:nth-child(7n + 4)[data-g]::after {
+  color: var(--line-adversarial-bright);
+}
+.enc-ch:nth-child(7n + 5)[data-g]::after {
+  color: var(--line-incentives-bright);
+}
+.enc-ch:nth-child(7n + 6)[data-g]::after {
+  color: var(--line-learning-bright);
+}
+.enc-ch:nth-child(7n)[data-g]::after {
+  color: var(--line-speech-bright);
+}
 
 // ------------------------------------------------------- number ticker ----
 
@@ -106,11 +118,7 @@
 
 .line-card::before {
   z-index: -1;
-  background: radial-gradient(
-    440px circle at var(--mx, 50%) var(--my, 30%),
-    color-mix(in srgb, var(--c) 15%, transparent),
-    transparent 65%
-  );
+  background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 30%), color-mix(in srgb, var(--c) 15%, transparent), transparent 65%);
 }
 
 .line-card::after {
@@ -196,12 +204,24 @@
   background: var(--line-traffic);
 }
 
-.marquee-list li:nth-child(7n + 2)::before { background: var(--line-adversarial); }
-.marquee-list li:nth-child(7n + 3)::before { background: var(--line-incentives); }
-.marquee-list li:nth-child(7n + 4)::before { background: var(--line-medical); }
-.marquee-list li:nth-child(7n + 5)::before { background: var(--line-learning); }
-.marquee-list li:nth-child(7n + 6)::before { background: var(--line-similarity); }
-.marquee-list li:nth-child(7n)::before { background: var(--line-speech); }
+.marquee-list li:nth-child(7n + 2)::before {
+  background: var(--line-adversarial);
+}
+.marquee-list li:nth-child(7n + 3)::before {
+  background: var(--line-incentives);
+}
+.marquee-list li:nth-child(7n + 4)::before {
+  background: var(--line-medical);
+}
+.marquee-list li:nth-child(7n + 5)::before {
+  background: var(--line-learning);
+}
+.marquee-list li:nth-child(7n + 6)::before {
+  background: var(--line-similarity);
+}
+.marquee-list li:nth-child(7n)::before {
+  background: var(--line-speech);
+}
 
 .marquee-list a {
   font-family: var(--font-sans);
@@ -542,9 +562,15 @@
   animation: flip-in 420ms var(--ease-out) both;
 }
 
-.flip[data-step="0"] { color: var(--line-adversarial); }
-.flip[data-step="1"] { color: var(--line-traffic); }
-.flip[data-step="2"] { color: var(--line-medical); }
+.flip[data-step="0"] {
+  color: var(--line-adversarial);
+}
+.flip[data-step="1"] {
+  color: var(--line-traffic);
+}
+.flip[data-step="2"] {
+  color: var(--line-medical);
+}
 
 @keyframes flip-in {
   from {
@@ -582,12 +608,7 @@
 }
 
 .button-bright::after {
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    color-mix(in srgb, var(--line-traffic-bright) 45%, transparent) 50%,
-    transparent 70%
-  );
+  background: linear-gradient(105deg, transparent 30%, color-mix(in srgb, var(--line-traffic-bright) 45%, transparent) 50%, transparent 70%);
 }
 
 @media (hover: hover) and (pointer: fine) {

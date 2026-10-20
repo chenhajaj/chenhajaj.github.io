@@ -27,7 +27,9 @@
         </div>
         {%- if line -%}
           {%- assign peak = 1 -%}
-          {%- for n in line.per_year -%}{%- if n > peak -%}{%- assign peak = n -%}{%- endif -%}{%- endfor -%}
+          {%- for n in line.per_year -%}
+            {%- if n > peak -%}{%- assign peak = n -%}{%- endif -%}
+          {%- endfor -%}
           {%- assign years = line.per_year | size -%}
           <div class="line-card-foot">
             <svg class="spark" viewBox="0 0 {{ years | times: 8 }} 29" preserveAspectRatio="none" aria-hidden="true">
@@ -38,7 +40,10 @@
                 <rect x="{{ forloop.index0 | times: 8 }}" y="{{ 28 | minus: h }}" width="6" height="{{ h }}" rx="1" style="--i: {{ forloop.index0 }}"></rect>
               {%- endfor -%}
             </svg>
-            <span class="line-card-count"><strong class="num">{{ line.count }}</strong> papers, {% if line.first == line.last %}{{ line.first }}{% else %}{{ line.first }} to {{ line.last }}{% endif %}</span>
+            <span class="line-card-count"
+              ><strong class="num">{{ line.count }}</strong> papers,
+              {% if line.first == line.last %}{{ line.first }}{% else %}{{ line.first }} to {{ line.last }}{% endif -%}
+            </span>
           </div>
         {%- endif -%}
       </a>

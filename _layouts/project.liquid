@@ -25,9 +25,18 @@ layout: default
     {%- if line -%}
       <figure class="line-map paper-map-group">
         <dl class="atlas-stats">
-          <div><dt>Papers</dt><dd class="num" data-count="{{ line.count }}">{{ line.count }}</dd></div>
-          <div><dt>Years</dt><dd class="num">{{ line.first }} to {{ line.last }}</dd></div>
-          <div><dt>Co-authors</dt><dd class="num" data-count="{{ line.coauthors }}">{{ line.coauthors }}</dd></div>
+          <div>
+            <dt>Papers</dt>
+            <dd class="num" data-count="{{ line.count }}">{{ line.count }}</dd>
+          </div>
+          <div>
+            <dt>Years</dt>
+            <dd class="num">{{ line.first }} to {{ line.last }}</dd>
+          </div>
+          <div>
+            <dt>Co-authors</dt>
+            <dd class="num" data-count="{{ line.coauthors }}">{{ line.coauthors }}</dd>
+          </div>
         </dl>
         <div
           class="paper-map line-canvas"

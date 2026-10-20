@@ -53,10 +53,10 @@ npx lighthouse http://127.0.0.1:8822/ --only-categories=performance,accessibilit
 
 ## Baseline (16 October 2026)
 
-| Check                         | Old site (live)      | Redesign       |
-| ----------------------------- | -------------------- | -------------- |
-| axe WCAG AA violations        | 259 across 24 views  | 0              |
-| Impeccable findings           | 444 (desktop)        | 0              |
-| Lighthouse performance, home  | 41                   | 89             |
-| Home page weight / requests   | 1,412 KB / 78        | 438 KB / 9     |
-| Build time                    | about 3.5 min        | about 20 s     |
+| Check                        | Old site (live)     | Redesign   |
+| ---------------------------- | ------------------- | ---------- |
+| axe WCAG AA violations       | 259 across 24 views | 0          |
+| Impeccable findings          | 444 (desktop)       | 0          |
+| Lighthouse performance, home | 41                  | 89         |
+| Home page weight / requests  | 1,412 KB / 78       | 438 KB / 9 |
+| Build time                   | about 3.5 min       | about 20 s |

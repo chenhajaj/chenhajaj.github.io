@@ -20,13 +20,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- Content security policy: only this site's own files, plus Google Analytics.
-     GitHub Pages cannot send headers, so it is set here as a meta tag. -->
+<!--
+  Content security policy: only this site's own files, plus Google Analytics.
+  GitHub Pages cannot send headers, so it is set here as a meta tag.
+-->
 <meta
   http-equiv="Content-Security-Policy"
   content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
 >
-<meta name="referrer" content="strict-origin-when-cross-origin">{% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
+<meta name="referrer" content="strict-origin-when-cross-origin">
+{%- if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
 <title>
   {% if site.title == 'blank' %}
     {% capture title %}{{ author_name }}{% endcapture %}
@@ -72,7 +75,10 @@
 {% if site.serve_og_meta %}
   <!-- Link previews (Open Graph and X/Twitter) -->
   <meta property="og:site_name" content="{{ title }}">
-  <meta property="og:type" content="{% if page.layout == 'post' or page.layout == 'note' %}article{% elsif page.url == '/' %}profile{% else %}website{% endif %}">
+  <meta
+    property="og:type"
+    content="{% if page.layout == 'post' or page.layout == 'note' %}article{% elsif page.url == '/' %}profile{% else %}website{% endif %}"
+  >
   <meta property="og:title" content="{{ share_title | strip }}">
   <meta property="og:url" content="{{ canonical_url }}">
   <meta property="og:description" content="{{ share_desc }}">

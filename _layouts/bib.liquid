@@ -35,19 +35,27 @@
       {%- assign kind_label = 'Other' -%}
     {%- endif -%}
 {%- endcase -%}
-{%- comment -%} An explicit `category` field in papers.bib overrides the guess above
-  (same rule as _plugins/research-data.rb). {%- endcomment -%}
+{%- comment -%}
+  An explicit `category` field in papers.bib overrides the guess above
+  (same rule as _plugins/research-data.rb).
+{%- endcomment -%}
 {%- if entry.category -%}
   {%- assign kind = entry.category | downcase -%}
   {%- case kind -%}
-    {%- when 'workshop' -%}{%- assign kind_label = 'Workshop' -%}
-    {%- when 'conference' -%}{%- assign kind_label = 'Conference' -%}
-    {%- when 'journal' -%}{%- assign kind_label = 'Journal' -%}
-    {%- else -%}{%- assign kind_label = kind | capitalize -%}
+    {%- when 'workshop' -%}
+      {%- assign kind_label = 'Workshop' -%}
+    {%- when 'conference' -%}
+      {%- assign kind_label = 'Conference' -%}
+    {%- when 'journal' -%}
+      {%- assign kind_label = 'Journal' -%}
+    {%- else -%}
+      {%- assign kind_label = kind | capitalize -%}
   {%- endcase -%}
 {%- endif -%}
-{%- comment -%} Research line: the first line in _data/research_lines.yml whose tags
-  appear in the entry's `projects` field (same rule as _plugins/research-data.rb). {%- endcomment -%}
+{%- comment -%}
+  Research line: the first line in _data/research_lines.yml whose tags
+  appear in the entry's `projects` field (same rule as _plugins/research-data.rb).
+{%- endcomment -%}
 {%- assign ptags = entry.projects | downcase -%}
 {%- assign line_keys = '' -%}
 {%- assign primary = 'other' -%}
@@ -78,7 +86,11 @@
   class="pub"
   id="pub-{{ entry.key }}"
   {%- comment -%} Short papers, workshop papers and abstracts share one filter group. {%- endcomment -%}
-  {%- if kind == 'workshop' or kind == 'abstract' -%}{%- assign filter_kind = 'short' -%}{%- else -%}{%- assign filter_kind = kind -%}{%- endif %}
+  {%- if kind == 'workshop' or kind == 'abstract' -%}
+    {%- assign filter_kind = 'short' -%}
+  {%- else -%}
+    {%- assign filter_kind = kind -%}
+  {%- endif %}
   data-kind="{{ filter_kind }}"
   data-year="{{ entry.year }}"
   data-projects="{{ entry.projects | remove: ' ' }}"
@@ -96,7 +108,9 @@
       title="{{ primary_name }}{% if entry.selected %}, selected publication{% endif %}"
       aria-hidden="true"
     ></span>
-    {%- if entry.selected -%}<span class="visually-hidden">Selected: </span>{%- endif -%}
+    {%- if entry.selected -%}
+      <span class="visually-hidden">Selected: </span>
+    {%- endif -%}
     {%- if main_url -%}
       <a href="{{ main_url }}">{{ entry.title }}</a>
     {%- else -%}

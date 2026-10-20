@@ -40,7 +40,15 @@
   });
   var years = [];
   for (var y = data.first_year; y <= data.last_year; y++) years.push(y);
-  var KIND_LABEL = { workshop: "Short paper or workshop", preprint: "Preprint", abstract: "Abstract", thesis: "Thesis", patent: "Patent", book: "Edited book", other: "Other" };
+  var KIND_LABEL = {
+    workshop: "Short paper or workshop",
+    preprint: "Preprint",
+    abstract: "Abstract",
+    thesis: "Thesis",
+    patent: "Patent",
+    book: "Edited book",
+    other: "Other",
+  };
 
   function roundRect(ctx, x, y, w, h, r) {
     ctx.beginPath();
@@ -84,9 +92,11 @@
     });
     var maxCount = Math.max.apply(
       null,
-      years.map(function (yr) {
-        return byYear[yr].length;
-      }).concat([1])
+      years
+        .map(function (yr) {
+          return byYear[yr].length;
+        })
+        .concat([1])
     );
 
     var colors = {};
@@ -285,7 +295,8 @@
       var p = sq.p;
       tip.style.setProperty("--c", colors[p.line] || colors.other);
       tip.textContent = "";
-      var action = clickMode === "scroll" ? "Click to jump to it in the list" : p.url ? "Click to open the paper" : "Click to find it in publications";
+      var action =
+        clickMode === "scroll" ? "Click to jump to it in the list" : p.url ? "Click to open the paper" : "Click to find it in publications";
       [
         ["tip-line", names[p.line] || names.other],
         ["tip-title", p.title],

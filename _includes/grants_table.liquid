@@ -30,12 +30,20 @@
     {%- assign total_nis = 0 -%}
     {%- assign total_usd = 0 -%}
     {%- for grant in site.data.grants.grants -%}
-      {%- if grant.currency == 'NIS' -%}{%- assign total_nis = total_nis | plus: grant.amount -%}{%- else -%}{%- assign total_usd = total_usd | plus: grant.amount -%}{%- endif -%}
+      {%- if grant.currency == 'NIS' -%}
+        {%- assign total_nis = total_nis | plus: grant.amount -%}
+      {%- else -%}
+        {%- assign total_usd = total_usd | plus: grant.amount -%}
+      {%- endif -%}
     {%- endfor -%}
     <tfoot>
       <tr>
         <td colspan="3">Total</td>
-        <td class="amount">₪{{ total_nis | thousands }}<br>${{ total_usd | thousands }}</td>
+        <td class="amount">
+          ₪{{ total_nis | thousands -}}
+          <br>
+          ${{ total_usd | thousands }}
+        </td>
       </tr>
     </tfoot>
   </table>

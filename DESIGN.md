@@ -106,13 +106,13 @@ fills, not for small text.
 
 ## Colour
 
-| Token                 | Light                 | Dark                  | Use                                    |
-| --------------------- | --------------------- | --------------------- | -------------------------------------- |
-| `--paper`             | `#f7f8fa`             | `#0d1322`             | page background                        |
-| `--ink`               | `#141b2d`             | `#e8ebf1`             | text                                   |
-| `--ink-2` / `--ink-3` | `#454f63` / `#5d6679` | `#b3bbca` / `#98a1b3` | secondary text, meta                   |
-| `--rule`              | `#d9dde5`             | `#263049`             | hairlines between rows                 |
-| `--cobalt`            | `#2440c8`             | `#9aacff`             | links, buttons, focus                  |
+| Token                 | Light                 | Dark                  | Use                    |
+| --------------------- | --------------------- | --------------------- | ---------------------- |
+| `--paper`             | `#f7f8fa`             | `#0d1322`             | page background        |
+| `--ink`               | `#141b2d`             | `#e8ebf1`             | text                   |
+| `--ink-2` / `--ink-3` | `#454f63` / `#5d6679` | `#b3bbca` / `#98a1b3` | secondary text, meta   |
+| `--rule`              | `#d9dde5`             | `#263049`             | hairlines between rows |
+| `--cobalt`            | `#2440c8`             | `#9aacff`             | links, buttons, focus  |
 
 All text pairs meet WCAG AA in both themes.
 Dark mode follows the system unless the visitor picks a theme with the toggle
@@ -144,20 +144,20 @@ Dark mode follows the system unless the visitor picks a theme with the toggle
 
 ## Content sources (edit these, not the templates)
 
-| What                     | Where                                                                                                                                                                                    |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| What                     | Where                                                                                                                                                                                                  |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Publications             | `_bibliography/papers.bib` (kept in sync by the Scholar Sync workflow). `selected = {true}` puts a paper on the home page; `projects = {...}` tags set each paper's research line, colour and filters. |
-| Research lines           | `_projects/*.md`. `papers_query` decides which papers appear on the project page and the paper count.                                                                                    |
-| Students and alumni      | `_data/students.yml`                                                                                                                                                                     |
-| Open PhD/MSc topics      | `_data/open_topics.yml`                                                                                                                                                                  |
-| Grants                   | `_data/grants.yml` (`total_display` is shown as the total)                                                                                                                               |
-| News                     | `_news/*.md`                                                                                                                                                                             |
-| Research notes           | `_pages/note-*.md` with `layout: note`                                                                                                                                                   |
-| CV entries, teaching     | front matter of `_pages/cv.html` and `_pages/teaching.html`                                                                                                                              |
-| Home page featured paper | `featured:` in the front matter of `_pages/about.html` (`line:` sets its colour)                                                                                                         |
-| Research line colours    | `_data/research_lines.yml` (tags must match each project's `papers_query`)                                                                                                               |
-| Navigation               | `_data/navigation.yml`                                                                                                                                                                   |
-| Citation count, h-index  | `_data/scholar.yml` (updated by the Scholar stats workflow)                                                                                                                              |
+| Research lines           | `_projects/*.md`. `papers_query` decides which papers appear on the project page and the paper count.                                                                                                  |
+| Students and alumni      | `_data/students.yml`                                                                                                                                                                                   |
+| Open PhD/MSc topics      | `_data/open_topics.yml`                                                                                                                                                                                |
+| Grants                   | `_data/grants.yml` (`total_display` is shown as the total)                                                                                                                                             |
+| News                     | `_news/*.md`                                                                                                                                                                                           |
+| Research notes           | `_pages/note-*.md` with `layout: note`                                                                                                                                                                 |
+| CV entries, teaching     | front matter of `_pages/cv.html` and `_pages/teaching.html`                                                                                                                                            |
+| Home page featured paper | `featured:` in the front matter of `_pages/about.html` (`line:` sets its colour)                                                                                                                       |
+| Research line colours    | `_data/research_lines.yml` (tags must match each project's `papers_query`)                                                                                                                             |
+| Navigation               | `_data/navigation.yml`                                                                                                                                                                                 |
+| Citation count, h-index  | `_data/scholar.yml` (updated by the Scholar stats workflow)                                                                                                                                            |
 
 ## Checks before merging design changes
 

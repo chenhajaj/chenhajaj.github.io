@@ -733,9 +733,7 @@
       }
     });
     if (mapEl) {
-      mapEl.dispatchEvent(
-        new CustomEvent("papermap:filter", { detail: { keys: shown === records.length ? null : keys, year: s.year } })
-      );
+      mapEl.dispatchEvent(new CustomEvent("papermap:filter", { detail: { keys: shown === records.length ? null : keys, year: s.year } }));
     }
     // Hide year headings with nothing left under them
     Array.prototype.forEach.call(list.querySelectorAll("ol.bibliography"), function (ol) {

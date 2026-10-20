@@ -10,7 +10,9 @@
       </p>
       <p class="person-topic">{{ p.research_area | strip }}</p>
       {%- if p.program == 'project' -%}
-        <p class="person-extra">Non-thesis MSc, final project{% if p.institution %}, {{ p.institution }}{% endif %}</p>
+        <p class="person-extra">
+          Non-thesis MSc, final project{% if p.institution %}, {{ p.institution }}{% endif %}
+        </p>
       {%- elsif p.institution -%}
         <p class="person-extra">{{ p.institution }}</p>
       {%- endif -%}

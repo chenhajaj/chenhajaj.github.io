@@ -18,3 +18,6 @@ _news/**
 _data/**
 _pages/**
 .github/workflows/**
+
+# Third-party skills, vendored as published
+.claude/**

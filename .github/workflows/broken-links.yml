@@ -1,48 +1,43 @@
 name: Check for broken links
 
+# Builds the site exactly as deploy.yml does, then checks every internal link
+# and asset reference in the built pages. Checking the built site (not the
+# Liquid templates) avoids false failures on {{ ... }} expressions. External
+# links are not checked: publisher sites block bots and would make this flaky.
+
 on:
   push:
-    branches:
-      - master
-      - main
-    paths:
-      - "assets/**"
-      - "**.html"
-      - "**.js"
-      - "**.liquid"
-      - "**/*.md"
-      - "**.yml"
-      - "!.github/workflows/axe.yml"
-      - "!.github/workflows/lighthouse-badger.yml"
-      - "!.github/workflows/prettier.yml"
-      - "!lighthouse_results/**"
+    branches: [main, master]
   pull_request:
-    branches:
-      - master
-      - main
-    paths:
-      - "assets/**"
-      - "**.html"
-      - "**.js"
-      - "**.liquid"
-      - "**/*.md"
-      - "**.yml"
-      - "!.github/workflows/axe.yml"
-      - "!.github/workflows/lighthouse-badger.yml"
-      - "!.github/workflows/prettier.yml"
-      - "!lighthouse_results/**"
+    branches: [main, master]
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   link-checker:
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+      - name: Setup Ruby 💎
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.5"
+          bundler-cache: true
+      - name: Setup Python 🐍
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Build 🔧
+        run: |
+          sudo apt-get update && sudo apt-get install -y imagemagick
+          pip3 install --upgrade nbconvert
+          export JEKYLL_ENV=production
+          bundle exec jekyll build
       - name: Link Checker 🔗
         uses: lycheeverse/lychee-action@v2.9.0
         with:
           fail: true
-          # removed md files that include liquid tags
-          args: --root-dir . --user-agent 'curl/7.54' --exclude 'https://doi.org' --exclude 'https://arxiv.org' --exclude 'https://(www\.)?linkedin\.com' --exclude-path _posts/2023-05-12-custom-blockquotes.md --exclude-path README.md --exclude-path FAQ.md --exclude-path CUSTOMIZE.md --exclude-path _pages/404.md --exclude-path _pages/blog.md --exclude-path _pages/news.md --exclude-path _posts/2018-12-22-distill.md --exclude-path _posts/2023-04-24-videos.md --exclude-path _books/the_godfather.md --exclude-path _pages/projects.md --exclude-path _pages/repositories.md --exclude-path _projects --verbose --no-progress './**/*.md' './**/*.html'
+          args: --offline --root-dir ${{ github.workspace }}/_site --no-progress '_site/**/*.html'
