@@ -31,9 +31,11 @@ a year to about a dozen across seven lines.
   jump to the paper; it dims to whatever the filters show) and each research
   page (only that line's papers).
 - The Lab page has a co-author network (`assets/js/coauthor-network.js`):
-  128 people, sized and placed by papers shared with Chen, coloured by their
-  main research line, with lab students ringed. Hover, drag, search by name,
-  or highlight a line.
+  every co-author as an equal-size dot, grouped into a sector per research
+  line and coloured by it, with lab students ringed. Names show only on hover
+  or search. Size and distance deliberately do not encode how often someone
+  co-authors with Chen (Chen's call: it should read as breadth, not
+  dependence). Hover, drag, search by name, or highlight a line.
 
 ## Motion
 

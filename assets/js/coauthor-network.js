@@ -57,7 +57,7 @@
       role: p.role,
       first: p.first,
       last: p.last,
-      r: 3.5 + Math.sqrt(p.count) * 2.6,
+      r: 6,
       x: 0,
       y: 0,
       vx: 0,
@@ -128,14 +128,40 @@
     // Smaller dots on narrow screens.
     var k = W < 560 ? 0.68 : 1;
     nodes.forEach(function (n) {
-      n.r = n.me ? (W < 560 ? 20 : 26) : (3.5 + Math.sqrt(n.count) * 2.6) * k;
+      // Every co-author is the same size: the picture shows breadth
+      // across research lines, not who publishes with Chen most.
+      n.r = n.me ? (W < 560 ? 20 : 26) : 6 * k;
     });
   }
 
-  // Target distance from Chen, as a fraction of the band's half-width and
-  // half-height: frequent co-authors sit close, one-off co-authors at the rim.
+  // Layout: each research line owns a sector around Chen, sized by how many
+  // co-authors it has. Inside its sector a co-author gets a fixed, seeded
+  // spot; distance from Chen does not encode anything.
+  var lineOrder = data.lines.map(function (l) {
+    return l.key;
+  });
+  lineOrder.push("other");
+  var perLine = {};
+  nodes.forEach(function (n) {
+    if (!n.me) perLine[n.line] = (perLine[n.line] || 0) + 1;
+  });
+  var totalPeople = nodes.length - 1;
+  var angle = -Math.PI / 2;
+  var sectors = {};
+  lineOrder.forEach(function (key) {
+    var share = ((perLine[key] || 0) / Math.max(1, totalPeople)) * Math.PI * 2;
+    sectors[key] = { from: angle, span: share };
+    angle += share;
+  });
+  nodes.forEach(function (n) {
+    if (n.me) return;
+    var sec = sectors[n.line] || sectors.other;
+    var pad = Math.min(0.12, sec.span * 0.15);
+    n.ang = sec.from + pad + rand() * Math.max(0.001, sec.span - pad * 2);
+    n.rad = 0.38 + rand() * 0.5;
+  });
   function target(n) {
-    return 0.18 + 0.68 / Math.sqrt(n.count);
+    return n.rad;
   }
 
   function tick() {
@@ -146,15 +172,12 @@
     me.y = cy;
     for (i = 1; i < nodes.length; i++) {
       a = nodes[i];
-      // spring towards an ellipse around Chen
-      dx = a.x - cx;
-      dy = a.y - cy;
-      var ex = dx / (W / 2 - 28);
-      var ey = dy / (H / 2 - 28);
-      var dn = Math.sqrt(ex * ex + ey * ey) || 0.001;
-      f = ((dn - target(a)) / dn) * 0.07 * Math.max(alpha, 0.15);
-      a.vx -= dx * f;
-      a.vy -= dy * f;
+      // spring towards the co-author's spot in their research line's sector
+      var tx = cx + Math.cos(a.ang) * a.rad * (W / 2 - 28);
+      var ty = cy + Math.sin(a.ang) * a.rad * (H / 2 - 28);
+      f = 0.05 * Math.max(alpha, 0.2);
+      a.vx += (tx - a.x) * f;
+      a.vy += (ty - a.y) * f;
       // repulsion and collision
       for (j = i + 1; j < nodes.length; j++) {
         b = nodes[j];
@@ -185,7 +208,7 @@
       dx = l.b.x - l.a.x;
       dy = l.b.y - l.a.y;
       d = Math.sqrt(dx * dx + dy * dy) || 1;
-      f = ((d - 70 * scale) / d) * 0.012 * Math.min(l.w, 3) * alpha;
+      f = ((d - 70 * scale) / d) * 0.003 * alpha;
       l.a.vx += dx * f;
       l.a.vy += dy * f;
       l.b.vx -= dx * f;
@@ -298,8 +321,8 @@
     ctx.arc(me.x, me.y, me.r + 1.5, 0, Math.PI * 2);
     ctx.stroke();
 
-    // Labels for frequent co-authors (and whoever is highlighted), placed
-    // greedily from the most frequent down so they never overlap.
+    // Names appear only for the co-author under the pointer (or keyboard
+    // focus), and for matches while searching.
     ctx.font = "600 12px Archivo, system-ui, sans-serif";
     ctx.textBaseline = "middle";
     var placed = [{ x: me.x - me.r - 4, y: me.y - me.r - 4, w: me.r * 2 + 8, h: me.r * 2 + 8 }];
@@ -313,10 +336,10 @@
     var labelled = nodes
       .filter(function (n) {
         if (n.me || !lit(n)) return false;
-        return (n.count >= 5 && scale > 0.6) || n === hover || (search && anyFilter);
+        return n === hover || (search && anyFilter);
       })
       .sort(function (a, b) {
-        return (b === hover) - (a === hover) || b.count - a.count;
+        return (b === hover) - (a === hover) || a.name.localeCompare(b.name);
       });
     labelled.forEach(function (n) {
       var w = ctx.measureText(n.name).width;
@@ -535,10 +558,9 @@
     size();
     nodes.forEach(function (n) {
       if (n.me) return;
-      var a = rand() * Math.PI * 2;
       var t = target(n) * (reduceMotion ? 1 : 0.3);
-      n.x = W / 2 + Math.cos(a) * t * (W / 2 - 28);
-      n.y = H / 2 + Math.sin(a) * t * (H / 2 - 28);
+      n.x = W / 2 + Math.cos(n.ang) * t * (W / 2 - 28);
+      n.y = H / 2 + Math.sin(n.ang) * t * (H / 2 - 28);
     });
     if (reduceMotion) {
       settleInstantly();
