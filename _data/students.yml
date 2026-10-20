@@ -56,14 +56,17 @@ masters_students:
     institution: "Afeka College"
     research_area: "Few-shot ANN for Low-latency Classification in O-RAN Networks"
   - name: "Stas Susha"
+    program: thesis
     institution: "Holon Institute of Technology"
-    research_area: "QUIC-based Quantum Traffic Classification "
+    research_area: "QUIC-based Quantum Traffic Classification"
   - name: "Eylon Katan"
+    program: thesis
     research_area: "Anomaly Detection on PQC"
   - name: "Idan Buzaglo"
     program: thesis
     research_area: "Early Detection of Myopia"
   - name: "Yarin Amar"
+    program: thesis
     research_area: "Real time cognitive feedback system in design education"
 
 masters_alumni:
