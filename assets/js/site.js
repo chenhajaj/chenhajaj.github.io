@@ -191,7 +191,7 @@
       },
       { threshold: 0.35 }
     );
-    each(".line-card, .feature", function (el) {
+    each(".line-card, .feature, .grant-bars, .career, .review-bars", function (el) {
       seen.observe(el);
     });
 

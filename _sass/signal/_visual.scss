@@ -1,0 +1,1031 @@
+// =============================================================================
+// Visual layer (October 2026): turns lists into pictures built from the same
+// data. Avatars and person cards, icon tiles for news, the funding chart, the
+// career timeline, course, repository and contact cards.
+// Colour always comes from a research line (--c) or the cobalt accent; text
+// stays --ink / --ink-2 so contrast never depends on the tint.
+// =============================================================================
+
+// ---------------------------------------------------------------- icons ----
+
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+// Square tile holding an icon, tinted with the item's line colour.
+.icon-tile {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  border-radius: 12px;
+  color: var(--c, var(--cobalt));
+  background: color-mix(in srgb, var(--c, var(--cobalt)) 14%, var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c, var(--cobalt)) 22%, transparent);
+}
+
+.icon-tile .icon {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+// -------------------------------------------------------------- avatars ----
+
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  border-radius: 50%;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--c) 24%, var(--paper));
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c) 70%, transparent);
+}
+
+.avatar-lg {
+  width: 3.25rem;
+  height: 3.25rem;
+  font-size: var(--fs-md);
+}
+
+.line-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  color: var(--ink-2);
+  font-weight: 550;
+}
+
+.line-dot {
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 2px;
+  background: var(--c);
+}
+
+// --------------------------------------------------------- person cards ----
+
+.person-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
+  gap: var(--s-3);
+  margin: var(--s-3) 0 var(--s-6);
+  padding: 0;
+  list-style: none;
+}
+
+.person-card {
+  display: flex;
+  gap: var(--s-4);
+  align-items: flex-start;
+  padding: var(--s-4);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--ink) 3%, var(--paper));
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+.person-body {
+  min-width: 0;
+}
+
+.person-card .person-extra,
+.alumni-card .person-extra {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
+}
+
+.alumni-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: var(--s-4) var(--s-5);
+  margin: var(--s-3) 0 var(--s-6);
+  padding: 0;
+  list-style: none;
+}
+
+.alumni-card {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-start;
+}
+
+.alumni-card .person-name {
+  font-size: var(--fs-sm);
+}
+
+.alumni-card .person-topic {
+  font-size: var(--fs-sm);
+}
+
+.alumni-year {
+  margin-left: 0.5em;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+// ----------------------------------------------------------- news cards ----
+
+.news-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--s-3);
+  margin: var(--s-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.news-card {
+  display: flex;
+  gap: var(--s-4);
+  align-items: flex-start;
+  padding: var(--s-4);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--c) 5%, var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 16%, var(--rule));
+}
+
+.news-body {
+  min-width: 0;
+}
+
+.news-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  margin-bottom: var(--s-1);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.news-kind {
+  font-weight: 650;
+  color: var(--ink-2);
+}
+
+.news-text {
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+// -------------------------------------------------------- funding chart ----
+
+.grant-totals {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--s-4) var(--s-7);
+  margin-bottom: var(--s-5);
+}
+
+.grant-total {
+  display: grid;
+}
+
+.grant-total-num {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xl);
+  font-weight: 760;
+  font-stretch: 112%;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.grant-total-label,
+.grant-key {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--ink-2);
+}
+
+.grant-key {
+  display: flex;
+  gap: var(--s-4);
+  margin-left: auto;
+}
+
+.grant-key > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.grant-swatch,
+.grant-fill {
+  --stripe: color-mix(in srgb, var(--c, var(--ink-2)) 45%, var(--paper));
+  background: var(--c, var(--ink-2));
+}
+
+.grant-swatch {
+  width: 1.4em;
+  height: 0.8em;
+  border-radius: 3px;
+}
+
+.grant-swatch.is-co,
+.grant-fill.is-co {
+  background: repeating-linear-gradient(-45deg, var(--c, var(--ink-2)) 0 4px, var(--stripe) 4px 8px);
+}
+
+.grant-bars {
+  display: grid;
+  gap: var(--s-4);
+  margin: 0 0 var(--s-5);
+  padding: 0;
+  list-style: none;
+}
+
+.grant-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--s-2) var(--s-5);
+  align-items: center;
+}
+
+.grant-name {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 620;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.grant-meta {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.grant-track {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.grant-fill {
+  height: 1.25rem;
+  width: calc(var(--w) * 0.78);
+  min-width: 6px;
+  border-radius: 4px;
+  transform-origin: left center;
+}
+
+.grant-amount {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 650;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+// Bars grow once when the chart scrolls into view (site.js adds .is-inview).
+.motion-ok .grant-bars .grant-fill {
+  transform: scaleX(0);
+  transition: transform 900ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+.motion-ok .grant-bars.is-inview .grant-fill {
+  transform: none;
+}
+
+@media (max-width: 640px) {
+  .grant-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .grant-key {
+    margin-left: 0;
+  }
+}
+
+// ------------------------------------------------------ career timeline ----
+
+.career {
+  position: relative;
+  margin: var(--s-3) 0 var(--s-5);
+  padding-block: 10.5rem 7.5rem;
+}
+
+.career-track {
+  position: relative;
+  height: 2.25rem;
+}
+
+.career-span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--x);
+  width: var(--w);
+  display: flex;
+  align-items: center;
+  padding-inline: var(--s-3);
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--cobalt) calc(10% + var(--t) * 8%), var(--paper));
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cobalt) 25%, transparent);
+}
+
+// The current position runs off the end: it is still going.
+.career-span.is-now {
+  border-radius: 8px 0 0 8px;
+  mask-image: linear-gradient(90deg, #000 85%, transparent);
+}
+
+.career-milestones {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.career-milestone {
+  position: absolute;
+  left: var(--x);
+  width: 10.5rem;
+  margin-left: -0.375rem;
+  display: grid;
+  gap: 0.2rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+}
+
+// A stem from the label to the band, ending in a dot on the year.
+.career-milestone::before,
+.career-milestone::after {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+}
+
+.career-milestone::before {
+  width: 1px;
+  background: color-mix(in srgb, var(--cobalt) 45%, var(--rule));
+}
+
+.career-milestone::after {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-left: -0.33rem;
+  border-radius: 50%;
+  background: var(--cobalt);
+  box-shadow: 0 0 0 3px var(--paper);
+}
+
+// Geometry: 10.5rem above the band, a 2.25rem band, 7.5rem below it.
+.career-milestone.is-up {
+  bottom: 10.5rem;
+  padding-left: 0.9rem;
+}
+
+.career-milestone.is-up::before {
+  top: 0.35rem;
+  height: calc(100% + 0.75rem);
+}
+
+.career-milestone.is-up::after {
+  bottom: -1.2rem;
+}
+
+.career-milestone.is-down {
+  top: 13.5rem;
+  padding-left: 0.9rem;
+}
+
+.career-milestone.is-down::before {
+  bottom: 0.35rem;
+  top: -0.75rem;
+}
+
+.career-milestone.is-down::after {
+  top: -1.2rem;
+}
+
+// Near the right edge the label hangs to the left of its stem.
+@media (min-width: 761px) {
+  .career-milestone.is-end {
+    margin-left: calc(-10.5rem + 0.375rem);
+    padding-left: 0;
+    padding-right: 0.9rem;
+    text-align: right;
+  }
+
+  .career-milestone.is-end::before {
+    left: auto;
+    right: 0.3rem;
+  }
+
+  .career-milestone.is-end::after {
+    left: auto;
+    right: 0.3rem;
+    margin-left: 0;
+    margin-right: -0.33rem;
+  }
+
+  .career-milestone.is-up.is-tier2 {
+    bottom: 14.5rem;
+  }
+
+  .career-milestone.is-up.is-tier2::before {
+    height: calc(100% + 4.75rem);
+  }
+
+  .career-milestone.is-up.is-tier2::after {
+    bottom: -5.2rem;
+  }
+}
+
+.career-year {
+  font-weight: 700;
+  color: var(--cobalt);
+}
+
+.career-what {
+  display: grid;
+  gap: 0.15rem;
+  color: var(--ink-2);
+}
+
+.career-what > span:first-child {
+  font-weight: 620;
+  color: var(--ink);
+}
+
+// Milestones fade up in order when the timeline scrolls in.
+.motion-ok .career .career-milestone {
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 500ms var(--ease-out),
+    transform 500ms var(--ease-out);
+  transition-delay: calc(var(--i) * 90ms + 150ms);
+}
+
+.motion-ok .career.is-inview .career-milestone {
+  opacity: 1;
+  transform: none;
+}
+
+// Phones: a vertical list, bands become a row of chips.
+@media (max-width: 760px) {
+  .career {
+    padding-block: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--s-4);
+  }
+
+  .career-track {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+  }
+
+  .career-span {
+    position: static;
+    width: auto;
+    padding-block: var(--s-1);
+  }
+
+  .career-span.is-now {
+    border-radius: 8px;
+    mask-image: none;
+  }
+
+  .career-milestones {
+    position: static;
+    display: grid;
+    gap: var(--s-4);
+    padding-left: var(--s-4);
+    border-left: 2px solid color-mix(in srgb, var(--cobalt) 35%, var(--rule));
+  }
+
+  .career-milestone,
+  .career-milestone.is-up,
+  .career-milestone.is-down {
+    position: relative;
+    inset: auto;
+    width: auto;
+    margin: 0;
+    padding-left: var(--s-2);
+  }
+
+  .career-milestone::before {
+    display: none;
+  }
+
+  .career-milestone.is-up::after,
+  .career-milestone.is-down::after {
+    top: 0.2rem;
+    bottom: auto;
+    left: calc(-1 * var(--s-4) - 0.06rem);
+  }
+}
+
+.career-note {
+  max-width: var(--measure);
+  font-size: var(--fs-md);
+  color: var(--ink-2);
+}
+
+// ------------------------------------------------------- lab face stack ----
+
+.lab-faces {
+  margin: var(--s-4) 0 var(--s-6);
+}
+
+.face-stack {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0 0 0 0.6rem;
+  list-style: none;
+}
+
+.face-stack li {
+  margin-left: -0.6rem;
+  margin-bottom: var(--s-2);
+}
+
+.face-stack .avatar {
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, var(--c) 70%, transparent),
+    0 0 0 3px var(--paper);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-ok .face-stack .avatar {
+    transition: transform 200ms var(--ease-out);
+  }
+
+  .motion-ok .face-stack li:hover .avatar {
+    transform: translateY(-4px) scale(1.08);
+  }
+}
+
+.face-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-4);
+  margin-top: var(--s-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+}
+
+// ------------------------------------------- selected papers, with image ----
+
+.pub:has(> .pub-thumb) {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  column-gap: var(--s-5);
+}
+
+.pub:has(> .pub-thumb) > :not(.pub-thumb) {
+  grid-column: 2;
+}
+
+.pub-thumb {
+  grid-row: 1 / span 6;
+  grid-column: 1;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+.pub-thumb figure,
+.pub-thumb picture,
+.pub-thumb img {
+  margin: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .pub:has(> .pub-thumb) {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    column-gap: var(--s-3);
+  }
+
+  .pub-thumb {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+// ------------------------------------------------------------ CV visuals ----
+
+.stat-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  gap: var(--s-3);
+  margin: 0 0 var(--s-5);
+  padding: 0;
+  list-style: none;
+}
+
+.stat-tiles li {
+  display: grid;
+  gap: var(--s-1);
+  align-content: start;
+  padding: var(--s-4);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--c, var(--cobalt)) 5%, var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c, var(--cobalt)) 16%, var(--rule));
+}
+
+.stat-tiles .icon-tile {
+  margin-bottom: var(--s-2);
+}
+
+.stat-num {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xl);
+  font-weight: 760;
+  font-stretch: 112%;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.stat-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.award-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: var(--s-4) var(--s-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.award-card {
+  --c: var(--line-incentives);
+  display: flex;
+  gap: var(--s-4);
+  align-items: flex-start;
+}
+
+.award-year {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.review-bars {
+  display: grid;
+  gap: var(--s-2);
+  margin: var(--s-3) 0 var(--s-2);
+  padding: 0;
+  list-style: none;
+}
+
+.review-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 6.5rem;
+  gap: var(--s-4);
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+}
+
+.review-venue {
+  color: var(--ink);
+}
+
+.review-track {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.review-fill {
+  height: 0.9rem;
+  width: calc(var(--w) * 0.8);
+  min-width: 4px;
+  border-radius: 3px;
+  background: var(--cobalt);
+  transform-origin: left center;
+}
+
+.review-count {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.review-years {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.motion-ok .review-bars .review-fill {
+  transform: scaleX(0);
+  transition: transform 800ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+
+.motion-ok .review-bars.is-inview .review-fill {
+  transform: none;
+}
+
+@media (max-width: 640px) {
+  .review-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .review-years {
+    display: none;
+  }
+}
+
+// --------------------------------------------------------- course cards ----
+
+.course-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-card {
+  display: flex;
+  gap: var(--s-4);
+  align-items: flex-start;
+  padding: var(--s-4);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--cobalt) 4%, var(--paper));
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.course-level {
+  font-weight: 650;
+  color: var(--ink-2);
+}
+
+.course-name {
+  margin: var(--s-1) 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.course-text {
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+// ----------------------------------------------------------- repo cards ----
+
+.repo-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.repo-card {
+  display: flex;
+  gap: var(--s-4);
+  align-items: flex-start;
+  height: 100%;
+  padding: var(--s-4);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  background: color-mix(in srgb, var(--c) 5%, var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 16%, var(--rule));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-ok .repo-card {
+    transition:
+      transform 200ms var(--ease-out),
+      box-shadow 200ms var(--ease-out);
+  }
+
+  .repo-card:hover {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, var(--rule));
+  }
+
+  .motion-ok .repo-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.repo-card:active {
+  scale: 0.98;
+}
+
+.repo-body {
+  display: grid;
+  gap: var(--s-1);
+  min-width: 0;
+}
+
+.repo-card .repo-name {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 650;
+  color: var(--cobalt);
+}
+
+.repo-card .repo-desc {
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.repo-paper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  color: var(--ink-2);
+}
+
+.repo-card .repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
+  margin-top: var(--s-1);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  overflow-wrap: anywhere;
+}
+
+.repo-meta .icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.1em;
+}
+
+.repo-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  color: var(--ink-2);
+}
+
+// -------------------------------------------------------- contact cards ----
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-routes {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--c, var(--cobalt)) 5%, var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c, var(--cobalt)) 16%, var(--rule));
+}
+
+.contact-card .icon-tile {
+  margin-bottom: var(--s-2);
+}
+
+.contact-card h3 {
+  font-family: var(--font-sans);
+  font-size: var(--fs-lg);
+  font-weight: 680;
+  color: var(--ink);
+}
+
+.contact-card p {
+  font-size: var(--fs-md);
+  color: var(--ink);
+}
+
+.contact-card .contact-note {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.contact-card .button {
+  margin-top: auto;
+}
+
+.contact-card .inline-links {
+  font-size: var(--fs-sm);
+}
+
+// ------------------------------------------------------- research notes ----
+
+.note-row.has-img {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: var(--s-6);
+  align-items: center;
+}
+
+.note-img {
+  display: block;
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+.note-img figure,
+.note-img picture,
+.note-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-ok .note-img img {
+    transition: transform 400ms var(--ease-out);
+  }
+
+  .motion-ok .note-row:hover .note-img img {
+    transform: scale(1.04);
+  }
+}
+
+.note-text {
+  display: block;
+}
+
+.note-text .meta {
+  display: block;
+}
+
+.note-summary {
+  display: block;
+  margin-top: var(--s-2);
+  max-width: 62ch;
+  color: var(--ink-2);
+  font-size: var(--fs-md);
+}
+
+@media (max-width: 640px) {
+  .note-row.has-img {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-3);
+  }
+}

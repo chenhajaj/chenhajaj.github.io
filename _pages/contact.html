@@ -12,13 +12,22 @@ nav_order: 8
     <h2 id="reach">Reach me</h2>
   </div>
   <div class="band-body">
-    <dl class="contact-list">
-      <dt>Email</dt>
-      <dd><a href="mailto:chenha@g.ariel.ac.il">chenha@g.ariel.ac.il</a></dd>
-      <dt>Office</dt>
-      <dd>Room 58.3.42<br>Ariel University, Ariel, Israel</dd>
-      <dt>Profiles</dt>
-      <dd>
+    <ul class="contact-cards">
+      <li class="contact-card">
+        <span class="icon-tile">{% include icon.liquid name="mail" %}</span>
+        <h3>Email</h3>
+        <p><a href="mailto:chenha@g.ariel.ac.il">chenha@g.ariel.ac.il</a></p>
+        <p class="contact-note">The quickest way to reach me.</p>
+      </li>
+      <li class="contact-card" style="--c: var(--line-medical)">
+        <span class="icon-tile">{% include icon.liquid name="pin" %}</span>
+        <h3>Office</h3>
+        <p>Room 58.3.42</p>
+        <p class="contact-note">Ariel University, Ariel, Israel</p>
+      </li>
+      <li class="contact-card" style="--c: var(--line-similarity)">
+        <span class="icon-tile">{% include icon.liquid name="globe" %}</span>
+        <h3>Profiles</h3>
         <ul class="inline-links">
           <li><a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}">Google Scholar</a></li>
           <li><a href="https://github.com/{{ site.data.socials.github_username }}">GitHub</a></li>
@@ -26,34 +35,35 @@ nav_order: 8
           <li><a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}">LinkedIn</a></li>
           <li><a href="{{ site.data.socials.dblp_url }}">DBLP</a></li>
         </ul>
-      </dd>
-    </dl>
+      </li>
+    </ul>
   </div>
 </section>
 
-<section class="band" aria-labelledby="students">
+<section class="band" aria-labelledby="routes">
   <div class="band-head">
-    <h2 id="students">Prospective students</h2>
+    <h2 id="routes">Working together</h2>
   </div>
   <div class="band-body">
-    <p class="prose-block">
-      Interested in joining the lab? Send an email with your CV and a short description of your research interests.
-      The <a href="{{ '/people/#open-topics' | relative_url }}">open topics</a> are a good place to start.
-    </p>
-    <div class="actions">
-      <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20Student">Email Chen</a>
-    </div>
-  </div>
-</section>
-
-<section class="band" aria-labelledby="partners">
-  <div class="band-head">
-    <h2 id="partners">Collaborators</h2>
-  </div>
-  <div class="band-body">
-    <p class="prose-block">
-      For academic or industry collaboration, a short note on the problem and the data you have is the quickest way to start.
-      The <a href="{{ '/projects/' | relative_url }}">research lines</a> show what the lab is working on now.
-    </p>
+    <ul class="contact-cards contact-routes">
+      <li class="contact-card" style="--c: var(--line-incentives)">
+        <span class="icon-tile">{% include icon.liquid name="student" %}</span>
+        <h3 id="students">Prospective students</h3>
+        <p>
+          Send an email with your CV and a short description of your research interests. The
+          <a href="{{ '/people/#open-topics' | relative_url }}">open topics</a> are a good place to start.
+        </p>
+        <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20Student">Email Chen</a>
+      </li>
+      <li class="contact-card" style="--c: var(--line-traffic)">
+        <span class="icon-tile">{% include icon.liquid name="chat" %}</span>
+        <h3 id="partners">Collaborators</h3>
+        <p>
+          For academic or industry collaboration, a short note on the problem and the data you have is the quickest way to start.
+          The <a href="{{ '/projects/' | relative_url }}">research lines</a> show what the lab is working on now.
+        </p>
+        <a class="button button-quiet" href="mailto:chenha@g.ariel.ac.il?subject=Research%20collaboration">Propose a collaboration</a>
+      </li>
+    </ul>
   </div>
 </section>

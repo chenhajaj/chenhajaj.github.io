@@ -1,0 +1,38 @@
+{%- comment -%}
+  Career timeline from _data/career.yml: institution bands on a year axis,
+  with milestones above and below. Under 760px it becomes a vertical list.
+{%- endcomment -%}
+{%- assign c = site.data.career -%}
+{%- assign span = c.last_year | minus: c.first_year -%}
+<figure class="career" aria-label="Career timeline, 2010 to now">
+  <ol class="career-milestones">
+    {%- for m in c.milestones -%}
+      {%- assign x = m.year | minus: c.first_year | times: 100.0 | divided_by: span -%}
+      <li
+        class="career-milestone{% cycle ' is-up', ' is-down' %}{% if x > 72 %} is-end{% endif %}{% if m.tier == 2 %} is-tier2{% endif %}"
+        style="--x: {{ x | round: 2 }}%; --i: {{ forloop.index0 }}"
+      >
+        <span class="career-year num">{{ m.year }}</span>
+        <span class="career-what">
+          {%- for line in m.lines -%}
+            <span>{{ line }}</span>
+          {%- endfor -%}
+        </span>
+      </li>
+    {%- endfor -%}
+  </ol>
+  <div class="career-track" aria-hidden="true">
+    {%- for s in c.spans -%}
+      {%- assign to = s.to -%}
+      {%- if to == 'now' -%}{%- assign to = c.last_year -%}{%- endif -%}
+      {%- assign x = s.from | minus: c.first_year | times: 100.0 | divided_by: span -%}
+      {%- assign w = to | minus: s.from | times: 100.0 | divided_by: span -%}
+      <span
+        class="career-span{% if s.to == 'now' %} is-now{% endif %}"
+        style="--x: {{ x | round: 2 }}%; --w: {{ w | round: 2 }}%; --t: {{ forloop.index }}"
+      >
+        {{- s.name -}}
+      </span>
+    {%- endfor -%}
+  </div>
+</figure>

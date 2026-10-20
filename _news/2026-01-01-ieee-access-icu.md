@@ -2,6 +2,8 @@
 layout: post
 date: 2026-01-01 00:00:00+0300
 inline: true
+kind: paper
+line: medical
 related_posts: false
 ---
 

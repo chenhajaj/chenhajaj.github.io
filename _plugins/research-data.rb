@@ -104,6 +104,7 @@ module ResearchData
           "venue" => ResearchData.clean(entry[:journal] || entry[:booktitle] || entry[:school] || entry[:publisher] || entry[:howpublished]),
           "kind" => ResearchData.kind(entry),
           "url" => url,
+          "code" => ResearchData.clean(entry[:code]),
           "selected" => ResearchData.clean(entry[:selected]) == "true",
           "line" => matched.first || "other",
           "lines" => matched
@@ -173,6 +174,31 @@ module ResearchData
         badges[p["key"]] = b unless b.empty?
       end
 
+      # Research line for each lab member (avatar colour on the Lab page): the
+      # line they publish in most with Chen, else a keyword match on their topic.
+      topic_lines = [
+        ["traffic", /traffic|quic|qoe|o-ran|network|encrypt|covert|video conferenc/i],
+        ["medical", /medic|clinic|icu|health|myopia|patient|nutrition|disease|biomed|ecg|eeg|covid|anxiety|depression/i],
+        ["adversarial", /adversar|attack|malware|security|captcha|intrusion|dos\b|\bapi\b|threat|evasion|anomal|url\b/i],
+        ["similarity", /recommend|commerce|pricing|price|fashion|multimodal|product|consumer|similar|funnel|chatbot/i],
+        ["incentives", /auction|incentive|game|mechanism|crowd/i],
+        ["learning", /educat|design|studio|feedback|teach|learning environment/i],
+        ["speech", /speech|audio|speaker|emotion|voice/i]
+      ]
+      student_line = {}
+      students.each_value do |list|
+        Array(list).each do |st|
+          name = st["name"].to_s
+          ids = ([name] + Array(st["aliases"])).map { |n| ResearchData.person_id(n.to_s) }
+          from_papers = ids.map { |i| people[i] }.compact.first
+          line = st["line"]
+          line ||= from_papers && from_papers["lines"].max_by { |k, v| [v, k == "other" ? 0 : 1] }&.first
+          line = nil if line == "other"
+          line ||= topic_lines.find { |_, re| st["research_area"].to_s =~ re }&.first
+          student_line[name] = line || "other"
+        end
+      end
+
       people_list = people.values.reject { |pp| pp["id"] == me }.map do |pp|
         {
           "id" => pp["id"],
@@ -190,6 +216,7 @@ module ResearchData
         "papers" => papers.size,
         "paper_list" => papers,
         "badges" => badges,
+        "student_line" => student_line,
         "student_led" => badges.count { |_, b| b["student"] },
         "core_ranked" => badges.count { |_, b| b["core"] },
         "first_year" => first_year,

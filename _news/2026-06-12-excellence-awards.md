@@ -2,6 +2,8 @@
 layout: post
 date: 2026-06-12 00:00:00+0300
 inline: true
+kind: student
+line: other
 related_posts: false
 ---
 

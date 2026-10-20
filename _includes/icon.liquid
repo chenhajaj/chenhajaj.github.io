@@ -1,0 +1,51 @@
+{%- comment -%}
+  Inline stroke icon: {% include icon.liquid name="paper" %}
+  Drawn on a 24px grid in the style of Lucide (ISC). Decorative: always
+  aria-hidden; the text next to it carries the meaning.
+{%- endcomment -%}
+<svg class="icon{% if include.class %} {{ include.class }}{% endif %}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  {%- case include.name -%}
+    {%- when 'paper' -%}
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/>
+    {%- when 'talk' -%}
+      <path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/>
+    {%- when 'award' -%}
+      <circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/>
+    {%- when 'grant' -%}
+      <path d="M3 22h18"/><path d="M6 18v-7"/><path d="M10 18v-7"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M12 2 20 7H4z"/>
+    {%- when 'student' -%}
+      <path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+    {%- when 'mail' -%}
+      <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>
+    {%- when 'pin' -%}
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
+    {%- when 'code' -%}
+      <path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/>
+    {%- when 'book' -%}
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+    {%- when 'users' -%}
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>
+    {%- when 'globe' -%}
+      <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/>
+    {%- when 'chat' -%}
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    {%- when 'star' -%}
+      <path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/>
+    {%- when 'review' -%}
+      <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+    {%- when 'arrow' -%}
+      <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+    {%- when 'cpu' -%}
+      <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>
+    {%- when 'search' -%}
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+    {%- when 'chart' -%}
+      <path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/>
+    {%- when 'coins' -%}
+      <circle cx="8" cy="8" r="6"/><path d="M18.1 10.4A6 6 0 1 1 10.3 18"/><path d="M7 6h1v4"/>
+    {%- when 'graph' -%}
+      <circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.2 7.2 10.8 16M16.8 7.2 13.2 16M7.5 6h9"/>
+    {%- else -%}
+      <circle cx="12" cy="12" r="4"/>
+  {%- endcase -%}
+</svg>

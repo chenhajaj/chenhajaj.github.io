@@ -17,13 +17,10 @@ nav_order: 5
       {%- unless forloop.first -%}</ul></div></section>{%- endunless -%}
       <section class="band" aria-labelledby="y{{ y }}">
         <div class="band-head"><h2 id="y{{ y }}" class="num">{{ y }}</h2></div>
-        <div class="band-body"><ul class="rows">
+        <div class="band-body"><ul class="news-cards">
       {%- assign current_year = y -%}
     {%- endif -%}
-    <li class="dated">
-      <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: '%-d %B' }}</time>
-      <div class="dated-body">{{ item.content | markdownify | remove: '<p>' | remove: '</p>' | strip_emoji | strip }}</div>
-    </li>
+    {% include news_card.liquid item=item date_format='%-d %B' %}
     {%- if forloop.last -%}</ul></div></section>{%- endif -%}
   {%- endunless -%}
 {%- endfor -%}

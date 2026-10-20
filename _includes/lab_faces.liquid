@@ -1,0 +1,31 @@
+{%- comment -%}
+  Current students as a row of initials, each in their research-line colour,
+  with a key below. Names are in the list for screen readers and on hover.
+{%- endcomment -%}
+{%- assign s = site.data.students -%}
+{%- assign current = s.phd_students | concat: s.masters_students -%}
+<div class="lab-faces">
+  <ul class="face-stack" aria-label="Current students">
+    {%- for p in current -%}
+      {%- assign key = site.data.research.student_line[p.name] | default: 'other' -%}
+      <li title="{{ p.name }}: {{ p.research_area | strip }}" style="--i: {{ forloop.index0 }}">
+        {% include avatar.liquid name=p.name line=key size="lg" -%}
+        <span class="visually-hidden">{{ p.name }}, {{ p.research_area | strip }}</span>
+      </li>
+    {%- endfor -%}
+  </ul>
+  <p class="face-key">
+    {%- for l in site.data.research_lines.lines -%}
+      {%- assign n = 0 -%}
+      {%- for p in current -%}
+        {%- if site.data.research.student_line[p.name] == l.key -%}{%- assign n = n | plus: 1 -%}{%- endif -%}
+      {%- endfor -%}
+      {%- if n > 0 -%}
+        <span class="line-tag" style="--c: var(--line-{{ l.key }})"
+          ><span class="line-dot" aria-hidden="true"></span>{{ l.name }}
+          <span class="num">{{ n }}</span></span
+        >
+      {%- endif -%}
+    {%- endfor -%}
+  </p>
+</div>

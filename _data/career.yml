@@ -1,0 +1,18 @@
+# Career timeline drawn on the home page (Background) and the CV.
+# spans: institution bands; to: "now" for the current one.
+# milestones: one marker per year; several lines share a marker. Markers
+# alternate above and below the band; tier: 2 lifts a label clear of its neighbour.
+first_year: 2009.5
+last_year: 2026.9
+spans:
+  - { name: "Bar-Ilan University", from: 2010, to: 2016 }
+  - { name: "Vanderbilt", from: 2016, to: 2018 }
+  - { name: "Ariel University", from: 2018, to: now }
+milestones:
+  - { year: 2010, icon: student, lines: ["BSc, Computer Engineering"] }
+  - { year: 2012, icon: student, lines: ["MSc, Computer Engineering"] }
+  - { year: 2016, icon: student, lines: ["PhD, Computer Science", "Postdoc at Vanderbilt"] }
+  - { year: 2018, icon: book, lines: ["Lecturer at Ariel", "Directs the Data Science Research Center"] }
+  - { year: 2021, icon: users, lines: ["Heads the Data Science track"] }
+  - { year: 2022, icon: award, lines: ["Senior Lecturer, tenured", "Chairs the Faculty Review Board"] }
+  - { year: 2025, icon: award, tier: 2, lines: ["Associate Professor", "NVIDIA University Ambassador"] }

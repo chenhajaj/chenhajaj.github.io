@@ -1,50 +1,55 @@
-{%- comment -%} Research grants from _data/grants.yml {%- endcomment -%}
-<div class="table-scroll">
-  <table class="data-table stack">
-    <thead>
-      <tr>
-        <th scope="col">Year</th>
-        <th scope="col">Grant</th>
-        <th scope="col">Role</th>
-        <th scope="col" class="amount">Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      {%- for grant in site.data.grants.grants -%}
-        <tr>
-          <td class="num">{{ grant.year }}</td>
-          <td class="title-cell">
-            {{ grant.full_name }}
-            <span class="sub">{{ grant.organization }}</span>
-          </td>
-          <td class="role">
-            {% if grant.role == 'PI' %}PI{% else %}Co-PI{% endif %}
-          </td>
-          <td class="amount">
-            {%- if grant.currency == 'NIS' -%}₪{%- else -%}${%- endif -%}
-            {{- grant.amount | thousands -}}
-          </td>
-        </tr>
+{%- comment -%}
+  Research grants from _data/grants.yml as a bar chart. Bars are scaled within
+  each currency (no conversion), coloured by research line; co-PI grants are
+  striped. Every number is also printed as text.
+{%- endcomment -%}
+{%- assign all = site.data.grants.grants -%}
+{%- assign groups = 'NIS,USD' | split: ',' -%}
+<div class="grant-chart">
+  <div class="grant-totals">
+    {%- for cur in groups -%}
+      {%- assign list = all | where: 'currency', cur -%}
+      {%- assign total = 0 -%}
+      {%- for g in list -%}
+        {%- assign total = total | plus: g.amount -%}
       {%- endfor -%}
-    </tbody>
-    {%- assign total_nis = 0 -%}
-    {%- assign total_usd = 0 -%}
-    {%- for grant in site.data.grants.grants -%}
-      {%- if grant.currency == 'NIS' -%}
-        {%- assign total_nis = total_nis | plus: grant.amount -%}
-      {%- else -%}
-        {%- assign total_usd = total_usd | plus: grant.amount -%}
-      {%- endif -%}
+      <p class="grant-total">
+        <span class="grant-total-num num">
+          {%- if cur == 'NIS' %}₪{% else %}${% endif -%}
+          {{- total | thousands -}}
+        </span>
+        <span class="grant-total-label">
+          {{- list.size }} grants in {% if cur == 'NIS' %}shekels{% else %}US dollars{% endif -%}
+        </span>
+      </p>
     {%- endfor -%}
-    <tfoot>
-      <tr>
-        <td colspan="3">Total</td>
-        <td class="amount">
-          ₪{{ total_nis | thousands -}}
-          <br>
-          ${{ total_usd | thousands }}
-        </td>
-      </tr>
-    </tfoot>
-  </table>
+    <p class="grant-key">
+      <span><span class="grant-swatch" aria-hidden="true"></span>PI</span>
+      <span><span class="grant-swatch is-co" aria-hidden="true"></span>Co-PI</span>
+    </p>
+  </div>
+  {%- for cur in groups -%}
+    {%- assign list = all | where: 'currency', cur | sort: 'amount' | reverse -%}
+    {%- assign max = list.first.amount -%}
+    <ol class="grant-bars" aria-label="Grants in {% if cur == 'NIS' %}shekels{% else %}US dollars{% endif %}">
+      {%- for g in list -%}
+        {%- assign w = g.amount | times: 100 | divided_by: max -%}
+        <li class="grant-row" style="--c: var(--line-{{ g.line | default: 'other' }}); --w: {{ w }}%; --i: {{ forloop.index0 }}">
+          <div class="grant-label">
+            <p class="grant-name">{{ g.full_name }}</p>
+            <p class="grant-meta">
+              <span class="num">{{ g.year }}</span> · {{ g.organization }} · {% if g.role == 'PI' %}PI{% else %}Co-PI{% endif %}
+            </p>
+          </div>
+          <div class="grant-track">
+            <span class="grant-fill{% if g.role != 'PI' %} is-co{% endif %}"></span>
+            <span class="grant-amount num">
+              {%- if cur == 'NIS' %}₪{% else %}${% endif -%}
+              {{- g.amount | thousands -}}
+            </span>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ol>
+  {%- endfor -%}
 </div>

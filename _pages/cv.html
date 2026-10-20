@@ -140,6 +140,26 @@ patents:
   </div>
 </header>
 
+{%- assign r = site.data.research -%}
+{%- assign st = site.data.students -%}
+{%- assign grads = st.phd_alumni.size | plus: st.masters_alumni.size -%}
+{%- assign msc_thesis = st.masters_alumni | where: 'program', 'thesis' -%}
+{%- assign msc_project = st.masters_alumni | where: 'program', 'project' -%}
+<section class="band" aria-labelledby="glance" id="cv-glance">
+  <div class="band-head">
+    <h2 id="glance">At a glance</h2>
+  </div>
+  <div class="band-body">
+    <ul class="stat-tiles">
+      <li><span class="icon-tile">{% include icon.liquid name="paper" %}</span><span class="stat-num num">{{ r.refereed }}</span><span class="stat-label">refereed papers ({{ r.journals }} journal, {{ r.conferences }} conference)</span></li>
+      <li style="--c: var(--line-medical)"><span class="icon-tile">{% include icon.liquid name="grant" %}</span><span class="stat-num num">{{ site.data.grants.grants.size }}</span><span class="stat-label">competitive grants as PI or co-PI</span></li>
+      <li style="--c: var(--line-incentives)"><span class="icon-tile">{% include icon.liquid name="student" %}</span><span class="stat-num num">{{ grads }}</span><span class="stat-label">graduated: {{ st.phd_alumni.size }} PhD, {{ msc_thesis.size }} thesis MSc, {{ msc_project.size }} MSc projects</span></li>
+      <li style="--c: var(--line-similarity)"><span class="icon-tile">{% include icon.liquid name="review" %}</span><span class="stat-num num">{{ site.data.orcid.reviews_total }}</span><span class="stat-label">verified journal reviews</span></li>
+    </ul>
+    {% include career.liquid %}
+  </div>
+</section>
+
 {% assign sections = "positions|Academic positions,education|Education,administration|Leadership and administration,conferences|Conference and workshop organization" | split: "," %}
 {% for pair in sections %}
   {% assign parts = pair | split: "|" %}
@@ -179,11 +199,12 @@ patents:
     <h2 id="awards">Awards and fellowships</h2>
   </div>
   <div class="band-body">
-    <ol class="entries">
+    <ol class="award-cards">
       {% for e in page.awards %}
-        <li class="entry-row">
-          <span class="entry-when">{{ e.when }}</span>
+        <li class="award-card">
+          <span class="icon-tile">{% include icon.liquid name="award" %}</span>
           <div>
+            <p class="award-year num">{{ e.when }}</p>
             <p class="entry-what">{{ e.what }}</p>
             <p class="entry-where">{{ e.where }}</p>
           </div>
@@ -205,22 +226,17 @@ patents:
     {%- assign o = site.data.orcid -%}
     {%- if o.reviews -%}
       <h3 class="service-head">Journal reviewing <span class="count">{{ o.reviews_total }} verified reviews</span></h3>
-      <div class="table-scroll">
-        <table class="data-table reviews-table">
-          <thead>
-            <tr><th scope="col">Journal</th><th scope="col" class="num">Reviews</th><th scope="col">Years</th></tr>
-          </thead>
-          <tbody>
-            {%- for r in o.reviews -%}
-              <tr>
-                <td class="title-cell">{{ r.venue }}</td>
-                <td class="num">{{ r.count }}</td>
-                <td class="num">{% if r.first == r.last %}{{ r.first }}{% else %}{{ r.first }} to {{ r.last }}{% endif %}</td>
-              </tr>
-            {%- endfor -%}
-          </tbody>
-        </table>
-      </div>
+      {%- assign rmax = o.reviews.first.count -%}
+      <ol class="review-bars">
+        {%- for r in o.reviews -%}
+          {%- assign w = r.count | times: 100 | divided_by: rmax -%}
+          <li class="review-row" style="--w: {{ w }}%; --i: {{ forloop.index0 }}">
+            <span class="review-venue">{{ r.venue }}</span>
+            <span class="review-track"><span class="review-fill"></span><span class="review-count num">{{ r.count }}</span></span>
+            <span class="review-years num">{% if r.first == r.last %}{{ r.first }}{% else %}{{ r.first }} to {{ r.last }}{% endif %}</span>
+          </li>
+        {%- endfor -%}
+      </ol>
       <p class="meta table-note">Verified on <a href="https://orcid.org/{{ o.orcid }}">ORCID</a>, updated {{ o.last_updated | date: '%-d %B %Y' }}.</p>
       {%- assign listed = o.reviews | map: 'venue' | join: '|' | downcase -%}
       {%- capture more -%}{%- for j in page.service.journals -%}{%- assign jl = j | downcase | replace: 'acm ', '' | replace: 'ieee ', '' -%}{%- unless listed contains jl -%}{{ j }}|{%- endunless -%}{%- endfor -%}{%- endcapture -%}

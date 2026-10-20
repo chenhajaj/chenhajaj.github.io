@@ -97,6 +97,31 @@ find-animation-opportunities; MIT). Rules this site follows:
 - Decoration must carry information. An earlier random "flow fingerprint"
   drawing was removed in October 2026 because it looked like data but was not.
 
+## Visual layer (October 2026)
+
+Chen asked for a less text-heavy, more inviting site. Lists became pictures
+built from the same data (`_sass/signal/_visual.scss`), never decoration:
+
+- **Icons** (`_includes/icon.liquid`, Lucide-style strokes, ISC) sit in tinted
+  tiles (`.icon-tile`) coloured by the item's research line.
+- **People**: initials avatars (`_includes/avatar.liquid`) in the colour of
+  each student's research line (the line they publish in most with Chen, else
+  a keyword match on their topic; `student_line` in `research-data.rb`, or set
+  `line:` in `students.yml`). Lab page cards, alumni wall, home face row.
+- **News**: cards with an icon for the kind (`kind:` paper, talk, award, grant,
+  student) and the line colour (`line:`) from each `_news/*.md` front matter.
+- **Funding**: bar chart, scaled within each currency, coloured by line
+  (`line:` in `grants.yml`), co-PI striped; every number is also text.
+- **Career**: timeline of institution bands and milestones from
+  `_data/career.yml` (home Background and CV). Vertical list on phones.
+- **CV**: stat tiles, reviewing bar chart (ORCID data), award cards.
+- **Selected papers** (home) and **research notes** show their line's
+  picture; **courses**, **repositories** and **contact routes** are icon cards.
+
+Cards are now used for these grouped items too (not only click-throughs),
+always flat: a 5% line-colour wash, a hairline ring, 14px radius, no shadows
+and no side stripes.
+
 ## Research line colours
 
 Each research line has one colour, set in `_data/research_lines.yml` (light
@@ -137,10 +162,10 @@ Dark mode follows the system unless the visitor picks a theme with the toggle
   left column that sticks while you scroll; content in the right nine columns.
   Collapses to one column under 860px.
 - Lists are rows separated by hairlines (`.rows`, `.entries`, `.pub`).
-- Cards are used only for things you click through to or that are featured:
-  research line cards and the featured paper. They take a light wash of their
-  line colour and a 14px radius. No nested cards, no shadows on cards, no
-  coloured side stripes.
+- Cards hold things you click through to, featured items, and the grouped
+  items of the visual layer (see above). They take a light wash of their line
+  colour and a 14px radius. No nested cards, no shadows on cards, no coloured
+  side stripes.
 - 6px radius for controls; 14px for cards and the portrait.
 - One primary button per section at most.
 

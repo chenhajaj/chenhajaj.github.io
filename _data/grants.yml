@@ -1,9 +1,11 @@
 # Research grants: full details with role and organization.
 # The site shows totals per currency (no conversion). Fellowships such as the
 # BSF Rahamimoff program are listed on the CV page, not here.
+# line: research line that colours the grant's bar (_data/research_lines.yml).
 
 grants:
   - full_name: "Multi-layered Classification of PQC-Encrypted Traffic"
+    line: "traffic"
     organization: "Ministry of Innovation, Science and Technology"
     role: "PI"
     co_pis: ["Chen Hajaj", "Amit Dvir"]
@@ -12,6 +14,7 @@ grants:
     year: 2025
   
   - full_name: "Clinical Progression of Dystrophinopathies: Exploring the Role of Autonomic Nervous System Activity and Machine Learning Models"
+    line: "medical"
     organization: "Ministry of Innovation, Science and Technology"
     role: "co-PI"
     co_pis: ["Sharon Barak", "Chen Hajaj", "Riki Tesler"]
@@ -20,6 +23,7 @@ grants:
     year: 2025
   
   - full_name: "Encrypted Networks Traffic Monitoring"
+    line: "traffic"
     organization: "Israel Innovation Authority"
     role: "PI"
     co_pis: ["Chen Hajaj", "Amit Dvir"]
@@ -28,6 +32,7 @@ grants:
     year: 2021
   
   - full_name: "APK Malware Detection and Analysis"
+    line: "adversarial"
     organization: "Israel National Cyber Directorate"
     role: "PI"
     amount: 179000
@@ -35,6 +40,7 @@ grants:
     year: 2019
   
   - full_name: "Quality of Service Monitoring"
+    line: "traffic"
     organization: "Israel Innovation Authority"
     role: "co-PI"
     co_pis: ["Chen Hajaj", "Amit Dvir"]
@@ -43,6 +49,7 @@ grants:
     year: 2019
   
   - full_name: "Violence Prediction in Public Events"
+    line: "other"
     organization: "Israel Innovation Authority"
     role: "co-PI"
     co_pis: ["Chen Hajaj", "Amit Dvir", "Uzi Ben-Shalom"]

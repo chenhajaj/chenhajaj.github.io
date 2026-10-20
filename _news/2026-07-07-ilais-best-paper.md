@@ -2,6 +2,8 @@
 layout: post
 date: 2026-07-07 00:00:00+0300
 inline: true
+kind: award
+line: similarity
 related_posts: false
 ---
 

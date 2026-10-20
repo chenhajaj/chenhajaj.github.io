@@ -1,0 +1,13 @@
+{%- comment -%}
+  Initials disc in a person's research-line colour.
+  {% include avatar.liquid name=p.name line="traffic" size="lg" %}
+{%- endcomment -%}
+{%- assign parts = include.name | strip | split: ' ' -%}
+{%- capture initials -%}{{ parts.first | slice: 0 }}{% if parts.size > 1 %}{{ parts.last | slice: 0 }}{% endif %}{%- endcapture -%}
+<span
+  class="avatar{% if include.size %} avatar-{{ include.size }}{% endif %}"
+  style="--c: var(--line-{{ include.line | default: 'other' }})"
+  aria-hidden="true"
+>
+  {{- initials | upcase -}}
+</span>

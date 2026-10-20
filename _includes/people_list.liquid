@@ -1,28 +1,41 @@
-<ul class="people-cols">
+{%- comment -%}
+  Current students as cards: initials in the colour of their research line
+  (from research-data.rb: the line they publish in most, else their topic).
+{%- endcomment -%}
+<ul class="person-cards">
   {%- for p in include.people -%}
-    <li class="person">
-      <p class="person-name">
-        {%- if p.link -%}
-          <a href="{{ p.link }}">{{ p.name }}</a>
-        {%- else -%}
-          {{ p.name }}
-        {%- endif -%}
-      </p>
-      <p class="person-topic">{{ p.research_area | strip }}</p>
-      {%- if p.program == 'project' -%}
-        <p class="person-extra">
-          Non-thesis MSc, final project{% if p.institution %}, {{ p.institution }}{% endif %}
+    {%- assign key = site.data.research.student_line[p.name] | default: 'other' -%}
+    {%- assign ln = site.data.research_lines.lines | where: 'key', key | first -%}
+    <li class="person-card">
+      {% include avatar.liquid name=p.name line=key size="lg" %}
+      <div class="person-body">
+        <p class="person-name">
+          {%- if p.link -%}
+            <a href="{{ p.link }}">{{ p.name }}</a>
+          {%- else -%}
+            {{ p.name }}
+          {%- endif -%}
         </p>
-      {%- elsif p.institution -%}
-        <p class="person-extra">{{ p.institution }}</p>
-      {%- endif -%}
-      {%- if p.co_supervisor or p.start_year -%}
+        <p class="person-topic">{{ p.research_area | strip }}</p>
         <p class="person-extra">
-          {%- if p.start_year -%}Since {{ p.start_year }}{%- endif -%}
-          {%- if p.start_year and p.co_supervisor -%}. {% endif -%}
-          {%- if p.co_supervisor -%}Co-supervised with {{ p.co_supervisor }}{%- endif -%}
+          {%- if ln -%}
+            <span class="line-tag" style="--c: var(--line-{{ key }})"><span class="line-dot" aria-hidden="true"></span>{{ ln.name }}</span>
+          {%- endif -%}
+          {%- if p.program == 'project' -%}
+            <span
+              >Non-thesis MSc{% if p.institution %}, {{ p.institution }}{% endif -%}
+            </span>
+          {%- elsif p.institution -%}
+            <span>{{ p.institution }}</span>
+          {%- endif -%}
+          {%- if p.start_year -%}
+            <span>Since {{ p.start_year }}</span>
+          {%- endif -%}
+          {%- if p.co_supervisor -%}
+            <span>Co-supervised with {{ p.co_supervisor }}</span>
+          {%- endif -%}
         </p>
-      {%- endif -%}
+      </div>
     </li>
   {%- endfor -%}
 </ul>

@@ -101,6 +101,17 @@
     data-selected="true"
   {% endif %}
 >
+  {%- if page.pub_thumbs -%}
+    {%- assign lobj = site.data.research_lines.lines | where: 'key', primary | first -%}
+    {%- if lobj -%}
+      {%- assign proj = site.projects | where_exp: 'p', 'p.url contains lobj.project' | first -%}
+      {%- if proj.img -%}
+        <div class="pub-thumb" aria-hidden="true">
+          {% include figure.liquid path=proj.img alt="" sizes="112px" loading="lazy" %}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif %}
   <h3 class="pub-title">
     <span
       class="pub-mark{% if entry.selected %} is-selected{% endif %}"

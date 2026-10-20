@@ -7,12 +7,16 @@ nav: false
 groups:
   - key: encrypted_traffic
     title: Encrypted traffic and network security
+    line: traffic
   - key: frameworks_pipelines_utilities
     title: Frameworks, pipelines and utilities
+    line: other
   - key: api_malware
     title: API security and malware detection
+    line: adversarial
   - key: ecommerce
     title: E-commerce
+    line: similarity
 ---
 
 <p class="lead software-lead">
@@ -29,17 +33,21 @@ groups:
         <p>{{ repos.size }} {% if repos.size == 1 %}repository{% else %}repositories{% endif %}</p>
       </div>
       <div class="band-body">
-        <ul class="rows">
+        <ul class="repo-cards" style="--c: var(--line-{{ group.line | default: 'other' }})">
           {% for repo in repos %}
+            {%- assign paper = site.data.research.paper_list | where: 'code', repo.url | first -%}
             <li>
-              <a class="repo" href="{{ repo.url }}">
-                <p class="repo-name">{{ repo.title | default: repo.name }}</p>
-                {% if repo.description %}<p class="repo-desc">{{ repo.description }}</p>{% endif %}
-                <p class="repo-meta meta">
-                  {{ repo.url | remove: 'https://github.com/' }}
-                  {%- if repo.language %}, {{ repo.language }}{% endif -%}
-                  {%- if repo.stars >= 5 %}, {{ repo.stars }} {% if repo.stars == 1 %}star{% else %}stars{% endif %}{% endif -%}
-                </p>
+              <a class="repo-card" href="{{ repo.url }}">
+                <span class="icon-tile">{% include icon.liquid name="code" %}</span>
+                <span class="repo-body">
+                  <span class="repo-name">{{ repo.title | default: repo.name }}</span>
+                  {% if repo.description %}<span class="repo-desc">{{ repo.description }}</span>{% endif %}
+                  <span class="repo-meta">
+                    {%- if repo.language -%}<span class="repo-lang"><span class="line-dot" aria-hidden="true"></span>{{ repo.language }}</span>{%- endif -%}
+                    {%- if paper -%}<span class="repo-paper" title="Code for: {{ paper.title | escape }}">{% include icon.liquid name="paper" %} Paper, {{ paper.year }}</span>{%- endif -%}
+                    {%- if repo.stars >= 5 -%}<span>{% include icon.liquid name="star" %} {{ repo.stars }}</span>{%- endif -%}
+                  </span>
+                </span>
               </a>
             </li>
           {% endfor %}

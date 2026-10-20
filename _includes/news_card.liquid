@@ -1,0 +1,30 @@
+{%- comment -%}
+  One news item as a card: icon for its kind (paper, talk, award, grant,
+  student) tinted with its research line, then date and text.
+  Front matter in _news/*.md: kind and line.
+{%- endcomment -%}
+{%- assign item = include.item -%}
+{%- assign kind = item.kind | default: 'paper' -%}
+{%- assign fmt = include.date_format | default: '%b %Y' -%}
+{%- case kind -%}
+  {%- when 'talk' -%}
+    {%- assign kind_label = 'Talk' -%}
+  {%- when 'award' -%}
+    {%- assign kind_label = 'Award' -%}
+  {%- when 'grant' -%}
+    {%- assign kind_label = 'Grant' -%}
+  {%- when 'student' -%}
+    {%- assign kind_label = 'Students' -%}
+  {%- else -%}
+    {%- assign kind_label = 'Paper' -%}
+{%- endcase -%}
+<li class="news-card" style="--c: var(--line-{{ item.line | default: 'other' }})">
+  <span class="icon-tile">{% include icon.liquid name=kind %}</span>
+  <div class="news-body">
+    <p class="news-meta">
+      <span class="news-kind">{{ kind_label }}</span>
+      <time datetime="{{ item.date | date: '%Y-%m-%d' }}">{{ item.date | date: fmt }}</time>
+    </p>
+    <p class="news-text">{{ item.content | markdownify | remove: '<p>' | remove: '</p>' | strip_emoji | strip }}</p>
+  </div>
+</li>
