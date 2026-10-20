@@ -13,6 +13,7 @@
 }
 
 @article{zion2026ultrafast,
+  abstract = {The dominance of encryption and the relentless growth of network traffic have rendered traditional deep packet inspection ineffective and made retraining-based machine learning classifiers operationally costly, as every new application or threat class requires a full model rebuild. In order to overcome this challenge, we present an ultra-fast encrypted traffic classification system based on Classification By Retrieval (CBR): each flow is represented by a fixed-length feature vector extracted from only the first few packets, indexed in a HNSW approximate nearest-neighbor structure, and classified by retrieving its nearest labeled neighbor. New classes are absorbed by inserting a handful of labeled vectors into the running index, with no retraining and no downtime, and out-of-distribution traffic is detected within the same retrieval step using a single global distance threshold. We evaluate handcrafted statistical features and learned CNN and MLP embeddings against a Random Forest baseline on the public CESNET-TLS22 dataset (184 application classes) and a proprietary cellular dataset (RADCOM). With CNN embeddings, CBR matches Random Forest accuracy (macro F1 of 0.923 versus 0.925 on CESNET) while training roughly ten times faster, adapts to new classes two to three orders of magnitude faster (seconds versus thousands of seconds), and detects out-of-distribution flows at up to 0.92 AUROC. The retrieval index is also far cheaper to keep resident than the baseline it replaces, holding 1.2 million CESNET flows in 171 MB against 1,350 MB for the serialized forest, because its size grows with the number of indexed flows rather than with the number of classes. The Random Forest remains the faster classifier per flow, so the trade-off is per-flow latency against adaptability and memory. These results show that retrieval-based classification is a practical and adaptable alternative for real-time encrypted traffic analysis in dynamic network environments.},
   author   = {Yehonatan Zion and Amit Dvir and Chen Hajaj and Ran Dubin and Neriya Filber},
   title    = {Ultra fast encrypted network traffic classification based on classification by retrieval powered by out-of-distribution},
   journal  = {Computer Networks},
@@ -73,6 +74,7 @@ empirically to improve learning behaviours in studio-based education.}
 }
 
 @inproceedings{aharon2026uncovering_microservice_faults,
+  doi = {10.1109/ICC59461.2026.11586787},
   code = {https://github.com/ArielCyber/TGN-RCA},
   abstract = {Real-time processing demands for massive IoT sensor data necessitate reliance on distributed microservice systems within edge clusters. However, pinpointing the root cause of anomalies within these edge microservice clusters poses a critical challenge for intelligent IoT operation and maintenance. To address the issue, a spatio-temporal graph propagation model ST-GraphRCA is proposed for root cause analysis in IoT edge environments. Our approach begins by resolving the fundamental issue of time-series asynchrony across distributed multi-source metrics. A PCA-DTW hybrid feature extraction method is introduced with a dynamic alignment strategy to mitigate the effects of random network delays and data deformation without requiring prior synchronization. Subsequently, ST-GraphRCA constructs a stream-based forward propagation graph based on the flow conservation principle. By integrating dynamic edge weights with node-level input–output anomaly scores, ST-GraphRCA precisely infers fault propagation pathways and identifies potential root cause candidates through causal reasoning. Finally, a topology-constrained high-utility mining algorithm filters these candidates. Using a constraint matrix, the algorithm filters out unreachable service combinations to locate low-frequency and high-risk root causes. Experimental results indicate that ST-GraphRCA achieves an F1-Score of 0.89, outperforming existing methods. In resource-constrained edge scenarios, its average localization time is merely 238.8 ms, representing a six-fold improvement over key benchmarks. Thus, ST-GraphRCA not only provides an efficient anomaly fault tracing solution for large-scale IoT systems but also offers technical support for the intelligent operation and maintenance of distributed microservice systems.},
 
@@ -86,6 +88,7 @@ empirically to improve learning behaviours in studio-based education.}
   projects     = {machine-learning, security}
   }
 @article{simhon2026realtime_network_security,
+  abstract = {The increasing sophistication and frequency of cyberattacks have made Network Intrusion Detection Systems (NIDS) a critical component of modern cybersecurity. This work presents D-MAGIC, a novel real-time NIDS that leverages zero-shot learning and graph-based dynamic clustering to detect both known and unknown threats. Unlike traditional systems that rely on labeled datasets and predefined attack signatures, D-MAGIC operates unsupervised, identifying anomalies by detecting deviations from normal network behavior. D-MAGIC employs dynamic clustering to identify coordinated attacks and emerging threats by embedding network flow relationships into a graph structure and clustering similar patterns. Additionally, a second anomaly detection method, called SAGA, is introduced. SAGA enhances detection by using approximate nearest neighbor (ANN) analysis to evaluate isolated nodes, which clustering alone cannot classify. By leveraging information from a node’s neighbors, SAGA improves the identification of subtle or emerging threats. This hybrid approach ensures more comprehensive detection, capturing both clustered anomalies and isolated outliers. Experimental results on the CIC-IDS-2017 and CSE-CIC-IDS-2018 datasets demonstrate that D-MAGIC achieves up to 12\% improvement in F1 score over state-of-the-art methods, significantly reduces false positives, and ensures rapid, real-time detection with minimal latency. Furthermore, on the CIC-IDS-2017 dataset, SAGA achieves up to a 6\% improvement in accuracy, showcasing its effectiveness in handling diverse attack scenarios.},
   title   = {Real-Time Network Security: Integrating ANN and Dynamic Graph-Based Clustering},
   author  = {Simhon, Zohar and Weiss, Matan and Marbel, Revital and Hajaj, Chen and Dvir, Amit and Dubin, Ran},
   journal = {Computer Networks},
@@ -145,6 +148,7 @@ abstract = {Music in the current digital era is consumed primarily on-demand, fo
 }
 
 @inproceedings{litman2026_cleaner_adversarial_captchas,
+  doi = {10.65109/afaw3962},
   author    = {Litman, Meir and Hajaj, Chen},
   title     = {Cleaner Adversarial CAPTCHAs: Intelligent Targets and Precise Noise for Usable Security},
   booktitle = {International Conference on Autonomous Agents and Multiagent Systems (AAMAS)},
@@ -206,6 +210,7 @@ abstract = {Traditional CAPTCHAs are increasingly vulnerable to deep learning-ba
 }
 
 @inproceedings{sopher2025sentiment,
+  doi = {10.52842/conf.caadria.2025.1.429},
   title={Sentiment Analysis of Student-Tutor Interactions in VR Design Crits},
   author={Sopher, Hadas and Hajaj, Chen and Gero, John S},
   year={2025},
@@ -303,6 +308,7 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
 }
 
 @misc{aharon2024few,
+  url = {https://arxiv.org/abs/2405.11258},
   abstract = {Web applications and APIs face constant threats from malicious actors seeking to exploit vulnerabilities for illicit gains. To defend against these threats, it is essential to have anomaly detection systems that can identify a variety of malicious behaviors. However, a significant challenge in this area is the limited availability of training data. Existing datasets often do not provide sufficient coverage of the diverse API structures, parameter formats, and usage patterns encountered in real-world scenarios. As a result, models trained on these datasets often struggle to generalize and may fail to detect less common or emerging attack vectors. To enhance detection accuracy and robustness, it is crucial to access larger and more representative datasets that capture the true variability of API traffic. To address this, we introduce a GAN-inspired learning framework that extends limited API traffic datasets through targeted, domain-aware synthesis. Drawing on techniques from Natural Language Processing (NLP), our approach leverages Transformer-based architectures, particularly RoBERTa, to enhance the contextual representation of API requests and generate realistic synthetic samples aligned with security-specific semantics. We evaluate our framework on two benchmark datasets, CSIC 2010 and ATRDF 2023, and compare it with a previous data augmentation technique to assess the importance of domain-specific synthesis. In addition, we apply our augmented data to various anomaly detection models to evaluate its impact on classification performance. Our method achieves up to a 4.94% increase in F1 score on CSIC 2010 and up to 21.10% on ATRDF 2023. The source codes of this work are available at this https URL.},
 
   title={Few-Shot API Attack Detection: Overcoming Data Scarcity with GAN-Inspired Learning},
@@ -735,6 +741,8 @@ abstract = {In the domain of online recommendation systems, the cold-start probl
 }
 
 @inproceedings{tong2019improving,
+  url = {https://www.usenix.org/conference/usenixsecurity19/presentation/tong},
+  arxiv = {1708.08327},
   abstract = {Machine learning (ML) techniques are increasingly common in security applications, such as malware and intrusion detection. However, ML models are often susceptible to evasion attacks, in which an adversary makes changes to the input (such as malware) in order to avoid being detected. A conventional approach to evaluate ML robustness to such attacks, as well as to design robust ML, is by considering simplified feature-space models of attacks, where the attacker changes ML features directly to effect evasion, while minimizing or constraining the magnitude of this change. We investigate the effectiveness of this approach to designing robust ML in the face of attacks that can be realized in actual malware (realizable attacks). We demonstrate that in the context of structure-based PDF malware detection, such techniques appear to have limited effectiveness, but they are effective with content-based detectors. In either case, we show that augmenting the feature space models with conserved features (those that cannot be unilaterally modified without compromising malicious functionality) significantly improves performance. Finally, we show that feature space models enable generalized robustness when faced with a variety of realizable attacks, as compared to classifiers which are tuned to be robust to a specific realizable attack.},
   title={Improving Robustness of ML Classifiers Against Realizable Evasion Attacks Using Conserved Features},
   author={Tong, Liang and Li, Bo and Hajaj, Chen and Xiao, Chaowei and Zhang, Ning and Vorobeychik, Yevgeniy},
@@ -833,6 +841,7 @@ abstract={This paper presents methods for improving the attention span of worker
 }
 
 @inproceedings{elmalech2016extending,
+  doi = {10.1609/hcomp.v4i1.13276},
   title={Extending Workers' Attention Span Through Dummy Events},
   author={Elmalech, Avshalom and Sarne, David and David, Esther and Hajaj, Chen},
   booktitle={Proceedings of the AAAI Conference on Human Computation and Crowdsourcing},
@@ -880,6 +889,7 @@ abstract={In this work, we propose a fully automatic and computationally efficie
 }
 
 @inproceedings{hajaj2015strategy,
+  doi = {10.1609/aaai.v29i1.9322},
   title={Strategy-Proof and Efficient Kidney Exchange Using a Credit Mechanism},
   author={Hajaj, Chen and Dickerson, John P and Hassidim, Avinatan and Sandholm, Tuomas and Sarne, David},
   booktitle={AAAI Conference on Artificial Intelligence (AAAI)},
@@ -889,6 +899,7 @@ abstract={We present a credit-based matching mechanism for dynamic barter market
 }
 
 @inproceedings{hajaj2014advanced,
+  doi = {10.65109/dumc9735},
   category = {workshop},
   title={Advanced Service Schemes for a Self-Interested Information Platform},
   author={Hajaj, Chen and Sarne, David and Perets, Lea},
@@ -900,6 +911,7 @@ abstract={This paper deals with platforms that bring together agents and opportu
 }
 
 @inproceedings{hajaj2014ordering,
+  doi = {10.1609/aaai.v28i1.8837},
   title={Ordering Effects and Belief Adjustment in the Use of Comparison Shopping Agents},
   author={Hajaj, Chen and Hazon, Noam and Sarne, David},
   booktitle={AAAI Conference on Artificial Intelligence (AAAI)},
@@ -924,6 +936,7 @@ doi={10.1145/2600057.2602864},
 }
 
 @inproceedings{hajaj2013search,
+  doi = {10.1609/aaai.v27i1.8607},
   title={Search More, Disclose Less},
   author={Hajaj, Chen and Hazon, Noam and Sarne, David and Elmalech, Avshalom},
   booktitle={AAAI Conference on Artificial Intelligence (AAAI)},
@@ -987,6 +1000,7 @@ projects={computer-vision}
 }
 
 @article{klein2026graphmux,
+  abstract = {The growing dominance of encrypted network traffic and modern encryption protocols (TLS 1.3, QUIC, DoH) poses significant challenges for accurate network classification, particularly as many existing approaches rely on text- or image-based representations, which fail to adequately capture the inherent structural relationships present in network communication—relationships that are more naturally represented as graphs. In this work, we introduce GraphMux, a graph-based framework that leverages line graph transformations to fuse multiple graph views into a unified representation. We also present three graph-based flow representations (TIG+Chain, StarBurst, and 2Chain) designed to capture both temporal burst dynamics and client–server interaction patterns, using only packet time, direction, and length information, without incorporating any unencrypted statistical features. We evaluate our approach on three datasets: two academic datasets (UTMobileNetTraffic2021 and QUIC PCAP) and a commercial dataset (Flash), using four graph embedding architectures. Across all datasets, GraphMux consistently achieves superior performance, and the proposed graph constructions often yield the best results. Additional experiments examining attribute-selection strategies reveal a strong positive relationship between well-aligned feature assignments and classification accuracy, underscoring the importance of principled attribute design when constructing graph representations for encrypted traffic.},
   code = {https://github.com/ArielCyber/graph-mux},
   author    = {M. Klein and Revital Marbel and Chen Hajaj and Ran Dubin and Amit Dvir},
   title     = {GraphMux: A graph-based framework for encrypted traffic classification},
@@ -999,6 +1013,7 @@ projects={computer-vision}
 }
 
 @inproceedings{meiri2025outofdistribution,
+  abstract = {Recent advancements in Internet protocols, including DNS over HTTPS (DoH) and Encrypted Service Name Indicators (ESNI), are making traditional Deep Packet Inspection (DPI) engines obsolete.Consequently, there is a growing need for nextgeneration traffic classification using artificial intelligence (AI).While DPI automatically categorizes unknown traffic as 'other,' AI-based models cannot automatically handle unknown or Outof-Distribution (OOD) traffic.AI models must effectively detect and classify OOD traffic to ensure robustness, reliability, and accuracy in real-world applications; however, current research often fails to address the challenges of OOD detection.In this paper, we evaluate various state-of-the-art OOD detection techniques for internet traffic classification and explore the drawbacks and advantages of using different threshold levels for the model's tolerance for OOD.Our findings reveal that varying rejection rates have distinct effects on OOD techniques, leading to a change in the optimal strategy for achieving dependable and precise detection across diverse OOD scenarios.We demonstrate that adjusting rejection rates from 10\% to 30\% can significantly improve the True Detection Rate (TDR) by up to 50\%, while the False Detection Rate (FDR) may increase by less than 10\%.Moreover, we emphasize that rejection-rate-based evaluation is pivotal for next-generation flow classification, promising a substantial reduction in FDR through rigorous methodological assessment.},
   code = {https://github.com/ArielCyber/OOD_Is_Not_Magic},
   author    = {Itay Meiri and Ran Dubin and Amit Dvir and Chen Hajaj},
   title     = {Out-Of-Distribution Is Not Magic: The Clash Between Rejection Rate and Model Success},
@@ -1013,6 +1028,7 @@ projects={computer-vision}
 }
 
 @misc{glik2025routine,
+  abstract = {AD dementia risk prediction may help prevent 30\% of cases by treating vascular risk factors years before clinical stage. Moreover, new disease modifying drugs are given only in the earliest clinical stages. Hence, there is a need for a tool that can flag high‐risk cognitive healthy (CH) subjects in order to improve early drug accessibility. The tool should be able to screen mass populations in a short period while maintaining low cost. The aim of this study was to develop such a tool. We interrogated a community cohort from the Clalit health care services. The cohort included 504,219 subjects, above the age of 45. Each subject had at least one routine blood count and basic chemistry and up to ten consecutive blood exams done on a yearly basis. The blood exams were done for various other reasons. After exclusion, there were 381,754 Cognitive Healthy (CH) subjects and 59,441 subjects diagnosed with AD (MCI or early dementia). AD Diagnosis was based on the 2011 NIA guidelines. The predictive ML tool was trained for different combinations of historical period (1 to 10y) and prediction horizons (1 to 10y). For each model, we calculated the accuracy, area under the curve (AUC), precision, recall, F1 score, false positive/negative rates, risk ratio (RR) and odds ratio (OR). We present herein some examples of the model results. For one year of blood exam history (aka one blood exam) and one year of horizon prediction the accuracy was 0.73, AUC 0.8, precision 0.28, recall 0.73, F1 score 0.4. For two years of blood exam history and three years of horizon prediction the accuracy was 0.73, AUC 0.84, precision 0.28, recall 0.82, F1 score 0.42. For two years of history and ten years of horizon the accuracy was 0.73, AUC 0.81, precision 0.19, recall 0.75, F1 score 0.3. Routine Blood count and chemistry, done for various other reasons, may enclose information concerning future risk for AD dementia. Using ML and AI sophisticated tools can facilitate the use of routine blood exams as a screening tool for AD dementia risk assessment.},
   author    = {Glik, Amir and Omry Arbiv and Keshet Prado and Raphaeli, Orit and Hayim Raclaw and Roy Kait and Ofri Kait and Goldstein, Anat and Chen Hajaj},
   title     = {Routine Blood Count and Chemistry can predict AD dementia risk up to Ten years Ahead},
   howpublished = {Conference abstract (AAIC 2025), Alzheimer's \& Dementia 21(S2):e102512},
@@ -1035,6 +1051,7 @@ projects={computer-vision}
 }
 
 @misc{low2022a,
+  abstract = {We present a rotating proposer mechanism for team formation, which implements a Pareto efficient subgame perfect Nash equilibrium of an extensive-form team formation game.},
   author    = {Lou, Jian and Chen Hajaj and Yevgeniy Vorobeychik},
   title     = {A Rotating Proposer Mechanism for Team Formation},
   howpublished = {arXiv preprint arXiv:2204.04251},
@@ -1133,6 +1150,8 @@ projects={computer-vision}
 }
 
 @inproceedings{hajaj2018coordination,
+  doi = {10.65109/ckdj6887},
+  abstract = {Extensive literature exists studying decentralized coordination and consensus, with considerable attention devoted to ensuring robustness to faults and attacks. However, most of the latter literature assumes that non-malicious agents follow simple stylized rules. In reality, decentralized protocols often involve humans, and understanding how people coordinate in adversarial settings is an open problem. We initiate a study of this problem, starting with a human subjects investigation of human coordination on networks in the presence of adversarial agents, and subsequently using the resulting data to bootstrap the development of a credible agent-based model of adversarial decentralized coordination. In human subjects experiments, we observe that while adversarial nodes can successfully prevent consensus, the ability to communicate can significantly improve robustness, with the impact particularly significant in scale-free networks. On the other hand, and contrary to typical stylized models of behavior, we show that the existence of trusted nodes has limited utility. Next, we use the data collected in human subject experiments to develop a data-driven agent-based model of adversarial coordination. We show that this model successfully reproduces observed behavior in experiments, is robust to small errors in individual agent models, and illustrate its utility by using it to explore the impact of optimizing network location of trusted and adversarial nodes.},
   category  = {workshop},
   title     = {Adversarial Coordination on Social Networks},
   author    = {Hajaj, Chen and Yu, Sixie and Joveski, Zlatko and Vorobeychik, Yevgeniy},
