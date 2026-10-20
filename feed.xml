@@ -24,7 +24,7 @@ sitemap: false
   <icon>{{ '/assets/img/favicon.svg' | absolute_url }}</icon>
   {%- for item in items limit: 40 %}
     {%- if item.layout == 'note' -%}
-      {%- assign kind = 'Research note' -%}
+      {%- assign kind = 'Explainer' -%}
       {%- assign entry_title = item.title -%}
       {%- assign entry_html = item.summary | default: item.description | markdownify -%}
     {%- else -%}

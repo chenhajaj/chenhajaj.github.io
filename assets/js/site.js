@@ -455,12 +455,23 @@
       "main .band > .band-head",
       "main .band > .band-body > *",
       "main .rows > li",
+      "main .news-list > li",
+      "main .person-cards > li",
+      "main .alumni-cards > li",
+      "main .course-cards > li",
+      "main .repo-cards > li",
+      "main .award-cards > li",
       "main .page-head > *",
       "main .note-head > *",
       "main .note-body .prose > *",
     ].join(",");
     var reveals = Array.prototype.filter.call(document.querySelectorAll(revealSel), function (el) {
-      return !el.closest(".atlas, .atlas-band") && !el.querySelector(".rows");
+      // Lists reveal item by item, so their containers do not fade as one.
+      return (
+        !el.closest(".atlas, .atlas-band") &&
+        !el.matches(".rows, .news-list, .person-cards, .alumni-cards, .course-cards, .repo-cards, .award-cards") &&
+        !el.querySelector(".rows, .news-list, .person-cards, .alumni-cards, .course-cards, .repo-cards, .award-cards")
+      );
     });
     var revealObs = new IntersectionObserver(
       function (entries) {
@@ -472,7 +483,7 @@
           entry.target.classList.add("is-shown");
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+      { threshold: 0, rootMargin: "0px 0px -6% 0px" }
     );
     reveals.forEach(function (el) {
       el.classList.add("reveal");

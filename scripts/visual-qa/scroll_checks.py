@@ -92,10 +92,15 @@ HIDE_TEXT_CSS = (
 
 
 def _parse_color(css):
-    nums = [float(x) for x in css[css.index("(") + 1:css.index(")")].replace("/", " ").replace(",", " ").split()]
+    """rgb()/rgba() in 0-255, or color(srgb r g b / a) in 0-1 (from color-mix)."""
+    inner = css[css.index("(") + 1:css.rindex(")")].replace("/", " ").replace(",", " ").split()
+    scale = 255.0
+    if inner and inner[0] == "srgb":
+        inner, scale = inner[1:], 1.0
+    nums = [float(x) for x in inner]
     r, g, b = nums[:3]
     a = nums[3] if len(nums) > 3 else 1.0
-    return np.array([r, g, b]) / 255.0, a
+    return np.array([r, g, b]) / scale, a
 
 
 def _lum(rgb):
