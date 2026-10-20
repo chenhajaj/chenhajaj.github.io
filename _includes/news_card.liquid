@@ -1,7 +1,7 @@
 {%- comment -%}
-  One news item as a card: icon for its kind (paper, talk, award, grant,
-  student) tinted with its research line, then date and text.
-  Front matter in _news/*.md: kind and line.
+  One news item on the timeline: an icon for its kind (paper, talk, award,
+  grant, student) on the rail, tinted with its research line, then date and
+  text. Front matter in _news/*.md: kind and line.
 {%- endcomment -%}
 {%- assign item = include.item -%}
 {%- assign kind = item.kind | default: 'paper' -%}
@@ -18,8 +18,8 @@
   {%- else -%}
     {%- assign kind_label = 'Paper' -%}
 {%- endcase -%}
-<li class="news-card" style="--c: var(--line-{{ item.line | default: 'other' }})">
-  <span class="icon-tile">{% include icon.liquid name=kind %}</span>
+<li class="news-item" data-kind="{{ kind }}" style="--c: var(--line-{{ item.line | default: 'other' }})">
+  <span class="icon-tile news-node">{% include icon.liquid name=kind %}</span>
   <div class="news-body">
     <p class="news-meta">
       <span class="news-kind">{{ kind_label }}</span>

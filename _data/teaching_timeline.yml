@@ -1,0 +1,12 @@
+# Teaching timeline on /teaching/ (same drawing as the career timeline).
+first_year: 2010.5
+last_year: 2026.9
+spans:
+  - { name: "Bar-Ilan, teaching assistant", from: 2011, to: 2016 }
+  - { name: "", from: 2017, to: 2018 }
+  - { name: "Ariel University, faculty", from: 2018, to: now }
+milestones:
+  - { year: 2011, lines: ["Teaching assistant at Bar-Ilan", "Microprocessor lab, simulation"] }
+  - { year: 2014, lines: ["Programming and systems", "Intro CS, OOP, OS, Verilog"] }
+  - { year: 2017, lines: ["Guest lectures at Vanderbilt", "AI, computational economics"] }
+  - { year: 2018, lines: ["Faculty at Ariel", "Machine learning, AI, Python"] }

@@ -5,7 +5,6 @@ permalink: /insights/security-clinical-ml/
 description: A research note from the Adaptive AI Lab — cybersecurity and clinical machine learning both face distribution shift, rare high-cost cases, and punished confident mistakes, so they share design requirements.
 date: 2026-07-01
 topic: "Trustworthy AI"
-line: medical
 summary: "Both domains change after deployment, contain rare high-cost cases, and punish confident mistakes. That makes robustness, out-of-distribution detection, interpretable evidence, and careful validation common design requirements across our cyber and health projects."
 links:
   - label: "All research lines"

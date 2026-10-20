@@ -12,13 +12,8 @@ nav_order: 7
 <ul class="rows notes-list">
   {%- for note in notes -%}
     <li>
-      {%- assign lobj = site.data.research_lines.lines | where: 'key', note.line | first -%}
-      {%- assign proj = nil -%}
-      {%- if lobj -%}{%- assign proj = site.projects | where_exp: 'p', 'p.url contains lobj.project' | first -%}{%- endif -%}
-      <a class="note-row{% if proj.img %} has-img{% endif %}" href="{{ note.url | relative_url }}" style="--c: var(--line-{{ note.line | default: 'other' }})">
-        {%- if proj.img -%}
-          <span class="note-img" aria-hidden="true">{% include figure.liquid path=proj.img alt="" sizes="(max-width: 640px) 92vw, 240px" loading="lazy" %}</span>
-        {%- endif -%}
+      <a class="note-row" href="{{ note.url | relative_url }}">
+
         <span class="note-text">
           <span class="meta">{{ note.topic }}, {{ note.date | date: '%B %Y' }}</span>
           <h2>{{ note.title }}</h2>

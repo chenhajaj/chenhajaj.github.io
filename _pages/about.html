@@ -14,7 +14,6 @@ featured:
   url: "https://doi.org/10.1016/j.comnet.2026.112739"
   label: "Read the paper"
   line: traffic # research line key from _data/research_lines.yml (sets the colour)
-pub_thumbs: true # selected papers show their research line's picture
 ---
 
 {%- assign s = site.data.students -%}
@@ -134,12 +133,12 @@ pub_thumbs: true # selected papers show their research line's picture
         <p>{{ page.featured.text }}</p>
         <a class="button" href="{{ page.featured.url }}">{{ page.featured.label }}</a>
       </article>
-      <ul class="news-cards">
+      <ol class="news-list">
         {%- assign sorted_news = site.news | sort: 'date' | reverse -%}
-        {%- for item in sorted_news limit: 6 -%}
+        {%- for item in sorted_news limit: 5 -%}
           {% include news_card.liquid item=item %}
         {%- endfor -%}
-      </ul>
+      </ol>
     </div>
   </section>
 

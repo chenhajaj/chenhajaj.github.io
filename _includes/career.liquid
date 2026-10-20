@@ -2,9 +2,9 @@
   Career timeline from _data/career.yml: institution bands on a year axis,
   with milestones above and below. Under 760px it becomes a vertical list.
 {%- endcomment -%}
-{%- assign c = site.data.career -%}
+{%- assign c = include.data | default: site.data.career -%}
 {%- assign span = c.last_year | minus: c.first_year -%}
-<figure class="career" aria-label="Career timeline, 2010 to now">
+<figure class="career" aria-label="{{ include.label | default: 'Career timeline, 2010 to now' }}">
   <ol class="career-milestones">
     {%- for m in c.milestones -%}
       {%- assign x = m.year | minus: c.first_year | times: 100.0 | divided_by: span -%}

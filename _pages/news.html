@@ -9,18 +9,34 @@ nav_order: 5
 ---
 
 {%- assign sorted_news = site.news | sort: 'date' | reverse -%}
+{%- assign kinds = 'paper|Papers,award|Awards,grant|Grants,talk|Talks,student|Students' | split: ',' -%}
+<div class="news-filter" role="group" aria-label="Show news by type" data-filter-group="kind" data-filter-items=".news-item" data-filter-sections=".news-year">
+  <button type="button" class="filter-chip" data-value="" aria-pressed="true">All <span class="num">{{ sorted_news.size }}</span></button>
+  {%- for pair in kinds -%}
+    {%- assign kv = pair | split: '|' -%}
+    {%- assign k = kv[0] -%}
+    {%- assign n = sorted_news | where: 'kind', k | size -%}
+    {%- if n > 0 -%}
+      <button type="button" class="filter-chip" data-value="{{ k }}" aria-pressed="false">
+        {% include icon.liquid name=k %}{{ kv[1] }} <span class="num">{{ n }}</span>
+      </button>
+    {%- endif -%}
+  {%- endfor -%}
+  <p class="news-filter-status visually-hidden" aria-live="polite"></p>
+</div>
+
 {%- assign current_year = '' -%}
 {%- for item in sorted_news -%}
   {%- unless item.path contains '_TEMPLATE' -%}
     {%- assign y = item.date | date: '%Y' -%}
     {%- if y != current_year -%}
-      {%- unless forloop.first -%}</ul></div></section>{%- endunless -%}
-      <section class="band" aria-labelledby="y{{ y }}">
+      {%- unless forloop.first -%}</ol></div></section>{%- endunless -%}
+      <section class="band news-year" aria-labelledby="y{{ y }}">
         <div class="band-head"><h2 id="y{{ y }}" class="num">{{ y }}</h2></div>
-        <div class="band-body"><ul class="news-cards">
+        <div class="band-body"><ol class="news-list">
       {%- assign current_year = y -%}
     {%- endif -%}
     {% include news_card.liquid item=item date_format='%-d %B' %}
-    {%- if forloop.last -%}</ul></div></section>{%- endif -%}
+    {%- if forloop.last -%}</ol></div></section>{%- endif -%}
   {%- endunless -%}
 {%- endfor -%}

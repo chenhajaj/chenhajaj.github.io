@@ -7,24 +7,29 @@ lead: Machine learning, data science and computer science courses at three unive
 nav: false
 
 # Edit the course list here. `years` is optional; `icon` names an icon in
-# _includes/icon.liquid (graph, code, search, cpu, coins, chart, book).
+# _includes/icon.liquid (graph, code, search, cpu, coins, chart, book);
+# `topic` drives the filter chips: ai, programming, systems or economics.
 teaching:
   - institution: Ariel University
     period: "Faculty, 2018 to now"
     courses:
       - name: "Machine Learning"
+        topic: ai
         icon: graph
         level: Undergraduate
         text: "Supervised & unsupervised learning, decision trees, SVMs, neural networks, and model evaluation."
       - name: "Advanced Topics in Machine Learning"
+        topic: ai
         icon: graph
         level: Graduate
         text: "Deep learning, CNNs, RNNs, transformers, and applied project work on real datasets."
       - name: "Introduction to Computing (Python)"
+        topic: programming
         icon: code
         level: Undergraduate
         text: "Programming fundamentals, algorithms, and data structures using Python for first-year students."
       - name: "Search Engines and Recommendation Systems"
+        topic: ai
         icon: search
         level: Undergraduate
         text: "Information retrieval, indexing, ranking algorithms, collaborative filtering, and content-based recommendations."
@@ -32,10 +37,12 @@ teaching:
     period: "Guest lecturer, 2017 to 2018"
     courses:
       - name: "Advanced Topics in Artificial Intelligence"
+        topic: ai
         icon: cpu
         level: Guest lectures
         text: "Search, planning, probabilistic reasoning, machine learning, and AI ethics for graduate students."
       - name: "Computational Economics"
+        topic: economics
         icon: coins
         level: Guest lectures
         text: "Game theory, mechanism design, auctions, and algorithmic approaches to economic modeling."
@@ -43,39 +50,100 @@ teaching:
     period: "Teaching assistant, 2011 to 2016"
     courses:
       - name: "Introduction to Computer Science"
+        topic: programming
         icon: code
         level: Undergraduate
         years: "2014–2016"
         text: "Core CS concepts, problem-solving, and introduction to programming for engineering students."
       - name: "Object-Oriented Programming"
+        topic: programming
         icon: code
         level: Undergraduate
         years: "2013–2016"
         text: "OOP principles: classes, inheritance, polymorphism, and design patterns in Java."
       - name: "Operating Systems"
+        topic: systems
         icon: cpu
         level: Undergraduate
         years: "2013–2016"
         text: "Processes, threads, scheduling, memory management, file systems, and concurrency."
       - name: "VERILOG"
+        topic: systems
         icon: cpu
         level: Undergraduate
         years: "2014–2016"
         text: "Hardware description language for digital design, simulation, and FPGA synthesis."
       - name: "Simulation and Simulation Languages"
+        topic: systems
         icon: chart
         level: Undergraduate
         years: "2011–2012"
         text: "Discrete-event simulation theory, modeling methodologies, and simulation tools."
       - name: "Microprocessor Laboratory (ADuC841)"
+        topic: systems
         icon: cpu
         level: Undergraduate
         years: "2011"
         text: "Hands-on microcontroller programming, interfacing, and embedded systems experiments."
 ---
+{%- assign all_courses = '' | split: '' -%}
+{%- for place in page.teaching -%}{%- assign all_courses = all_courses | concat: place.courses -%}{%- endfor -%}
+
+<section class="band" aria-labelledby="t-glance">
+  <div class="band-head">
+    <h2 id="t-glance">At a glance</h2>
+  </div>
+  <div class="band-body">
+    <ul class="stat-tiles">
+      <li><span class="icon-tile">{% include icon.liquid name="book" %}</span><span class="stat-num num">{{ 'now' | date: '%Y' | minus: 2011 }}</span><span class="stat-label">years teaching, since 2011</span></li>
+      <li style="--c: var(--line-medical)"><span class="icon-tile">{% include icon.liquid name="graph" %}</span><span class="stat-num num">{{ all_courses.size }}</span><span class="stat-label">courses, from Python to deep learning</span></li>
+      <li style="--c: var(--line-incentives)"><span class="icon-tile">{% include icon.liquid name="student" %}</span><span class="stat-num num">{{ page.teaching.size }}</span><span class="stat-label">universities: Ariel, Vanderbilt, Bar-Ilan</span></li>
+      <li style="--c: var(--line-speech)"><span class="icon-tile">{% include icon.liquid name="cpu" %}</span><span class="stat-num">GPU</span><span class="stat-label">NVIDIA DLI-certified to teach RAPIDS</span></li>
+    </ul>
+    {% include career.liquid data=site.data.teaching_timeline label="Teaching timeline, 2011 to now" %}
+  </div>
+</section>
+
+<section class="band" aria-labelledby="t-spotlight">
+  <div class="band-head">
+    <h2 id="t-spotlight">Spotlight</h2>
+    <p>Ariel University, undergraduate</p>
+  </div>
+  <div class="band-body">
+    <article class="spotlight">
+      <p class="spotlight-kicker">{% include icon.liquid name="graph" %} Machine Learning, 13 lectures</p>
+      <h3 class="spotlight-title">From a first decision tree to models running on a GPU</h3>
+      <ol class="course-flow">
+        <li style="--i: 0">Supervised learning</li>
+        <li style="--i: 1">Unsupervised learning</li>
+        <li style="--i: 2">Decision trees</li>
+        <li style="--i: 3">SVMs</li>
+        <li style="--i: 4">Neural networks</li>
+        <li style="--i: 5">Model evaluation</li>
+        <li style="--i: 6" class="is-gpu">{% include icon.liquid name="cpu" %} GPU data science with NVIDIA RAPIDS</li>
+      </ol>
+      <p class="spotlight-note">
+        Two or three of the lectures run the same pipelines on GPUs with NVIDIA RAPIDS, taught as an NVIDIA University Ambassador and DLI-certified instructor.
+      </p>
+    </article>
+  </div>
+</section>
+
+<div class="course-filter" role="group" aria-label="Show courses by topic" data-filter-group="topic" data-filter-items=".course-card" data-filter-sections=".teach-place">
+  <button type="button" class="filter-chip" data-value="" aria-pressed="true">All courses <span class="num">{{ all_courses.size }}</span></button>
+  {%- assign topic_list = 'ai|AI and machine learning|graph,programming|Programming|code,systems|Systems and hardware|cpu,economics|Economics|coins' | split: ',' -%}
+  {%- for t in topic_list -%}
+    {%- assign tv = t | split: '|' -%}
+    {%- assign tk = tv[0] -%}
+    {%- assign ti = tv[2] -%}
+    {%- assign n = all_courses | where: 'topic', tk | size -%}
+    <button type="button" class="filter-chip" data-value="{{ tk }}" aria-pressed="false">{% include icon.liquid name=ti %}{{ tv[1] }} <span class="num">{{ n }}</span></button>
+  {%- endfor -%}
+  <p class="visually-hidden" aria-live="polite"></p>
+</div>
 
 {% for place in page.teaching %}
-  <section class="band" aria-labelledby="t-{{ forloop.index }}">
+  <section class="band teach-place" aria-labelledby="t-{{ forloop.index }}">
     <div class="band-head">
       <h2 id="t-{{ forloop.index }}">{{ place.institution }}</h2>
       <p>{{ place.period }}</p>
@@ -83,10 +151,19 @@ teaching:
     <div class="band-body">
       <ul class="course-cards">
         {% for c in place.courses %}
-          <li class="course-card">
+          {%- case c.topic -%}
+            {%- when 'ai' -%}{%- assign tc = 'traffic' -%}
+            {%- when 'programming' -%}{%- assign tc = 'medical' -%}
+            {%- when 'systems' -%}{%- assign tc = 'incentives' -%}
+            {%- else -%}{%- assign tc = 'similarity' -%}
+          {%- endcase %}
+          <li class="course-card" data-topic="{{ c.topic }}" style="--c: var(--line-{{ tc }})">
             <span class="icon-tile">{% include icon.liquid name=c.icon %}</span>
             <div>
-              <p class="course-meta"><span class="course-level">{{ c.level }}</span>{% if c.years %}<span class="num">{{ c.years }}</span>{% endif %}</p>
+              <p class="course-meta">
+                <span class="course-level">{{ c.level }}</span>
+                {%- if c.years %}<span class="num">{{ c.years }}</span>{% endif %}
+              </p>
               <h3 class="course-name">{{ c.name }}</h3>
               <p class="course-text">{{ c.text }}</p>
             </div>

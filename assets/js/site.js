@@ -191,7 +191,7 @@
       },
       { threshold: 0.35 }
     );
-    each(".line-card, .feature, .grant-bars, .career, .review-bars", function (el) {
+    each(".line-card, .feature, .grant-bars, .career, .review-bars, .spotlight", function (el) {
       seen.observe(el);
     });
 
@@ -820,4 +820,50 @@
   }
 
   apply(false);
+})();
+
+// Filter chips: News (by kind) and Teaching (by topic). Each group of
+// .filter-chip buttons with data-filter="<attr>" shows only the items whose
+// data-<attr> matches; sections left empty are hidden; the count is announced.
+(function () {
+  var groups = document.querySelectorAll("[data-filter-group]");
+  Array.prototype.forEach.call(groups, function (group) {
+    var attr = group.getAttribute("data-filter-group");
+    var scope = document.querySelector(group.getAttribute("data-filter-scope")) || document;
+    var items = scope.querySelectorAll(group.getAttribute("data-filter-items"));
+    var sections = scope.querySelectorAll(group.getAttribute("data-filter-sections") || "_none_");
+    var chips = group.querySelectorAll(".filter-chip");
+    var status = group.querySelector("[aria-live]");
+    var motion = document.documentElement.classList.contains("motion-ok");
+
+    function apply(value) {
+      var shown = 0;
+      Array.prototype.forEach.call(items, function (el) {
+        var match = !value || (el.getAttribute("data-" + attr) || "").split(" ").indexOf(value) !== -1;
+        var wasHidden = el.hidden;
+        el.hidden = !match;
+        if (match) {
+          shown++;
+          if (wasHidden && motion) {
+            el.classList.remove("is-entering");
+            void el.offsetWidth;
+            el.classList.add("is-entering");
+          }
+        }
+      });
+      Array.prototype.forEach.call(sections, function (sec) {
+        sec.hidden = !sec.querySelector(group.getAttribute("data-filter-items") + ":not([hidden])");
+      });
+      Array.prototype.forEach.call(chips, function (c) {
+        c.setAttribute("aria-pressed", (c.getAttribute("data-value") || "") === value ? "true" : "false");
+      });
+      if (status) status.textContent = shown + (shown === 1 ? " item shown" : " items shown");
+    }
+
+    Array.prototype.forEach.call(chips, function (c) {
+      c.addEventListener("click", function () {
+        apply(c.getAttribute("data-value") || "");
+      });
+    });
+  });
 })();
