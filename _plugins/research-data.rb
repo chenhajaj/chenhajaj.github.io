@@ -166,6 +166,7 @@ module ResearchData
 
       site.data["research"] = {
         "papers" => papers.size,
+        "paper_list" => papers,
         "first_year" => first_year,
         "last_year" => last_year,
         "collaborators" => collaborators,
