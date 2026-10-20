@@ -164,6 +164,13 @@
     {%- if include.show_year or page.show_pub_year -%}
       , <span class="num">{{ entry.year }}</span>
     {%- endif -%}
+    {%- assign badge = site.data.research.badges[entry.key] -%}
+    {%- if badge.core %}
+      <span class="pub-badge is-core" title="{{ badge.core_venue }}: rank {{ badge.core }} in {{ badge.core_edition }}, the edition in force when the paper appeared">CORE {{ badge.core }}</span>
+    {%- endif -%}
+    {%- if badge.student %}
+      <span class="pub-badge is-student" title="First author: {{ badge.student }}, Adaptive AI Lab">Student-led</span>
+    {%- endif -%}
   </p>
 
   <div class="pub-actions">

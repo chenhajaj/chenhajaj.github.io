@@ -151,6 +151,28 @@ module ResearchData
           person["years"] << p["year"]
         end
       end
+      # Badges. Student-led: the first author is a current or former member of
+      # the lab (students.yml). CORE: for conference papers, the rank in the
+      # CORE edition in force when the paper appeared (_data/core_ranks.yml).
+      core = site.data["core_ranks"] || {}
+      editions = Array(core["editions"]).map(&:to_i).sort
+      badges = {}
+      papers.each do |p|
+        b = {}
+        b["student"] = lab[p["author_ids"].first] if lab[p["author_ids"].first]
+        if p["kind"] == "conference"
+          venue = (core["venues"] || []).find { |v| p["venue"].to_s.include?(v["match"]) }
+          ed = editions.select { |y| y <= p["year"] }.max
+          rank = venue && ed && (venue["ranks"] || {})[ed]
+          if rank
+            b["core"] = rank
+            b["core_edition"] = ed == 2026 ? "ICORE 2026" : "CORE #{ed}"
+            b["core_venue"] = venue["acronym"].sub(/^IEEE /, "").sub("-", " ")
+          end
+        end
+        badges[p["key"]] = b unless b.empty?
+      end
+
       people_list = people.values.reject { |pp| pp["id"] == me }.map do |pp|
         {
           "id" => pp["id"],
@@ -167,6 +189,9 @@ module ResearchData
       site.data["research"] = {
         "papers" => papers.size,
         "paper_list" => papers,
+        "badges" => badges,
+        "student_led" => badges.count { |_, b| b["student"] },
+        "core_ranked" => badges.count { |_, b| b["core"] },
         "first_year" => first_year,
         "last_year" => last_year,
         "collaborators" => collaborators,
