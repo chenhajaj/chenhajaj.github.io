@@ -166,5 +166,11 @@ Dark mode follows the system unless the visitor picks a theme with the toggle
 - `bundle exec jekyll build`, then look at desktop, mobile and dark mode.
 - `npx impeccable detect <url>` should report no warnings.
 - axe-core should report no WCAG 2.1 AA violations.
+- `python3 scripts/visual-qa/qa.py _site` runs both, plus two scroll-position
+  checks adapted from scroll-craft (MIT): it scrolls each page like a visitor
+  and fails on text that never reaches full opacity, or whose contrast against
+  the pixels actually behind it (gradients, the hero glow, canvases, images)
+  drops below AA at any position. Covered text (under the sticky header) and
+  endless ambient motion are ignored; finite animations are allowed to finish.
 - PurgeCSS runs in the deploy workflow. Classes added only from JavaScript must
   appear literally in `site.js` or be listed in `purgecss.config.js`.

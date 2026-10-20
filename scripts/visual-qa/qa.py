@@ -5,6 +5,9 @@ Serves a built Jekyll site (or uses a live URL), then for every key page:
   - flags horizontal overflow and JavaScript errors
   - runs axe-core WCAG 2.1 AA checks in light and dark mode
   - checks that every internal link and image resolves (local builds only)
+  - scrolls each page like a visitor and flags text that never reaches full
+    opacity, or whose contrast against the pixels behind it drops below AA
+    at some scroll position (scroll_checks.py; --no-scroll to skip)
 
 Usage:
   bundle exec jekyll build -d _site
@@ -29,6 +32,8 @@ import threading
 import urllib.parse
 
 from playwright.sync_api import sync_playwright
+
+from scroll_checks import scroll_checks
 
 PAGES = [
     "", "publications", "people", "projects", "projects/encrypted_traffic",
@@ -96,6 +101,8 @@ def main():
     ap.add_argument("--out", default="qa-shots", help="screenshot output directory")
     ap.add_argument("--port", type=int, default=8811)
     ap.add_argument("--axe", default="node_modules/axe-core/axe.min.js")
+    ap.add_argument("--no-scroll", action="store_true", help="skip the scroll-position checks")
+    ap.add_argument("--pages", help="comma-separated subset of pages (use 'home' for /)")
     args = ap.parse_args()
 
     is_url = args.target.startswith("http")
@@ -110,13 +117,16 @@ def main():
     if not axe:
         print(f"note: {args.axe} not found, skipping axe (npm install --no-save axe-core)")
 
+    pages = PAGES
+    if args.pages:
+        pages = ["" if x == "home" else x for x in args.pages.split(",")]
     failures, report = 0, {}
     with sync_playwright() as p:
         browser = p.chromium.launch()
         for vp_name, viewport, scheme in VIEWPORTS:
             ctx = browser.new_context(viewport=viewport, color_scheme=scheme,
                                       device_scale_factor=2 if vp_name == "mobile" else 1)
-            for path in PAGES:
+            for path in pages:
                 page = ctx.new_page()
                 errors = []
                 page.on("pageerror", lambda e: errors.append(str(e)[:200]))
@@ -124,6 +134,8 @@ def main():
                 if scheme == "dark":
                     set_dark(page)
                 page.wait_for_timeout(2500)  # let the one page-load animation finish
+                tag = f"{args.out}/scroll_{vp_name}_{(path or 'home').replace('/', '_')}"
+                faded, low = ([], []) if args.no_scroll else scroll_checks(page, settle_ms=900, crop_prefix=tag)
                 # Scroll-in reveals (blur fade) would hide content below the fold
                 # from axe and the full-page screenshot; show it all first.
                 page.evaluate("document.querySelectorAll('.reveal').forEach(e => e.classList.add('is-shown'))")
@@ -139,13 +151,22 @@ def main():
                         "async (tags) => (await axe.run(document, {runOnly: {type: 'tag', values: tags}}))"
                         ".violations.map(v => ({id: v.id, nodes: v.nodes.length,"
                         " first: v.nodes[0].target.join(' ')}))", AXE_TAGS)
-                bad = bool(errors or overflow or violations)
+                bad = bool(errors or overflow or violations or faded or low)
                 failures += bad
-                report[f"{vp_name}/{name}"] = {"errors": errors, "overflowX": overflow, "axe": violations}
+                report[f"{vp_name}/{name}"] = {"errors": errors, "overflowX": overflow, "axe": violations,
+                                               "faded": faded, "low_contrast": low}
                 status = "FAIL" if bad else "ok  "
                 detail = "; ".join(f"{v['id']}({v['nodes']})" for v in violations)
+                if faded:
+                    detail += f" faded({len(faded)})"
+                if low:
+                    detail += f" scroll-contrast({len(low)})"
                 print(f"{status} {vp_name:7} /{path:32} "
                       f"{'overflow ' if overflow else ''}{detail} {' '.join(errors)[:120]}")
+                for f in faded[:5]:
+                    print(f"       faded   {f['max_opacity']:.2f}  {f['where']}: {f['text']}")
+                for c in low[:5]:
+                    print(f"       contrast {c['contrast']} < {c['needs']} at y={c['scroll_y']}  {c['where']}: {c['text']}")
                 page.close()
             ctx.close()
         browser.close()
