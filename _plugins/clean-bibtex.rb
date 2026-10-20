@@ -9,7 +9,7 @@ require "bibtex"
 
 module Jekyll
   module CleanBibtex
-    INTERNAL = %w[abstract projects selected].freeze
+    INTERNAL = %w[abstract projects selected category].freeze
 
     def clean_bibtex(input)
       return "" if input.nil? || input.to_s.strip.empty?
