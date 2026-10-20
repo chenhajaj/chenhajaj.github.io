@@ -32,7 +32,7 @@ scripts: [coauthor-network]
       id="coauthor-network"
       data-photo="{{ '/assets/img/me-480.webp' | relative_url }}"
       role="img"
-      aria-label="Network of Chen Hajaj's {{ r.collaborators }} co-authors. Most frequent:{% for p in r.top_people limit: 5 %} {{ p.name }} ({{ p.count }} papers){% unless forloop.last %},{% endunless %}{% endfor %}."
+      aria-label="Network of Chen Hajaj's {{ r.collaborators }} co-authors, coloured by research line. Use Find a co-author to look someone up."
     >
       <canvas aria-hidden="true"></canvas>
     </div>
@@ -53,10 +53,6 @@ scripts: [coauthor-network]
         <p class="network-find-status" aria-live="polite"></p>
       </div>
     </div>
-    <p class="network-top">
-      Most frequent co-authors:
-      {% for p in r.top_people limit: 6 %}{{ p.name }} ({{ p.count }}){% unless forloop.last %}, {% endunless %}{% endfor %}.
-    </p>
   </div>
 </section>
 {% include research_data.liquid %}
