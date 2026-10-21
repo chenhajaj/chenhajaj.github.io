@@ -727,11 +727,16 @@
 
 .stat-tiles {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
   gap: var(--s-3);
   margin: 0 0 var(--s-5);
   padding: 0;
   list-style: none;
+}
+
+// Four tiles: one row on wide screens, two by two below.
+.stat-tiles.is-4 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
 }
 
 .stat-tiles li {

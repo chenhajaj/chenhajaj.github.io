@@ -171,6 +171,19 @@ module ResearchData
             b["core_venue"] = venue["acronym"].sub(/^IEEE /, "").sub("-", " ")
           end
         end
+        if p["kind"] == "journal"
+          sjr = site.data["sjr_quartiles"] || {}
+          entry = (sjr["journals"] || []).find { |j| j["match"] == p["venue"] }
+          if entry
+            qs = entry["quartiles"] || {}
+            yr = [p["year"], sjr["latest_year"].to_i].min
+            yr = qs.keys.map(&:to_i).select { |k| k <= yr }.max || qs.keys.map(&:to_i).min
+            if yr && qs[yr]
+              b["sjr"] = qs[yr]
+              b["sjr_year"] = yr
+            end
+          end
+        end
         badges[p["key"]] = b unless b.empty?
       end
 
@@ -219,6 +232,9 @@ module ResearchData
         "student_line" => student_line,
         "student_led" => badges.count { |_, b| b["student"] },
         "core_ranked" => badges.count { |_, b| b["core"] },
+        "sjr_q1" => badges.count { |_, b| b["sjr"] == "Q1" },
+        "core_top" => badges.count { |_, b| %w[A* A].include?(b["core"]) },
+        "sjr_ranked" => badges.count { |_, b| b["sjr"] },
         "first_year" => first_year,
         "last_year" => last_year,
         "collaborators" => collaborators,

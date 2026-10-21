@@ -122,6 +122,17 @@ Cards are now used for these grouped items too (not only click-throughs),
 always flat: a 5% line-colour wash, a hairline ring, 14px radius, no shadows
 and no side stripes.
 
+## Venue tags on publications
+
+Conference papers carry a CORE tag (rank in the CORE edition in force when the
+paper appeared; `_data/core_ranks.yml` from `scripts/core-ranks/update.py`).
+Journal papers carry an SJR tag (the journal's best SCImago quartile in the
+year the paper appeared, the latest SJR year for newer papers;
+`_data/sjr_quartiles.yml` from `scripts/sjr/update.py`, which matches by name
+and pins journals that share a name, such as MDPI Electronics, by ISSN).
+"Student-led" marks papers whose first author is a lab member. The CV's
+"At a glance" tiles count Q1 journal papers and CORE A*/A conference papers.
+
 ## The lab, year by year (October 2026)
 
 The home page's one scroll-driven moment (`assets/js/story.js`,

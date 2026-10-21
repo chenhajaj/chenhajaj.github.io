@@ -172,6 +172,11 @@
         >CORE {{ badge.core -}}
       </span>
     {%- endif -%}
+    {%- if badge.sjr %}
+      <span class="pub-badge is-sjr" title="Best SJR quartile of the journal in {{ badge.sjr_year }} (SCImago Journal Rank)"
+        >SJR {{ badge.sjr -}}
+      </span>
+    {%- endif -%}
     {%- if badge.student %}
       <span class="pub-badge is-student" title="First author: {{ badge.student }}, Adaptive AI Lab">Student-led</span>
     {%- endif -%}

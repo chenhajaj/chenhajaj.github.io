@@ -152,6 +152,8 @@ patents:
   <div class="band-body">
     <ul class="stat-tiles">
       <li><span class="icon-tile">{% include icon.liquid name="paper" %}</span><span class="stat-num num">{{ r.refereed }}</span><span class="stat-label">refereed papers ({{ r.journals }} journal, {{ r.conferences }} conference)</span></li>
+      <li style="--c: var(--line-traffic)"><span class="icon-tile">{% include icon.liquid name="star" %}</span><span class="stat-num num">{{ r.sjr_q1 }}</span><span class="stat-label">of {{ r.journals }} journal papers in SJR Q1 journals (year of publication)</span></li>
+      <li style="--c: var(--line-adversarial)"><span class="icon-tile">{% include icon.liquid name="award" %}</span><span class="stat-num num">{{ r.core_top }}</span><span class="stat-label">conference papers at CORE A* or A venues (edition in force)</span></li>
       <li style="--c: var(--line-medical)"><span class="icon-tile">{% include icon.liquid name="grant" %}</span><span class="stat-num num">{{ site.data.grants.grants.size }}</span><span class="stat-label">competitive grants as PI or co-PI</span></li>
       <li style="--c: var(--line-incentives)"><span class="icon-tile">{% include icon.liquid name="student" %}</span><span class="stat-num num">{{ grads }}</span><span class="stat-label">graduated: {{ st.phd_alumni.size }} PhD, {{ msc_thesis.size }} thesis MSc, {{ msc_project.size }} MSc projects</span></li>
       <li style="--c: var(--line-similarity)"><span class="icon-tile">{% include icon.liquid name="review" %}</span><span class="stat-num num">{{ site.data.orcid.reviews_total }}</span><span class="stat-label">verified journal reviews</span></li>
