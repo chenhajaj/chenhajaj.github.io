@@ -136,11 +136,15 @@ def scroll_checks(page, step=0.6, settle_ms=450, max_steps=80, crop_prefix=None)
         page.evaluate(f"window.scrollTo({{top: {y}, behavior: 'instant'}})")
         page.wait_for_timeout(settle_ms)
         page.evaluate(SETTLE_JS)
+        # Freeze endless motion (the venue strip) so the text measured and the
+        # snapshot taken a moment later show the same frame.
+        page.evaluate("document.getAnimations().forEach(a => { if (a.playState === 'running') { a.pause(); a.__qaPaused = true; } })")
         items = page.evaluate(COLLECT_JS)
         handle = page.add_style_tag(content=HIDE_TEXT_CSS)
         page.wait_for_timeout(60)
         shot = np.asarray(Image.open(io.BytesIO(page.screenshot())).convert("RGB"))
         handle.evaluate("el => el.remove()")
+        page.evaluate("document.getAnimations().forEach(a => { if (a.__qaPaused) { a.play(); delete a.__qaPaused; } })")
         for it in items:
             iid = it["id"]
             info[iid] = it

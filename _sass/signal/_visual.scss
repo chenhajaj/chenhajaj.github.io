@@ -1204,3 +1204,207 @@
   padding-block: var(--s-3);
   background: var(--paper);
 }
+
+// ------------------------------------------------- the lab, year by year ----
+// assets/js/story.js. With motion the section is tall and its panel sticks,
+// so scrolling drives the year. Without motion it is one finished panel.
+
+.story {
+  position: relative;
+  color: #f3f5ff;
+  background: #101a4d;
+}
+
+.motion-ok .story {
+  height: 360vh;
+}
+
+.story-pin {
+  display: grid;
+  align-items: center;
+  min-height: min(100vh, 52rem);
+  padding-block: clamp(4.5rem, 9vh, 6rem) clamp(2rem, 5vh, 3rem);
+  overflow: hidden;
+  background:
+    radial-gradient(70% 90% at 85% 15%, rgb(125 155 255 / 18%) 0%, transparent 60%),
+    radial-gradient(60% 80% at 10% 100%, rgb(63 209 189 / 12%) 0%, transparent 60%), #101a4d;
+}
+
+.motion-ok .story-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 0;
+}
+
+.story-inner {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.8fr) minmax(0, 1.4fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  width: 100%;
+}
+
+.story-kicker {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 650;
+  color: #c3cbef;
+}
+
+.story-year {
+  margin: var(--s-1) 0 var(--s-4);
+  font-family: var(--font-sans);
+  font-size: clamp(4.5rem, 3rem + 7vw, 9.5rem);
+  font-weight: 820;
+  font-stretch: 120%;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.story-counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4) var(--s-6);
+  margin: 0 0 var(--s-5);
+}
+
+.story-counters > div {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.story-counters dt {
+  order: 2;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: #c3cbef;
+}
+
+.story-counters dd {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xl);
+  font-weight: 760;
+  line-height: 1;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.story-captions {
+  display: grid;
+  gap: var(--s-2);
+  min-height: 7.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.story-captions li {
+  display: flex;
+  gap: 0.6em;
+  align-items: baseline;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  line-height: 1.4;
+  color: rgb(214 222 255 / 70%);
+}
+
+.story-captions li::before {
+  content: "";
+  flex: none;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 2px;
+  background: var(--c, #c3cbef);
+  transform: translateY(-0.05em);
+}
+
+.story-captions li .num {
+  font-weight: 700;
+  color: #c3cbef;
+}
+
+.story-captions li.is-new {
+  font-size: var(--fs-md);
+  color: #fff;
+}
+
+.motion-ok .story-captions li.is-new {
+  animation: story-caption 420ms var(--ease-out) both;
+}
+
+@keyframes story-caption {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.story-map {
+  position: relative;
+  height: min(66vh, 38rem);
+}
+
+.story-map canvas {
+  display: block;
+}
+
+.story-hint {
+  display: none;
+}
+
+.motion-ok .story-hint {
+  display: block;
+  margin-top: var(--s-5);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.02em;
+  color: rgb(214 222 255 / 70%);
+  transition: opacity 300ms var(--ease-out);
+}
+
+.story-hint.is-gone {
+  opacity: 0;
+}
+
+@media (max-width: 860px) {
+  .motion-ok .story {
+    height: 320vh;
+  }
+
+  .story-inner {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    align-items: start;
+    gap: var(--s-4);
+    height: 100%;
+  }
+
+  .story-year {
+    margin-bottom: var(--s-2);
+  }
+
+  .story-counters {
+    margin-bottom: var(--s-3);
+  }
+
+  .story-captions {
+    min-height: 4.5rem;
+  }
+
+  .story-captions li:nth-child(n + 3) {
+    display: none;
+  }
+
+  .story-map {
+    height: 100%;
+    min-height: 12rem;
+  }
+
+  .story-hint {
+    display: none !important;
+  }
+}

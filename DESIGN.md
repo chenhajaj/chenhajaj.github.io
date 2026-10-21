@@ -122,6 +122,19 @@ Cards are now used for these grouped items too (not only click-throughs),
 always flat: a 5% line-colour wash, a hairline ring, 14px radius, no shadows
 and no side stripes.
 
+## The lab, year by year (October 2026)
+
+The home page's one scroll-driven moment (`assets/js/story.js`,
+`_includes/story.liquid`), after the research cards. A night-blue panel holds
+still while the visitor scrolls about three screens: a giant year runs from the
+first paper to "Today", the paper map fills column by column (the newest year
+glows), counters climb (papers, co-authors, graduates up to that year) and
+captions mark milestones from `_data/career.yml` plus the first paper in each
+research line. Everything is computed from the same data as the paper map.
+Under reduced motion or without JavaScript the section is one panel showing
+the finished picture, with no pinning; a hidden sentence gives screen readers
+the totals.
+
 ## Research line colours
 
 Each research line has one colour, set in `_data/research_lines.yml` (light

@@ -240,7 +240,10 @@ module ResearchData
         "lines" => summary.map { |l| l.slice("key", "name", "color", "url", "count", "primary") },
         "other" => cfg["other"],
         "papers" => papers,
-        "people" => people_list
+        "people" => people_list,
+        # Graduation years of PhD and MSc alumni (the growth replay counts them).
+        "graduates" => %w[phd_alumni masters_alumni].flat_map { |g| Array(students[g]) }
+                         .map { |st| st["graduation_year"].to_s[/\d{4}/]&.to_i }.compact.sort
       }
       # Inline copy for pages that draw the map without an extra request.
       # "</" is escaped so the JSON is safe inside a <script> element.
