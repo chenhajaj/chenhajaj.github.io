@@ -1,10 +1,10 @@
 # Auto-updated by .github/scripts/orcid_sync.py from the public ORCID record.
 # Do not edit by hand; change the record on orcid.org instead.
 orcid: 0000-0001-9940-5654
-last_updated: '2026-10-16'
+last_updated: '2026-10-26'
 reviews:
 - venue: Computer Networks
-  count: 10
+  count: 11
   first: 2024
   last: 2026
 - venue: Computers & Security
@@ -57,4 +57,4 @@ employment:
   department: The Department of Industrial Engineering & Management
   start: null
   end: null
-reviews_total: 29
+reviews_total: 30
