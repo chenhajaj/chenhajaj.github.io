@@ -2,7 +2,6 @@
 layout: project
 title: Quantifying Constructivist Learning in Studio-Based Education
 description: Data science methods that quantify learning in design studio education — measuring cognitive breakthroughs, engagement, and teaching effectiveness during live critiques.
-img: assets/img/design-new.png
 importance: 3
 category: work
 outcome: "Live-critique learning signals quantified"

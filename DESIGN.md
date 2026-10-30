@@ -46,7 +46,6 @@ under `prefers-reduced-motion` (the `motion-ok` class on `<html>` gates it).
   into view elsewhere); the network settles into place.
 - Numbers under the maps tick up once they are fully in view (screen readers
   get the final value).
-- Papers-per-year bars on research cards grow when the card scrolls in.
 - Effects ported from 21st.dev components (Aceternity UI, Magic UI; MIT),
   rewritten in plain CSS and JS in `_sass/signal/_effects.scss` and `site.js`:
   - the hero claim decrypts from cipher glyphs once on load (`data-encrypt`),
@@ -91,7 +90,7 @@ find-animation-opportunities; MIT). Rules this site follows:
 - Hover motion only under `(hover: hover) and (pointer: fine)`; phones get no
   sticky zooms or shimmers after a tap.
 - Reduced motion keeps colour and opacity changes and drops movement.
-- Clicking a research card expands its illustration into the research page
+- Clicking a research card expands its data cover into the research page
   header (cross-document View Transitions; browsers without them just load
   the page).
 - Decoration must carry information. An earlier random "flow fingerprint"
@@ -146,12 +145,28 @@ Under reduced motion or without JavaScript the section is one panel showing
 the finished picture, with no pinning; a hidden sentence gives screen readers
 the totals.
 
+## Data covers (October 2026)
+
+Research cards and research page headers show a **data cover** instead of an
+illustration (the earlier illustrations were removed as stock-like imagery):
+the line's own slice of the paper map on the night panel, one column per year
+on the shared first-to-last-year axis, one square per paper in the line
+(solid for journal and conference papers, hollow for other work), with a dot
+in another line's colour on papers shared with that line. Every cover uses the
+same scale, so lines can be compared card to card. It is inline SVG built at
+build time (`cover_svg` in `_plugins/research-data.rb`, included by
+`_includes/line_cover.liquid`, styled in `_sass/signal/_covers.scss`), needs
+no JavaScript and is `aria-hidden`; the card text carries the count. The
+research page header adds a key with the solid, hollow and shared counts.
+Under 640px the research cards become compact rows (small cover, title, one
+line of description, paper count), so the section fits about one phone screen.
+
 ## Research line colours
 
 Each research line has one colour, set in `_data/research_lines.yml` (light
 and dark values) and exposed as `--line-<key>` CSS variables by
 `_includes/line_colors.liquid`. The same colour marks the line everywhere: map
-squares, legend chips, research cards and their papers-per-year charts, the
+squares, legend chips, research cards and their data covers, the
 featured paper and the open PhD/MSc topics. Use these colours for marks and
 fills, not for small text.
 

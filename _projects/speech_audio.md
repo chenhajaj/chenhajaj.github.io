@@ -2,7 +2,6 @@
 layout: project
 title: Speech and Audio AI
 description: Machine learning that listens — splitting recordings by who is speaking, in Hebrew, English and French, and predicting the emotions that music evokes.
-img: assets/img/speech-new.png
 importance: 3
 category: work
 outcome: "Language-independent speaker change detection"

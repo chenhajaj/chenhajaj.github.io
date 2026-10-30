@@ -15,9 +15,21 @@ layout: default
           <p class="headline-result"><strong>Headline result:</strong> {{ page.outcome }}.</p>
         {% endif %}
       </div>
-      {%- if page.img -%}
-        <div class="project-hero-img" style="view-transition-name: line-{{ slug }}">
-          {% include figure.liquid path=page.img alt="" sizes="(max-width: 860px) 92vw, 520px" loading="eager" %}
+      {%- if line -%}
+        <div class="project-hero-figure">
+          {% include line_cover.liquid line=line slug=slug class='project-hero-cover' %}
+          <ul class="line-cover-key" aria-label="Papers in this line">
+            <li><span class="key-sq" aria-hidden="true"></span>Journal or conference paper ({{ line.refereed }})</li>
+            {%- assign others = line.count | minus: line.refereed -%}
+            {%- if others > 0 %}
+              <li><span class="key-sq key-sq-o" aria-hidden="true"></span>Other work ({{ others }})</li>
+            {%- endif -%}
+            {%- for s in line.shared %}
+              <li style="--o: var(--line-{{ s.key }}-bright)">
+                <span class="key-sq key-sq-dot" aria-hidden="true"></span>Also in {{ s.name }} ({{ s.count }})
+              </li>
+            {%- endfor %}
+          </ul>
         </div>
       {%- endif -%}
     </div>
