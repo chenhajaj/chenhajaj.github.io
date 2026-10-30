@@ -1,0 +1,69 @@
+{%- comment -%}
+  Student paths (Lab page): one lane per student or graduate who has a paper
+  with Chen, from that first paper to graduation (or now for current
+  students). A dot per joint paper in its research-line colour, filled when the
+  student was first author. A dashed tail carries papers that came out after
+  graduating. Built at build time by _plugins/lab-charts.rb from students.yml
+  and papers.bib; students.yml has no start dates, so lanes start at the first
+  paper. Students without a paper yet are named under their group.
+{%- endcomment -%}
+{%- assign sp = site.data.charts.paths -%}
+<div class="paths" style="--cols: {{ sp.ticks.size }}">
+  <p class="paths-key">
+    <span><span class="path-dot is-lead" aria-hidden="true"></span>First author</span>
+    <span><span class="path-dot" aria-hidden="true"></span>Co-author</span>
+    <span><span class="paths-key-lane" aria-hidden="true"></span>First paper to graduation</span>
+    <span><span class="paths-key-lane is-current" aria-hidden="true"></span>Still in the lab</span>
+    <span><span class="paths-key-lane is-tail" aria-hidden="true"></span>Papers after graduating</span>
+  </p>
+  <ol class="paths-axis" aria-hidden="true">
+    {%- for t in sp.ticks -%}
+      <li class="num" style="--x: {{ t.x }}%">{{ t.year }}</li>
+    {%- endfor -%}
+  </ol>
+  {%- for g in sp.groups -%}
+    <h3 class="paths-group">{{ g.title }} <span class="count">{{ g.count }}</span></h3>
+    {%- if g.rows.size > 0 -%}
+      <ol class="paths-rows">
+        {%- for r in g.rows -%}
+          <li class="path-row">
+            <p class="path-name">
+              <a href="{{ '/publications/' | relative_url }}?q={{ r.query | uri_escape }}">{{ r.name }}</a>
+              <span class="path-meta">
+                {{- r.count }} {% if r.count == 1 %}paper{% else %}papers{% endif %}, {{ r.lead }} as first author
+                {%- if r.grad %} · graduated <span class="num">{{ r.grad }}</span>{% endif -%}
+                <span class="visually-hidden">
+                  {%- if r.start == r.last_paper %}, in {{ r.start }}{% else %}, {{ r.start }} to {{ r.last_paper }}{% endif -%}
+                </span>
+              </span>
+            </p>
+            <div class="path-track" aria-hidden="true">
+              {%- if r.x0 -%}
+                <span class="path-lane{% if r.current %} is-current{% endif %}" style="--x0: {{ r.x0 }}%; --x1: {{ r.x1 }}%"></span>
+              {%- endif -%}
+              {%- if r.t0 -%}
+                <span class="path-lane is-tail" style="--x0: {{ r.t0 }}%; --x1: {{ r.t1 }}%"></span>
+              {%- endif -%}
+              {%- if r.xg -%}
+                <span class="path-grad" style="--x: {{ r.xg }}%" title="Graduated {{ r.grad }}"></span>
+              {%- endif -%}
+              {%- for p in r.papers -%}
+                <span
+                  class="path-dot{% if p.lead %} is-lead{% endif %}"
+                  style="--x: {{ p.x }}%; --c: var(--line-{{ p.line }})"
+                  title="{{ p.title | escape }} ({{ p.year }}{% if p.lead %}, first author{% endif %})"
+                ></span>
+              {%- endfor -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ol>
+    {%- endif -%}
+    {%- if g.none.size > 0 -%}
+      <p class="paths-none">
+        {%- if g.current %}No paper with Chen yet:{% else %}No joint paper:{% endif %}
+        {{ g.none | join: ', ' -}}
+      </p>
+    {%- endif -%}
+  {%- endfor -%}
+</div>

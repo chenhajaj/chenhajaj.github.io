@@ -36,9 +36,10 @@ module ResearchData
     "#{first} #{last}".strip
   end
 
-  # "Chen Hajaj", "C Hajaj" and "C. Hajaj" all become "c-hajaj".
+  # "Chen Hajaj", "C Hajaj" and "C. Hajaj" all become "c-hajaj". Unicode
+  # hyphens count as "-" (papers.bib spells "Ben-Shalom" both ways).
   def self.person_id(name)
-    parts = name.downcase.delete(".").split(/\s+/).reject(&:empty?)
+    parts = name.downcase.delete(".").tr("\u2010\u2011", "--").split(/\s+/).reject(&:empty?)
     return name.downcase if parts.empty?
 
     "#{parts.first[0]}-#{parts.last}"
@@ -185,6 +186,19 @@ module ResearchData
           end
         end
         badges[p["key"]] = b unless b.empty?
+        # Compact fields for the paper map's "Colour by" lenses (paper-map.js).
+        # tier: top = CORE A*/A or SJR Q1, mid = CORE B or SJR Q2, ref = other
+        # refereed; none for non-refereed items. lead: student or chen (first
+        # author); none when someone else led the paper.
+        tier = if %w[A* A].include?(b["core"]) || b["sjr"] == "Q1" then "top"
+               elsif b["core"] == "B" || b["sjr"] == "Q2" then "mid"
+               elsif REFEREED.include?(p["kind"]) then "ref"
+               end
+        p["tier"] = tier if tier
+        rank = if b["core"] then "#{b['core_edition'] || 'CORE'} #{b['core']}" elsif b["sjr"] then "SJR #{b['sjr']}" end
+        p["rank"] = rank if rank
+        lead = if b["student"] then "student" elsif p["author_ids"].first == me then "chen" end
+        p["lead"] = lead if lead
       end
 
       # Research line for each lab member (avatar colour on the Lab page): the

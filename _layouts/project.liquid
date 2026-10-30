@@ -68,6 +68,18 @@ layout: default
     </div>
   </section>
 
+  {%- if line and site.data.charts.line_people[key].people.size > 0 %}
+    <section class="band" aria-labelledby="line-people">
+      <div class="band-head">
+        <h2 id="line-people">People on this line</h2>
+        <p>{{ site.data.charts.line_people[key].total }} co-authors since {{ line.first }}.</p>
+      </div>
+      <div class="band-body">
+        {% include line_people.liquid key=key %}
+      </div>
+    </section>
+  {%- endif %}
+
   {% if page.papers_query %}
     <section class="band" aria-labelledby="papers">
       <div class="band-head">

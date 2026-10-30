@@ -1,0 +1,37 @@
+{%- comment -%}
+  "People on this line" (research pages): the co-authors Chen has published
+  with most in one research line, with their joint papers in it and the years
+  they span (a hairline on the line's own first-to-last-year axis). A ring marks
+  a current or former lab student. Data: _plugins/lab-charts.rb.
+  {% include line_people.liquid key="traffic" %}
+{%- endcomment -%}
+{%- assign lp = site.data.charts.line_people[include.key] -%}
+{%- if lp and lp.people.size > 0 -%}
+  <ul class="lp-list">
+    {%- for p in lp.people -%}
+      <li class="lp-person{% if p.student %} is-student{% endif %}">
+        <a class="lp-link" href="{{ '/publications/' | relative_url }}?q={{ p.name | uri_escape }}">
+          {% include avatar.liquid name=p.name line=p.line %}
+          <span class="lp-body">
+            <span class="lp-name">{{ p.name }}</span>
+            <span class="lp-meta">
+              <span class="num">{{ p.count }}</span> {% if p.count == 1 %}paper{% else %}papers{% endif %} ·
+              <span class="num">{% if p.first == p.last %}{{ p.first }}{% else %}{{ p.first }}–{{ p.last }}{% endif %}</span>
+              {%- if p.student %}<span class="visually-hidden">, lab student</span>{% endif -%}
+            </span>
+            <span class="lp-span" aria-hidden="true" style="--x0: {{ p.x0 }}%; --x1: {{ p.x1 }}%; --c: var(--line-{{ include.key }})"></span>
+          </span>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+  <p class="lp-foot">
+    Ranked by joint papers in this line. The bar under each name spans their years on it, {{ lp.first }} to {{ lp.last }}.
+    {%- if lp.students > 0 %} A ring marks a student of the lab ({{ lp.students }} of {{ lp.total }} co-authors here).{% endif %}
+    {% if lp.more > 0 -%}
+      <a href="{{ '/people/' | relative_url }}">{{ lp.more }} more co-authors on the Lab page</a>
+    {%- else -%}
+      <a href="{{ '/people/' | relative_url }}">Everyone on the Lab page</a>
+    {%- endif -%}
+  </p>
+{%- endif -%}
