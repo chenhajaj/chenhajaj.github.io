@@ -244,12 +244,15 @@
     return Math.max(0, Math.min(1, -rect.top / travel));
   }
 
-  function frame() {
+  var lastPos = null;
+  function frame(force) {
     queued = false;
     var p = progress();
     // the last 8% of travel rests on the finished picture
     var q = Math.min(1, p / 0.92);
     var pos = q * years.length;
+    if (pos === lastPos && force !== true) return; // nothing changed (e.g. before or after the section)
+    lastPos = pos;
     var yy = Math.min(last, first + Math.floor(Math.min(pos, years.length - 0.001)));
     draw(pos);
     setText(yy, q >= 1);
@@ -263,20 +266,43 @@
   }
 
   resize();
-  frame();
+  frame(true);
+  // Listen to scrolling only while the section is on (or near) the screen;
+  // far away the picture cannot change, so nothing is redrawn.
   if (animate) {
-    window.addEventListener("scroll", request, { passive: true });
+    var listening = false;
+    var listen = function (on) {
+      if (on === listening) return;
+      listening = on;
+      if (on) {
+        window.addEventListener("scroll", request, { passive: true });
+        request();
+      } else {
+        window.removeEventListener("scroll", request);
+        request(); // one last frame so the picture rests at the right end
+      }
+    };
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(
+        function (entries) {
+          listen(entries[entries.length - 1].isIntersecting);
+        },
+        { rootMargin: "50% 0px 50% 0px" }
+      ).observe(section);
+    } else {
+      listen(true);
+    }
   }
   if ("ResizeObserver" in window) {
     new ResizeObserver(function () {
       resize();
       lastYearShown = null;
-      frame();
+      frame(true);
     }).observe(canvas.parentNode);
   } else {
     window.addEventListener("resize", function () {
       resize();
-      frame();
+      frame(true);
     });
   }
   if (document.fonts && document.fonts.ready) {
