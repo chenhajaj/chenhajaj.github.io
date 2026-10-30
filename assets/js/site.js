@@ -25,16 +25,35 @@
     btn.setAttribute("title", "Switch to " + next + " theme");
   }
 
+  // The switch is one deliberate change: .theme-switching turns off every
+  // colour transition on the page (otherwise some 160 of them start at once,
+  // each at its own pace), and where view transitions exist the old and new
+  // pages crossfade in 220 ms (_motion.scss). Reduced motion: instant.
   var themeBtn = document.getElementById("theme-toggle");
   if (themeBtn) {
     labelThemeButton(themeBtn);
     themeBtn.addEventListener("click", function () {
       var next = effectiveTheme() === "dark" ? "light" : "dark";
-      root.setAttribute("data-theme", next);
+      var apply = function () {
+        root.setAttribute("data-theme", next);
+        labelThemeButton(themeBtn);
+      };
+      var done = function () {
+        root.classList.remove("theme-switching");
+      };
+      root.classList.add("theme-switching");
       try {
         localStorage.setItem("theme", next);
       } catch (e) {}
-      labelThemeButton(themeBtn);
+      if (root.classList.contains("motion-ok") && document.startViewTransition) {
+        var vt = document.startViewTransition(apply);
+        vt.finished.then(done, done);
+      } else {
+        apply();
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(done);
+        });
+      }
     });
   }
 
@@ -212,7 +231,8 @@
   }
 
   // Encrypted text: [data-encrypt] scrambles into cipher glyphs and decrypts
-  // left to right, once, in under two seconds. The real text never moves.
+  // left to right in about 0.7 s, on the first page view of a visit only
+  // (seen again, it would just delay the sentence). The real text never moves.
   function decrypt(el) {
     var text = el.textContent.replace(/\s+/g, " ").trim();
     var GLYPHS = "01<>/{}[]#%&*+=$@ABCDEF0123456789";
@@ -236,7 +256,7 @@
       span.textContent = c;
       span.setAttribute("data-g", pick());
       shown.appendChild(span);
-      chars.push({ el: span, at: 220 + chars.length * 18 + Math.random() * 240 });
+      chars.push({ el: span, at: 120 + chars.length * 6 + Math.random() * 120 });
     }
     el.textContent = "";
     el.append(sr, shown);
@@ -261,7 +281,14 @@
     };
     window.requestAnimationFrame(step);
   }
-  if (motionOk) each("[data-encrypt]", decrypt);
+  if (motionOk && document.querySelector("[data-encrypt]")) {
+    var decryptedBefore = false;
+    try {
+      decryptedBefore = sessionStorage.getItem("decrypted") === "1";
+      sessionStorage.setItem("decrypted", "1");
+    } catch (e) {}
+    if (!decryptedBefore) each("[data-encrypt]", decrypt);
+  }
 
   // Aurora: the hero's colour fields lean toward the pointer and drift as the
   // page scrolls. No timer-driven motion.
@@ -291,19 +318,56 @@
     );
   }
 
-  // Spotlight cards: a glow and lit border follow the pointer.
-  if (finePointer) {
-    document.addEventListener(
+  // Spotlight: a soft glow follows the pointer over research cards, and lit
+  // dots follow it over the "join the lab" card. Each card gets one
+  // decorative layer; the script writes only `transform` on the moving
+  // element, once per frame (no CSS variables on the card, which would
+  // restyle all of its children). Mouse and trackpad only, motion allowed.
+  function spotlight(card, withGrid) {
+    var spot = document.createElement("span");
+    spot.className = "spot";
+    spot.setAttribute("aria-hidden", "true");
+    var dot = document.createElement("span");
+    dot.className = "spot-dot";
+    spot.appendChild(dot);
+    var grid = null;
+    if (withGrid) {
+      grid = document.createElement("span");
+      grid.className = "spot-grid";
+      dot.appendChild(grid);
+    }
+    card.insertBefore(spot, card.firstChild);
+    var x = 0;
+    var y = 0;
+    var draw = perFrame(function () {
+      dot.style.transform = "translate3d(" + x + "px," + y + "px,0)";
+      // The grid stays still relative to the card while its window moves.
+      if (grid) grid.style.transform = "translate3d(" + -x + "px," + -y + "px,0)";
+    });
+    card.addEventListener("pointerenter", function () {
+      if (grid) {
+        grid.style.width = card.offsetWidth + "px";
+        grid.style.height = card.offsetHeight + "px";
+      }
+    });
+    card.addEventListener(
       "pointermove",
       function (e) {
-        var card = e.target.closest && e.target.closest(".line-card");
-        if (!card) return;
         var r = card.getBoundingClientRect();
-        card.style.setProperty("--mx", Math.round(e.clientX - r.left) + "px");
-        card.style.setProperty("--my", Math.round(e.clientY - r.top) + "px");
+        x = Math.round(e.clientX - r.left);
+        y = Math.round(e.clientY - r.top);
+        draw();
       },
       { passive: true }
     );
+  }
+  if (finePointer && motionOk) {
+    each(".line-card", function (card) {
+      spotlight(card, false);
+    });
+    each(".join-card", function (card) {
+      spotlight(card, true);
+    });
   }
 
   // Marquee: the venue list rotates continuously as a linear Web Animation
@@ -347,6 +411,7 @@
         iterations: Infinity,
         easing: "linear",
       });
+      sentRate = 1;
       sync();
     };
     var setStopped = function (on) {
@@ -373,15 +438,26 @@
       hovered = false;
       sync();
     });
-    // Scrolling adds speed (up to 4x), which bleeds off in real time: about
-    // 90% gone after 0.6 s, however slow the device's frames are.
+    // Scrolling adds a little speed (at most 2x, so the strip never races
+    // past the reader), which bleeds off in real time: about 90% gone after
+    // 0.6 s, however slow the device's frames are. The rate is handed to the
+    // compositor at most every 100 ms, not every frame.
     var lastT = 0;
+    var lastSent = 0;
+    var sentRate = 1;
+    var setRate = function (rate, t) {
+      if (!anim || rate === sentRate || (rate !== 1 && t - lastSent < 100)) return;
+      lastSent = t;
+      sentRate = rate;
+      if (anim.updatePlaybackRate) anim.updatePlaybackRate(rate);
+      else anim.playbackRate = rate;
+    };
     var decay = function (t) {
       var dt = lastT ? Math.min(0.25, (t - lastT) / 1000) : 0.016;
       lastT = t;
       boost *= Math.pow(0.02, dt);
-      if (boost < 0.02) boost = 0;
-      if (anim) anim.updatePlaybackRate ? anim.updatePlaybackRate(1 + boost) : (anim.playbackRate = 1 + boost);
+      if (boost < 0.05) boost = 0;
+      setRate(Math.round((1 + boost) * 20) / 20, t);
       if (boost > 0) window.requestAnimationFrame(decay);
       else {
         decaying = false;
@@ -392,7 +468,7 @@
       "scroll",
       function () {
         var y = window.scrollY;
-        boost = Math.min(3, boost + Math.abs(y - lastY) * 0.01);
+        boost = Math.min(1, boost + Math.abs(y - lastY) * 0.004);
         lastY = y;
         if (!decaying) {
           decaying = true;
@@ -412,39 +488,6 @@
       mCopy.hidden = false;
       marquee.classList.add("is-live");
       start();
-    });
-  }
-
-  // 3D tilt (Aceternity's 3D card): research cards lean toward the pointer,
-  // spring-smoothed rather than glued to it.
-  if (finePointer && motionOk) {
-    each(".line-card", function (card) {
-      var tilt = follower(["x", "y"], 0.16, function (v) {
-        card.style.transform = Math.abs(v.x) + Math.abs(v.y) < 0.01 ? "" : "rotateX(" + v.y.toFixed(2) + "deg) rotateY(" + v.x.toFixed(2) + "deg)";
-      });
-      card.addEventListener("pointermove", function (e) {
-        var r = card.getBoundingClientRect();
-        tilt({ x: ((e.clientX - r.left) / r.width - 0.5) * 8, y: -((e.clientY - r.top) / r.height - 0.5) * 6 });
-      });
-      card.addEventListener("pointerleave", function () {
-        tilt({ x: 0, y: 0 });
-      });
-    });
-  }
-
-  // Dot-grid card (Magic UI's interactive dot pattern): dots light near the
-  // pointer.
-  if (finePointer) {
-    each(".join-card", function (card) {
-      card.addEventListener(
-        "pointermove",
-        function (e) {
-          var r = card.getBoundingClientRect();
-          card.style.setProperty("--mx", Math.round(e.clientX - r.left) + "px");
-          card.style.setProperty("--my", Math.round(e.clientY - r.top) + "px");
-        },
-        { passive: true }
-      );
     });
   }
 
@@ -473,50 +516,90 @@
         !el.querySelector(".rows, .news-list, .person-cards, .alumni-cards, .course-cards, .repo-cards, .award-cards")
       );
     });
+    // Phones and touch screens get a plain 240 ms fade (CSS), with no
+    // stagger, started a fifth of a screen before the block arrives, so text
+    // is never still fading while it is being read. With a mouse, blocks fade
+    // in from a soft blur, a few at a time, as they enter.
     var revealObs = new IntersectionObserver(
       function (entries) {
         var batch = 0;
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
           revealObs.unobserve(entry.target);
-          entry.target.style.setProperty("--d", String(Math.min(batch++, 6)));
+          if (finePointer) entry.target.style.setProperty("--d", String(Math.min(batch++, 6)));
           entry.target.classList.add("is-shown");
         });
       },
-      { threshold: 0, rootMargin: "0px 0px -6% 0px" }
+      { threshold: 0, rootMargin: finePointer ? "0px 0px -6% 0px" : "0px 0px 20% 0px" }
     );
-    reveals.forEach(function (el) {
+    // Content already on screen, or above it, never "arrives" again: not on
+    // load, not after a jump to #section, and not on research pages while the
+    // card picture is growing into the header (the view transition).
+    var fold = window.innerHeight;
+    var target = null;
+    try {
+      target = location.hash && document.querySelector(decodeURIComponent(location.hash));
+    } catch (e) {}
+    if (target) fold = Math.max(fold, target.getBoundingClientRect().top + fold * 1.25);
+    // All reads first, then all writes (one layout, not one per block).
+    var boxes = reveals.map(function (el) {
+      return el.getBoundingClientRect();
+    });
+    reveals.forEach(function (el, i) {
+      if (boxes[i].top < fold) return;
       el.classList.add("reveal");
+      if (finePointer && boxes[i].height > 400) el.classList.add("is-tall");
       revealObs.observe(el);
     });
   }
 
   // Flip words (Aceternity): [data-flip] runs once through its words when it
-  // is fully in view (under five seconds) and rests on the last one. Screen
-  // readers get the final phrase only.
+  // is fully in view (under five seconds) and rests on the last one. Every
+  // word sits in the same grid cell, so the phrase keeps the width of the
+  // longest word and nothing around it moves; it ends its sentence, so the
+  // reserved room reads as the end of the line. Screen readers get the final
+  // phrase only.
   if (motionOk && hasIO) {
     each("[data-flip]", function (el) {
       var words = el.getAttribute("data-flip").split("|");
+      var endEl = el.querySelector(".flip-end");
+      var end = endEl ? endEl.textContent : "";
       var final = words[words.length - 1];
       el.textContent = "";
       var sr = document.createElement("span");
       sr.className = "visually-hidden";
-      sr.textContent = final;
-      var shownWord = document.createElement("span");
-      shownWord.className = "flip-word";
-      shownWord.setAttribute("aria-hidden", "true");
-      shownWord.textContent = final;
-      el.append(sr, shownWord);
+      sr.textContent = final + end;
+      var stack = document.createElement("span");
+      stack.className = "flip-stack";
+      stack.setAttribute("aria-hidden", "true");
+      var spans = words.map(function (w) {
+        var s = document.createElement("span");
+        s.className = "flip-word";
+        s.textContent = w;
+        if (end) {
+          var e = document.createElement("span");
+          e.className = "flip-end";
+          e.textContent = end;
+          s.appendChild(e);
+        }
+        stack.appendChild(s);
+        return s;
+      });
+      var show = function (i) {
+        spans.forEach(function (s, j) {
+          s.classList.toggle("is-on", i === j);
+        });
+      };
+      show(words.length - 1);
+      el.append(sr, stack);
       var watch = new IntersectionObserver(
         function (entries) {
           if (!entries[0].isIntersecting) return;
           watch.disconnect();
+          el.classList.add("is-running");
           words.forEach(function (w, i) {
             setTimeout(function () {
-              shownWord.classList.remove("is-in");
-              void shownWord.offsetWidth;
-              shownWord.textContent = w;
-              shownWord.classList.add("is-in");
+              show(i);
               if (i < words.length - 1) el.setAttribute("data-step", String(i));
               else el.removeAttribute("data-step");
             }, i * 1100);
@@ -553,27 +636,81 @@
 
   // Scroll timeline: the rail fills and dots light as entries pass the
   // reading line (62% down the window).
-  var timelines = document.querySelectorAll(".timeline");
+  // Per scroll frame it reads one box per timeline, then writes one
+  // transform per timeline; the dots are lit by an IntersectionObserver, so
+  // no row is measured while scrolling.
+  var timelines = Array.prototype.slice.call(document.querySelectorAll(".timeline"));
   if (timelines.length && motionOk) {
+    var tlFills = timelines.map(function (tl) {
+      var fill = document.createElement("span");
+      fill.className = "timeline-fill";
+      fill.setAttribute("aria-hidden", "true");
+      tl.appendChild(fill);
+      tl.classList.add("is-live");
+      return fill;
+    });
     var drawTimelines = perFrame(function () {
       var line = window.innerHeight * 0.62;
-      Array.prototype.forEach.call(timelines, function (tl) {
-        var r = tl.getBoundingClientRect();
-        tl.style.setProperty("--p", clamp01((line - r.top) / Math.max(1, r.height)).toFixed(3));
-        Array.prototype.forEach.call(tl.children, function (row) {
-          row.classList.toggle("is-lit", row.getBoundingClientRect().top + 24 < line);
-        });
+      var boxes = timelines.map(function (tl) {
+        return tl.getBoundingClientRect();
       });
-    });
-    Array.prototype.forEach.call(timelines, function (tl) {
-      tl.classList.add("is-live");
+      boxes.forEach(function (r, i) {
+        var p = clamp01((line - r.top) / Math.max(1, r.height)).toFixed(3);
+        if (tlFills[i]._p === p) return; // off screen and unchanged
+        tlFills[i]._p = p;
+        tlFills[i].style.transform = "scaleY(" + p + ")";
+      });
     });
     window.addEventListener("scroll", drawTimelines, { passive: true });
     window.addEventListener("resize", drawTimelines);
     drawTimelines();
+    if (hasIO) {
+      var lightObs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            var top = entry.rootBounds ? entry.rootBounds.top : 0;
+            entry.target.classList.toggle("is-lit", entry.isIntersecting || entry.boundingClientRect.bottom <= top);
+          });
+        },
+        { rootMargin: "0px 0px -38% 0px" }
+      );
+      timelines.forEach(function (tl) {
+        Array.prototype.forEach.call(tl.querySelectorAll(":scope > .entry-row"), function (row) {
+          lightObs.observe(row);
+        });
+      });
+    }
   }
 
   /* -------------------------------------------- 2. publication panels */
+
+  // "Copy BibTeX" swaps to "Copied" in place: both labels share one grid
+  // cell, so the button keeps its width and the row does not shift. A
+  // polite live region says it for screen readers.
+  each(".copy-button", function (btn) {
+    var a = document.createElement("span");
+    a.className = "cb-a";
+    a.textContent = btn.textContent.trim();
+    var b = document.createElement("span");
+    b.className = "cb-b";
+    b.setAttribute("aria-hidden", "true");
+    b.textContent = "Copied";
+    btn.textContent = "";
+    btn.append(a, b);
+  });
+  var copyStatus = null;
+  function announce(text) {
+    if (!copyStatus) {
+      copyStatus = document.createElement("span");
+      copyStatus.className = "visually-hidden";
+      copyStatus.setAttribute("role", "status");
+      document.body.appendChild(copyStatus);
+    }
+    copyStatus.textContent = "";
+    setTimeout(function () {
+      copyStatus.textContent = text;
+    }, 50);
+  }
 
   document.addEventListener("click", function (e) {
     var toggle = e.target.closest(".pub-toggle");
@@ -583,6 +720,12 @@
       var open = toggle.getAttribute("aria-expanded") === "true";
       toggle.setAttribute("aria-expanded", open ? "false" : "true");
       panel.hidden = open;
+      // Opening settles in over 180 ms; closing is instant.
+      panel.classList.remove("is-entering");
+      if (!open && motionOk) {
+        void panel.offsetWidth;
+        panel.classList.add("is-entering");
+      }
       return;
     }
     var copy = e.target.closest(".copy-button");
@@ -591,10 +734,11 @@
       var pre = src && src.querySelector("pre");
       if (!pre) return;
       var done = function () {
-        var label = copy.textContent;
-        copy.textContent = "Copied";
-        setTimeout(function () {
-          copy.textContent = label;
+        clearTimeout(copy._t);
+        copy.classList.add("is-copied");
+        announce("BibTeX copied to the clipboard");
+        copy._t = setTimeout(function () {
+          copy.classList.remove("is-copied");
         }, 1600);
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {

@@ -36,7 +36,12 @@
   transform: scale(1.04);
 }
 
+// It follows scrolling and the pointer continuously, so it gets its own
+// compositor layer: without one, every scroll frame repainted the whole
+// oversized gradient field (about 60x more long-frame time in an A/B test).
+// Reduced motion: it never moves and needs no layer.
 .motion-ok .atlas-aurora {
+  will-change: transform;
   animation: aurora-in 1.2s var(--ease-out) both;
 }
 
@@ -98,51 +103,43 @@
 }
 
 // ----------------------------------------------- spotlight research cards ----
-// A glow and a lit border follow the pointer, in the card's line colour.
+// A glow follows the pointer, in the card's line colour. The script adds one
+// decorative .spot layer per card (mouse or trackpad, motion allowed) and
+// moves only its .spot-dot with `transform`. The border lights by colour on
+// hover (_atlas.scss), which is also all that reduced motion keeps.
 
 .line-card {
   position: relative;
   isolation: isolate;
 }
 
-.line-card::before,
-.line-card::after {
-  content: "";
+.spot {
   position: absolute;
   inset: 0;
+  z-index: -1;
+  overflow: hidden;
   border-radius: inherit;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 220ms ease;
+  transition: opacity 220ms var(--ease-out);
 }
 
-.line-card::before {
-  z-index: -1;
-  background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 30%), color-mix(in srgb, var(--c) 15%, transparent), transparent 65%);
-}
-
-.line-card::after {
-  z-index: 2;
-  padding: 1.5px;
-  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 30%), var(--c), transparent 70%);
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#000 0 0) content-box exclude,
-    linear-gradient(#000 0 0);
+.spot-dot {
+  position: absolute;
+  left: -220px;
+  top: -220px;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c) 15%, transparent), transparent);
+  will-change: transform;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .line-card:hover::before,
-  .line-card:hover::after {
+  .line-card:hover > .spot,
+  .join-card:hover > .spot {
     opacity: 1;
   }
-}
-
-.line-card:focus-visible::after {
-  opacity: 1;
 }
 
 // ----------------------------------------------------- venues marquee ----
@@ -321,11 +318,11 @@
 .timeline {
   position: relative;
   padding-left: 1.75rem;
-  --p: 1;
 }
 
 .timeline::before,
-.timeline::after {
+.timeline::after,
+.timeline-fill {
   content: "";
   position: absolute;
   left: 0.4rem;
@@ -339,11 +336,21 @@
   background: var(--rule);
 }
 
-.timeline::after {
+// Without the script the rail is simply full. With it, .timeline-fill (one
+// element per timeline) is scaled with `transform` as the page scrolls.
+.timeline::after,
+.timeline-fill {
   bottom: 0;
-  transform: scaleY(var(--p));
   transform-origin: top;
   background: linear-gradient(180deg, var(--line-traffic), var(--line-learning) 50%, var(--line-medical));
+}
+
+.timeline.is-live::after {
+  display: none;
+}
+
+.timeline-fill {
+  transform: scaleY(0);
 }
 
 .timeline > .entry-row {
@@ -361,9 +368,9 @@
   border-radius: 50%;
   background: var(--paper);
   transition:
-    background-color 300ms ease,
-    border-color 300ms ease,
-    box-shadow 300ms ease;
+    background-color 300ms var(--ease-out),
+    border-color 300ms var(--ease-out),
+    box-shadow 300ms var(--ease-out);
 }
 
 .timeline:not(.is-live) > .entry-row::before,
@@ -510,31 +517,39 @@
   }
 }
 
-// ------------------------------------------------------- 3D tilt cards ----
-// Aceternity's 3D card: research cards lean a few degrees toward the
-// pointer. The image floats slightly above the card.
-
-.motion-ok .line-cards {
-  perspective: 1100px;
-}
-
-// The script writes `transform` on the card itself, eased like a spring;
-// no CSS variables (they would restyle every child on each pointer move).
+// The 3D tilt on research cards was removed (October 2026): rotated text
+// went soft mid-tilt and the card was snapshotted mid-rotation by the view
+// transition. Cards answer a press instead (_motion.scss).
 
 // --------------------------------------------------- blur-fade reveals ----
 // Magic UI's blur fade: sections arrive from a soft blur as they scroll in.
 // The script adds .reveal only when motion is allowed; afterwards the filter
 // and transform are removed entirely so nothing stays composited.
 
+// Touch screens and phones: a plain 240 ms fade, no blur, no stagger (the
+// script also starts it before the block is on screen). Text is never
+// blurred while someone is trying to read it.
 .motion-ok .reveal {
   opacity: 0;
-  transform: translateY(14px);
-  filter: blur(6px);
-  transition:
-    opacity 700ms var(--ease-out),
-    transform 700ms var(--ease-out),
-    filter 700ms var(--ease-out);
-  transition-delay: calc(var(--d, 0) * 70ms);
+  transition: opacity 240ms var(--ease-out);
+}
+
+// Mouse and trackpad: a short blur fade with a small stagger. Tall blocks
+// (charts, long lists) fade without the blur.
+@media (hover: hover) and (pointer: fine) {
+  .motion-ok .reveal {
+    transform: translateY(8px);
+    filter: blur(6px);
+    transition:
+      opacity 480ms var(--ease-out),
+      transform 480ms var(--ease-out),
+      filter 480ms var(--ease-out);
+    transition-delay: calc(var(--d, 0) * 50ms);
+  }
+
+  .motion-ok .reveal.is-tall {
+    filter: none;
+  }
 }
 
 .motion-ok .reveal.is-shown {
@@ -547,18 +562,35 @@
 // Aceternity's flip words: the lab line runs once through what our models
 // have to survive, then rests on the original phrase.
 
+// Every word is stacked in one grid cell, so the phrase always takes the
+// width of the longest word and the paragraph never reflows. The phrase ends
+// its sentence, so that room reads as the end of the line.
+
 .flip {
-  display: inline-block;
   font-weight: 650;
   color: var(--cobalt);
   white-space: nowrap;
 }
 
-.flip-word {
-  display: inline-block;
+.flip-end {
+  font-weight: 400;
+  color: var(--ink);
 }
 
-.motion-ok .flip-word.is-in {
+.flip-stack {
+  display: inline-grid;
+}
+
+.flip-word {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.flip-word.is-on {
+  visibility: visible;
+}
+
+.motion-ok .flip.is-running .flip-word.is-on {
   animation: flip-in 420ms var(--ease-out) both;
 }
 
@@ -650,39 +682,42 @@
   margin-top: 0;
 }
 
-.join-card::before,
-.join-card::after {
+.join-card > .prose-block + .prose-block {
+  margin-top: var(--s-3);
+}
+
+.join-card::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   background-size: 18px 18px;
-}
-
-.join-card::before {
   background-image: radial-gradient(color-mix(in srgb, var(--ink) 16%, transparent) 1px, transparent 1.5px);
   -webkit-mask-image: radial-gradient(ellipse 90% 80% at 100% 0%, #000 10%, transparent 75%);
   mask-image: radial-gradient(ellipse 90% 80% at 100% 0%, #000 10%, transparent 75%);
 }
 
-.join-card::after {
-  opacity: 0;
-  transition: opacity 260ms ease;
-  background-image:
-    radial-gradient(var(--cobalt) 1.4px, transparent 1.9px),
-    radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--cobalt) 10%, transparent), transparent 70%);
-  background-size:
-    18px 18px,
-    100% 100%;
-  -webkit-mask-image: radial-gradient(180px circle at var(--mx, 50%) var(--my, 50%), #000, transparent 75%);
-  mask-image: radial-gradient(180px circle at var(--mx, 50%) var(--my, 50%), #000, transparent 75%);
+// Lit dots near the pointer: the window (.spot-dot, soft-edged by a fixed
+// mask) moves with `transform`, and the dot grid inside it moves the other
+// way, so the lit dots stay on the card's own grid.
+.join-card .spot-dot {
+  left: -180px;
+  top: -180px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--cobalt) 10%, transparent), transparent);
+  -webkit-mask-image: radial-gradient(closest-side, #000, transparent);
+  mask-image: radial-gradient(closest-side, #000, transparent);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .join-card:hover::after {
-    opacity: 1;
-  }
+.spot-grid {
+  position: absolute;
+  left: 180px;
+  top: 180px;
+  background-image: radial-gradient(var(--cobalt) 1.4px, transparent 1.9px);
+  background-size: 18px 18px;
+  will-change: transform;
 }
 
 // ------------------------------------------------ tracing beam (notes) ----

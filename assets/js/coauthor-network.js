@@ -1,10 +1,9 @@
 /*
  * Co-author network on the Lab page. Chen sits in the middle; every co-author
- * is a dot, sized and pulled closer by the number of papers written together,
- * coloured by the research line they share most, ringed if they are a student
- * of the lab. Links join co-authors who wrote papers with each other.
+ * is a dot in the sector of the research line they share most (named on the
+ * rim), ringed if they are a student of the lab. Links join co-authors who wrote papers with each other.
  * Data: <script id="research-data"> (people and papers from papers.bib).
- * A small force simulation (no libraries) settles the layout once on load.
+ * The layout is deterministic (see layout()); dots ease into place once.
  */
 (function () {
   "use strict";
@@ -95,8 +94,6 @@
 
   var W = 0;
   var H = 0;
-  var scale = 1;
-  var alpha = 1;
   var running = false;
   var hover = null;
   var drag = null;
@@ -116,6 +113,7 @@
     img.src = photoSrc;
   }
 
+  var narrow = false;
   function size() {
     W = el.clientWidth;
     H = el.clientHeight;
@@ -123,116 +121,211 @@
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    scale = Math.min(W, H * 1.6) / 900;
-    scale = Math.max(0.42, Math.min(scale, 1.15));
-    // Smaller dots on narrow screens.
-    var k = W < 560 ? 0.68 : 1;
+    narrow = W < 560;
     nodes.forEach(function (n) {
       // Every co-author is the same size: the picture shows breadth
       // across research lines, not who publishes with Chen most.
-      n.r = n.me ? (W < 560 ? 20 : 26) : 6 * k;
+      n.r = n.me ? (narrow ? 20 : 26) : narrow ? 4 : 6;
     });
   }
 
-  // Layout: each research line owns a sector around Chen, sized by how many
-  // co-authors it has. Inside its sector a co-author gets a fixed, seeded
-  // spot; distance from Chen does not encode anything.
+  // Layout (deterministic, no physics): each research line owns a sector of
+  // an ellipse round Chen, sized by how many co-authors it has. Inside a
+  // sector, students of the lab sit nearest the middle and the others follow
+  // by the year they first wrote with Chen, so time runs outward. Nothing is
+  // clamped to the canvas, so dots never pile up along its edges.
   var lineOrder = data.lines.map(function (l) {
     return l.key;
   });
   lineOrder.push("other");
-  var perLine = {};
-  nodes.forEach(function (n) {
-    if (!n.me) perLine[n.line] = (perLine[n.line] || 0) + 1;
-  });
-  var totalPeople = nodes.length - 1;
-  var angle = -Math.PI / 2;
-  var sectors = {};
-  lineOrder.forEach(function (key) {
-    var share = ((perLine[key] || 0) / Math.max(1, totalPeople)) * Math.PI * 2;
-    sectors[key] = { from: angle, span: share };
-    angle += share;
-  });
+  var members = {};
   nodes.forEach(function (n) {
     if (n.me) return;
-    var sec = sectors[n.line] || sectors.other;
-    var pad = Math.min(0.12, sec.span * 0.15);
-    n.ang = sec.from + pad + rand() * Math.max(0.001, sec.span - pad * 2);
-    n.rad = 0.38 + rand() * 0.5;
+    var key = lineOrder.indexOf(n.line) === -1 ? "other" : n.line;
+    n.sector = key;
+    (members[key] = members[key] || []).push(n);
   });
-  function target(n) {
-    return n.rad;
+  lineOrder = lineOrder.filter(function (k) {
+    return members[k];
+  });
+  lineOrder.forEach(function (k) {
+    members[k].sort(function (a, b) {
+      return !!b.role - !!a.role || (a.first || 9999) - (b.first || 9999) || a.name.localeCompare(b.name);
+    });
+  });
+  var sectors = {};
+  (function () {
+    var total = nodes.length - 1;
+    var MIN = 0.17; // radians, so a line with one or two people still reads
+    var spans = {};
+    var small = 0;
+    var bigCount = 0;
+    lineOrder.forEach(function (k) {
+      var s = (members[k].length / total) * Math.PI * 2;
+      if (s < MIN) {
+        spans[k] = MIN;
+        small += MIN;
+      } else bigCount += members[k].length;
+    });
+    var angle = -Math.PI / 2;
+    lineOrder.forEach(function (k) {
+      var span = spans[k] || (members[k].length / bigCount) * (Math.PI * 2 - small);
+      sectors[k] = { from: angle, span: span, key: k, n: members[k].length };
+      angle += span;
+    });
+  })();
+
+  var CX = 0,
+    CY = 0,
+    RX = 1,
+    RY = 1;
+  function layout() {
+    CX = W / 2;
+    CY = H / 2;
+    RY = H / 2 - (narrow ? 30 : 36);
+    // Wide screens leave room at the sides for the sector names.
+    RX = narrow ? W / 2 - 14 : Math.min(W / 2 - 170, RY * 1.6);
+    var rmin = Math.min(RX, RY);
+    var pitch = narrow ? 16 : 23;
+    var u0 = (me.r + (narrow ? 22 : 30)) / rmin;
+    var rings = Math.max(3, Math.min(9, Math.floor(((1 - u0) * rmin) / pitch) + 1));
+    var rmean = (RX + RY) / 2;
+    lineOrder.forEach(function (k, si) {
+      var sec = sectors[k];
+      var list = members[k];
+      var pad = Math.min(0.05, sec.span * 0.14);
+      var usable = Math.max(0.01, sec.span - pad * 2);
+      var caps = [];
+      var C = 0;
+      for (var i = 0; i < rings; i++) {
+        var u = u0 + ((1 - u0) * i) / (rings - 1);
+        var c = Math.max(1, Math.floor((usable * u * rmean) / pitch) + 1);
+        caps.push(c);
+        C += c;
+      }
+      // Spread the line's people over the rings in proportion to room.
+      var f = list.length / C;
+      var counts = caps.map(function (c) {
+        return Math.floor(c * f);
+      });
+      var left =
+        list.length -
+        counts.reduce(function (a, b) {
+          return a + b;
+        }, 0);
+      var order = caps
+        .map(function (c, i) {
+          return [c * f - Math.floor(c * f), i];
+        })
+        .sort(function (a, b) {
+          return b[0] - a[0] || a[1] - b[1];
+        });
+      for (var o = 0; left > 0; o = (o + 1) % order.length, left--) counts[order[o][1]]++;
+      var idx = 0;
+      seed = 11 + si * 97;
+      for (var ri = 0; ri < rings; ri++) {
+        var cnt = counts[ri];
+        var uu = u0 + ((1 - u0) * ri) / (rings - 1);
+        for (var j = 0; j < cnt; j++) {
+          var n = list[idx++];
+          var step = usable / cnt;
+          // A ring with one dot from this line places it by the golden
+          // ratio, so thin sectors scatter instead of forming a spoke.
+          var at = cnt === 1 ? 0.15 + 0.7 * ((ri * 0.618 + 0.31) % 1) : (j + 0.5) / cnt;
+          var a = sec.from + pad + usable * at + (rand() - 0.5) * step * 0.35;
+          var ur = uu + (rand() - 0.5) * (0.4 / rings) * (1 - u0);
+          n.ang = a;
+          n.ring = ri;
+          n.tx = CX + Math.cos(a) * ur * RX;
+          n.ty = CY + Math.sin(a) * ur * RY;
+        }
+      }
+    });
+    me.x = me.tx = CX;
+    me.y = me.ty = CY;
+    placeLabels();
   }
 
-  function tick() {
-    var i, j, a, b, dx, dy, d2, d, f;
-    var cx = W / 2;
-    var cy = H / 2;
-    me.x = cx;
-    me.y = cy;
-    for (i = 1; i < nodes.length; i++) {
-      a = nodes[i];
-      // spring towards the co-author's spot in their research line's sector
-      var tx = cx + Math.cos(a.ang) * a.rad * (W / 2 - 28);
-      var ty = cy + Math.sin(a.ang) * a.rad * (H / 2 - 28);
-      f = 0.05 * Math.max(alpha, 0.2);
-      a.vx += (tx - a.x) * f;
-      a.vy += (ty - a.y) * f;
-      // repulsion and collision
-      for (j = i + 1; j < nodes.length; j++) {
-        b = nodes[j];
-        dx = a.x - b.x;
-        dy = a.y - b.y;
-        d2 = Math.max(dx * dx + dy * dy, 64);
-        d = Math.sqrt(d2);
-        var minD = a.r + b.r + 3;
-        f = ((110 * scale) / d2) * alpha;
-        if (d < minD) f += ((minD - d) / d) * 0.5;
-        a.vx += dx * f;
-        a.vy += dy * f;
-        b.vx -= dx * f;
-        b.vy -= dy * f;
-      }
-      // keep clear of Chen's photo
-      dx = a.x - cx;
-      dy = a.y - cy;
-      d = Math.sqrt(dx * dx + dy * dy) || 1;
-      if (d < me.r + a.r + 6) {
-        f = (me.r + a.r + 6 - d) / d;
-        a.vx += dx * f * 0.5;
-        a.vy += dy * f * 0.5;
-      }
-    }
-    // co-author links pull gently
-    links.forEach(function (l) {
-      dx = l.b.x - l.a.x;
-      dy = l.b.y - l.a.y;
-      d = Math.sqrt(dx * dx + dy * dy) || 1;
-      f = ((d - 70 * scale) / d) * 0.003 * alpha;
-      l.a.vx += dx * f;
-      l.a.vy += dy * f;
-      l.b.vx -= dx * f;
-      l.b.vy -= dy * f;
+  // Each line's name sits just outside its rim, at the middle of the sector,
+  // nudged along until it covers no dot and no other name.
+  var labelSize = 12.5;
+  function placeLabels() {
+    labelSize = narrow ? 11 : 12.5;
+    ctx.font = "650 " + labelSize + "px Archivo, system-ui, sans-serif";
+    var h = labelSize + 6;
+    var taken = [];
+    var dots = nodes.map(function (n) {
+      var r = (n.me ? n.r : n.r + 3) + 1;
+      return { x: n.tx - r, y: n.ty - r, w: r * 2, h: r * 2 };
     });
-    for (i = 1; i < nodes.length; i++) {
-      a = nodes[i];
-      if (a === drag) {
-        a.vx = a.vy = 0;
-        continue;
+    function clear(b) {
+      var all = taken.concat(dots);
+      for (var i = 0; i < all.length; i++) {
+        var p = all[i];
+        if (b.x < p.x + p.w && b.x + b.w > p.x && b.y < p.y + p.h && b.y + b.h > p.y) return false;
       }
-      a.vx *= 0.62;
-      a.vy *= 0.62;
-      var sp = Math.sqrt(a.vx * a.vx + a.vy * a.vy);
-      if (sp > 10) {
-        a.vx *= 10 / sp;
-        a.vy *= 10 / sp;
-      }
-      a.x += a.vx;
-      a.y += a.vy;
-      a.x = Math.max(a.r + 4, Math.min(W - a.r - 4, a.x));
-      a.y = Math.max(a.r + 4, Math.min(H - a.r - 4, a.y));
+      return true;
     }
-    alpha *= 0.985;
+    lineOrder.forEach(function (k) {
+      var sec = sectors[k];
+      var mid = sec.from + sec.span / 2;
+      var c = Math.cos(mid);
+      var sn = Math.sin(mid);
+      var text = names[k] || names.other;
+      var w = ctx.measureText(text).width + 4;
+      var first = null;
+      var found = null;
+      for (var off = 22; off <= 70 && !found; off += 12) {
+        for (var s = 0; s < 7 && !found; s++) {
+          var dy = (s % 2 ? 1 : -1) * Math.ceil(s / 2) * h * 0.75;
+          var px = CX + c * (RX + off);
+          var py = CY + sn * (RY + off * 0.8) + dy;
+          var x = c > 0.3 ? px : c < -0.3 ? px - w : px - w / 2;
+          var b = {
+            x: Math.max(0, Math.min(W - w, x)),
+            y: Math.max(0, Math.min(H - h, py - h / 2)),
+            w: w,
+            h: h,
+            text: text,
+          };
+          if (!first) first = b;
+          if (clear(b)) found = b;
+        }
+      }
+      sec.label = found || first;
+      taken.push(sec.label);
+    });
+  }
+
+  // Motion: dots ease from near the middle to their places once (well under
+  // a second, timed by the clock, not by frame count), and a dragged dot
+  // eases back when let go.
+  var ENTER = 750;
+  var BACK = 380;
+  function easeOut(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+  function tween(n, dur, delay) {
+    n.fx = n.x;
+    n.fy = n.y;
+    n.t0 = null;
+    n.dur = dur;
+    n.delay = delay || 0;
+  }
+  function tick(now) {
+    var moving = false;
+    for (var i = 1; i < nodes.length; i++) {
+      var n = nodes[i];
+      if (n === drag || n.dur == null) continue;
+      if (n.t0 === null) n.t0 = now;
+      var k = Math.max(0, Math.min(1, (now - n.t0 - n.delay) / n.dur));
+      var e = easeOut(k);
+      n.x = n.fx + (n.tx - n.fx) * e;
+      n.y = n.fy + (n.ty - n.fy) * e;
+      if (k < 1) moving = true;
+      else n.dur = null;
+    }
+    return moving;
   }
 
   function lit(n) {
@@ -251,6 +344,22 @@
   function paint() {
     ctx.clearRect(0, 0, W, H);
     var anyFilter = !!(previewLine || focusLine || search || (hover && !hover.me));
+    var activeLine = previewLine || focusLine;
+
+    // Sector rims: a short arc in each line's colour just outside its dots.
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    lineOrder.forEach(function (k) {
+      var sec = sectors[k];
+      var pad = Math.min(0.05, sec.span * 0.14);
+      ctx.globalAlpha = activeLine && activeLine !== "lab" && activeLine !== k ? 0.15 : 0.55;
+      ctx.strokeStyle = colors[k] || colors.other;
+      ctx.beginPath();
+      ctx.ellipse(CX, CY, RX + 12, RY + 12, 0, sec.from + pad, sec.from + sec.span - pad);
+      ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+    ctx.lineCap = "butt";
 
     // spokes to Chen
     ctx.lineWidth = 1;
@@ -267,7 +376,7 @@
     links.forEach(function (l) {
       var on = hover && (l.a === hover || l.b === hover);
       var dim = anyFilter && !(lit(l.a) && lit(l.b));
-      ctx.strokeStyle = on ? "rgba(255,255,255,0.65)" : "rgba(214, 222, 255," + (dim ? 0.03 : 0.14) + ")";
+      ctx.strokeStyle = on ? "rgba(255,255,255,0.65)" : "rgba(214, 222, 255," + (dim ? 0.03 : 0.09) + ")";
       ctx.lineWidth = on ? 1.5 : 1;
       ctx.beginPath();
       ctx.moveTo(l.a.x, l.a.y);
@@ -321,10 +430,6 @@
     ctx.arc(me.x, me.y, me.r + 1.5, 0, Math.PI * 2);
     ctx.stroke();
 
-    // Names appear only for the co-author under the pointer (or keyboard
-    // focus), and for matches while searching.
-    ctx.font = "600 12px Archivo, system-ui, sans-serif";
-    ctx.textBaseline = "middle";
     var placed = [{ x: me.x - me.r - 4, y: me.y - me.r - 4, w: me.r * 2 + 8, h: me.r * 2 + 8 }];
     function free(b) {
       for (var i = 0; i < placed.length; i++) {
@@ -333,6 +438,27 @@
       }
       return b.x >= 0 && b.x + b.w <= W && b.y >= 0 && b.y + b.h <= H;
     }
+
+    // Sector names (placed by placeLabels()).
+    ctx.font = "650 " + labelSize + "px Archivo, system-ui, sans-serif";
+    ctx.textBaseline = "middle";
+    ctx.textAlign = "left";
+    lineOrder.forEach(function (k) {
+      var b = sectors[k].label;
+      if (!b) return;
+      placed.push(b);
+      ctx.globalAlpha = activeLine && activeLine !== "lab" && activeLine !== k ? 0.35 : 1;
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "rgba(16, 26, 77, 0.9)";
+      ctx.strokeText(b.text, b.x + 2, b.y + b.h / 2);
+      ctx.fillStyle = colors[k] || colors.other;
+      ctx.fillText(b.text, b.x + 2, b.y + b.h / 2);
+    });
+    ctx.globalAlpha = 1;
+
+    // Names appear only for the co-author under the pointer (or keyboard
+    // focus), and for matches while searching.
+    ctx.font = "600 12px Archivo, system-ui, sans-serif";
     var labelled = nodes
       .filter(function (n) {
         if (n.me || !lit(n)) return false;
@@ -368,37 +494,50 @@
     });
   }
 
-  function loop() {
-    tick();
+  function loop(now) {
+    var moving = tick(now);
     paint();
-    if (alpha > 0.02 || drag) {
+    if (moving || drag) {
       window.requestAnimationFrame(loop);
     } else {
       running = false;
     }
   }
 
-  function reheat(a) {
-    alpha = Math.max(alpha, a);
+  function kick() {
+    if (reduceMotion) {
+      for (var i = 1; i < nodes.length; i++) {
+        if (nodes[i] === drag) continue;
+        nodes[i].x = nodes[i].tx;
+        nodes[i].y = nodes[i].ty;
+        nodes[i].dur = null;
+      }
+      paint();
+      return;
+    }
     if (!running) {
       running = true;
       window.requestAnimationFrame(loop);
     }
   }
 
-  function settleInstantly() {
-    for (var i = 0; i < 320; i++) tick();
-    paint();
-  }
-
-  function nodeAt(x, y) {
+  // The dot under a point. Touch gets a wider net (22 px), since the dots
+  // are smaller than a fingertip.
+  function nodeAt(x, y, slop) {
+    var best = null;
+    var bestD = Infinity;
     for (var i = nodes.length - 1; i >= 0; i--) {
       var n = nodes[i];
       var dx = n.x - x;
       var dy = n.y - y;
-      if (dx * dx + dy * dy <= (n.r + 4) * (n.r + 4)) return n;
+      var d = Math.sqrt(dx * dx + dy * dy);
+      if (n.me && d <= n.r + 4) return n;
+      if (d <= Math.max(n.r + 4, slop || 0) && d < bestD) {
+        best = n;
+        bestD = d;
+      }
     }
-    return null;
+    return best;
   }
 
   function showTip(n) {
@@ -466,7 +605,7 @@
 
   el.addEventListener("pointerdown", function (e) {
     var pt = point(e);
-    var n = nodeAt(pt.x, pt.y);
+    var n = nodeAt(pt.x, pt.y, e.pointerType === "mouse" ? 0 : 22);
     if (!n) {
       setHover(null);
       return;
@@ -476,7 +615,7 @@
     drag = n;
     el.setPointerCapture(e.pointerId);
     el.style.cursor = "grabbing";
-    if (!reduceMotion) reheat(0.25);
+    kick();
   });
   el.addEventListener("pointermove", function (e) {
     var pt = point(e);
@@ -484,19 +623,23 @@
       drag.x = pt.x;
       drag.y = pt.y;
       showTip(drag);
-      if (reduceMotion) paint();
+      if (!running) paint();
       return;
     }
     if (e.pointerType !== "touch") setHover(nodeAt(pt.x, pt.y));
   });
   function endDrag(e) {
     if (!drag) return;
+    var n = drag;
     drag = null;
     el.style.cursor = "grab";
     try {
       el.releasePointerCapture(e.pointerId);
     } catch (err) {}
-    if (reduceMotion) settleInstantly();
+    hideTip();
+    hover = null;
+    tween(n, BACK);
+    kick();
   }
   el.addEventListener("pointerup", endDrag);
   el.addEventListener("pointercancel", endDrag);
@@ -556,18 +699,20 @@
 
   function start() {
     size();
+    layout();
     nodes.forEach(function (n) {
       if (n.me) return;
-      var t = target(n) * (reduceMotion ? 1 : 0.3);
-      n.x = W / 2 + Math.cos(n.ang) * t * (W / 2 - 28);
-      n.y = H / 2 + Math.sin(n.ang) * t * (H / 2 - 28);
+      if (reduceMotion) {
+        n.x = n.tx;
+        n.y = n.ty;
+        return;
+      }
+      n.x = CX + (n.tx - CX) * 0.3;
+      n.y = CY + (n.ty - CY) * 0.3;
+      tween(n, ENTER, n.ring * 25);
     });
-    if (reduceMotion) {
-      settleInstantly();
-    } else {
-      running = true;
-      window.requestAnimationFrame(loop);
-    }
+    if (reduceMotion) paint();
+    else kick();
   }
 
   var started = false;
@@ -575,6 +720,12 @@
     if (started) return;
     started = true;
     start();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        placeLabels();
+        if (!running) paint();
+      });
+    }
   }
   if ("IntersectionObserver" in window && !reduceMotion) {
     var io = new IntersectionObserver(
@@ -596,18 +747,17 @@
     new ResizeObserver(function () {
       var w = el.clientWidth;
       if (!started || Math.abs(w - lastW) < 2) return;
-      var oldW = W;
-      var oldH = H;
       lastW = w;
       size();
+      layout();
       nodes.forEach(function (n) {
-        n.x = (n.x / oldW) * W;
-        n.y = (n.y / oldH) * H;
+        n.x = n.tx;
+        n.y = n.ty;
+        n.dur = null;
       });
       hideTip();
       hover = null;
-      if (reduceMotion) settleInstantly();
-      else reheat(0.3);
+      paint();
     }).observe(el);
   }
 })();

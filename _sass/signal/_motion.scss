@@ -1,0 +1,177 @@
+// =============================================================================
+// Signal: motion, performance and phone fixes (October 2026 review)
+// Loaded after the other layers so it can retune them without editing them.
+// Rules (DESIGN.md): transform and opacity only, --ease-out / --ease-in-out,
+// hover only for mouse and trackpad, everything off under reduced motion.
+// =============================================================================
+
+// ------------------------------------------------------- theme switch ----
+// One coordinated change instead of some 160 separate colour transitions:
+// the script adds .theme-switching for the duration of the switch, and where
+// view transitions exist the whole page crossfades once, in 220 ms.
+
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-switching::view-transition-old(*),
+  html.theme-switching::view-transition-new(*) {
+    animation-duration: 220ms;
+    animation-timing-function: var(--ease-in-out);
+  }
+
+  html.theme-switching::view-transition-group(*) {
+    animation-duration: 220ms;
+  }
+}
+
+// ----------------------------------------------------- story on phones ----
+// 100vh is the large viewport on iOS, so with the address bar showing the
+// bottom of the pinned panel sat under the browser chrome. svh is the small
+// viewport (the visible area at its smallest); 100vh stays as the fallback.
+
+.motion-ok .story-pin {
+  height: 100vh;
+  height: 100svh;
+}
+
+.story-pin {
+  min-height: min(100vh, 52rem);
+  min-height: min(100svh, 52rem);
+}
+
+// -------------------------------------------------------- press states ----
+// Research cards answer a press (scale 0.98) instead of tilting on hover.
+
+.motion-ok .line-card {
+  transition:
+    border-color 160ms var(--ease-out),
+    scale 160ms var(--ease-out);
+}
+
+.motion-ok .line-card:active {
+  scale: 0.98;
+}
+
+// Filter chips (News, Teaching): the press now eases instead of snapping,
+// and only when motion is allowed.
+.motion-ok .filter-chip {
+  transition:
+    background-color 160ms var(--ease-out),
+    color 160ms var(--ease-out),
+    scale 160ms var(--ease-out);
+}
+
+.filter-chip:active {
+  scale: none;
+}
+
+.motion-ok .filter-chip:active {
+  scale: 0.97;
+}
+
+// ------------------------------------------- abstract and BibTeX panels ----
+// Opening settles in over 180 ms (no height animation); closing is instant.
+
+.motion-ok .pub-panel.is-entering {
+  animation: panel-in 180ms var(--ease-out);
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+.motion-ok .pub-toggle::after {
+  transition: transform 200ms var(--ease-out);
+}
+
+// ------------------------------------------------------- copy BibTeX ----
+// Both labels share one grid cell, so the button keeps the width of the
+// longer one and nothing beside it moves. The script toggles .is-copied.
+
+.copy-button {
+  display: inline-grid;
+  align-items: center;
+}
+
+.cb-a,
+.cb-b {
+  grid-area: 1 / 1;
+}
+
+.cb-b,
+.copy-button.is-copied .cb-a {
+  opacity: 0;
+}
+
+.copy-button.is-copied .cb-b {
+  opacity: 1;
+}
+
+.motion-ok .cb-a,
+.motion-ok .cb-b {
+  transition:
+    opacity 140ms var(--ease-out),
+    transform 140ms var(--ease-out);
+}
+
+.motion-ok .cb-b {
+  transform: translateY(4px);
+}
+
+.motion-ok .copy-button.is-copied .cb-a {
+  transform: translateY(-4px);
+}
+
+.motion-ok .copy-button.is-copied .cb-b {
+  transform: none;
+  transition-duration: 180ms;
+}
+
+// ------------------------------------------------------ touch screens ----
+// Links in rows (footer, profile links, "All news" and similar) are at
+// least 44 px tall where the pointer is a finger. The network canvas lets
+// the page scroll under a finger (touch never drags a dot).
+
+@media (pointer: coarse) {
+  .footer-grid ul {
+    row-gap: 0;
+  }
+
+  .footer-links a,
+  .inline-links a,
+  .more-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .inline-links {
+    row-gap: 0;
+  }
+
+  .network-canvas {
+    touch-action: pan-y pinch-zoom;
+  }
+}
+
+// Captions that name the gesture: "Click" with a mouse, "Tap" by touch.
+.when-touch {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .when-touch {
+    display: inline;
+  }
+
+  .when-fine {
+    display: none;
+  }
+}
