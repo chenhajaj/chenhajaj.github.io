@@ -411,29 +411,6 @@
   color: inherit;
 }
 
-.line-card-img {
-  aspect-ratio: 2.15 / 1;
-  overflow: hidden;
-  background: color-mix(in srgb, var(--c) 30%, var(--paper));
-}
-
-.line-card-img figure,
-.line-card-img picture {
-  display: block;
-  height: 100%;
-  margin: 0;
-}
-
-.line-card-img img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  // Show the upper part of each illustration; this also crops the corner mark.
-  object-position: 50% 12%;
-  transition: transform 400ms ease;
-}
-
 .line-card-body {
   flex: 1;
   padding: var(--s-5) var(--s-5) var(--s-3);
@@ -476,20 +453,6 @@
   padding: 0 var(--s-5) var(--s-5);
 }
 
-.spark {
-  width: 7.5rem;
-  height: 1.75rem;
-  flex: none;
-}
-
-.spark rect {
-  fill: var(--c);
-}
-
-.spark .spark-base {
-  fill: color-mix(in srgb, var(--c) 35%, transparent);
-}
-
 .line-card-count {
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
@@ -499,12 +462,6 @@
 .line-card-count strong {
   font-size: var(--fs-sm);
   color: var(--ink);
-}
-
-@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
-  .line-card:hover .line-card-img img {
-    transform: scale(1.04);
-  }
 }
 
 // --------------------------------------------- feature, topics (coloured) ----
@@ -793,29 +750,6 @@
   font-size: var(--fs-sm);
 }
 
-.project-hero-img {
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  // 2:1 framing of the 16:9 illustrations crops the bottom, including the corner mark.
-  aspect-ratio: 2 / 1;
-  box-shadow: 0 0 0 1px var(--on-night-rule);
-}
-
-.project-hero-img figure,
-.project-hero-img picture {
-  display: block;
-  height: 100%;
-  margin: 0;
-}
-
-.project-hero-img img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 0%;
-}
-
 .line-map {
   margin: clamp(2rem, 5vw, 3rem) 0 0;
   padding-top: var(--s-5);
@@ -877,21 +811,6 @@
 // Charts grow and numbers count up when they scroll into view. .motion-ok is
 // set on <html> by an inline script only when the visitor allows motion, so
 // without JavaScript everything is simply shown.
-.spark rect {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
-}
-
-.motion-ok .line-card .spark rect:not(.spark-base) {
-  transform: scaleY(0);
-  transition: transform 640ms var(--ease-out);
-  transition-delay: calc(var(--i, 0) * 28ms + 120ms);
-}
-
-.motion-ok .line-card.is-inview .spark rect:not(.spark-base) {
-  transform: scaleY(1);
-}
-
 @media (max-width: 640px) {
   .atlas-stats dd {
     font-size: var(--fs-xl);

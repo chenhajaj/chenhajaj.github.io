@@ -43,7 +43,9 @@ Motion is tied to content and answers what the visitor does. All of it is off
 under `prefers-reduced-motion` (the `motion-ok` class on `<html>` gates it).
 
 - Map squares drop into their year column (on load in the hero, on scroll
-  into view elsewhere); the network settles into place.
+  into view elsewhere). The co-author network has no physics: each research
+  line gets an elliptical sector with its label, and the dots ease into place
+  in about a second.
 - Numbers under the maps tick up once they are fully in view (screen readers
   get the final value).
 - Effects ported from 21st.dev components (Aceternity UI, Magic UI; MIT),
@@ -56,7 +58,7 @@ under `prefers-reduced-motion` (the `motion-ok` class on `<html>` gates it).
     the card's line colour;
   - "Published in" venue strip (`_data/venues.yml`), linking to a search on
     /publications/. It rotates continuously (Chen's call) and speeds up with
-    scrolling; hover pauses it and a pause button stops it (WCAG 2.2.2), the
+    scrolling, capped at twice its resting speed; hover pauses it and a pause button stops it (WCAG 2.2.2), the
     choice is remembered, and keyboard focus lays it out flat;
   - scroll timeline on Background and CV entries: the rail fills and dots
     light as entries pass;
@@ -65,7 +67,7 @@ under `prefers-reduced-motion` (the `motion-ok` class on `<html>` gates it).
 - Apart from the venue strip, which has a pause button, nothing moves on a
   timer for more than five seconds (WCAG 2.2.2).
 - More from 21st.dev (October 2026): floating pill header on scroll (desktop),
-  3D tilt on research cards, blur-fade reveals, flip words in the lab line,
+  blur-fade reveals (a 240 ms fade with no blur on touch screens), flip words in the lab line,
   shimmer on buttons, dot-grid "join the lab" card, tracing beam on notes.
 
 ### Motion rules (Emil Kowalski's design-engineering skills)
@@ -90,9 +92,12 @@ find-animation-opportunities; MIT). Rules this site follows:
 - Hover motion only under `(hover: hover) and (pointer: fine)`; phones get no
   sticky zooms or shimmers after a tap.
 - Reduced motion keeps colour and opacity changes and drops movement.
+- Research cards have no tilt; they press (scale 0.97) like other controls.
+- The theme switch is a single 220 ms crossfade.
 - Clicking a research card expands its data cover into the research page
   header (cross-document View Transitions; browsers without them just load
-  the page).
+  the page). The research page header shows that one cover with the line's
+  stats under the title; there is no second map lower on the page.
 - Decoration must carry information. An earlier random "flow fingerprint"
   drawing was removed in October 2026 because it looked like data but was not.
 
