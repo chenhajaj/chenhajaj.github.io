@@ -872,7 +872,7 @@
   display: flex;
   gap: var(--s-4);
   align-items: flex-start;
-  @include card;
+  @include card(var(--card-pad-sm));
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1199,6 +1199,24 @@
   gap: var(--s-2);
   padding-block: var(--s-3);
   background: var(--paper);
+}
+
+// On phones the sticky filter bars are one scrolling row of chips, so they
+// do not cover a third of the screen.
+@media (max-width: 640px) {
+  .course-filter,
+  .news-filter {
+    flex-wrap: nowrap;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .course-filter .filter-chip,
+  .news-filter .filter-chip {
+    flex: none;
+  }
 }
 
 // ------------------------------------------------- the lab, year by year ----
