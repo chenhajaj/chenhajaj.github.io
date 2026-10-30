@@ -75,6 +75,22 @@ scripts: [coauthor-network]
   </div>
 </section>
 
+{%- assign sp = site.data.charts.paths -%}
+{%- if sp -%}
+  <section class="band" aria-labelledby="paths">
+    <div class="band-head">
+      <h2 id="paths">From first paper to graduation</h2>
+      <p>
+        {{ sp.lanes }} of {{ sp.people }} students and graduates have published with Chen: {{ sp.papers }} papers, {{ sp.first_author }} of them with the student as
+        first author.
+      </p>
+    </div>
+    <div class="band-body">
+      {% include student_paths.liquid %}
+    </div>
+  </section>
+{%- endif %}
+
 <section class="band" aria-labelledby="open-topics" id="join">
   <div class="band-head">
     <h2 id="open-topics">Join the lab</h2>

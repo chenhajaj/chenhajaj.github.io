@@ -58,7 +58,67 @@ scripts: [paper-map]
   </aside>
 
   <div>
+    {%- assign all_papers = site.data.research.paper_list -%}
+    {%- assign n_top = all_papers | where: 'tier', 'top' | size -%}
+    {%- assign n_mid = all_papers | where: 'tier', 'mid' | size -%}
+    {%- assign n_ref = all_papers | where: 'tier', 'ref' | size -%}
+    {%- assign n_refereed = n_top | plus: n_mid | plus: n_ref -%}
+    {%- assign n_unref = all_papers.size | minus: n_refereed -%}
+    {%- assign n_student = all_papers | where: 'lead', 'student' | size -%}
+    {%- assign n_chen = all_papers | where: 'lead', 'chen' | size -%}
+    {%- assign n_others = all_papers.size | minus: n_student | minus: n_chen -%}
     <figure class="pubs-map paper-map-group">
+      <div class="lens-bar" hidden>
+        <span class="lens-label" id="lens-label">Colour by</span>
+        <div class="lens-switch" role="radiogroup" aria-labelledby="lens-label">
+          <button type="button" role="radio" aria-checked="true" data-lens="line">Research line</button>
+          <button type="button" role="radio" aria-checked="false" data-lens="tier" tabindex="-1">Venue tier</button>
+          <button type="button" role="radio" aria-checked="false" data-lens="lead" tabindex="-1">Who led</button>
+        </div>
+      </div>
+      <div class="lens-legends">
+        <div class="lens-legend" data-lens-legend="line" role="group" aria-label="Highlight a research line">
+          {%- for l in site.data.research_lines.lines -%}
+            {%- assign c = all_papers | where: 'line', l.key | size -%}
+            {%- if c > 0 -%}
+              <button type="button" class="lens-chip" data-cat="{{ l.key }}" aria-pressed="false" style="--c: var(--line-{{ l.key }})">
+                <span class="lens-swatch" aria-hidden="true"></span>{{ l.name }} <span class="num">{{ c }}</span>
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- assign c = all_papers | where: 'line', 'other' | size -%}
+          {%- if c > 0 -%}
+            <button type="button" class="lens-chip" data-cat="other" aria-pressed="false" style="--c: var(--line-other)">
+              <span class="lens-swatch" aria-hidden="true"></span>{{ site.data.research_lines.other.name }} <span class="num">{{ c }}</span>
+            </button>
+          {%- endif -%}
+        </div>
+        <div class="lens-legend" data-lens-legend="tier" role="group" aria-label="Highlight a venue tier" hidden>
+          <button type="button" class="lens-chip" data-cat="top" aria-pressed="false">
+            <span class="lens-swatch is-top" aria-hidden="true"></span>CORE A*/A or SJR Q1 <span class="num">{{ n_top }}</span>
+          </button>
+          <button type="button" class="lens-chip" data-cat="mid" aria-pressed="false">
+            <span class="lens-swatch is-mid" aria-hidden="true"></span>CORE B or SJR Q2 <span class="num">{{ n_mid }}</span>
+          </button>
+          <button type="button" class="lens-chip" data-cat="ref" aria-pressed="false">
+            <span class="lens-swatch is-ref" aria-hidden="true"></span>Other refereed <span class="num">{{ n_ref }}</span>
+          </button>
+          <button type="button" class="lens-chip" data-cat="none" aria-pressed="false">
+            <span class="lens-swatch is-hollow" aria-hidden="true"></span>Not refereed <span class="num">{{ n_unref }}</span>
+          </button>
+        </div>
+        <div class="lens-legend" data-lens-legend="lead" role="group" aria-label="Highlight who led the paper" hidden>
+          <button type="button" class="lens-chip" data-cat="student" aria-pressed="false">
+            <span class="lens-swatch is-student" aria-hidden="true"></span>Student-led <span class="num">{{ n_student }}</span>
+          </button>
+          <button type="button" class="lens-chip" data-cat="chen" aria-pressed="false">
+            <span class="lens-swatch is-chen" aria-hidden="true"></span>Chen first author <span class="num">{{ n_chen }}</span>
+          </button>
+          <button type="button" class="lens-chip" data-cat="other" aria-pressed="false">
+            <span class="lens-swatch is-hollow" aria-hidden="true"></span>Led by a co-author <span class="num">{{ n_others }}</span>
+          </button>
+        </div>
+      </div>
       <div
         class="paper-map pubs-canvas"
         id="pubs-map"
@@ -71,7 +131,17 @@ scripts: [paper-map]
       >
         <canvas aria-hidden="true"></canvas>
       </div>
-      <figcaption>Each square is a paper. Click a year to show only that year, or a square to jump to the paper.</figcaption>
+      <figcaption>
+        <span
+          class="lens-note"
+          aria-live="polite"
+          data-note-line="Each square is a paper, coloured by research line; hollow squares are preprints, abstracts and other non-refereed items."
+          data-note-tier="{{ n_top }} of {{ n_refereed }} refereed papers appeared in CORE A*/A or SJR Q1 venues, and {{ n_mid }} in CORE B or SJR Q2 venues. CORE: rank when the paper appeared; SJR: the journal's quartile that year."
+          data-note-lead="{{ n_student }} papers were led by a student of the lab (first author) and {{ n_chen }} by Chen; the other {{ n_others }} were led by a co-author."
+          >Each square is a paper, coloured by research line; hollow squares are preprints, abstracts and other non-refereed items.</span
+        >
+        Click a year to show only that year, or a square to jump to the paper.
+      </figcaption>
     </figure>
     {% include research_data.liquid %}
     <div class="results-bar">

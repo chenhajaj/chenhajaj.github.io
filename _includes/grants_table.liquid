@@ -1,55 +1,116 @@
 {%- comment -%}
-  Research grants from _data/grants.yml as a bar chart. Bars are scaled within
-  each currency (no conversion), coloured by research line; co-PI grants are
-  striped. Every number is also printed as text.
+  Research grants (_data/grants.yml) on a year axis. Shekels and dollars sit
+  in separate rows, each with its own scale (no conversion), so bar heights
+  are only compared within a currency. Grants awarded in the same year stack.
+  Fill: research-line colour; solid = PI, hatched = co-PI. Layout data comes
+  from _plugins/lab-charts.rb. The list under the chart carries every name and
+  amount as text; on phones it is the chart (a mini bar per grant).
 {%- endcomment -%}
-{%- assign all = site.data.grants.grants -%}
-{%- assign groups = 'NIS,USD' | split: ',' -%}
-<div class="grant-chart">
+{%- assign f = site.data.charts.funding -%}
+<div class="grant-chart fund">
   <div class="grant-totals">
-    {%- for cur in groups -%}
-      {%- assign list = all | where: 'currency', cur -%}
-      {%- assign total = 0 -%}
-      {%- for g in list -%}
-        {%- assign total = total | plus: g.amount -%}
-      {%- endfor -%}
+    {%- for row in f.rows -%}
       <p class="grant-total">
         <span class="grant-total-num num">
-          {%- if cur == 'NIS' %}₪{% else %}${% endif -%}
-          {{- total | thousands -}}
+          {{- row.symbol -}}
+          {{- row.total | thousands -}}
         </span>
-        <span class="grant-total-label">
-          {{- list.size }} grants in {% if cur == 'NIS' %}shekels{% else %}US dollars{% endif -%}
-        </span>
+        <span class="grant-total-label">{{ row.count }} grants in {{ row.plural }}</span>
       </p>
     {%- endfor -%}
-    <p class="grant-key">
-      <span><span class="grant-swatch" aria-hidden="true"></span>PI</span>
-      <span><span class="grant-swatch is-co" aria-hidden="true"></span>Co-PI</span>
+    <p class="grant-key fund-key">
+      <span><span class="fund-swatch" aria-hidden="true"></span>PI</span>
+      <span><span class="fund-swatch is-co" aria-hidden="true"></span>Co-PI</span>
+    </p>
+    <p class="fund-lines">
+      {%- for k in f.lines -%}
+        {%- if k == 'other' -%}
+          {%- assign ln = site.data.research_lines.other -%}
+        {%- else -%}
+          {%- assign ln = site.data.research_lines.lines | where: 'key', k | first -%}
+        {%- endif -%}
+        <span class="line-tag" style="--c: var(--line-{{ k }})"><span class="line-dot" aria-hidden="true"></span>{{ ln.name }}</span>
+      {%- endfor -%}
     </p>
   </div>
-  {%- for cur in groups -%}
-    {%- assign list = all | where: 'currency', cur | sort: 'amount' | reverse -%}
-    {%- assign max = list.first.amount -%}
-    <ol class="grant-bars" aria-label="Grants in {% if cur == 'NIS' %}shekels{% else %}US dollars{% endif %}">
-      {%- for g in list -%}
-        {%- assign w = g.amount | times: 100 | divided_by: max -%}
-        <li class="grant-row" style="--c: var(--line-{{ g.line | default: 'other' }}); --w: {{ w }}%; --i: {{ forloop.index0 }}">
-          <div class="grant-label">
-            <p class="grant-name">{{ g.full_name }}</p>
-            <p class="grant-meta">
-              <span class="num">{{ g.year }}</span> · {{ g.organization }} · {% if g.role == 'PI' %}PI{% else %}Co-PI{% endif %}
-            </p>
-          </div>
-          <div class="grant-track">
-            <span class="grant-fill{% if g.role != 'PI' %} is-co{% endif %}"></span>
-            <span class="grant-amount num">
-              {%- if cur == 'NIS' %}₪{% else %}${% endif -%}
-              {{- g.amount | thousands -}}
-            </span>
-          </div>
-        </li>
+
+  <div class="fund-plot" aria-hidden="true" style="--cols: {{ f.ticks.size }}">
+    {%- for row in f.rows -%}
+      <div class="fund-row">
+        <p class="fund-row-label">
+          <strong>{{ row.label }}</strong>
+          <span
+            >Bar height on a {{ row.symbol }}0 to {{ row.symbol -}}
+            {{- row.scale | thousands }} scale</span
+          >
+        </p>
+        <div class="fund-area">
+          <span class="fund-grid" style="--y: 100%"
+            ><span class="num">
+              {{- row.symbol -}}
+              {{- row.scale | thousands -}}
+            </span></span
+          >
+          <span class="fund-grid" style="--y: 50%"
+            ><span class="num">
+              {{- row.symbol -}}
+              {{- row.half | thousands -}}
+            </span></span
+          >
+          {%- for st in row.stacks -%}
+            <div class="fund-stack" style="--x: {{ st.x }}%">
+              {%- for g in st.segs -%}
+                <span
+                  class="fund-seg{% unless g.pi %} is-co{% endunless %}"
+                  style="--c: var(--line-{{ g.line }}); --b: {{ g.bottom }}%; --h: {{ g.h }}%"
+                  title="{{ g.name | escape }} ({{ g.org | escape }}, {{ g.year }}, {% if g.pi %}PI{% else %}co-PI{% endif %})"
+                >
+                  <span class="fund-amount num">
+                    {{- g.symbol -}}
+                    {{- g.amount | thousands -}}
+                  </span>
+                </span>
+              {%- endfor -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endfor -%}
+    <ol class="fund-axis">
+      {%- for t in f.ticks -%}
+        <li class="num" style="--x: {{ t.x }}%">{{ t.year }}</li>
       {%- endfor -%}
     </ol>
-  {%- endfor -%}
+  </div>
+
+  <div class="fund-lists">
+    {%- for row in f.rows -%}
+      <div class="fund-list-group">
+        <h3 class="fund-list-head">
+          {{ row.label }}
+          <span class="fund-list-scale"
+            >bars to {{ row.symbol -}}
+            {{- row.scale | thousands -}}
+          </span>
+        </h3>
+        <ol class="fund-list" aria-label="Grants in {{ row.plural }}">
+          {%- for g in row.items -%}
+            <li class="fund-item" style="--c: var(--line-{{ g.line }}); --h: {{ g.h }}%">
+              <p class="fund-name"><span class="fund-swatch{% unless g.pi %} is-co{% endunless %}" aria-hidden="true"></span>{{ g.name }}</p>
+              <p class="fund-meta">
+                <span class="num">{{ g.year }}</span> · {{ g.org }} · {% if g.pi %}PI{% else %}Co-PI{% endif %}
+              </p>
+              <p class="fund-value">
+                <span class="fund-mini{% unless g.pi %} is-co{% endunless %}" aria-hidden="true"></span>
+                <span class="fund-amount num">
+                  {{- g.symbol -}}
+                  {{- g.amount | thousands -}}
+                </span>
+              </p>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </div>
+    {%- endfor -%}
+  </div>
 </div>
