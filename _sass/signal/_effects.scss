@@ -160,11 +160,9 @@
   flex: none;
   margin: 0;
   font-family: var(--font-sans);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   font-weight: 650;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
+  color: var(--ink-2);
 }
 
 .marquee {
@@ -671,11 +669,10 @@
   position: relative;
   isolation: isolate;
   margin-top: var(--s-5);
-  padding: clamp(1.25rem, 3vw, 2rem);
   overflow: hidden;
-  border: 1px solid var(--rule);
-  border-radius: var(--radius-lg);
-  background: var(--paper-2);
+  // The shared card (_components.scss), neutral like the person cards.
+  --card-wash: 4%;
+  @include card(var(--card-pad), var(--ink));
 }
 
 .join-card > .prose-block {

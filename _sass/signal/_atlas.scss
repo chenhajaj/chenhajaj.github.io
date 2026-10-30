@@ -14,16 +14,21 @@
   --on-night: #f3f5ff;
   --on-night-2: #c3cbef;
   --on-night-rule: rgba(214, 222, 255, 0.18);
+  // Edge where a night band meets the page; only drawn in dark mode.
+  --night-edge: transparent;
   --radius-lg: 14px;
 }
 
 // ------------------------------------------------------------------ atlas ----
 
+// The first screen holds the name, the claim and the whole map with its
+// legend (1440x900 desktop); on phones the map starts on the first screen.
 .atlas {
   position: relative;
   overflow: hidden;
-  padding-block: clamp(2rem, 5vw, 3.75rem) clamp(2.5rem, 5vw, 4rem);
+  padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(2.5rem, 5vw, 4rem);
   background: radial-gradient(120% 80% at 85% 0%, var(--night-2) 0%, transparent 60%), var(--night);
+  border-bottom: 1px solid var(--night-edge);
   color: var(--on-night);
 }
 
@@ -33,13 +38,21 @@
 
 .atlas-intro {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(8rem, 16vw, 13.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 21rem);
   align-items: end;
-  gap: var(--s-6) clamp(1.5rem, 5vw, 4rem);
+  gap: var(--s-5) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+// Name with the portrait beside it, like a byline.
+.atlas-title {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
 }
 
 .atlas .hero-name {
-  font-size: var(--fs-display);
+  // One line beside the portrait: phones up to 56px, desktop up to 92px.
+  font-size: clamp(2.25rem, 0.5rem + 9vw, 3.5rem);
   font-weight: 780;
   font-variation-settings: "wdth" 120;
   letter-spacing: -0.035em;
@@ -48,20 +61,28 @@
 }
 
 .atlas .hero-claim {
-  margin-top: var(--s-5);
-  max-width: 26ch;
+  margin-top: var(--s-4);
+  max-width: 38ch;
   font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
+  font-size: clamp(1.25rem, 0.95rem + 1.1vw, 1.875rem);
   line-height: 1.28;
   letter-spacing: -0.01em;
   color: var(--on-night);
 }
 
-.atlas .hero-roles {
-  margin-top: var(--s-5);
-  max-width: 60ch;
+.atlas .hero-byline {
   font-family: var(--font-sans);
   font-size: var(--fs-md);
+  line-height: 1.45;
+  color: var(--on-night);
+}
+
+// The full list of roles sits under the map.
+.atlas .hero-roles {
+  flex: 1 1 100%;
+  max-width: 72ch;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
   line-height: 1.5;
   color: var(--on-night-2);
 }
@@ -70,7 +91,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-3);
-  margin-top: var(--s-5);
+  margin-top: var(--s-4);
 }
 
 .button-bright {
@@ -97,6 +118,12 @@
   color: var(--on-night);
 }
 
+.atlas-photo {
+  order: -1;
+  flex: none;
+  width: clamp(4rem, 1.6rem + 5vw, 6.5rem);
+}
+
 .atlas-photo figure {
   margin: 0;
 }
@@ -104,18 +131,19 @@
 .atlas-photo img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   object-fit: cover;
-  object-position: 50% 30%;
+  object-position: 50% 22%;
   border-radius: var(--radius-lg);
+  background: var(--night-2);
   box-shadow: 0 0 0 1px var(--on-night-rule);
 }
 
 // The map
 
 .atlas-map {
-  margin: clamp(2rem, 4.5vw, 3rem) 0 0;
-  padding-top: var(--s-5);
+  margin: clamp(1.5rem, 3vw, 2rem) 0 0;
+  padding-top: var(--s-4);
   border-top: 1px solid var(--on-night-rule);
 }
 
@@ -129,7 +157,7 @@
 
 .atlas-head h2 {
   font-family: var(--font-sans);
-  font-size: var(--fs-xl);
+  font-size: var(--fs-lg);
   font-weight: 700;
   font-variation-settings: "wdth" 108;
   letter-spacing: -0.01em;
@@ -137,15 +165,17 @@
 }
 
 .atlas-head p {
+  max-width: 112ch;
   font-family: var(--font-sans);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-xs);
+  line-height: 1.45;
   color: var(--on-night-2);
 }
 
 .atlas-canvas {
   position: relative;
-  margin-top: var(--s-5);
-  height: 212px;
+  margin-top: var(--s-4);
+  height: 200px;
   touch-action: manipulation;
 }
 
@@ -219,7 +249,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-2);
-  margin-top: var(--s-5);
+  margin-top: var(--s-4);
 }
 
 .legend-chip {
@@ -307,18 +337,35 @@
   color: #ffffff;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 1024px) {
+  .atlas .hero-name {
+    font-size: clamp(4.5rem, 0.9rem + 5.2vw, 5.75rem);
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1023.98px) {
   .atlas-intro {
     grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-4);
   }
 
-  .atlas-photo {
-    order: -1;
-    width: 7rem;
+  .atlas .hero-claim {
+    margin-top: var(--s-3);
   }
 
+  .atlas .hero-byline {
+    font-size: var(--fs-sm);
+  }
+
+  .atlas-actions {
+    margin-top: var(--s-3);
+  }
+}
+
+@media (max-width: 640px) {
   .atlas-canvas {
-    height: 300px;
+    height: 260px;
   }
 
   .atlas-stats {
@@ -463,10 +510,7 @@
 // --------------------------------------------- feature, topics (coloured) ----
 
 .feature {
-  padding: var(--s-6);
-  border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--c, var(--cobalt)) 9%, var(--paper));
-  border: 1px solid color-mix(in srgb, var(--c, var(--cobalt)) 22%, var(--paper));
+  @include card;
   margin-bottom: var(--s-6);
 }
 
@@ -588,6 +632,7 @@
 
 // A night band that runs to the screen edges from inside the page wrapper.
 .atlas-band {
+  position: relative;
   margin-block: clamp(2rem, 5vw, 3.5rem);
   padding-block: clamp(2rem, 5vw, 3.5rem);
   padding-inline: clamp(0.75rem, 2vw, 1.5rem);
@@ -595,6 +640,27 @@
   box-shadow: 0 0 0 100vmax var(--night);
   clip-path: inset(0 -100vmax);
   overflow: visible;
+}
+
+// Full-bleed edge lines (dark mode) for the band above.
+.atlas-band::before,
+.atlas-band::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: 1px;
+  background: var(--night-edge);
+  box-shadow: 0 0 0 100vmax var(--night-edge);
+  clip-path: inset(0 -100vmax);
+  pointer-events: none;
+}
+
+.atlas-band::before {
+  top: 0;
+}
+
+.atlas-band::after {
+  bottom: 0;
 }
 
 .network-canvas {
@@ -680,6 +746,7 @@
   // pill and the map, rather than tinting the background.
   background: var(--night);
   border-top: 4px solid var(--c);
+  border-bottom: 1px solid var(--night-edge);
 }
 
 .project-hero-grid {

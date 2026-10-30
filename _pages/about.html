@@ -11,8 +11,9 @@ featured:
   venue: "Computer Networks, 2026"
   title: "New traffic classes in seconds, without retraining"
   text: "Classification by retrieval lets an encrypted-traffic model add new application classes without retraining, and flags out-of-distribution traffic in the same retrieval step."
+  explainer: "/insights/classification-by-retrieval/" # plain-language note; the main button goes here when set
   url: "https://doi.org/10.1016/j.comnet.2026.112739"
-  label: "Read the paper"
+  label: "Paper (DOI)"
   line: traffic # research line key from _data/research_lines.yml (sets the colour)
 ---
 
@@ -31,19 +32,20 @@ featured:
   <div class="wrap">
     <div class="atlas-intro">
       <div class="atlas-text">
-        <h1 class="hero-name" id="hero-name">Chen Hajaj</h1>
+        <div class="atlas-title">
+          <h1 class="hero-name" id="hero-name">Chen Hajaj</h1>
+          <div class="atlas-photo">
+            {% include figure.liquid path="assets/img/me.jpeg" alt="Chen Hajaj" sizes="(max-width: 860px) 64px, 112px" loading="eager" %}
+          </div>
+        </div>
         <p class="hero-claim" data-encrypt>Machine learning that keeps working when data, threats, and domains change.</p>
-        <p class="hero-roles">
-          Associate Professor of Industrial Engineering and Management at Ariel University. I lead the
-          Adaptive AI Lab, head the Data Science track of the department's undergraduate and graduate programs, chair the Faculty of Engineering Review Board, and serve as an NVIDIA University Ambassador.
-        </p>
+      </div>
+      <div class="atlas-side">
+        <p class="hero-byline">Associate Professor at Ariel University and head of the Adaptive AI Lab.</p>
         <div class="actions atlas-actions">
           <a class="button button-bright" href="#research-lines">Explore the research</a>
           <a class="button button-ghost" href="{{ '/people/' | relative_url }}#join">Join the lab</a>
         </div>
-      </div>
-      <div class="atlas-photo">
-        {% include figure.liquid path="assets/img/me.jpeg" alt="Chen Hajaj" sizes="(max-width: 640px) 112px, 260px" loading="eager" %}
       </div>
     </div>
 
@@ -51,8 +53,8 @@ featured:
       <figcaption class="atlas-head">
         <h2>{{ r.refereed }} refereed journal and conference papers since {{ r.first_year }}</h2>
         <p>
-          {{ r.journals }} journal articles and {{ r.conferences }} conference papers, each a square coloured by its main research line.
-          Hollow squares are the {{ r.workshops }} short papers, workshop papers and abstracts, and {{ r.other_items }} preprints, theses, patents and books. Hover or tap one to read it.
+          Each square is a paper ({{ r.journals }} journal, {{ r.conferences }} conference), coloured by its main research line. Hollow squares are the
+          {{ r.workshops }} short and workshop papers and abstracts, and {{ r.other_items }} preprints, theses, patents and books. Hover or tap one to read it.
         </p>
       </figcaption>
       <div
@@ -82,6 +84,11 @@ featured:
     </figure>
 
     <div class="atlas-foot">
+      <p class="hero-roles">
+        Associate Professor of Industrial Engineering and Management at Ariel University. I lead the Adaptive AI Lab, head the Data Science track of
+        the department's undergraduate and graduate programs, chair the Faculty of Engineering Review Board, and serve as an NVIDIA University
+        Ambassador.
+      </p>
       <dl class="atlas-stats">
         <div><dt>Citations</dt><dd class="num" data-count="{{ site.data.scholar.citations | default: 0 }}">{{ site.data.scholar.citations | default: 0 | thousands }}</dd></div>
         <div><dt>h-index</dt><dd class="num" data-count="{{ site.data.scholar.h_index }}">{{ site.data.scholar.h_index }}</dd></div>
@@ -131,7 +138,14 @@ featured:
         <p class="meta">New paper in {{ page.featured.venue }}</p>
         <h3>{{ page.featured.title }}</h3>
         <p>{{ page.featured.text }}</p>
-        <a class="button" href="{{ page.featured.url }}">{{ page.featured.label }}</a>
+        <div class="feature-actions">
+          {%- if page.featured.explainer %}
+            <a class="button" href="{{ page.featured.explainer | relative_url }}">Read the explainer</a>
+            <a class="feature-link" href="{{ page.featured.url }}">{{ page.featured.label }}</a>
+          {%- else %}
+            <a class="button" href="{{ page.featured.url }}">{{ page.featured.label }}</a>
+          {%- endif %}
+        </div>
       </article>
       <ol class="news-list">
         {%- assign sorted_news = site.news | sort: 'date' | reverse -%}
