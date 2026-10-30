@@ -2,6 +2,32 @@
 // Signal: components
 // =============================================================================
 
+// ----------------------------------------------------------------- cards ----
+// One card recipe for the whole site: a light wash of the item's colour
+// (--c, a research line, else cobalt), a hairline ring of the same colour,
+// 14px radius, no shadow. Content cards use --card-pad, compact ones
+// (stat tiles, people) --card-pad-sm. Card grids use --grid-gap.
+
+:root {
+  --card-wash: 6%;
+  --card-ring: 18%;
+  --card-pad: var(--s-5);
+  --card-pad-sm: var(--s-4);
+  --grid-gap: var(--s-4);
+}
+
+@mixin card($pad: var(--card-pad), $tint: var(--c, var(--cobalt))) {
+  padding: $pad;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, #{$tint} var(--card-wash), var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #{$tint} var(--card-ring), var(--rule));
+}
+
+// The ring a card shows on hover, when the whole card is a link.
+@mixin card-ring-hover($tint: var(--c, var(--cobalt))) {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #{$tint} 50%, var(--rule));
+}
+
 // --------------------------------------------------------------- buttons ----
 
 .button {
@@ -167,10 +193,7 @@
   }
 }
 
-// Featured result (a single highlighted paper)
-.feature {
-  padding: var(--s-5) 0 var(--s-6);
-}
+// Featured result (a single highlighted paper); card styles in _atlas.scss.
 
 .feature h3 {
   font-size: var(--fs-xl);
@@ -189,8 +212,18 @@
   margin-bottom: var(--s-2);
 }
 
-.feature .button {
+.feature-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3) var(--s-5);
   margin-top: var(--s-5);
+}
+
+.feature-link {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
 }
 
 // ---------------------------------------------------------- publications ----
@@ -271,6 +304,44 @@
   color: var(--ink-2);
   background: transparent;
   box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+// "What the tags mean" note above the publication list.
+.badge-key {
+  margin: 0 0 var(--s-4);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.badge-key summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-weight: 600;
+  color: var(--cobalt);
+  cursor: pointer;
+}
+
+.badge-key dl {
+  display: grid;
+  gap: var(--s-2);
+  margin: var(--s-1) 0 0;
+}
+
+.badge-key dl > div {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: baseline;
+}
+
+.badge-key dt .pub-badge {
+  margin-left: 0;
+}
+
+.badge-key dd {
+  margin: 0;
 }
 
 .pub-actions {
@@ -357,14 +428,15 @@ ol.bibliography {
   margin: 0;
 }
 
+// Year headings rank below the page title.
 .pub-list h2.bibliography {
-  padding-top: var(--s-6);
-  font-size: var(--fs-2xl);
-  font-variation-settings: "wdth" 118;
-  font-weight: 760;
-  color: var(--ink);
+  padding-top: var(--s-7);
+  font-size: var(--fs-xl);
+  font-variation-settings: "wdth" 108;
+  font-weight: 720;
+  color: var(--ink-2);
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .pub-list h2.bibliography:first-child {
@@ -616,12 +688,22 @@ ol.bibliography {
   line-height: 1.35;
 }
 
-.topics span {
+.topics li > span {
   display: block;
   margin-top: var(--s-1);
   font-size: var(--fs-md);
   line-height: 1.5;
   color: var(--ink-2);
+}
+
+// Each open topic has its own email link, with the topic in the subject.
+.topics .topic-mail {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
 }
 
 // ---------------------------------------------------------- repo listing ----

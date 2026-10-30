@@ -181,8 +181,19 @@ main {
   min-height: 60vh;
 }
 
+// Every interior page opens the same way: title and a short lead on the left,
+// and, where the page has one, a stat line from its own data on the right
+// (_includes/page_glance.liquid).
 .page-head {
-  padding-block: clamp(2.5rem, 7vw, 5rem) clamp(1.5rem, 4vw, 2.5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: end;
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  padding-block: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 3vw, 1.75rem);
+}
+
+.page-head > * {
+  grid-column: 1;
 }
 
 .page-head h1 {
@@ -190,7 +201,61 @@ main {
 }
 
 .page-head .lead {
-  margin-top: var(--s-4);
+  margin-top: var(--s-3);
+}
+
+.page-glance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  margin: var(--s-5) 0 0;
+}
+
+.page-glance > div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.page-glance dt {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-ui);
+  color: var(--ink-3);
+}
+
+.page-glance dd {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xl);
+  font-weight: 720;
+  font-variation-settings: "wdth" 110;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+@media (min-width: 861px) {
+  .page-head.has-glance {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .page-head.has-glance .page-glance {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: end;
+    margin: 0;
+    padding-bottom: 0.3rem;
+  }
+}
+
+// First content arrives soon after the lead.
+.page-head + .band {
+  padding-top: clamp(1.5rem, 4vw, 3rem);
+}
+
+@media (max-width: 860px) {
+  .page-head .lead {
+    font-size: var(--fs-md);
+  }
 }
 
 .lead {

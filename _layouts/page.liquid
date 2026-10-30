@@ -3,11 +3,13 @@ layout: default
 ---
 <div class="wrap">
   {% unless page.hide_title %}
-    <header class="page-head">
+    {%- capture page_glance -%}{% include page_glance.liquid %}{%- endcapture -%}
+    <header class="page-head{% if page_glance != '' %} has-glance{% endif %}">
       <h1>{{ page.title }}</h1>
       {% if page.lead %}
         <p class="lead">{{ page.lead }}</p>
       {% endif %}
+      {{ page_glance }}
     </header>
   {% endunless %}
   {{ content }}

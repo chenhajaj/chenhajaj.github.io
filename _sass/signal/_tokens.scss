@@ -73,6 +73,11 @@
   --cobalt-wash: #1b2547;
   --focus: #9aacff;
   --selection: #2c3a72;
+  // Night bands: a step lighter than in light mode so they separate from the
+  // dark page, plus a thin edge line (--night-edge) where they meet it.
+  --night: #14215f;
+  --night-2: #1e2d7d;
+  --night-edge: rgba(154, 172, 255, 0.32);
   color-scheme: dark;
 }
 

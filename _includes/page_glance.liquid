@@ -1,0 +1,37 @@
+{%- comment -%}
+  A short stat line beside a page title, built from data the page already
+  shows. Pages without a natural summary render nothing.
+{%- endcomment -%}
+{%- assign r = site.data.research -%}
+{%- assign st = site.data.students -%}
+{%- capture glance -%}
+  {%- case page.url -%}
+    {%- when '/publications/' -%}
+      <div><dt>items</dt><dd class="num">{{ r.papers }}</dd></div>
+      <div><dt>journal papers</dt><dd class="num">{{ r.journals }}</dd></div>
+      <div><dt>conference papers</dt><dd class="num">{{ r.conferences }}</dd></div>
+    {%- when '/people/' -%}
+      {%- assign msc_thesis = st.masters_alumni | where: 'program', 'thesis' -%}
+      {%- assign grads = st.phd_alumni.size | plus: msc_thesis.size -%}
+      <div><dt>PhD students</dt><dd class="num">{{ st.phd_students.size }}</dd></div>
+      <div><dt>MSc students</dt><dd class="num">{{ st.masters_students.size }}</dd></div>
+      <div><dt>graduated (PhD, thesis MSc)</dt><dd class="num">{{ grads }}</dd></div>
+    {%- when '/projects/' -%}
+      <div><dt>research lines</dt><dd class="num">{{ r.lines.size }}</dd></div>
+      <div><dt>refereed papers</dt><dd class="num">{{ r.refereed }}</dd></div>
+      <div><dt>co-authors</dt><dd class="num">{{ r.collaborators }}</dd></div>
+    {%- when '/software/' -%}
+      {%- assign repo_count = 0 -%}
+      {%- for group in page.groups -%}
+        {%- assign repo_count = repo_count | plus: site.data.repositories.repos[group.key].size -%}
+      {%- endfor -%}
+      <div><dt>repositories</dt><dd class="num">{{ repo_count }}</dd></div>
+      <div><dt>topics</dt><dd class="num">{{ page.groups.size }}</dd></div>
+    {%- when '/news/' -%}
+      <div><dt>news items</dt><dd class="num">{{ site.news.size }}</dd></div>
+  {%- endcase -%}
+{%- endcapture -%}
+{%- assign glance = glance | strip -%}
+{%- if glance != '' -%}
+  <dl class="page-glance">{{ glance }}</dl>
+{%- endif -%}

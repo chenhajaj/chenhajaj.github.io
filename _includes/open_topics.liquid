@@ -1,8 +1,12 @@
 <ul class="topics">
   {%- for topic in site.data.open_topics -%}
+    {%- capture subject -%}PhD or MSc topic: {{ topic.title }}{%- endcapture -%}
     <li style="--c: var(--line-{{ topic.line | default: 'other' }})">
       <strong>{{ topic.title }}</strong>
       <span>{{ topic.text }}</span>
+      <a class="topic-mail" href="mailto:chenha@g.ariel.ac.il?subject={{ subject | url_encode | replace: '+', '%20' }}"
+        >Email about this topic<span class="visually-hidden">: {{ topic.title }}</span></a
+      >
     </li>
   {%- endfor -%}
 </ul>

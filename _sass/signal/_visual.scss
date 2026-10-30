@@ -26,7 +26,8 @@
   width: 2.75rem;
   height: 2.75rem;
   flex: none;
-  border-radius: 12px;
+  // Concentric with the 14px card around it.
+  border-radius: 8px;
   color: var(--c, var(--cobalt));
   background: color-mix(in srgb, var(--c, var(--cobalt)) 14%, var(--paper));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c, var(--cobalt)) 22%, transparent);
@@ -81,7 +82,7 @@
 .person-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
-  gap: var(--s-3);
+  gap: var(--grid-gap);
   margin: var(--s-3) 0 var(--s-6);
   padding: 0;
   list-style: none;
@@ -91,10 +92,9 @@
   display: flex;
   gap: var(--s-4);
   align-items: flex-start;
-  padding: var(--s-4);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--ink) 3%, var(--paper));
-  box-shadow: inset 0 0 0 1px var(--rule);
+  // Neutral: the avatar carries the line colour.
+  --card-wash: 3%;
+  @include card(var(--card-pad-sm), var(--ink));
 }
 
 .person-body {
@@ -166,7 +166,7 @@
   gap: var(--s-4);
   align-items: flex-start;
   padding: var(--s-3);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
 }
 
 .news-node {
@@ -178,8 +178,10 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  // On hover a news row shows the shared card look.
   .news-item:hover {
-    background: color-mix(in srgb, var(--c) 6%, var(--paper));
+    background: color-mix(in srgb, var(--c) var(--card-wash), var(--paper));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) var(--card-ring), var(--rule));
   }
 
   .motion-ok .news-item .news-node {
@@ -728,7 +730,7 @@
 .stat-tiles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
-  gap: var(--s-3);
+  gap: var(--grid-gap);
   margin: 0 0 var(--s-5);
   padding: 0;
   list-style: none;
@@ -743,10 +745,7 @@
   display: grid;
   gap: var(--s-1);
   align-content: start;
-  padding: var(--s-4);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--c, var(--cobalt)) 5%, var(--paper));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c, var(--cobalt)) 16%, var(--rule));
+  @include card(var(--card-pad-sm));
 }
 
 .stat-tiles .icon-tile {
@@ -863,7 +862,7 @@
 .course-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
-  gap: var(--s-3);
+  gap: var(--grid-gap);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -873,10 +872,7 @@
   display: flex;
   gap: var(--s-4);
   align-items: flex-start;
-  padding: var(--s-4);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--c, var(--cobalt)) 5%, var(--paper));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c, var(--cobalt)) 16%, var(--rule));
+  @include card;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -940,7 +936,7 @@
 .repo-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
-  gap: var(--s-3);
+  gap: var(--grid-gap);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -951,12 +947,9 @@
   gap: var(--s-4);
   align-items: flex-start;
   height: 100%;
-  padding: var(--s-4);
-  border-radius: 14px;
   text-decoration: none;
   color: inherit;
-  background: color-mix(in srgb, var(--c) 5%, var(--paper));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 16%, var(--rule));
+  @include card;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -967,7 +960,7 @@
   }
 
   .repo-card:hover {
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, var(--rule));
+    @include card-ring-hover;
   }
 
   .motion-ok .repo-card:hover {
@@ -1034,7 +1027,7 @@
 .contact-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-  gap: var(--s-3);
+  gap: var(--grid-gap);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1049,10 +1042,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--s-2);
-  padding: var(--s-5);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--c, var(--cobalt)) 5%, var(--paper));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c, var(--cobalt)) 16%, var(--rule));
+  @include card;
 }
 
 .contact-card .icon-tile {
@@ -1090,11 +1080,12 @@
   position: relative;
   overflow: hidden;
   padding: clamp(1.5rem, 4vw, 2.5rem);
-  border-radius: 18px;
-  color: var(--on-night, #f3f5ff);
+  border-radius: var(--radius-lg);
+  color: var(--on-night);
   background:
     radial-gradient(90% 120% at 100% 0%, color-mix(in srgb, var(--line-speech-bright) 22%, transparent) 0%, transparent 55%),
-    radial-gradient(80% 120% at 0% 100%, color-mix(in srgb, var(--line-traffic-bright) 25%, transparent) 0%, transparent 60%), #101a4d;
+    radial-gradient(80% 120% at 0% 100%, color-mix(in srgb, var(--line-traffic-bright) 25%, transparent) 0%, transparent 60%), var(--night);
+  box-shadow: inset 0 0 0 1px var(--night-edge);
 }
 
 .spotlight-kicker {
@@ -1104,7 +1095,7 @@
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 650;
-  color: #c3cbef;
+  color: var(--on-night-2);
 }
 
 .spotlight-title {
@@ -1151,8 +1142,8 @@
   height: 1.4em;
   border-radius: 50%;
   font-size: 0.8em;
-  color: #101a4d;
-  background: #c3cbef;
+  color: var(--night);
+  background: var(--on-night-2);
 }
 
 .course-flow li:not(:last-child)::after {
@@ -1165,7 +1156,7 @@
 }
 
 .course-flow li.is-gpu {
-  color: #101a4d;
+  color: var(--night);
   background: var(--line-speech-bright);
   box-shadow: none;
 }
@@ -1196,7 +1187,7 @@
 .spotlight-note {
   max-width: 60ch;
   font-size: var(--fs-md);
-  color: #c3cbef;
+  color: var(--on-night-2);
 }
 
 .course-filter {
@@ -1216,8 +1207,9 @@
 
 .story {
   position: relative;
-  color: #f3f5ff;
-  background: #101a4d;
+  color: var(--on-night);
+  background: var(--night);
+  border-block: 1px solid var(--night-edge);
 }
 
 .motion-ok .story {
@@ -1232,7 +1224,7 @@
   overflow: hidden;
   background:
     radial-gradient(70% 90% at 85% 15%, rgb(125 155 255 / 18%) 0%, transparent 60%),
-    radial-gradient(60% 80% at 10% 100%, rgb(63 209 189 / 12%) 0%, transparent 60%), #101a4d;
+    radial-gradient(60% 80% at 10% 100%, rgb(63 209 189 / 12%) 0%, transparent 60%), var(--night);
 }
 
 .motion-ok .story-pin {
