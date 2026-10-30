@@ -200,3 +200,17 @@
     padding: 0;
   }
 }
+
+// Research page header: the three numbers sit under the title, small enough
+// to read as a caption to the cover beside them.
+.atlas-stats.project-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  margin-top: var(--s-5);
+}
+
+.atlas-stats.project-stats dd {
+  font-size: var(--fs-xl);
+  line-height: 1.1;
+}

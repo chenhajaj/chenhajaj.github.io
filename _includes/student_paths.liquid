@@ -5,7 +5,8 @@
   student was first author. A dashed tail carries papers that came out after
   graduating. Built at build time by _plugins/lab-charts.rb from students.yml
   and papers.bib; students.yml has no start dates, so lanes start at the first
-  paper. Students without a paper yet are named under their group.
+  paper. Only students with a joint paper are shown (no lists of names
+  without papers, by design).
 {%- endcomment -%}
 {%- assign sp = site.data.charts.paths -%}
 <div class="paths" style="--cols: {{ sp.ticks.size }}">
@@ -22,11 +23,8 @@
     {%- endfor -%}
   </ol>
   {%- for g in sp.groups -%}
-    <h3 class="paths-group">
-      {{ g.title }}
-      <span class="count">{{ g.count }}</span>
-    </h3>
     {%- if g.rows.size > 0 -%}
+      <h3 class="paths-group">{{ g.title }}</h3>
       <ol class="paths-rows">
         {%- for r in g.rows -%}
           <li class="path-row">
@@ -64,12 +62,6 @@
           </li>
         {%- endfor -%}
       </ol>
-    {%- endif -%}
-    {%- if g.none.size > 0 -%}
-      <p class="paths-none">
-        {%- if g.current %}No paper with Chen yet:{% else %}No joint paper:{% endif %}
-        {{ g.none | join: ', ' -}}
-      </p>
     {%- endif -%}
   {%- endfor -%}
 </div>

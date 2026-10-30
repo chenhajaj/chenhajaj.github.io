@@ -14,6 +14,22 @@ layout: default
         {% if page.outcome %}
           <p class="headline-result"><strong>Headline result:</strong> {{ page.outcome }}.</p>
         {% endif %}
+        {%- if line %}
+          <dl class="atlas-stats project-stats">
+            <div>
+              <dt>Papers</dt>
+              <dd class="num" data-count="{{ line.count }}">{{ line.count }}</dd>
+            </div>
+            <div>
+              <dt>Years</dt>
+              <dd class="num">{{ line.first }}–{{ line.last }}</dd>
+            </div>
+            <div>
+              <dt>Co-authors</dt>
+              <dd class="num" data-count="{{ line.coauthors }}">{{ line.coauthors }}</dd>
+            </div>
+          </dl>
+        {%- endif %}
       </div>
       {%- if line -%}
         <div class="project-hero-figure">
@@ -33,40 +49,6 @@ layout: default
         </div>
       {%- endif -%}
     </div>
-
-    {%- if line -%}
-      <figure class="line-map paper-map-group">
-        <dl class="atlas-stats">
-          <div>
-            <dt>Papers</dt>
-            <dd class="num" data-count="{{ line.count }}">{{ line.count }}</dd>
-          </div>
-          <div>
-            <dt>Years</dt>
-            <dd class="num">{{ line.first }} to {{ line.last }}</dd>
-          </div>
-          <div>
-            <dt>Co-authors</dt>
-            <dd class="num" data-count="{{ line.coauthors }}">{{ line.coauthors }}</dd>
-          </div>
-        </dl>
-        <div
-          class="paper-map line-canvas"
-          data-line="{{ key }}"
-          data-surface="night"
-          data-animate="load"
-          data-max-size="22"
-          data-pubs="{{ '/publications/' | relative_url }}"
-          role="img"
-          aria-label="Chart of the {{ line.count }} papers in this line by year, from {{ line.first }} to {{ line.last }}."
-        >
-          <canvas aria-hidden="true"></canvas>
-        </div>
-        <figcaption>Each square is one of these {{ line.count }} papers. Hover to read it, click to open it.</figcaption>
-      </figure>
-      {% include research_data.liquid %}
-      <script src="{{ '/assets/js/paper-map.js' | relative_url | bust_file_cache }}" defer></script>
-    {%- endif -%}
   </div>
 </section>
 
