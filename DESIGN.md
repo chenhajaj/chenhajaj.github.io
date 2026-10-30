@@ -110,8 +110,23 @@ built from the same data (`_sass/signal/_visual.scss`), never decoration:
   `line:` in `students.yml`). Lab page cards, alumni wall, home face row.
 - **News**: cards with an icon for the kind (`kind:` paper, talk, award, grant,
   student) and the line colour (`line:`) from each `_news/*.md` front matter.
-- **Funding**: bar chart, scaled within each currency, coloured by line
-  (`line:` in `grants.yml`), co-PI striped; every number is also text.
+- **Funding**: grants on a year axis, one row per currency with its own
+  labelled scale (no conversion), coloured by line (`line:` in `grants.yml`),
+  PI solid and co-PI hatched; every name and amount is also text. Phones get
+  a list with mini bars scaled within each currency.
+- **Student paths** (Lab page): a lane per student from their first paper with
+  Chen to graduation or now, a dot per joint paper (filled when the student
+  was first author). `students.yml` has no start dates, so students without a
+  paper are named under their group instead of drawn.
+- **People on this line** (research pages): top co-authors in that line with
+  joint-paper counts and years; lab students ringed.
+- These three are built at build time (`_plugins/lab-charts.rb`, styles in
+  `_sass/signal/_charts.scss`), with no JavaScript.
+- **Paper map lenses** (Publications): "Colour by" research line, venue tier
+  (CORE A*/A or SJR Q1, CORE B or SJR Q2, other refereed, not refereed) or who
+  led (student, Chen first author, a co-author). Tier and lead per paper come
+  from `research-data.rb`. Highlights, filters and lens changes crossfade over
+  about 200 ms; tooltips fade in over 140 ms (instant under reduced motion).
 - **Career**: timeline of institution bands and milestones from
   `_data/career.yml` (home Background and CV). Vertical list on phones.
 - **CV**: stat tiles, reviewing bar chart (ORCID data), award cards.

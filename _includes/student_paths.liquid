@@ -22,7 +22,10 @@
     {%- endfor -%}
   </ol>
   {%- for g in sp.groups -%}
-    <h3 class="paths-group">{{ g.title }} <span class="count">{{ g.count }}</span></h3>
+    <h3 class="paths-group">
+      {{ g.title }}
+      <span class="count">{{ g.count }}</span>
+    </h3>
     {%- if g.rows.size > 0 -%}
       <ol class="paths-rows">
         {%- for r in g.rows -%}
@@ -30,8 +33,11 @@
             <p class="path-name">
               <a href="{{ '/publications/' | relative_url }}?q={{ r.query | uri_escape }}">{{ r.name }}</a>
               <span class="path-meta">
-                {{- r.count }} {% if r.count == 1 %}paper{% else %}papers{% endif %}, {{ r.lead }} as first author
-                {%- if r.grad %} · graduated <span class="num">{{ r.grad }}</span>{% endif -%}
+                {{- r.count }}
+                {% if r.count == 1 %}paper{% else %}papers{% endif %}, {{ r.lead }} as first author
+                {%- if r.grad %}
+                  · graduated <span class="num">{{ r.grad }}</span>
+                {%- endif -%}
                 <span class="visually-hidden">
                   {%- if r.start == r.last_paper %}, in {{ r.start }}{% else %}, {{ r.start }} to {{ r.last_paper }}{% endif -%}
                 </span>

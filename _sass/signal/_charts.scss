@@ -553,3 +553,199 @@
     gap: var(--s-2);
   }
 }
+
+// ----------------------------------------------- paper map: "Colour by" ----
+// Venue tier is an ordered scale in one hue (never the line palette). The
+// light tier fill is drawn with a mid-tone edge so every mark keeps 3:1
+// against the page (WCAG 1.4.11). paper-map.js reads these properties.
+
+.pubs-map {
+  --tier-top: #1b2f99;
+  --tier-mid: #5b74e0;
+  --tier-ref: #b3c0f2;
+  --tier-edge: #5b74e0;
+  --lead-student: #1b2f99;
+  --lead-chen: #5b74e0;
+  --lead-other: var(--ink-3);
+}
+
+@mixin chart-dark {
+  .pubs-map {
+    --tier-top: #c9d3ff;
+    --tier-mid: #8399ff;
+    --tier-ref: #3b4c9e;
+    --tier-edge: #8399ff;
+    --lead-student: #c9d3ff;
+    --lead-chen: #8399ff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include chart-dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  @include chart-dark;
+}
+
+.lens-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+  margin-bottom: var(--s-3);
+  font-family: var(--font-sans);
+}
+
+.lens-bar[hidden] {
+  display: none;
+}
+
+.lens-label {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.lens-switch {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--ink) 6%, var(--paper));
+}
+
+.lens-switch button {
+  min-height: 2.25rem;
+  padding: 0 var(--s-3);
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lens-switch button[aria-checked="true"] {
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow:
+    0 0 0 1px var(--rule-strong),
+    0 1px 2px rgba(10, 20, 50, 0.08);
+}
+
+.motion-ok .lens-switch button {
+  transition:
+    background-color 160ms var(--ease-out),
+    color 160ms var(--ease-out),
+    scale 160ms var(--ease-out);
+}
+
+.motion-ok .lens-switch button:active {
+  scale: 0.97;
+}
+
+.lens-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-2);
+  margin-bottom: var(--s-3);
+}
+
+.lens-legend[hidden] {
+  display: none;
+}
+
+.motion-ok .lens-legend {
+  animation: lens-in 200ms var(--ease-out);
+}
+
+@keyframes lens-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.lens-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  min-height: 2rem;
+  padding: 0 var(--s-3);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.lens-chip .num {
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.lens-chip:hover {
+  border-color: var(--rule-strong);
+}
+
+.lens-chip[aria-pressed="true"] {
+  border-color: var(--ink-3);
+  background: color-mix(in srgb, var(--ink) 6%, var(--paper));
+  color: var(--ink);
+}
+
+.lens-swatch {
+  position: relative;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 3px;
+  background: var(--c, var(--ink-3));
+}
+
+.lens-swatch.is-top,
+.lens-swatch.is-student {
+  background: var(--tier-top);
+}
+
+.lens-swatch.is-mid,
+.lens-swatch.is-chen {
+  background: var(--tier-mid);
+}
+
+.lens-swatch.is-ref {
+  background: var(--tier-ref);
+  box-shadow: inset 0 0 0 1.5px var(--tier-edge);
+}
+
+.lens-swatch.is-hollow {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--ink-3);
+}
+
+.lens-swatch.is-chen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 0.25rem;
+  height: 0.25rem;
+  margin: auto;
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+@media (max-width: 640px) {
+  .lens-switch {
+    display: flex;
+    width: 100%;
+  }
+
+  .lens-switch button {
+    flex: 1;
+    padding: 0 var(--s-2);
+  }
+}

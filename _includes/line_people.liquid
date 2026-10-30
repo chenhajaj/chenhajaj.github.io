@@ -16,8 +16,12 @@
             <span class="lp-name">{{ p.name }}</span>
             <span class="lp-meta">
               <span class="num">{{ p.count }}</span> {% if p.count == 1 %}paper{% else %}papers{% endif %} ·
-              <span class="num">{% if p.first == p.last %}{{ p.first }}{% else %}{{ p.first }}–{{ p.last }}{% endif %}</span>
-              {%- if p.student %}<span class="visually-hidden">, lab student</span>{% endif -%}
+              <span class="num">
+                {%- if p.first == p.last %}{{ p.first }}{% else %}{{ p.first }}–{{ p.last }}{% endif -%}
+              </span>
+              {%- if p.student -%}
+                <span class="visually-hidden">, lab student</span>
+              {%- endif -%}
             </span>
             <span class="lp-span" aria-hidden="true" style="--x0: {{ p.x0 }}%; --x1: {{ p.x1 }}%; --c: var(--line-{{ include.key }})"></span>
           </span>
