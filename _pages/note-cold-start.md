@@ -4,6 +4,8 @@ title: "Recommending a product nobody has clicked yet"
 permalink: /insights/cold-start/
 description: An explainer from the Adaptive AI Lab — recommending brand-new products by finding their closest existing look-alike from image, text and attributes, with no retraining.
 figure: coldstart
+line: similarity
+papers: [goldstein2024warm, yehiel2026ilais]
 date: 2026-10-31
 topic: "E-commerce and multimodal AI"
 summary: "Recommendation engines learn from clicks and purchases, so a brand-new product has nothing to learn from. We describe a new item by its photo, its text and its attributes, find its closest existing look-alike, and borrow that item's history. On fashion data this improved hit rate by 7% for new items, with no retraining."

@@ -4,6 +4,8 @@ title: "When the test changes the winner"
 permalink: /insights/evaluation-changes-winner/
 description: An explainer from the Adaptive AI Lab — how a train/test split that leaks recording sessions can crown the wrong traffic classifier, and why richer features matter more than the architecture.
 figure: winner
+line: traffic
+papers: [hajaj2027evaluation, lichy2023rf]
 date: 2026-10-31
 topic: "Encrypted traffic"
 summary: "Papers on traffic classification usually credit their gains to a newer model. We trained six deep models 2,016 times and found that how the data is split into training and test sets decides which model wins. Split it properly and the leader falls to last place."

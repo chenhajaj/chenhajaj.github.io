@@ -4,6 +4,8 @@ title: "How a design critique sounds"
 permalink: /insights/design-critique/
 description: An explainer from the Adaptive AI Lab — measuring tone and new ideas in design-studio critiques with language models, and what changes in virtual reality.
 figure: critique
+line: learning
+papers: [sopher2024wip, sopher2025sentiment]
 date: 2026-10-31
 topic: "Design education"
 summary: "In the design studio, students learn in critiques: short conversations with a tutor about their work. With Hadas Sopher and John Gero, we use language models to track the tone of each critique and the moments a new design idea appears. Students introduce more of their own ideas when the tone is positive, and more new ideas appear in virtual reality."

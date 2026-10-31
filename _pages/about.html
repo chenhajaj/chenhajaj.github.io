@@ -165,13 +165,25 @@ featured:
     </div>
   </section>
 
-  <section class="band" aria-labelledby="selected">
+  <section class="band band-wide" aria-labelledby="explainers">
     <div class="band-head">
-      <h2 id="selected">Selected papers</h2>
+      <h2 id="explainers">In plain words</h2>
+      <p>Short explainers of what our papers mean in practice, each with one figure.</p>
+      <p><a href="{{ '/insights/' | relative_url }}">All {{ site.data.research.explainers.size }} explainers</a></p>
+    </div>
+    <div class="band-body">
+      {% include explainer_cards.liquid limit=3 %}
+    </div>
+  </section>
+
+  <section class="band band-wide" aria-labelledby="ours">
+    <div class="band-head">
+      <h2 id="ours">From our lab</h2>
+      <p>Recent papers led by Chen or a lab student, or written by a small team.</p>
       <p><a href="{{ '/publications/' | relative_url }}">All publications</a></p>
     </div>
-    <div class="band-body pub-list pub-list-selected">
-      {% bibliography -f papers --group_by none --query @*[selected=true]* %}
+    <div class="band-body">
+      {% include showcase.liquid %}
     </div>
   </section>
 

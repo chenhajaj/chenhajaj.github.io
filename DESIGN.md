@@ -181,6 +181,19 @@ dark mode, carry a text alternative, and use only facts from the papers:
   come from each paper's abstract or tables; the critique strip is labelled
   as a schematic.
 
+## Our own work and explainers on the home page (October 2026)
+
+- **From our lab** replaces "Selected papers": six recent refereed papers
+  (last four years) that Chen or a lab student led, or that three or fewer
+  authors wrote. Picked at build time in `research-data.rb` (`showcase`):
+  scored for Chen first author, student first author, small team, venue
+  tier, having an explainer and recency, at most two per research line. A bib
+  entry can opt in or out with `showcase = {true}` / `{false}`.
+- **In plain words**: the newest explainer from each of three research lines,
+  linking to all explainers. Research pages list their line's explainers,
+  and Publications shows an "Explainer" link on the papers an explainer
+  covers (`line:` and `papers:` in each explainer's front matter).
+
 ## Funders, partners and lab life (October 2026)
 
 The home page's "Funding and partners" section lists funders and partners by

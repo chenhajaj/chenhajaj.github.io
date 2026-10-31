@@ -1,0 +1,32 @@
+{%- comment -%}
+  Explainer cards: the newest explainers (limit), or those on one research
+  line (line). Data from site.data.research.explainers.
+  {% include explainer_cards.liquid limit=3 %}   newest, one per research line
+  {% include explainer_cards.liquid line="traffic" %}
+{%- endcomment -%}
+{%- assign ex = site.data.research.explainers -%}
+{%- if include.line -%}
+  {%- assign ex = ex | where: 'line', include.line -%}
+{%- endif -%}
+{%- assign lim = include.limit | default: 99 -%}
+{%- if ex.size > 0 -%}
+  <ul class="ex-cards">
+    {%- assign shown = 0 -%}
+    {%- assign used = '|' -%}
+    {%- for e in ex -%}
+      {%- if shown >= lim -%}{%- break -%}{%- endif -%}
+      {%- capture tag -%}|{{ e.line }}|{%- endcapture -%}
+      {%- if include.limit and used contains tag -%}{%- continue -%}{%- endif -%}
+      {%- assign used = used | append: e.line | append: '|' -%}
+      {%- assign shown = shown | plus: 1 -%}
+      <li class="ex-card" style="--c: var(--line-{{ e.line }})">
+        <a class="ex-link" href="{{ e.url | relative_url }}">
+          <span class="ex-topic">{{ e.topic }}</span>
+          <span class="ex-title">{{ e.title }}</span>
+          <span class="ex-summary">{{ e.summary | truncatewords: 26 }}</span>
+          <span class="ex-more" aria-hidden="true">Read in plain words →</span>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- endif -%}

@@ -4,6 +4,8 @@ title: "CAPTCHAs people can read and bots can't"
 permalink: /insights/cleaner-captchas/
 description: An explainer from the Adaptive AI Lab — adversarial CAPTCHAs that fool image-recognition models with less visible noise, by choosing smarter targets and placing noise precisely.
 figure: captcha
+line: adversarial
+papers: [litman2026_cleaner_adversarial_captchas]
 date: 2026-10-31
 topic: "Adversarial AI"
 summary: "Image classifiers now solve CAPTCHAs, so designers add adversarial noise that fools the bots. The trouble is that the noise also bothers people and can be filtered out. Our method chooses a smarter wrong answer for the bot and spends noise only where it counts: 20–40% less noise, fewer steps, and harder to filter."

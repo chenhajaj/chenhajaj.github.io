@@ -1,0 +1,50 @@
+{%- comment -%}
+  "From our lab" (home page): recent refereed papers that Chen or a lab
+  student led, or that a small team wrote. Picked and ordered at build time
+  in _plugins/research-data.rb (site.data.research.showcase); a bib entry can
+  opt in or out with showcase = {true} / {false}.
+{%- endcomment -%}
+<ol class="showcase">
+  {%- for p in site.data.research.showcase -%}
+    <li class="showcase-card" style="--c: var(--line-{{ p.line }})">
+      <p class="showcase-meta">
+        <span class="num">{{ p.year }}</span> · {{ p.venue_short }}
+        {%- if p.rank -%}
+          <span class="showcase-rank">{{ p.rank }}</span>
+        {%- endif -%}
+      </p>
+      <h3 class="showcase-title">
+        <a href="{{ p.url | default: '/publications/' | relative_url }}">{{ p.title }}</a>
+      </h3>
+      <p class="showcase-authors">
+        {%- if p.team <= 3 -%}
+          {{ p.authors | join: ', ' }}
+        {%- else -%}
+          {{ p.authors | first }} et al.
+        {%- endif -%}
+      </p>
+      <p class="showcase-tags">
+        {%- if p.lead == 'chen' -%}
+          <span class="showcase-tag is-lead">Chen first author</span>
+        {%- elsif p.lead == 'student' -%}
+          <span class="showcase-tag is-lead">Student first author</span>
+        {%- endif -%}
+        {%- if p.team <= 3 -%}
+          <span class="showcase-tag">{{ p.team }} authors</span>
+        {%- endif -%}
+      </p>
+      {%- assign has_code = false -%}
+      {%- if p.code and p.code != '' -%}{%- assign has_code = true -%}{%- endif -%}
+      {%- if p.explainer or has_code -%}
+        <p class="showcase-links">
+          {%- if p.explainer -%}
+            <a class="showcase-explainer" href="{{ p.explainer | relative_url }}">Read the explainer</a>
+          {%- endif -%}
+          {%- if has_code -%}
+            <a href="{{ p.code }}">Code</a>
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+    </li>
+  {%- endfor -%}
+</ol>

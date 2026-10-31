@@ -4,6 +4,8 @@ title: "New classes in seconds, without retraining"
 permalink: /insights/classification-by-retrieval/
 description: A research note from the Adaptive AI Lab — classification by retrieval adds new encrypted-traffic classes without retraining, and detects unknown traffic in the same step.
 figure: cbr
+line: traffic
+papers: [zion2026ultrafast]
 date: 2026-09-01
 topic: "Encrypted traffic"
 summary: "Most traffic classifiers become expensive to maintain when applications and threats change. Classification by retrieval stores compact flow representations and learns a new class by adding a few labeled examples to the index. The same nearest-neighbor distance also helps detect traffic that does not belong to any known class."

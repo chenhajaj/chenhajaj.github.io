@@ -4,6 +4,8 @@ title: "Accuracy is only one part of a deployable classifier"
 permalink: /insights/deployable-classifier/
 description: A research note from the Adaptive AI Lab — production network classifiers must trade off update time, memory, latency, privacy, and behavior on unknown traffic, not only benchmark accuracy.
 figure: deployable
+line: traffic
+papers: [zion2026ultrafast]
 date: 2026-08-01
 topic: "Production ML"
 summary: "Real network systems also care about update time, memory, latency, privacy, and behavior on unknown traffic. Our work measures those trade-offs explicitly so a model can be chosen for the operating environment, not only for a benchmark leaderboard."

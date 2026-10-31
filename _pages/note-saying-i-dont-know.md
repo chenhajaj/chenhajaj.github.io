@@ -4,6 +4,8 @@ title: "Saying \"I don't know\" has a price"
 permalink: /insights/saying-i-dont-know/
 description: An explainer from the Adaptive AI Lab — how the rejection rate of an out-of-distribution detector trades caught unknown traffic against wrongly rejected known traffic.
 figure: rejection
+line: traffic
+papers: [meiri2025outofdistribution]
 date: 2026-10-31
 topic: "Encrypted traffic"
 summary: "A traffic classifier meets apps it was never trained on. It can refuse to label what looks unfamiliar, but every refusal threshold is a trade. Our study shows that moving the rejection rate from 10% to 30% catches up to 50% more unknown traffic while false alarms grow by less than 10%."

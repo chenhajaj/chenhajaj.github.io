@@ -198,6 +198,10 @@
     {%- if entry.code -%}
       <a href="{{ entry.code }}">Code</a>
     {%- endif -%}
+    {%- assign ex_url = site.data.research.explainer_for[entry.key] -%}
+    {%- if ex_url -%}
+      <a class="pub-explainer" href="{{ ex_url | relative_url }}">Explainer</a>
+    {%- endif -%}
   </div>
 
   {%- if entry.abstract -%}

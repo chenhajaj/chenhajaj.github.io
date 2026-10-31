@@ -245,6 +245,53 @@ module ResearchData
       people_list.sort_by! { |pp| [-pp["count"], pp["name"]] }
       collaborators = people_list.size
 
+      # Explainers (pages with layout "note"): their line and the papers they
+      # explain (`line:` and `papers:` in front matter), so papers can link to
+      # them and research pages can list them.
+      explainers = site.pages.select { |pg| pg.data["layout"] == "note" }.map do |pg|
+        { "url" => pg.url, "title" => pg.data["title"], "summary" => pg.data["summary"], "topic" => pg.data["topic"],
+          "line" => pg.data["line"] || "other", "papers" => Array(pg.data["papers"]).map(&:to_s),
+          "date" => pg.data["date"].to_s[0, 10] }
+      end
+      explainers.sort_by! { |e| [e["date"], e["title"].to_s] }.reverse!
+      explainer_for = {}
+      explainers.each { |e| e["papers"].each { |k| explainer_for[k] ||= e["url"] } }
+
+      # "From our lab" (home page): recent refereed work that Chen or a lab
+      # student led, or that a small team (three authors or fewer) wrote.
+      # Scored, at most two per research line, newest first. A bib entry can
+      # force itself in or out with showcase = {true} / {false}.
+      raw = bib.data.select { |e| e.is_a?(BibTeX::Entry) }.to_h { |e| [e.key.to_s, e] }
+      recent_from = last_year - 3
+      candidates = papers.select do |p|
+        force = raw[p["key"]] && ResearchData.clean(raw[p["key"]][:showcase])
+        next false if force == "false"
+        next true if force == "true"
+
+        REFEREED.include?(p["kind"]) && p["year"] >= recent_from &&
+          (p["lead"] || p["authors"].size <= 3)
+      end
+      score = lambda do |p|
+        sc = 0
+        sc += 3 if p["lead"] == "chen"
+        sc += 2 if p["lead"] == "student"
+        sc += 2 if p["authors"].size <= 3
+        sc += { "top" => 2, "mid" => 1 }.fetch(p["tier"].to_s, 0)
+        sc += 2 if explainer_for[p["key"]]
+        sc + (p["year"] - recent_from)
+      end
+      per_line = Hash.new(0)
+      showcase = candidates.sort_by { |p| [-score.call(p), -p["year"], p["title"]] }.select do |p|
+        next false if per_line[p["line"]] >= 2
+
+        per_line[p["line"]] += 1
+      end.first(6)
+      showcase = showcase.sort_by { |p| [-p["year"], -score.call(p)] }.map do |p|
+        p.slice("key", "year", "title", "venue", "url", "line", "lead", "tier", "rank", "code")
+         .merge("authors" => p["authors"], "team" => p["authors"].size, "explainer" => explainer_for[p["key"]],
+                "venue_short" => (badges[p["key"]] || {})["core_venue"] || p["venue"].sub(/^Proceedings of (the )?/, ""))
+      end
+
       site.data["research"] = {
         "papers" => papers.size,
         "paper_list" => papers,
@@ -268,7 +315,10 @@ module ResearchData
         "top_people" => people_list.first(12),
         "students_coauthors" => people_list.count { |pp| pp["role"] },
         "lines" => summary,
-        "by_project" => summary.to_h { |l| [l["project"], l] }
+        "by_project" => summary.to_h { |l| [l["project"], l] },
+        "showcase" => showcase,
+        "explainers" => explainers,
+        "explainer_for" => explainer_for
       }
 
       json = {

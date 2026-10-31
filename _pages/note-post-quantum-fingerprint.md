@@ -4,6 +4,8 @@ title: "Post-quantum encryption leaves a fingerprint"
 permalink: /insights/post-quantum-fingerprint/
 description: An explainer from the Adaptive AI Lab — encrypted traffic still shows whether a connection uses post-quantum cryptography, and even which browser and operating system made it.
 figure: pqc
+line: traffic
+papers: [marnerides2025pqclass]
 date: 2026-10-31
 topic: "Encrypted traffic"
 summary: "The internet is starting to switch to encryption that quantum computers cannot break. The new keys are much larger, and that changes the shape of the traffic. From encrypted traffic alone, our PQClass pipeline tells whether a connection uses post-quantum cryptography, and which browser and operating system made it."
