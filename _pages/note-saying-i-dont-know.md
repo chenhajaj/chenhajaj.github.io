@@ -4,6 +4,10 @@ title: "Saying \"I don't know\" has a price"
 permalink: /insights/saying-i-dont-know/
 description: An explainer from the Adaptive AI Lab — how the rejection rate of an out-of-distribution detector trades caught unknown traffic against wrongly rejected known traffic.
 figure: rejection
+image: assets/img/explainers/saying-i-dont-know.jpg
+og_image: /assets/img/explainers/saying-i-dont-know.jpg
+og_image_width: 1600
+og_image_height: 900
 line: traffic
 papers: [meiri2025outofdistribution]
 date: 2026-10-31

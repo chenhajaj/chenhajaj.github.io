@@ -194,6 +194,17 @@ dark mode, carry a text alternative, and use only facts from the papers:
   and Publications shows an "Explainer" link on the papers an explainer
   covers (`line:` and `papers:` in each explainer's front matter).
 
+## Explainer images (October 2026)
+
+Each explainer has a 16:9 cover (`image:` in front matter, files in
+`assets/img/explainers/`), shown on its card and as a 21:8 banner under the
+title, and used as its share image (`og_image:`). The covers were drawn in
+code to match the research-line illustrations: glowing line art on deep navy
+(and a warm watercolour sketch for design education). The generator is a
+single canvas page with one seeded scene per explainer, rendered with
+Playwright at 1600×900; it lives outside the repo, so replace a cover by
+dropping a new 16:9 image at the same path.
+
 ## Funders, partners and lab life (October 2026)
 
 The home page's "Funding and partners" section lists funders and partners by

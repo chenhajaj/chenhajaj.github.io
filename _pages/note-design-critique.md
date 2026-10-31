@@ -4,6 +4,10 @@ title: "How a design critique sounds"
 permalink: /insights/design-critique/
 description: An explainer from the Adaptive AI Lab — measuring tone and new ideas in design-studio critiques with language models, and what changes in virtual reality.
 figure: critique
+image: assets/img/explainers/design-critique.jpg
+og_image: /assets/img/explainers/design-critique.jpg
+og_image_width: 1600
+og_image_height: 900
 line: learning
 papers: [sopher2024wip, sopher2025sentiment]
 date: 2026-10-31

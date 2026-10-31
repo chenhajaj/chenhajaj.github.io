@@ -4,6 +4,10 @@ title: "Recommending a product nobody has clicked yet"
 permalink: /insights/cold-start/
 description: An explainer from the Adaptive AI Lab — recommending brand-new products by finding their closest existing look-alike from image, text and attributes, with no retraining.
 figure: coldstart
+image: assets/img/explainers/cold-start.jpg
+og_image: /assets/img/explainers/cold-start.jpg
+og_image_width: 1600
+og_image_height: 900
 line: similarity
 papers: [goldstein2024warm, yehiel2026ilais]
 date: 2026-10-31

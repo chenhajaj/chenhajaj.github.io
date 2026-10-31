@@ -4,6 +4,10 @@ title: "Post-quantum encryption leaves a fingerprint"
 permalink: /insights/post-quantum-fingerprint/
 description: An explainer from the Adaptive AI Lab — encrypted traffic still shows whether a connection uses post-quantum cryptography, and even which browser and operating system made it.
 figure: pqc
+image: assets/img/explainers/post-quantum-fingerprint.jpg
+og_image: /assets/img/explainers/post-quantum-fingerprint.jpg
+og_image_width: 1600
+og_image_height: 900
 line: traffic
 papers: [marnerides2025pqclass]
 date: 2026-10-31
