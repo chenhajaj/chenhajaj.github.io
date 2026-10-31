@@ -1,7 +1,8 @@
 /*
  * Co-author network on the Lab page. Chen sits in the middle; every co-author
  * is a dot in the sector of the research line they share most (named on the
- * rim), ringed if they are a student of the lab. Links join co-authors who wrote papers with each other.
+ * rim), ringed if they are a student of the lab. Co-authors who work across
+ * two lines (p.also) are two-coloured and sit on the seam between them. Links join co-authors who wrote papers with each other.
  * Data: <script id="research-data"> (people and papers from papers.bib).
  * The layout is deterministic (see layout()); dots ease into place once.
  */
@@ -53,6 +54,7 @@
       name: p.name,
       count: p.count,
       line: p.line,
+      also: p.also,
       role: p.role,
       first: p.first,
       last: p.last,
@@ -125,7 +127,8 @@
     nodes.forEach(function (n) {
       // Every co-author is the same size: the picture shows breadth
       // across research lines, not who publishes with Chen most.
-      n.r = n.me ? (narrow ? 20 : 26) : narrow ? 4 : 6;
+      // Two-line co-authors are a little larger so both colours read.
+      n.r = n.me ? (narrow ? 20 : 26) : (narrow ? 4 : 6) + (n.also ? (narrow ? 1.5 : 2.5) : 0);
     });
   }
 
@@ -134,10 +137,48 @@
   // sector, students of the lab sit nearest the middle and the others follow
   // by the year they first wrote with Chen, so time runs outward. Nothing is
   // clamped to the canvas, so dots never pile up along its edges.
+  // Lines that share people sit next to each other round the ellipse, so
+  // two-line co-authors can sit on the seam between their sectors.
   var lineOrder = data.lines.map(function (l) {
     return l.key;
   });
   lineOrder.push("other");
+  (function () {
+    var pair = {};
+    data.people.forEach(function (p) {
+      if (!p.also) return;
+      var k = [p.line, p.also].sort().join("|");
+      pair[k] = (pair[k] || 0) + 1;
+    });
+    // Greedy chain grown at both ends: start from the strongest pair, then
+    // add whichever unplaced line shares most people with either end.
+    var strongest = Object.keys(pair).sort(function (a, b) {
+      return pair[b] - pair[a];
+    })[0];
+    if (!strongest) return;
+    var w = function (a, b) {
+      return pair[[a, b].sort().join("|")] || 0;
+    };
+    var chain = strongest.split("|").filter(function (k) {
+      return lineOrder.indexOf(k) !== -1;
+    });
+    var left = lineOrder.filter(function (k) {
+      return chain.indexOf(k) === -1;
+    });
+    while (left.length) {
+      var best = null;
+      left.forEach(function (k) {
+        var head = w(k, chain[0]),
+          tail = w(k, chain[chain.length - 1]);
+        var score = Math.max(head, tail);
+        if (!best || score > best.score) best = { k: k, score: score, atHead: head > tail };
+      });
+      if (best.atHead) chain.unshift(best.k);
+      else chain.push(best.k);
+      left.splice(left.indexOf(best.k), 1);
+    }
+    lineOrder = chain;
+  })();
   var members = {};
   nodes.forEach(function (n) {
     if (n.me) return;
@@ -241,6 +282,23 @@
         }
       }
     });
+    // Two-line co-authors move to the seam their sector shares with the other
+    // line (when the two sectors touch), keeping their distance from Chen.
+    nodes.forEach(function (n) {
+      if (n.me || !n.also || !sectors[n.also] || !sectors[n.sector]) return;
+      var s = sectors[n.sector];
+      var L = lineOrder.length,
+        i = lineOrder.indexOf(n.sector),
+        j = lineOrder.indexOf(n.also);
+      var a = j === (i + 1) % L ? s.from + s.span : i === (j + 1) % L ? s.from : null;
+      if (a === null) return;
+      var d = Math.hypot((n.tx - CX) / RX, (n.ty - CY) / RY);
+      seed = 7 + n.count * 13 + n.name.length;
+      a += (rand() - 0.5) * 0.06;
+      n.ang = a;
+      n.tx = CX + Math.cos(a) * d * RX;
+      n.ty = CY + Math.sin(a) * d * RY;
+    });
     me.x = me.tx = CX;
     me.y = me.ty = CY;
     placeLabels();
@@ -333,7 +391,7 @@
     var line = previewLine || focusLine;
     if (line === "lab") {
       if (!n.role) return false;
-    } else if (line && n.line !== line) {
+    } else if (line && n.line !== line && n.also !== line) {
       return false;
     }
     if (search && n.name.toLowerCase().indexOf(search) === -1) return false;
@@ -391,6 +449,14 @@
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
       ctx.fill();
+      if (n.also) {
+        // Second line: the other half of the dot.
+        ctx.fillStyle = colors[n.also] || colors.other;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, -Math.PI / 2, Math.PI / 2);
+        ctx.closePath();
+        ctx.fill();
+      }
       if (n.role) {
         ctx.lineWidth = 2;
         ctx.strokeStyle = "#ffffff";
@@ -559,7 +625,7 @@
     } else {
       tip.style.setProperty("--c", colors[n.line] || colors.other);
       rows = [
-        ["tip-line", (n.role ? n.role + ", " : "") + (names[n.line] || names.other)],
+        ["tip-line", (n.role ? n.role + ", " : "") + (names[n.line] || names.other) + (n.also ? " and " + (names[n.also] || names.other) : "")],
         ["tip-title", n.name],
         [
           "tip-meta",

@@ -157,6 +157,7 @@ module ResearchData
           person = people[id]
           person["papers"] << p["key"]
           person["lines"][p["line"]] += 1
+          p["lines"].each { |l| (person["all_lines"] ||= Hash.new(0))[l] += 1 }
           person["years"] << p["year"]
         end
       end
@@ -232,12 +233,21 @@ module ResearchData
         end
       end
 
+      # A co-author also "bridges" a second line when at least two of their
+      # papers with Chen, and a quarter of them, belong to it (counting every
+      # line a paper is in). The network draws them on the seam between the two.
       people_list = people.values.reject { |pp| pp["id"] == me }.map do |pp|
+        main = pp["lines"].max_by { |k, v| [v, k == "other" ? 0 : 1] }&.first || "other"
+        n_papers = pp["papers"].size
+        also = (pp["all_lines"] || {}).reject { |k, _| k == main || k == "other" }
+                                      .select { |_, v| v >= [2, n_papers * 0.25].max }
+                                      .max_by { |k, v| [v, k] }&.first
         {
           "id" => pp["id"],
           "name" => pp["names"].max_by { |n| [n.delete(".").length, n] },
           "count" => pp["papers"].size,
-          "line" => pp["lines"].max_by { |k, v| [v, k == "other" ? 0 : 1] }&.first || "other",
+          "line" => main,
+          "also" => also,
           "first" => pp["years"].min, "last" => pp["years"].max,
           "role" => lab[pp["id"]]
         }.compact
