@@ -12,10 +12,30 @@ layout: default
       <h1>{{ page.title }}</h1>
     </header>
     <div class="note-body tracing">
-      {%- if page.figure %}
-        {%- capture fig_path %}figures/{{ page.figure }}.liquid{% endcapture %}
-        {% include {{ fig_path }} %}
-      {%- endif %}
+      {%- comment -%}
+        One figure per explainer, chosen by `figure:` in its front matter.
+        Listed explicitly (no dynamic include path); add a line per new figure.
+      {%- endcomment -%}
+      {%- case page.figure %}
+        {%- when 'captcha' %}
+          {% include figures/captcha.liquid %}
+        {%- when 'cbr' %}
+          {% include figures/cbr.liquid %}
+        {%- when 'coldstart' %}
+          {% include figures/coldstart.liquid %}
+        {%- when 'critique' %}
+          {% include figures/critique.liquid %}
+        {%- when 'deployable' %}
+          {% include figures/deployable.liquid %}
+        {%- when 'pqc' %}
+          {% include figures/pqc.liquid %}
+        {%- when 'rejection' %}
+          {% include figures/rejection.liquid %}
+        {%- when 'shared_problem' %}
+          {% include figures/shared_problem.liquid %}
+        {%- when 'winner' %}
+          {% include figures/winner.liquid %}
+      {%- endcase %}
       <div class="prose">
         {{ content }}
       </div>

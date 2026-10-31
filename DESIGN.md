@@ -164,7 +164,8 @@ count), so the section fits about one phone screen. Styles in
 
 Each explainer opens with one figure that shows the idea before the text
 explains it (`figure:` in the explainer's front matter picks
-`_includes/figures/<name>.liquid`; styles in `_sass/signal/_figures.scss`).
+`_includes/figures/<name>.liquid` through a `case` list in
+`_layouts/note.liquid`, so a new figure needs a line there; styles in `_sass/signal/_figures.scss`).
 Figures are inline SVG or HTML coloured by tokens, so they follow light and
 dark mode, carry a text alternative, and use only facts from the papers:
 
