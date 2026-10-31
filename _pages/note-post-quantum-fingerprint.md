@@ -20,4 +20,4 @@ A large enough quantum computer would break the key exchange that protects most 
 
 The new keys are much bigger than the old ones, and that leaves a mark on the shape of a connection even when every byte is encrypted. Our **PQClass** pipeline reads that shape. On real-world traffic it detects whether a post-quantum algorithm is in use with **86%** accuracy, and from the same post-quantum traffic it identifies the **browser** (91%) and the **operating system** (98%).
 
-That matters on both sides. Network engineers can plan for the extra load and latency the new algorithms bring, and security teams can see how far the migration has actually gone on their network. This work continues in our Israel–Cyprus project on multi-layered classification of post-quantum encrypted traffic, with Angelos Marnerides.
+That matters on both sides. Network engineers can plan for the extra load and latency the new algorithms bring, and security teams can see how far the migration has actually gone on their network. This work continues in our Israel–Cyprus project on multi-layered classification of post-quantum encrypted traffic, with Angelos Marnerides at the University of Cyprus.
