@@ -8,18 +8,4 @@ nav: true
 nav_order: 7
 ---
 
-{%- assign notes = site.pages | where: 'layout', 'note' | sort: 'date' | reverse -%}
-<ul class="rows notes-list">
-  {%- for note in notes -%}
-    <li>
-      <a class="note-row" href="{{ note.url | relative_url }}">
-
-        <span class="note-text">
-          <span class="meta">{{ note.topic }}, {{ note.date | date: '%B %Y' }}</span>
-          <h2>{{ note.title }}</h2>
-          <span class="note-summary">{{ note.summary }}</span>
-        </span>
-      </a>
-    </li>
-  {%- endfor -%}
-</ul>
+{% include explainer_cards.liquid %}

@@ -248,8 +248,16 @@ module ResearchData
       # Explainers (pages with layout "note"): their line and the papers they
       # explain (`line:` and `papers:` in front matter), so papers can link to
       # them and research pages can list them.
+      # Card image: the explainer's own `image:`, else its research line's
+      # illustration (the project page's `img:`).
+      line_img = lines.to_h do |l|
+        proj = site.collections["projects"]&.docs&.find { |d| File.basename(d.path, ".*") == l["project"] }
+        [l["key"], proj && proj.data["img"]]
+      end
       explainers = site.pages.select { |pg| pg.data["layout"] == "note" }.map do |pg|
+        own = pg.data["image"]
         { "url" => pg.url, "title" => pg.data["title"], "summary" => pg.data["summary"], "topic" => pg.data["topic"],
+          "image" => own || line_img[pg.data["line"]], "own_image" => !own.nil?,
           "line" => pg.data["line"] || "other", "papers" => Array(pg.data["papers"]).map(&:to_s),
           "date" => pg.data["date"].to_s[0, 10] }
       end

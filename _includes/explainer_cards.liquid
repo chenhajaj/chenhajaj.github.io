@@ -1,8 +1,9 @@
 {%- comment -%}
-  Explainer cards: the newest explainers (limit), or those on one research
-  line (line). Data from site.data.research.explainers.
+  Explainer cards with a 16:9 image: the explainer's `image:`, else its
+  research line's illustration. Data from site.data.research.explainers.
   {% include explainer_cards.liquid limit=3 %}   newest, one per research line
   {% include explainer_cards.liquid line="traffic" %}
+  {% include explainer_cards.liquid %}           all, newest first
 {%- endcomment -%}
 {%- assign ex = site.data.research.explainers -%}
 {%- if include.line -%}
@@ -21,10 +22,17 @@
       {%- assign shown = shown | plus: 1 -%}
       <li class="ex-card" style="--c: var(--line-{{ e.line }})">
         <a class="ex-link" href="{{ e.url | relative_url }}">
-          <span class="ex-topic">{{ e.topic }}</span>
-          <span class="ex-title">{{ e.title }}</span>
-          <span class="ex-summary">{{ e.summary | truncatewords: 26 }}</span>
-          <span class="ex-more" aria-hidden="true">Read in plain words →</span>
+          {%- if e.image -%}
+            <span class="ex-img">
+              {%- include figure.liquid path=e.image alt="" sizes="(max-width: 640px) 92vw, (max-width: 1100px) 46vw, 360px" loading="lazy" -%}
+            </span>
+          {%- endif -%}
+          <span class="ex-body">
+            <span class="ex-topic">{{ e.topic }}</span>
+            <span class="ex-title">{{ e.title }}</span>
+            <span class="ex-summary">{{ e.summary | truncatewords: 26 }}</span>
+            <span class="ex-more" aria-hidden="true">Read in plain words →</span>
+          </span>
         </a>
       </li>
     {%- endfor -%}

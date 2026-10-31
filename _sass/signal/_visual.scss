@@ -1373,12 +1373,12 @@
 }
 
 .ex-link {
-  @include card;
+  @include card(0);
 
   display: flex;
   flex-direction: column;
-  gap: var(--s-2);
   height: 100%;
+  overflow: hidden;
   color: inherit;
   text-decoration: none;
   transition: box-shadow 160ms var(--ease-out);
@@ -1387,6 +1387,47 @@
 .ex-link:hover,
 .ex-link:focus-visible {
   @include card-ring-hover;
+}
+
+.ex-img {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--c) 25%, var(--paper));
+}
+
+.ex-img figure,
+.ex-img picture {
+  display: block;
+  height: 100%;
+  margin: 0;
+}
+
+.ex-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  // A slight zoom from the top-left crops the generator's corner mark at the
+  // bottom right.
+  transform: scale(1.08);
+  transform-origin: 35% 35%;
+  transition: transform 400ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .ex-link:hover .ex-img img {
+    transform: scale(1.12);
+  }
+}
+
+.ex-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--card-pad);
 }
 
 .ex-topic {
