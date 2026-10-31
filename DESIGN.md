@@ -160,6 +160,28 @@ become compact rows (88px thumbnail, title, one line of description, paper
 count), so the section fits about one phone screen. Styles in
 `_sass/signal/_covers.scss`.
 
+## Explainer figures (October 2026)
+
+Each explainer opens with one figure that shows the idea before the text
+explains it (`figure:` in the explainer's front matter picks
+`_includes/figures/<name>.liquid`; styles in `_sass/signal/_figures.scss`).
+Figures are inline SVG or HTML coloured by tokens, so they follow light and
+dark mode, carry a text alternative, and use only facts from the papers:
+
+- `cbr`: retraining loop versus classification by retrieval (new app added
+  as a few points; a far-away flow flagged as unknown).
+- `deployable`: Random Forest versus retrieval on six deployment criteria,
+  numbers from the Computer Networks paper's abstract.
+- `shared_problem`: the three failure modes network security and clinical ML
+  share, and the methods the lab carries between them.
+
+## Funders, partners and lab life (October 2026)
+
+The home page's "Funding and partners" section lists funders and partners by
+name (`_data/partners.yml`; no logos, no amounts). The Lab page's "Lab life"
+cards come from `_data/lab_life.yml`: real events only, newest first, an icon
+tile per card instead of photos (not every student has one).
+
 ## Research line colours
 
 Each research line has one colour, set in `_data/research_lines.yml` (light

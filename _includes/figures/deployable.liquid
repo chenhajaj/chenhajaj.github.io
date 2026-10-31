@@ -1,0 +1,54 @@
+{%- comment -%}
+  Explainer figure: same accuracy, different deployments. Numbers from the
+  Computer Networks paper's abstract (CESNET-TLS22, CNN embeddings vs Random
+  Forest): macro F1 0.923 vs 0.925, about ten times faster training, seconds
+  vs thousands of seconds for a new class, 171 MB vs 1,350 MB for 1.2 million
+  flows, Random Forest faster per flow, unknown traffic at up to 0.92 AUROC.
+{%- endcomment -%}
+<figure class="note-figure fig-duel" style="--c: var(--line-traffic)">
+  <p class="fig-title">Same accuracy, different deployments</p>
+  <div class="duel" role="table" aria-label="Random Forest compared with classification by retrieval on six deployment criteria">
+    <div class="duel-row duel-head" role="row">
+      <span class="duel-crit" role="columnheader">Criterion</span>
+      <span class="duel-a" role="columnheader">Random Forest</span>
+      <span class="duel-b" role="columnheader">Retrieval</span>
+    </div>
+    <div class="duel-row" role="row">
+      <span class="duel-crit" role="rowheader">Accuracy <small>macro F1</small></span>
+      <span class="duel-a is-tie" role="cell">0.925</span>
+      <span class="duel-b is-tie" role="cell">0.923</span>
+    </div>
+    <div class="duel-row" role="row">
+      <span class="duel-crit" role="rowheader">Training</span>
+      <span class="duel-a" role="cell">baseline</span>
+      <span class="duel-b is-win" role="cell">about 10× faster</span>
+    </div>
+    <div class="duel-row" role="row">
+      <span class="duel-crit" role="rowheader">Adding a new app</span>
+      <span class="duel-a" role="cell">thousands of seconds</span>
+      <span class="duel-b is-win" role="cell">seconds</span>
+    </div>
+    <div class="duel-row" role="row">
+      <span class="duel-crit" role="rowheader">Memory <small>1.2 million flows</small></span>
+      <span class="duel-a" role="cell"><span class="duel-bar" style="--w: 100%" aria-hidden="true"></span><span class="num">1,350 MB</span></span>
+      <span class="duel-b is-win" role="cell"
+        ><span class="duel-bar" style="--w: 12.7%" aria-hidden="true"></span><span class="num">171 MB</span></span
+      >
+    </div>
+    <div class="duel-row" role="row">
+      <span class="duel-crit" role="rowheader">Time per flow</span>
+      <span class="duel-a is-win" role="cell">faster</span>
+      <span class="duel-b" role="cell">slower</span>
+    </div>
+    <div class="duel-row" role="row">
+      <span class="duel-crit" role="rowheader">Unknown traffic</span>
+      <span class="duel-a" role="cell">no built-in check</span>
+      <span class="duel-b is-win" role="cell">flagged, up to 0.92 AUROC</span>
+    </div>
+  </div>
+  <figcaption>
+    Two encrypted-traffic classifiers from our Computer Networks paper, tested on 184 applications (CESNET-TLS22). They are equally accurate, so the
+    choice depends on the network: a backbone that needs every microsecond, or a gateway where new apps appear weekly and memory is tight. Highlighted
+    cells mark the better side.
+  </figcaption>
+</figure>

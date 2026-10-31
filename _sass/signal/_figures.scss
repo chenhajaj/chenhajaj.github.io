@@ -1,0 +1,384 @@
+// =============================================================================
+// Signal design system: explainer figures
+// One figure near the top of each explainer (_includes/figures/*.liquid,
+// chosen by `figure:` in the explainer's front matter). Inline SVG and HTML,
+// coloured by tokens so they follow light and dark mode. See DESIGN.md.
+// =============================================================================
+
+.note-figure {
+  @include card(clamp(1rem, 3vw, 1.75rem), var(--ink));
+
+  max-width: 54rem;
+  margin: 0 0 var(--s-7);
+}
+
+.note-figure figcaption {
+  max-width: 62ch;
+  margin-top: var(--s-5);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.fig-title {
+  margin: 0 0 var(--s-4);
+  font-family: var(--font-sans);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+// ------------------------------------------- retraining versus retrieval ----
+
+.fig-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-6);
+}
+
+.fig-panel-head {
+  margin: 0 0 var(--s-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.fig-panel-head span {
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.fig-panel-head.is-accent {
+  color: var(--c);
+}
+
+.fig-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--font-sans);
+}
+
+.fig-known {
+  fill: color-mix(in srgb, var(--ink-3) 55%, var(--paper));
+}
+
+.fig-new {
+  fill: var(--c);
+}
+
+.fig-link {
+  stroke: var(--c);
+  stroke-width: 1.25;
+  stroke-dasharray: 2 2;
+}
+
+.fig-query {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.fig-unknown {
+  fill: var(--paper);
+  stroke: var(--line-adversarial);
+  stroke-width: 2;
+}
+
+.fig-radius {
+  fill: none;
+  stroke: var(--line-adversarial);
+  stroke-width: 1.25;
+  stroke-dasharray: 3 3;
+}
+
+.fig-label {
+  font-size: 11px;
+  fill: var(--ink-2);
+}
+
+.fig-label-strong {
+  font-weight: 650;
+  fill: var(--ink);
+}
+
+// Text in a line colour is mixed toward the ink so 11px labels keep 4.5:1.
+.fig-label-new {
+  font-weight: 650;
+  fill: color-mix(in srgb, var(--c) 70%, var(--ink));
+}
+
+.fig-label-warn {
+  font-weight: 650;
+  fill: color-mix(in srgb, var(--line-adversarial) 70%, var(--ink));
+}
+
+.fig-box {
+  fill: var(--paper);
+  stroke: var(--rule-strong);
+  stroke-width: 1.25;
+}
+
+.fig-box-slow {
+  stroke: var(--line-adversarial);
+  stroke-dasharray: 4 3;
+}
+
+.fig-pill-new {
+  fill: color-mix(in srgb, var(--c) 12%, var(--paper));
+  stroke: var(--c);
+  stroke-width: 1.25;
+}
+
+.fig-box-text {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--ink);
+}
+
+.fig-flow {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.5;
+}
+
+.fig-arrowhead {
+  fill: var(--ink-3);
+}
+
+@media (max-width: 640px) {
+  .fig-panels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// ------------------------------------------------ same accuracy, two models ----
+
+.duel {
+  display: grid;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+}
+
+.duel-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: center;
+  padding-block: var(--s-3);
+  border-top: 1px solid var(--rule);
+}
+
+.duel-head {
+  border-top: 0;
+  padding-top: 0;
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.duel-head .duel-b {
+  color: var(--c);
+}
+
+.duel-crit {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.duel-crit small {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.duel-row:not(.duel-head) .duel-a,
+.duel-row:not(.duel-head) .duel-b {
+  display: grid;
+  gap: var(--s-1);
+  justify-items: start;
+  padding: var(--s-2) var(--s-3);
+  border-radius: 8px;
+  color: var(--ink-2);
+}
+
+.duel-row:not(.duel-head) .is-win {
+  font-weight: 650;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--c) 14%, var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 40%, transparent);
+}
+
+.duel-row:not(.duel-head) .duel-a.is-win {
+  --c: var(--ink-3);
+}
+
+.duel-bar {
+  display: block;
+  width: var(--w);
+  max-width: 100%;
+  height: 0.5rem;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ink-3) 60%, var(--paper));
+}
+
+.is-win .duel-bar {
+  background: var(--c);
+}
+
+@media (max-width: 640px) {
+  .duel-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .duel-crit {
+    grid-column: 1 / -1;
+  }
+
+  .duel-head .duel-crit {
+    display: none;
+  }
+}
+
+// ---------------------------------------------- security meets clinical ML ----
+
+.bridge {
+  display: grid;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+}
+
+.bridge-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: center;
+  padding-block: var(--s-2);
+}
+
+.bridge-side {
+  padding: var(--s-3);
+  border-radius: 8px;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--c) 10%, var(--paper));
+  box-shadow: inset 3px 0 0 var(--c);
+}
+
+.bridge-row .bridge-side:last-child {
+  box-shadow: inset -3px 0 0 var(--c);
+  text-align: right;
+}
+
+.bridge-mid {
+  position: relative;
+  padding: var(--s-3);
+  font-weight: 700;
+  text-align: center;
+  color: var(--ink);
+}
+
+// The connector: a hairline across the row, behind the three cells, so it
+// joins each side to the shared problem.
+.bridge-row:not(.bridge-head) {
+  position: relative;
+  isolation: isolate;
+}
+
+.bridge-row:not(.bridge-head)::before {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto;
+  z-index: -1;
+  border-top: 1px dashed var(--rule-strong);
+}
+
+.bridge-row:not(.bridge-head) .bridge-mid {
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px var(--rule-strong);
+}
+
+.bridge-head {
+  padding-bottom: var(--s-3);
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bridge-head .bridge-side {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 0;
+  color: var(--ink);
+  background: none;
+  box-shadow: none;
+}
+
+.bridge-head .bridge-side:last-child {
+  justify-content: flex-end;
+  box-shadow: none;
+}
+
+.bridge-head .bridge-mid {
+  font-weight: 650;
+  color: var(--ink-3);
+}
+
+.bridge-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: var(--c);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bridge-answer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  align-items: center;
+  margin: var(--s-5) 0 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: var(--ink);
+}
+
+.bridge-answer strong {
+  margin-right: var(--s-1);
+}
+
+.bridge-answer span {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cobalt) 10%, var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cobalt) 30%, transparent);
+}
+
+@media (max-width: 640px) {
+  .bridge-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .bridge-mid {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .bridge-head .bridge-mid {
+    display: none;
+  }
+
+  .bridge-row:not(.bridge-head)::before {
+    display: none;
+  }
+}

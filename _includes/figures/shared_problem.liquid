@@ -1,0 +1,47 @@
+{%- comment -%}
+  Explainer figure: the three failure modes network security and clinical ML
+  share, and the methods the lab uses for both. Text from the explainer.
+{%- endcomment -%}
+<figure class="note-figure fig-bridge">
+  <div class="bridge" role="table" aria-label="Problems shared by network security and clinical machine learning">
+    <div class="bridge-row bridge-head" role="row">
+      <span class="bridge-side" role="columnheader" style="--c: var(--line-adversarial)">
+        <svg class="bridge-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.2 7.5 9.5 4.4-1.3 7.5-4.9 7.5-9.5V6L12 3Z" />
+        </svg>
+        Network security
+      </span>
+      <span class="bridge-mid" role="columnheader">The shared problem</span>
+      <span class="bridge-side" role="columnheader" style="--c: var(--line-medical)">
+        <svg class="bridge-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 12h4l2-5 4 10 2-5h6" />
+        </svg>
+        Clinical ML
+      </span>
+    </div>
+    <div class="bridge-row" role="row">
+      <span class="bridge-side" role="cell" style="--c: var(--line-adversarial)">New attacks, new apps, new protocols</span>
+      <span class="bridge-mid" role="rowheader">The world changes after deployment</span>
+      <span class="bridge-side" role="cell" style="--c: var(--line-medical)">New patient populations and devices</span>
+    </div>
+    <div class="bridge-row" role="row">
+      <span class="bridge-side" role="cell" style="--c: var(--line-adversarial)">Zero-day intrusions</span>
+      <span class="bridge-mid" role="rowheader">Rare cases cost the most</span>
+      <span class="bridge-side" role="cell" style="--c: var(--line-medical)">Rare complications</span>
+    </div>
+    <div class="bridge-row" role="row">
+      <span class="bridge-side" role="cell" style="--c: var(--line-adversarial)">A missed intrusion</span>
+      <span class="bridge-mid" role="rowheader">Confident mistakes are punished</span>
+      <span class="bridge-side" role="cell" style="--c: var(--line-medical)">A missed diagnosis</span>
+    </div>
+  </div>
+  <p class="bridge-answer">
+    <strong>One set of answers for both:</strong>
+    <span>out-of-distribution detection</span><span>retrieval-based adaptation</span><span>uncertainty-aware prediction</span
+    ><span>prospective validation</span>
+  </p>
+  <figcaption>
+    Each row pairs a security failure with its clinical twin. The methods at the bottom are the ones the lab builds for one domain and carries to the
+    other.
+  </figcaption>
+</figure>

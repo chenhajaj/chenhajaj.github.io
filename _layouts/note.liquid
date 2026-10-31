@@ -12,6 +12,10 @@ layout: default
       <h1>{{ page.title }}</h1>
     </header>
     <div class="note-body tracing">
+      {%- if page.figure %}
+        {%- capture fig_path %}figures/{{ page.figure }}.liquid{% endcapture %}
+        {% include {{ fig_path }} %}
+      {%- endif %}
       <div class="prose">
         {{ content }}
       </div>
