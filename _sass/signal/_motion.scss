@@ -28,21 +28,6 @@
   }
 }
 
-// ----------------------------------------------------- story on phones ----
-// 100vh is the large viewport on iOS, so with the address bar showing the
-// bottom of the pinned panel sat under the browser chrome. svh is the small
-// viewport (the visible area at its smallest); 100vh stays as the fallback.
-
-.motion-ok .story-pin {
-  height: 100vh;
-  height: 100svh;
-}
-
-.story-pin {
-  min-height: min(100vh, 52rem);
-  min-height: min(100svh, 52rem);
-}
-
 // -------------------------------------------------------- press states ----
 // Research cards answer a press (scale 0.98) instead of tilting on hover.
 

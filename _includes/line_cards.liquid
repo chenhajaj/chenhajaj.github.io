@@ -1,8 +1,8 @@
 {%- comment -%}
-  Research line cards. Colour, paper count and the data cover (the line's
-  slice of the paper map, inline SVG) come from site.data.research (built
-  from papers.bib by _plugins/research-data.rb). Under 640px the cards become
-  compact rows (_sass/signal/_covers.scss).
+  Research line cards: the line's illustration (project `img`), title,
+  description and paper count. Colour and count come from site.data.research
+  (built from papers.bib by _plugins/research-data.rb). Under 640px the cards
+  become compact rows (_sass/signal/_covers.scss).
   include params: level (heading level, default 3), outcome (true to show it)
 {%- endcomment -%}
 {%- assign level = include.level | default: 3 -%}
@@ -15,8 +15,10 @@
     {%- assign key = line.key | default: 'other' -%}
     <li>
       <a class="line-card" href="{{ project.url | relative_url }}" style="--c: var(--line-{{ key }})">
-        {%- if line -%}
-          {% include line_cover.liquid line=line slug=slug class='line-card-cover' %}
+        {%- if project.img -%}
+          <div class="line-card-img" style="view-transition-name: line-{{ slug }}">
+            {% include figure.liquid path=project.img alt="" sizes="(max-width: 640px) 88px, (max-width: 1100px) 46vw, 360px" loading="lazy" %}
+          </div>
         {%- endif -%}
         <div class="line-card-body">
           <h{{ level }} class="line-card-title">{{ project.title }}</h{{ level }}>

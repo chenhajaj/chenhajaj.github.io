@@ -1,7 +1,6 @@
 // =============================================================================
 // Signal design system: build-time charts
-// Funding on a year axis (_includes/grants_table.liquid), student paths on the
-// Lab page (_includes/student_paths.liquid), "People on this line" on research
+// Funding list (_includes/grants_table.liquid), "People on this line" on research
 // pages (_includes/line_people.liquid) and the paper map's "Colour by" control
 // (Publications). Layout data: _plugins/lab-charts.rb. See DESIGN.md.
 // =============================================================================
@@ -25,18 +24,14 @@
   font-size: var(--fs-xs);
 }
 
-.fund-swatch,
-.fund-seg,
-.fund-mini {
+.fund-swatch {
   --stripe: color-mix(in srgb, var(--c) 16%, var(--paper));
   background: var(--c);
 }
 
-// Co-PI: hatched in the line colour, with a solid edge so the bar's extent
-// keeps 3:1 contrast against the page.
-.fund-swatch.is-co,
-.fund-seg.is-co,
-.fund-mini.is-co {
+// Co-PI: hatched in the line colour, with a solid edge so the swatch keeps
+// 3:1 contrast against the page.
+.fund-swatch.is-co {
   background: repeating-linear-gradient(-45deg, var(--c) 0 3px, var(--stripe) 3px 7px);
   box-shadow: inset 0 0 0 1.5px var(--c);
 }
@@ -49,126 +44,10 @@
   border-radius: 3px;
 }
 
-.fund-plot {
-  margin: var(--s-5) 0 var(--s-6);
-}
-
-.fund-row + .fund-row {
-  margin-top: var(--s-5);
-}
-
-.fund-row-label {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 var(--s-3);
-  font-family: var(--font-sans);
-  font-size: var(--fs-xs);
-  color: var(--ink-3);
-}
-
-.fund-row-label strong {
-  font-size: var(--fs-sm);
-  font-weight: 680;
-  color: var(--ink);
-}
-
-.fund-area {
-  position: relative;
-  height: 8.5rem;
-  margin-top: var(--s-2);
-  border-bottom: 1px solid var(--rule-strong);
-}
-
-.fund-grid {
-  position: absolute;
-  inset: auto 0 var(--y) 0;
-  border-top: 1px dashed var(--rule);
-}
-
-.fund-grid > span {
-  position: absolute;
-  top: 2px;
-  left: 0;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  color: var(--ink-3);
-}
-
-.fund-stack {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: var(--x);
-  width: calc(100% / var(--cols));
-}
-
-.fund-seg {
-  position: absolute;
-  bottom: var(--b);
-  left: 50%;
-  width: 1.75rem;
-  height: calc(var(--h) - 2px);
-  margin-left: -0.875rem;
-  border-radius: 3px;
-}
-
-.fund-seg .fund-amount {
-  position: absolute;
-  top: 50%;
-  left: calc(100% + 0.4rem);
-  transform: translateY(-50%);
-}
-
-.fund-amount {
-  font-family: var(--font-sans);
-  font-size: var(--fs-xs);
-  font-weight: 650;
-  color: var(--ink);
-  white-space: nowrap;
-}
-
-.fund-axis {
-  position: relative;
-  height: 1.5rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.fund-axis li {
-  position: absolute;
-  top: var(--s-1);
-  left: var(--x);
-  transform: translateX(-50%);
-  font-family: var(--font-sans);
-  font-size: var(--fs-xs);
-  color: var(--ink-3);
-}
-
 .fund-lists {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
   gap: var(--s-5) var(--s-6);
-}
-
-.fund-list-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 var(--s-3);
-  margin: 0 0 var(--s-2);
-  font-family: var(--font-sans);
-  font-size: var(--fs-sm);
-  font-weight: 680;
-  color: var(--ink);
-}
-
-.fund-list-scale {
-  display: none;
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  color: var(--ink-3);
 }
 
 .fund-list {
@@ -179,8 +58,7 @@
 
 .fund-item {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0 var(--s-4);
+  grid-template-columns: minmax(0, 1fr);
   padding: var(--s-3) 0;
   border-top: 1px solid var(--rule);
 }
@@ -208,251 +86,6 @@
   font-family: var(--font-sans);
   font-size: var(--fs-xs);
   color: var(--ink-3);
-}
-
-.fund-value {
-  grid-row: 1 / span 2;
-  grid-column: 2;
-  align-self: start;
-  line-height: 1.35;
-}
-
-.fund-value .fund-amount {
-  font-size: var(--fs-sm);
-}
-
-.fund-mini {
-  display: none;
-}
-
-// Phones: the list is the chart. One mini bar per grant, scaled within its
-// currency (the scale is named in the group heading).
-@media (max-width: 640px) {
-  .fund-plot {
-    display: none;
-  }
-
-  .fund-list-scale {
-    display: inline;
-  }
-
-  .fund-item {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .fund-value {
-    display: flex;
-    grid-row: auto;
-    grid-column: 1;
-    align-items: center;
-    gap: var(--s-2);
-    margin-top: var(--s-2);
-    padding-left: calc(0.9em + var(--s-2));
-  }
-
-  .fund-mini {
-    display: block;
-    width: calc(var(--h) * 0.7);
-    min-width: 4px;
-    height: 0.9rem;
-    border-radius: 3px;
-  }
-}
-
-// ------------------------------------------------------- student paths ----
-
-.paths {
-  --name-w: 17rem;
-  --track-gap: var(--s-4);
-}
-
-.paths-key {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-2) var(--s-5);
-  margin-bottom: var(--s-5);
-  font-family: var(--font-sans);
-  font-size: var(--fs-xs);
-  color: var(--ink-2);
-}
-
-.paths-key > span {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-}
-
-.paths-key .path-dot {
-  --c: var(--ink-2);
-  position: static;
-  transform: none;
-}
-
-.paths-key-lane {
-  display: inline-block;
-  width: 1.6rem;
-  height: 2px;
-  background: var(--ink-3);
-}
-
-.paths-key-lane.is-current,
-.path-lane.is-current {
-  background: linear-gradient(to right, var(--ink-3) 60%, transparent);
-}
-
-.paths-key-lane.is-tail,
-.path-lane.is-tail {
-  background: repeating-linear-gradient(to right, var(--ink-3) 0 4px, transparent 4px 7px);
-}
-
-.paths-axis {
-  position: relative;
-  height: 1.5rem;
-  margin: 0 var(--s-2) 0 calc(var(--name-w) + var(--track-gap));
-  padding: 0;
-  list-style: none;
-}
-
-.paths-axis li {
-  position: absolute;
-  left: var(--x);
-  transform: translateX(-50%);
-  font-family: var(--font-sans);
-  font-size: var(--fs-xs);
-  color: var(--ink-3);
-}
-
-.paths-group {
-  margin: var(--s-4) 0 0;
-  padding-bottom: var(--s-1);
-  border-bottom: 1px solid var(--rule);
-  font-family: var(--font-sans);
-  font-size: var(--fs-sm);
-  font-weight: 680;
-  color: var(--ink);
-}
-
-.paths-group .count {
-  margin-left: 0.3em;
-  font-weight: 500;
-  color: var(--ink-3);
-}
-
-.paths-rows {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.path-row {
-  display: grid;
-  grid-template-columns: var(--name-w) minmax(0, 1fr);
-  gap: var(--s-1) var(--track-gap);
-  align-items: center;
-  padding: var(--s-2) 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
-}
-
-.path-name {
-  display: grid;
-  font-family: var(--font-sans);
-  font-size: var(--fs-sm);
-  font-weight: 620;
-  line-height: 1.3;
-}
-
-.path-name a {
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.path-name a:hover {
-  color: var(--cobalt);
-  text-decoration: underline;
-}
-
-.path-meta {
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  color: var(--ink-3);
-}
-
-// Faint guides at each year's centre, matching the axis labels.
-.path-track {
-  position: relative;
-  height: 1.75rem;
-  margin-right: var(--s-2);
-  background-image: linear-gradient(
-    to right,
-    transparent calc(50% - 0.5px),
-    var(--rule) calc(50% - 0.5px),
-    var(--rule) calc(50% + 0.5px),
-    transparent calc(50% + 0.5px)
-  );
-  background-size: calc(100% / var(--cols)) 100%;
-}
-
-.path-lane {
-  position: absolute;
-  top: calc(50% - 1px);
-  left: var(--x0);
-  width: calc(var(--x1) - var(--x0));
-  height: 2px;
-  background: var(--ink-3);
-}
-
-.path-lane.is-current {
-  width: calc(var(--x1) - var(--x0) + 100% / var(--cols) / 2);
-}
-
-.path-grad {
-  position: absolute;
-  top: 15%;
-  bottom: 15%;
-  left: var(--x);
-  width: 2px;
-  margin-left: -1px;
-  border-radius: 1px;
-  background: var(--ink);
-}
-
-.path-dot {
-  position: absolute;
-  top: 50%;
-  left: var(--x);
-  display: inline-block;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  background: var(--paper);
-  box-shadow: inset 0 0 0 2px var(--c);
-  transform: translate(-50%, -50%);
-}
-
-.path-dot.is-lead {
-  background: var(--c);
-}
-
-.paths-none {
-  margin: var(--s-2) 0 0;
-  font-family: var(--font-sans);
-  font-size: var(--fs-xs);
-  line-height: 1.5;
-  color: var(--ink-3);
-}
-
-@media (max-width: 640px) {
-  .paths-axis {
-    margin-left: 0;
-  }
-
-  .paths-key {
-    gap: var(--s-2) var(--s-4);
-  }
-
-  .path-row {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 
 // ---------------------------------------------------- people on a line ----

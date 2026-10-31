@@ -2,6 +2,7 @@
 layout: project
 title: Encrypted Traffic Classification
 description: AI-powered classification of encrypted network traffic — enabling security monitoring and QoS management without compromising encryption or user privacy.
+img: assets/img/encrypted_new.png
 importance: 1
 category: work
 outcome: "Retrieval-based adaptation and post-quantum traffic classification"

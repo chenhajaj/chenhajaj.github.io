@@ -2,6 +2,7 @@
 layout: project
 title: Adversarial Artificial Intelligence
 description: Developing robust AI systems that withstand adversarial attacks — across network security, mobile malware, healthcare AI, and social network manipulation.
+img: assets/img/cyber_new.png
 importance: 1
 category: work
 outcome: "Robustness across security, health, and social systems"

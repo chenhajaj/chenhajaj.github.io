@@ -2,6 +2,7 @@
 layout: project
 title: Incentive Design
 description: Mechanism design and game theory for e-commerce platforms, team formation, and kidney exchange — aligning individual incentives with collective outcomes.
+img: assets/img/incentive-new.png
 importance: 2
 category: work
 outcome: "Mechanisms for platforms, teams, and kidney exchange"

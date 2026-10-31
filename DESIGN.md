@@ -94,9 +94,9 @@ find-animation-opportunities; MIT). Rules this site follows:
 - Reduced motion keeps colour and opacity changes and drops movement.
 - Research cards have no tilt; they press (scale 0.97) like other controls.
 - The theme switch is a single 220 ms crossfade.
-- Clicking a research card expands its data cover into the research page
+- Clicking a research card expands its illustration into the research page
   header (cross-document View Transitions; browsers without them just load
-  the page). The research page header shows that one cover with the line's
+  the page). The research page header shows that one illustration with the line's
   stats under the title; there is no second map lower on the page.
 - Decoration must carry information. An earlier random "flow fingerprint"
   drawing was removed in October 2026 because it looked like data but was not.
@@ -114,17 +114,15 @@ built from the same data (`_sass/signal/_visual.scss`), never decoration:
   `line:` in `students.yml`). Lab page cards, alumni wall, home face row.
 - **News**: cards with an icon for the kind (`kind:` paper, talk, award, grant,
   student) and the line colour (`line:`) from each `_news/*.md` front matter.
-- **Funding**: grants on a year axis, one row per currency with its own
-  labelled scale (no conversion), coloured by line (`line:` in `grants.yml`),
-  PI solid and co-PI hatched; every name and amount is also text. Phones get
-  a list with mini bars scaled within each currency.
-- **Student paths** (Lab page): a lane per student from their first paper with
-  Chen to graduation or now, a dot per joint paper (filled when the student
-  was first author). `students.yml` has no start dates, so students without a
-  paper are named under their group instead of drawn.
+- **Funding**: the total in shekels, rounded to the nearest ₪100,000, then a
+  list of grants, newest first, each with a swatch in its line colour
+  (`line:` in `grants.yml`), solid for PI and hatched for co-PI. Amounts of
+  individual grants are never shown (Chen's call), so there is no bar chart.
+  All amounts are kept in shekels; grants first recorded in dollars were
+  converted at the award year's average rate (see `grants.yml`).
 - **People on this line** (research pages): top co-authors in that line with
   joint-paper counts and years; lab students ringed.
-- These three are built at build time (`_plugins/lab-charts.rb`, styles in
+- Both are built at build time (`_plugins/lab-charts.rb`, styles in
   `_sass/signal/_charts.scss`), with no JavaScript.
 - **Paper map lenses** (Publications): "Colour by" research line, venue tier
   (CORE A*/A or SJR Q1, CORE B or SJR Q2, other refereed, not refereed) or who
@@ -152,41 +150,22 @@ and pins journals that share a name, such as MDPI Electronics, by ISSN).
 "Student-led" marks papers whose first author is a lab member. The CV's
 "At a glance" tiles count Q1 journal papers and CORE A*/A conference papers.
 
-## The lab, year by year (October 2026)
+## Research line illustrations (October 2026)
 
-The home page's one scroll-driven moment (`assets/js/story.js`,
-`_includes/story.liquid`), after the research cards. A night-blue panel holds
-still while the visitor scrolls about three screens: a giant year runs from the
-first paper to "Today", the paper map fills column by column (the newest year
-glows), counters climb (papers, co-authors, graduates up to that year) and
-captions mark milestones from `_data/career.yml` plus the first paper in each
-research line. Everything is computed from the same data as the paper map.
-Under reduced motion or without JavaScript the section is one panel showing
-the finished picture, with no pinning; a hidden sentence gives screen readers
-the totals.
-
-## Data covers (October 2026)
-
-Research cards and research page headers show a **data cover** instead of an
-illustration (the earlier illustrations were removed as stock-like imagery):
-the line's own slice of the paper map on the night panel, one column per year
-on the shared first-to-last-year axis, one square per paper in the line
-(solid for journal and conference papers, hollow for other work), with a dot
-in another line's colour on papers shared with that line. Every cover uses the
-same scale, so lines can be compared card to card. It is inline SVG built at
-build time (`cover_svg` in `_plugins/research-data.rb`, included by
-`_includes/line_cover.liquid`, styled in `_sass/signal/_covers.scss`), needs
-no JavaScript and is `aria-hidden`; the card text carries the count. The
-research page header adds a key with the solid, hollow and shared counts.
-Under 640px the research cards become compact rows (small cover, title, one
-line of description, paper count), so the section fits about one phone screen.
+Research cards and research page headers show each line's illustration
+(project `img`). Chen preferred them to the data covers tried in October 2026,
+and asked for the scroll-driven "lab, year by year" replay and the "from first
+paper to graduation" chart to be dropped. Under 640px the research cards
+become compact rows (88px thumbnail, title, one line of description, paper
+count), so the section fits about one phone screen. Styles in
+`_sass/signal/_covers.scss`.
 
 ## Research line colours
 
 Each research line has one colour, set in `_data/research_lines.yml` (light
 and dark values) and exposed as `--line-<key>` CSS variables by
 `_includes/line_colors.liquid`. The same colour marks the line everywhere: map
-squares, legend chips, research cards and their data covers, the
+squares, legend chips, research cards, the
 featured paper and the open PhD/MSc topics. Use these colours for marks and
 fills, not for small text.
 
@@ -236,7 +215,7 @@ Dark mode follows the system unless the visitor picks a theme with the toggle
 | Research lines           | `_projects/*.md`. `papers_query` decides which papers appear on the project page and the paper count.                                                                                                  |
 | Students and alumni      | `_data/students.yml`                                                                                                                                                                                   |
 | Open PhD/MSc topics      | `_data/open_topics.yml`                                                                                                                                                                                |
-| Grants                   | `_data/grants.yml` (`total_display` is shown as the total)                                                                                                                                             |
+| Grants                   | `_data/grants.yml` (amounts in shekels; only the rounded total is shown)                                                                                                                               |
 | News                     | `_news/*.md`                                                                                                                                                                                           |
 | Research notes           | `_pages/note-*.md` with `layout: note`                                                                                                                                                                 |
 | CV entries, teaching     | front matter of `_pages/cv.html` and `_pages/teaching.html`                                                                                                                                            |

@@ -3,7 +3,7 @@ layout: about
 title: About
 permalink: /
 show_pub_year: true
-scripts: [paper-map, story]
+scripts: [paper-map]
 description: Chen Hajaj is an Associate Professor at Ariel University who builds machine learning that keeps working when data, threats, and domains change, from encrypted traffic and adversarial AI to clinical decision support.
 
 # Featured result on the home page. Edit these lines to swap it.
@@ -85,9 +85,8 @@ featured:
 
     <div class="atlas-foot">
       <p class="hero-roles">
-        Associate Professor of Industrial Engineering and Management at Ariel University. I lead the Adaptive AI Lab, head the Data Science track of
-        the department's undergraduate and graduate programs, chair the Faculty of Engineering Review Board, and serve as an NVIDIA University
-        Ambassador.
+        In the Department of Industrial Engineering and Management I also head the Data Science track of the undergraduate and graduate programs.
+        I chair the Faculty of Engineering Review Board and serve as an NVIDIA University Ambassador.
       </p>
       <dl class="atlas-stats">
         <div><dt>Citations</dt><dd class="num" data-count="{{ site.data.scholar.citations | default: 0 }}">{{ site.data.scholar.citations | default: 0 | thousands }}</dd></div>
@@ -166,11 +165,6 @@ featured:
     </div>
   </section>
 
-</div>
-
-{% include story.liquid %}
-
-<div class="wrap">
   <section class="band" aria-labelledby="selected">
     <div class="band-head">
       <h2 id="selected">Selected papers</h2>
@@ -200,9 +194,6 @@ featured:
         </p>
         <p class="prose-block join-topics-lead">Topics we are recruiting for now:</p>
         <div class="topics-wrap">{% include open_topics.liquid %}</div>
-        <div class="actions">
-          <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20graduate%20student">Email Chen about a topic</a>
-        </div>
       </div>
     </div>
   </section>

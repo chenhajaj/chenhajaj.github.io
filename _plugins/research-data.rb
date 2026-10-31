@@ -70,52 +70,6 @@ module ResearchData
 
   REFEREED = %w[journal conference].freeze
 
-  # Data cover for a research line (research cards and research page headers):
-  # that line's slice of the paper map as inline SVG. One column per year on
-  # the shared first..last axis, one square per paper (solid = refereed
-  # journal or conference, hollow = anything else), stacked up from a
-  # baseline tick. A paper that also belongs to another line carries a dot in
-  # that line's colour. `rows` is the tallest year of any line, so every
-  # cover uses the same scale. Colours come from the --line-*-bright CSS
-  # variables (the cover sits on the night panel in both themes); styles in
-  # _sass/signal/_covers.scss. Decorative: the text alternative is the card
-  # or page text next to it.
-  COL = 10   # column pitch (viewBox units)
-  SQ = 7     # square size
-  PITCH = 9  # row pitch
-
-  def self.num(value)
-    value.round(2).to_s.sub(/\.0+\z/, "")
-  end
-
-  def self.cover_svg(key, papers, first_year, last_year, rows)
-    years = (first_year..last_year).to_a
-    width = years.size * COL
-    base = rows * PITCH
-    svg = +%(<svg class="cover-svg" viewBox="0 0 #{width} #{base + 1}" preserveAspectRatio="xMidYMax meet" ) +
-          %(focusable="false" aria-hidden="true" style="--cc: var(--line-#{key}-bright)">)
-    years.each_with_index do |year, i|
-      x = (i * COL) + ((COL - SQ) / 2.0)
-      svg << %(<rect class="cover-tick" x="#{num(x)}" y="#{base}" width="#{SQ}" height="0.8"/>)
-      in_year = papers.select { |p| p["year"] == year }
-                      .sort_by { |p| [REFEREED.include?(p["kind"]) ? 0 : 1, p["lines"].size > 1 ? 0 : 1, p["key"]] }
-      in_year.each_with_index do |p, row|
-        y = base - 2 - ((row + 1) * SQ) - (row * (PITCH - SQ))
-        svg << if REFEREED.include?(p["kind"])
-                 %(<rect class="cover-sq" x="#{num(x)}" y="#{num(y)}" width="#{SQ}" height="#{SQ}" rx="1.4"/>)
-               else
-                 %(<rect class="cover-sq-o" x="#{num(x + 0.65)}" y="#{num(y + 0.65)}" width="#{num(SQ - 1.3)}" height="#{num(SQ - 1.3)}" rx="1.1"/>)
-               end
-        other = (p["lines"] - [key]).first
-        next unless other
-
-        svg << %(<circle class="cover-dot" cx="#{num(x + (SQ / 2.0))}" cy="#{num(y + (SQ / 2.0))}" r="1.75" ) +
-               %(style="fill: var(--line-#{other}-bright)"/>)
-      end
-    end
-    svg << "</svg>"
-  end
-
   class Generator < Jekyll::Generator
     safe true
     priority :high
@@ -162,10 +116,6 @@ module ResearchData
       years = papers.map { |p| p["year"] }
       first_year, last_year = years.minmax
 
-      # Tallest year of any line: the shared vertical scale of the covers.
-      cover_rows = lines.map do |l|
-        papers.select { |p| p["lines"].include?(l["key"]) }.group_by { |p| p["year"] }.values.map(&:size).max || 0
-      end.max.to_i.clamp(1, 1000)
       names = lines.to_h { |l| [l["key"], l["name"]] }
 
       summary = lines.map do |l|
@@ -174,14 +124,13 @@ module ResearchData
         line_years = in_line.map { |p| p["year"] }
         coauthors = in_line.flat_map { |p| p["authors"].map { |a| ResearchData.person_id(a) } }.uniq - ["c-hajaj"]
         primary = papers.count { |p| p["line"] == l["key"] }
-        # Papers this line shares with each other line (the dots on the cover).
+        # Papers this line shares with each other line .
         shared = in_line.flat_map { |p| p["lines"] - [l["key"]] }.tally
                         .sort_by { |k, n| [-n, names[k].to_s] }
                         .map { |k, n| { "key" => k, "name" => names[k], "count" => n } }
         l.merge("count" => in_line.size, "primary" => primary, "per_year" => per_year, "url" => "/projects/#{l['project']}/",
                 "first" => line_years.min, "last" => line_years.max, "coauthors" => coauthors.size,
-                "refereed" => in_line.count { |p| REFEREED.include?(p["kind"]) }, "shared" => shared,
-                "cover" => ResearchData.cover_svg(l["key"], in_line, first_year, last_year, cover_rows))
+                "refereed" => in_line.count { |p| REFEREED.include?(p["kind"]) }, "shared" => shared)
       end
 
       # People: merge name variants, count papers shared with Chen, mark lab members.

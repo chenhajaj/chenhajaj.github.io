@@ -2,6 +2,7 @@
 layout: project
 title: E-commerce and Multimodal AI
 description: Multimodal AI that fuses computer vision and NLP to measure item similarity the way humans do, and studies of how people shop online across devices, for smarter recommendations in tourism, e-commerce, and real estate.
+img: assets/img/tourism-new.png
 importance: 3
 category: work
 outcome: "Vision + language + time for product similarity"

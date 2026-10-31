@@ -31,21 +31,9 @@ layout: default
           </dl>
         {%- endif %}
       </div>
-      {%- if line -%}
-        <div class="project-hero-figure">
-          {% include line_cover.liquid line=line slug=slug class='project-hero-cover' %}
-          <ul class="line-cover-key" aria-label="Papers in this line">
-            <li><span class="key-sq" aria-hidden="true"></span>Journal or conference paper ({{ line.refereed }})</li>
-            {%- assign others = line.count | minus: line.refereed -%}
-            {%- if others > 0 %}
-              <li><span class="key-sq key-sq-o" aria-hidden="true"></span>Other work ({{ others }})</li>
-            {%- endif -%}
-            {%- for s in line.shared %}
-              <li style="--o: var(--line-{{ s.key }}-bright)">
-                <span class="key-sq key-sq-dot" aria-hidden="true"></span>Also in {{ s.name }} ({{ s.count }})
-              </li>
-            {%- endfor %}
-          </ul>
+      {%- if page.img -%}
+        <div class="project-hero-img" style="view-transition-name: line-{{ slug }}">
+          {% include figure.liquid path=page.img alt="" sizes="(max-width: 860px) 92vw, 520px" loading="eager" %}
         </div>
       {%- endif -%}
     </div>
@@ -66,7 +54,7 @@ layout: default
     <section class="band" aria-labelledby="line-people">
       <div class="band-head">
         <h2 id="line-people">People on this line</h2>
-        <p>{{ site.data.charts.line_people[key].total }} co-authors since {{ line.first }}.</p>
+        <p>Chen's most frequent co-authors on this line, by joint papers.</p>
       </div>
       <div class="band-body">
         {% include line_people.liquid key=key %}

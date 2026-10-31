@@ -2,6 +2,7 @@
 layout: project
 title: Medical Data Science
 description: Machine learning for critical care — predicting ICU feeding complications, phenotyping rare respiratory diseases, and enabling privacy-preserving medical data collaboration.
+img: assets/img/medical_new.png
 importance: 2
 category: work
 outcome: "Clinical prediction and privacy-preserving collaboration"
