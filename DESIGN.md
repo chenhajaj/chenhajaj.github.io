@@ -184,7 +184,8 @@ dark mode, carry a text alternative, and use only facts from the papers:
 ## Our own work and explainers on the home page (October 2026)
 
 - **From our lab** replaces "Selected papers": six recent refereed papers
-  (last four years) that Chen or a lab student led as first author. Picked at build time in `research-data.rb` (`showcase`):
+  (last four years) that Chen or a lab student led, or that three or fewer authors
+  wrote (the section text mentions only the first, by Chen's choice). Picked at build time in `research-data.rb` (`showcase`):
   scored for Chen first author, student first author, small team, venue
   tier, having an explainer and recency, at most two per research line. A bib
   entry can opt in or out with `showcase = {true}` / `{false}`.
