@@ -299,6 +299,53 @@
       n.tx = CX + Math.cos(a) * d * RX;
       n.ty = CY + Math.sin(a) * d * RY;
     });
+    me.tx = CX;
+    me.ty = CY;
+    // No dot may cover another: push overlapping pairs apart (a few
+    // deterministic passes; Chen stays put). Includes the ring round
+    // students and a small gap.
+    (function () {
+      var gap = narrow ? 2 : 3;
+      var rad = function (n) {
+        return n.r + (n.role ? 3 : 0);
+      };
+      for (var it = 0; it < 80; it++) {
+        var moved = false;
+        for (var a = 0; a < nodes.length; a++) {
+          for (var b = a + 1; b < nodes.length; b++) {
+            var p = nodes[a],
+              q = nodes[b];
+            var dx = q.tx - p.tx,
+              dy = q.ty - p.ty;
+            var d = Math.hypot(dx, dy);
+            var need = rad(p) + rad(q) + gap;
+            if (d >= need) continue;
+            moved = true;
+            if (d < 0.01) {
+              dx = 1;
+              dy = 0;
+              d = 1;
+            }
+            var push = (need - d) / 2;
+            var ux = dx / d,
+              uy = dy / d;
+            if (p.me) {
+              q.tx += ux * push * 2;
+              q.ty += uy * push * 2;
+            } else if (q.me) {
+              p.tx -= ux * push * 2;
+              p.ty -= uy * push * 2;
+            } else {
+              p.tx -= ux * push;
+              p.ty -= uy * push;
+              q.tx += ux * push;
+              q.ty += uy * push;
+            }
+          }
+        }
+        if (!moved) break;
+      }
+    })();
     me.x = me.tx = CX;
     me.y = me.ty = CY;
     placeLabels();
