@@ -266,7 +266,7 @@ module ResearchData
       explainers.each { |e| e["papers"].each { |k| explainer_for[k] ||= e["url"] } }
 
       # "From our lab" (home page): recent refereed work that Chen or a lab
-      # student led, or that a small team (three authors or fewer) wrote.
+      # student led (first author). Smaller teams score a little higher.
       # Scored, at most two per research line, newest first. A bib entry can
       # force itself in or out with showcase = {true} / {false}.
       raw = bib.data.select { |e| e.is_a?(BibTeX::Entry) }.to_h { |e| [e.key.to_s, e] }
@@ -276,8 +276,7 @@ module ResearchData
         next false if force == "false"
         next true if force == "true"
 
-        REFEREED.include?(p["kind"]) && p["year"] >= recent_from &&
-          (p["lead"] || p["authors"].size <= 3)
+        REFEREED.include?(p["kind"]) && p["year"] >= recent_from && p["lead"]
       end
       score = lambda do |p|
         sc = 0
