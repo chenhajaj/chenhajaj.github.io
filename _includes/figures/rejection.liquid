@@ -1,0 +1,29 @@
+{%- comment -%}
+  Explainer figure: the rejection-rate trade-off. Numbers from the FedCSIS
+  2025 abstract: rejection 10% -> 30% raises the true detection rate by up to
+  50% while the false detection rate rises by less than 10%.
+{%- endcomment -%}
+<figure class="note-figure" style="--c: var(--line-traffic)">
+  <p class="fig-title">Turn the dial from rejecting 10% to 30% of traffic</p>
+  <div class="fig-dial" aria-hidden="true">
+    <span class="fig-dial-mark">10%</span>
+    <span class="fig-dial-track"><span class="fig-dial-fill"></span></span>
+    <span class="fig-dial-mark is-on">30%</span>
+  </div>
+  <div class="fig-bars" role="list" aria-label="Effect of raising the rejection rate from 10% to 30%">
+    <div class="fig-bar-row" role="listitem">
+      <span class="fig-bar-label">Unknown traffic caught <small>true detection rate</small></span>
+      <span class="fig-bar-track"><span class="fig-bar" style="--w: 100%"></span></span>
+      <span class="fig-bar-value num">up to +50%</span>
+    </div>
+    <div class="fig-bar-row" role="listitem">
+      <span class="fig-bar-label">Known traffic wrongly rejected <small>false detection rate</small></span>
+      <span class="fig-bar-track"><span class="fig-bar is-warn" style="--w: 20%"></span></span>
+      <span class="fig-bar-value num">under +10%</span>
+    </div>
+  </div>
+  <figcaption>
+    A classifier that may refuse a little more traffic catches far more apps it has never seen, at a small cost in false alarms. The best detection
+    technique also changes with the threshold. From our FedCSIS 2025 paper.
+  </figcaption>
+</figure>

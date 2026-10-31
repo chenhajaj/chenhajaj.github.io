@@ -1,0 +1,30 @@
+{%- comment -%}
+  Explainer figure: why post-quantum traffic looks different, and what
+  PQClass reads from it. Key-share sizes are the public sizes of X25519 and
+  the hybrid X25519MLKEM768 group; accuracies are from the ICC 2025 abstract.
+{%- endcomment -%}
+<figure class="note-figure" style="--c: var(--line-traffic)">
+  <p class="fig-title">The key gets bigger, and the traffic shows it</p>
+  <div class="fig-bars" role="list" aria-label="Size of the key share a browser sends when a connection starts">
+    <div class="fig-bar-row" role="listitem">
+      <span class="fig-bar-label">Today's key share <small>X25519</small></span>
+      <span class="fig-bar-track"><span class="fig-bar is-muted" style="--w: 2.6%"></span></span>
+      <span class="fig-bar-value num">32 bytes</span>
+    </div>
+    <div class="fig-bar-row" role="listitem">
+      <span class="fig-bar-label">Post-quantum hybrid <small>X25519 + ML-KEM-768</small></span>
+      <span class="fig-bar-track"><span class="fig-bar" style="--w: 100%"></span></span>
+      <span class="fig-bar-value num">1,216 bytes</span>
+    </div>
+  </div>
+  <p class="fig-subtitle">What PQClass tells from the encrypted traffic</p>
+  <ul class="fig-meters">
+    <li><span class="fig-meter-num num">86%</span><span class="fig-meter-label">Is post-quantum cryptography in use?</span></li>
+    <li><span class="fig-meter-num num">91%</span><span class="fig-meter-label">Which browser made the connection?</span></li>
+    <li><span class="fig-meter-num num">98%</span><span class="fig-meter-label">Which operating system?</span></li>
+  </ul>
+  <figcaption>
+    The key a browser sends to start a post-quantum connection is about 38 times larger than today's. Nothing is decrypted: PQClass works on the
+    encrypted traffic as it is. Accuracies are from our ICC 2025 paper on real-world traffic.
+  </figcaption>
+</figure>

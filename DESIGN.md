@@ -174,6 +174,11 @@ dark mode, carry a text alternative, and use only facts from the papers:
   numbers from the Computer Networks paper's abstract.
 - `shared_problem`: the three failure modes network security and clinical ML
   share, and the methods the lab carries between them.
+- `pqc`, `winner`, `rejection`, `captcha`, `coldstart`, `critique`: the six
+  explainers added 31 Oct 2026 (post-quantum fingerprint, evaluation protocol,
+  rejection rate, cleaner CAPTCHAs, cold start, design critiques). Numbers
+  come from each paper's abstract or tables; the critique strip is labelled
+  as a schematic.
 
 ## Funders, partners and lab life (October 2026)
 

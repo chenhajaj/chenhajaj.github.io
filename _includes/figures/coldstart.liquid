@@ -1,0 +1,34 @@
+{%- comment -%}
+  Explainer figure: the two-step cold-start method from the ICIS 2024 paper
+  (Goldstein, Alony, Hajaj): new item -> closest existing item by image, text
+  and attributes -> items bought with it. Result: +7% relative hit rate in
+  item cold start on H&M data.
+{%- endcomment -%}
+<figure class="note-figure" style="--c: var(--line-similarity)">
+  <ol class="fig-steps">
+    <li class="fig-step is-new">
+      <span class="fig-step-kicker">New product</span>
+      <span class="fig-step-title">0 clicks, 0 purchases</span>
+      <span class="fig-chips"><span>photo</span><span>description</span><span>attributes</span></span>
+    </li>
+    <li class="fig-step">
+      <span class="fig-step-kicker">Step 1</span>
+      <span class="fig-step-title">Find its closest look-alike</span>
+      <span class="fig-step-text">among products that already have a sales history</span>
+    </li>
+    <li class="fig-step">
+      <span class="fig-step-kicker">Step 2</span>
+      <span class="fig-step-title">Borrow the look-alike's history</span>
+      <span class="fig-step-text">recommend what is usually bought with it</span>
+    </li>
+    <li class="fig-step is-result">
+      <span class="fig-step-kicker">Result</span>
+      <span class="fig-step-title num">+7% hit rate</span>
+      <span class="fig-step-text">for new items, no retraining</span>
+    </li>
+  </ol>
+  <figcaption>
+    A brand-new product borrows the history of the existing product it most resembles in photo, text and attributes. Tested on fashion data from
+    H&amp;M. From our ICIS 2024 paper.
+  </figcaption>
+</figure>

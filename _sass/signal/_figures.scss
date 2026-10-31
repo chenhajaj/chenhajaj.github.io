@@ -382,3 +382,395 @@
     display: none;
   }
 }
+
+// ----------------------------------------------------- shared bar rows ----
+
+.fig-subtitle {
+  margin: var(--s-6) 0 var(--s-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.fig-bars {
+  display: grid;
+  gap: var(--s-3);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+}
+
+.fig-bar-row {
+  display: grid;
+  grid-template-columns: minmax(9rem, 14rem) minmax(0, 1fr) auto;
+  gap: var(--s-3);
+  align-items: center;
+}
+
+.fig-bars.is-compact .fig-bar-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.fig-bars.is-compact .fig-bar-label {
+  grid-column: 1 / -1;
+}
+
+.fig-bar-label {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.fig-bar-label small {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.fig-bar-track {
+  display: block;
+  height: 0.875rem;
+}
+
+.fig-bar {
+  display: block;
+  width: max(var(--w), 4px);
+  height: 100%;
+  border-radius: 3px;
+  background: var(--c);
+}
+
+.fig-bar.is-muted {
+  background: color-mix(in srgb, var(--ink-3) 55%, var(--paper));
+}
+
+.fig-bar.is-warn {
+  background: var(--line-adversarial);
+}
+
+.fig-bar-value {
+  font-weight: 650;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.fig-meters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fig-meters li {
+  display: grid;
+  gap: var(--s-1);
+  padding: var(--s-3) var(--s-4);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--c) 10%, var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 30%, transparent);
+}
+
+.fig-meter-num {
+  font-family: var(--font-sans);
+  font-size: var(--fs-2xl);
+  font-weight: 760;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.fig-meter-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+@media (max-width: 640px) {
+  .fig-bar-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .fig-bar-label {
+    grid-column: 1 / -1;
+  }
+}
+
+// --------------------------------------------------------- slope chart ----
+
+.fig-axis {
+  stroke: var(--rule-strong);
+  stroke-width: 1;
+}
+
+.fig-axis-head {
+  font-weight: 650;
+  fill: var(--ink);
+}
+
+.fig-slope-line line {
+  stroke: color-mix(in srgb, var(--ink-3) 60%, var(--paper));
+  stroke-width: 1.5;
+}
+
+.fig-slope-line circle {
+  fill: color-mix(in srgb, var(--ink-3) 60%, var(--paper));
+}
+
+.fig-slope-line.is-hl line {
+  stroke: var(--line-adversarial);
+  stroke-width: 2.5;
+}
+
+.fig-slope-line.is-hl circle {
+  fill: var(--line-adversarial);
+}
+
+.fig-slope-line.is-hl text {
+  font-weight: 700;
+  fill: color-mix(in srgb, var(--line-adversarial) 70%, var(--ink));
+}
+
+.fig-slope-line.is-new line {
+  stroke: var(--c);
+  stroke-width: 2.5;
+}
+
+.fig-slope-line.is-new circle {
+  fill: var(--c);
+}
+
+.fig-slope-line.is-new text {
+  font-weight: 700;
+  fill: color-mix(in srgb, var(--c) 70%, var(--ink));
+}
+
+// ---------------------------------------------------------------- dial ----
+
+.fig-dial {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-5);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 650;
+  color: var(--ink-3);
+}
+
+.fig-dial-mark.is-on {
+  color: var(--ink);
+}
+
+.fig-dial-track {
+  position: relative;
+  flex: 1;
+  max-width: 16rem;
+  height: 0.375rem;
+  border-radius: 999px;
+  background: var(--rule);
+}
+
+.fig-dial-fill {
+  position: absolute;
+  inset: 0 0 0 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 35%, var(--paper)), var(--c));
+}
+
+.fig-dial-fill::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -0.375rem;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 3px var(--c);
+  transform: translateY(-50%);
+}
+
+// --------------------------------------------------------------- steps ----
+
+.fig-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.fig-step {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: var(--s-1);
+  padding: var(--s-4);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px var(--rule-strong);
+  font-family: var(--font-sans);
+}
+
+// Arrow into the next step.
+.fig-step + .fig-step::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(-1 * var(--s-4));
+  width: var(--s-4);
+  border-top: 1.5px solid var(--ink-3);
+}
+
+.fig-step.is-new,
+.fig-step.is-result {
+  background: color-mix(in srgb, var(--c) 10%, var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 40%, transparent);
+}
+
+.fig-step-kicker {
+  font-size: var(--fs-xs);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.fig-step-title {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.fig-step.is-result .fig-step-title {
+  font-size: var(--fs-xl);
+}
+
+.fig-step-text {
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.fig-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+  margin-top: var(--s-2);
+}
+
+.fig-chips span {
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  font-size: var(--fs-xs);
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 45%, transparent);
+}
+
+@media (max-width: 860px) {
+  .fig-steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-4);
+  }
+
+  .fig-step + .fig-step::before {
+    top: calc(-1 * var(--s-4));
+    left: 1.5rem;
+    width: 0;
+    height: var(--s-4);
+    border-top: 0;
+    border-left: 1.5px solid var(--ink-3);
+  }
+}
+
+// ----------------------------------------------------- critique strip ----
+
+.fig-strip {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.3rem;
+  height: 5.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fig-turn {
+  position: relative;
+  flex: 1;
+  height: 55%;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ink-3) 35%, var(--paper));
+}
+
+.fig-turn.is-student {
+  height: 85%;
+}
+
+.fig-turn.is-pos,
+.fig-key-sw.is-pos {
+  background: var(--line-medical);
+}
+
+.fig-turn.is-neg,
+.fig-key-sw.is-neg {
+  background: var(--line-adversarial);
+}
+
+.fig-turn.is-neu,
+.fig-key-sw.is-neu {
+  background: color-mix(in srgb, var(--ink-3) 45%, var(--paper));
+}
+
+.fig-fo {
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 0 2px var(--paper);
+  transform: translateX(-50%);
+}
+
+.fig-fo.is-key {
+  position: static;
+  display: inline-block;
+  transform: none;
+}
+
+.fig-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  margin: var(--s-4) 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--ink-2);
+}
+
+.fig-key li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.fig-key-sw {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 3px;
+}
+
+.fig-key-sw.is-student {
+  height: 1.1rem;
+  background: color-mix(in srgb, var(--ink-3) 35%, var(--paper));
+}

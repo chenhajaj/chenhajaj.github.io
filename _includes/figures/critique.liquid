@@ -1,0 +1,34 @@
+{%- comment -%}
+  Explainer figure: a schematic critique as a strip of turns coloured by tone,
+  with first occurrences (new concepts) marked by speaker. Schematic, not
+  data: it shows what the method measures. Findings in the caption are from
+  the FIE 2024 and CAADRIA 2025 papers (Sopher, Hajaj, Gero).
+{%- endcomment -%}
+{%- assign turns = 't,pos,|s,pos,fo|t,pos,|s,pos,fo|t,neu,|s,neu,|t,neg,fo|s,neg,|t,neg,|s,neu,|t,pos,|s,pos,fo|s,pos,fo|t,pos,' | split: '|' -%}
+<figure class="note-figure" style="--c: var(--line-learning)">
+  <p class="fig-title">One critique, turn by turn</p>
+  <ol class="fig-strip" aria-label="A schematic critique of fourteen turns">
+    {%- for t in turns -%}
+      {%- assign v = t | split: ',' -%}
+      <li class="fig-turn is-{{ v[1] }}{% if v[0] == 's' %} is-student{% endif %}">
+        <span class="visually-hidden">
+          {%- if v[0] == 's' %}Student{% else %}Tutor{% endif %},
+          {% if v[1] == 'pos' %}positive{% elsif v[1] == 'neg' %}negative{% else %}neutral{% endif %} tone
+          {%- if v[2] == 'fo' %}, introduces a new concept{% endif -%}
+        </span>
+        {%- if v[2] == 'fo' -%}<span class="fig-fo" aria-hidden="true"></span>{%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ol>
+  <ul class="fig-key">
+    <li><span class="fig-key-sw is-pos" aria-hidden="true"></span>Positive tone</li>
+    <li><span class="fig-key-sw is-neu" aria-hidden="true"></span>Neutral</li>
+    <li><span class="fig-key-sw is-neg" aria-hidden="true"></span>Negative tone</li>
+    <li><span class="fig-key-sw is-student" aria-hidden="true"></span>Student turn (taller)</li>
+    <li><span class="fig-fo is-key" aria-hidden="true"></span>A new design concept appears</li>
+  </ul>
+  <figcaption>
+    A schematic of what the method tracks, not a real session. In our studies, students brought more of their own new concepts when the tone was
+    positive (FIE 2024), and crits in immersive VR produced a higher rate of new concepts than crits on screens (CAADRIA 2025).
+  </figcaption>
+</figure>

@@ -1,0 +1,45 @@
+{%- comment -%}
+  Explainer figure: the two ideas in Cleaner Adversarial CAPTCHAs (AAMAS
+  2026, Litman and Hajaj). Numbers from the paper's tables: EfficientNet-B7
+  with FGSM needs 4.81 iterations with a random target and 2.85 with the
+  class-relations target; EfficientNet-B4 noise (L2) 67.70 with FGSM and
+  47.17 with the precise gradient method, random targets.
+{%- endcomment -%}
+<figure class="note-figure" style="--c: var(--line-adversarial)">
+  <div class="fig-panels">
+    <div class="fig-panel">
+      <p class="fig-panel-head">1. A smarter wrong answer</p>
+      <div class="fig-bars is-compact" role="list" aria-label="Steps needed to fool EfficientNet-B7">
+        <div class="fig-bar-row" role="listitem">
+          <span class="fig-bar-label">Random target</span>
+          <span class="fig-bar-track"><span class="fig-bar is-muted" style="--w: 100%"></span></span>
+          <span class="fig-bar-value num">4.81 steps</span>
+        </div>
+        <div class="fig-bar-row" role="listitem">
+          <span class="fig-bar-label">A class it already confuses</span>
+          <span class="fig-bar-track"><span class="fig-bar" style="--w: 59.3%"></span></span>
+          <span class="fig-bar-value num">2.85 steps</span>
+        </div>
+      </div>
+    </div>
+    <div class="fig-panel">
+      <p class="fig-panel-head">2. Noise only where it counts</p>
+      <div class="fig-bars is-compact" role="list" aria-label="Amount of noise added to fool EfficientNet-B4">
+        <div class="fig-bar-row" role="listitem">
+          <span class="fig-bar-label">Classic gradient attack</span>
+          <span class="fig-bar-track"><span class="fig-bar is-muted" style="--w: 100%"></span></span>
+          <span class="fig-bar-value num">67.7</span>
+        </div>
+        <div class="fig-bar-row" role="listitem">
+          <span class="fig-bar-label">Our precise method</span>
+          <span class="fig-bar-track"><span class="fig-bar" style="--w: 69.7%"></span></span>
+          <span class="fig-bar-value num">47.2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <figcaption>
+    Left: steps an attack needs before EfficientNet-B7 sees the wrong class. Right: total noise (L2 distance) added to fool EfficientNet-B4. Shorter
+    is better in both: a cleaner image for people that still fools the bot. From our AAMAS 2026 paper.
+  </figcaption>
+</figure>
