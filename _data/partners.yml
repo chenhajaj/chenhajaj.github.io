@@ -1,0 +1,18 @@
+# Funders and partners strip (home page, Funding section).
+# Names only (no amounts, no logos). Funders come from the grants in
+# _data/grants.yml; partners are standing collaborations and programmes.
+# Add an organisation by adding a line; url is optional.
+funders:
+  - name: "Ministry of Innovation, Science and Technology"
+    url: "https://www.gov.il/en/departments/ministry_of_science_and_technology"
+  - name: "Israel Innovation Authority"
+    url: "https://innovationisrael.org.il/en/"
+  - name: "Israel National Cyber Directorate"
+    url: "https://www.gov.il/en/departments/israel_national_cyber_directorate"
+partners:
+  - name: "NVIDIA"
+    note: "University Ambassador and Deep Learning Institute instructor"
+    url: "https://www.nvidia.com/en-us/training/"
+  - name: "CrySyS Lab, Budapest University of Technology and Economics"
+    note: "Federated learning security"
+    url: "https://www.crysys.hu/"

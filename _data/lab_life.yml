@@ -1,0 +1,38 @@
+# "Lab life" on the Lab page: moments from the life of the lab, newest first.
+# icon: one of the names in _includes/icon.liquid (talk, award, student,
+# users, globe, cpu, ...). line: research line key for the colour (optional).
+# link: optional page for more (a news item, the teaching page).
+# Only real events; add new ones at the top.
+- when: "July 2026"
+  icon: award
+  line: similarity
+  title: "Best paper, 2nd place, at ILAIS 2026"
+  text: "Eylon Yehiel's multimodal pricing paper with Anat Goldstein, at the Peres Academic Center."
+  link: /news/2026-07-07-ilais-best-paper/
+- when: "June 2026"
+  icon: star
+  title: "Rector's and Dean's lists"
+  text: "Yarin Amar on the Rector's List and Eylon Yehiel on the Dean's List for academic excellence."
+  link: /news/2026-06-12-excellence-awards/
+- when: "2026"
+  icon: student
+  title: "Graduations"
+  text: "Yehonatan Zion (PhD, generative AI) and Yona Elbar (thesis MSc, multimodal pipelines) graduated."
+  link: /people/#alumni
+- when: "February 2026"
+  icon: globe
+  line: adversarial
+  title: "Budapest, both ways"
+  text: "A new grant for our federated learning collaboration with CrySyS Lab, after Chen's two visits to Budapest. Next, we host them in Ariel."
+  link: /news/2026-02-12-grant-accepted/
+- when: "January 2026"
+  icon: talk
+  line: traffic
+  title: "IEEE CCNC in Las Vegas"
+  text: "Two talks: QoE prediction for Call of Duty, and dynamic GNNs for cloud anomaly detection."
+  link: /news/2026-01-10-ccnc-papers/
+- when: "2026–27"
+  icon: cpu
+  title: "GPU lab sessions"
+  text: "In Chen's machine learning course, students run the same pipelines on NVIDIA GPUs with RAPIDS."
+  link: /teaching/

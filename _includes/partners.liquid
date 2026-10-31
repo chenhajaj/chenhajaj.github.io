@@ -1,0 +1,43 @@
+{%- comment -%}
+  Funders and partners (home page, under Funding): organisation names set as
+  a quiet typographic strip, from _data/partners.yml. Names only: no logos
+  and no amounts.
+{%- endcomment -%}
+{%- assign pt = site.data.partners -%}
+<div class="partners">
+  {%- if pt.funders.size > 0 -%}
+    <div class="partners-group">
+      <h3 class="partners-label">Funded by</h3>
+      <ul class="partners-list">
+        {%- for o in pt.funders -%}
+          <li>
+            {% if o.url -%}
+              <a href="{{ o.url }}">{{ o.name }}</a>
+            {%- else -%}
+              {{- o.name -}}
+            {%- endif %}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+  {%- if pt.partners.size > 0 -%}
+    <div class="partners-group">
+      <h3 class="partners-label">Partners</h3>
+      <ul class="partners-list">
+        {%- for o in pt.partners -%}
+          <li>
+            {% if o.url -%}
+              <a href="{{ o.url }}">{{ o.name }}</a>
+            {%- else -%}
+              {{- o.name -}}
+            {%- endif %}
+            {%- if o.note -%}
+              <span class="partners-note">{{ o.note }}</span>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+</div>

@@ -54,7 +54,8 @@ layout: default
     <section class="band" aria-labelledby="line-people">
       <div class="band-head">
         <h2 id="line-people">People on this line</h2>
-        <p>Chen's most frequent co-authors on this line, by joint papers.</p>
+        {%- assign lpd = site.data.charts.line_people[key] %}
+        <p>The {{ lpd.people.size }} most frequent of {{ lpd.total }} co-authors on this line since {{ line.first }}.</p>
       </div>
       <div class="band-body">
         {% include line_people.liquid key=key %}

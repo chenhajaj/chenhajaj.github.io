@@ -194,17 +194,21 @@ featured:
         </p>
         <p class="prose-block join-topics-lead">Topics we are recruiting for now:</p>
         <div class="topics-wrap">{% include open_topics.liquid %}</div>
+        <div class="actions">
+          <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20graduate%20student">Propose your own topic</a>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="band" aria-labelledby="funding">
     <div class="band-head">
-      <h2 id="funding">Funding</h2>
+      <h2 id="funding">Funding and partners</h2>
       <p>Competitive grants as PI or co-PI.</p>
     </div>
     <div class="band-body">
       {% include grants_table.liquid %}
+      {% include partners.liquid %}
     </div>
   </section>
 

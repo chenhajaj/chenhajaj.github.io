@@ -1,0 +1,21 @@
+{%- comment -%}
+  Lab life (Lab page): moments from _data/lab_life.yml as a row of cards,
+  each with an icon tile in its line colour. No photos by design (not every
+  student has one); the icon and colour carry the visual weight.
+{%- endcomment -%}
+<ol class="life-grid">
+  {%- for m in site.data.lab_life -%}
+    <li class="life-card" style="--c: var(--line-{{ m.line | default: 'other' }})">
+      <span class="icon-tile">{% include icon.liquid name=m.icon %}</span>
+      <p class="life-when num">{{ m.when }}</p>
+      <h3 class="life-title">
+        {%- if m.link -%}
+          <a href="{{ m.link | relative_url }}">{{ m.title }}</a>
+        {%- else -%}
+          {{ m.title }}
+        {%- endif -%}
+      </h3>
+      <p class="life-text">{{ m.text }}</p>
+    </li>
+  {%- endfor -%}
+</ol>

@@ -75,6 +75,16 @@ scripts: [coauthor-network]
   </div>
 </section>
 
+<section class="band" aria-labelledby="life">
+  <div class="band-head">
+    <h2 id="life">Lab life</h2>
+    <p>Conferences, awards, graduations and visits: what the year looks like in the lab.</p>
+  </div>
+  <div class="band-body">
+    {% include lab_life.liquid %}
+  </div>
+</section>
+
 <section class="band" aria-labelledby="open-topics" id="join">
   <div class="band-head">
     <h2 id="open-topics">Join the lab</h2>
@@ -88,6 +98,7 @@ scripts: [coauthor-network]
       {% include open_topics.liquid %}
     </div>
     <div class="actions">
+      <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20graduate%20student">Propose your own topic</a>
       <a class="button button-quiet" href="{{ '/projects/' | relative_url }}">See the research lines</a>
     </div>
   </div>

@@ -1135,3 +1135,125 @@
     flex: none;
   }
 }
+
+// ------------------------------------------------- funders and partners ----
+// Names as a quiet typographic strip under the grant list (no logos).
+
+.partners {
+  display: grid;
+  gap: var(--s-5);
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+
+.partners-label {
+  margin: 0 0 var(--s-2);
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.partners-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-7);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.partners-list li {
+  display: grid;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 650;
+  font-stretch: 105%;
+  line-height: 1.3;
+  color: var(--ink-2);
+}
+
+.partners-list a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 160ms var(--ease-out);
+}
+
+.partners-list a:hover,
+.partners-list a:focus-visible {
+  color: var(--cobalt);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.partners-note {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  font-stretch: 100%;
+  color: var(--ink-3);
+}
+
+// ------------------------------------------------------------ lab life ----
+// Moments from _data/lab_life.yml: icon tile, when, title, one line.
+
+.life-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+  gap: var(--card-gap, var(--s-4));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.life-card {
+  @include card;
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  column-gap: var(--s-3);
+  align-content: start;
+}
+
+.life-card .icon-tile {
+  grid-row: 1 / span 2;
+}
+
+.life-when {
+  align-self: end;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.life-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 680;
+  line-height: 1.3;
+}
+
+.life-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.life-title a:hover,
+.life-title a:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: var(--c);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+.life-text {
+  grid-column: 1 / -1;
+  margin-top: var(--s-3);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
