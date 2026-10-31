@@ -47,12 +47,12 @@ lines:
     tags: [education]
     color: ["#7a45c9", "#b996ff"]
 
-  - key: speech
-    name: Speech and audio
-    project: speech_audio
-    tags: [speech-processing, emotion-analysis]
-    color: ["#4d7c0f", "#a3e635"]
-
 other:
   name: Other
   color: ["#6b7385", "#8f98ab"]
+
+# Not a research line: the lime accent for GPU and NVIDIA items (Teaching
+# page) and the seventh colour in decorative cycles. Speech and audio papers
+# were folded into "other" in October 2026 (Chen no longer follows that path).
+accent:
+  color: ["#4d7c0f", "#a3e635"]

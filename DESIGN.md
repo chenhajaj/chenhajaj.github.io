@@ -21,7 +21,7 @@ year, one colour per research line. Visitors hover or tap a square to read the
 paper and click to open it; legend chips highlight one line. It is real data
 (built from `papers.bib` at build time), so it updates itself as papers are
 added, and it tells the lab's story at a glance: output growing from one paper
-a year to about a dozen across seven lines.
+a year to about a dozen across six lines.
 
 - Code: `assets/js/paper-map.js` (canvas, no libraries), styles in
   `_sass/signal/_atlas.scss`, data from `_plugins/research-data.rb`

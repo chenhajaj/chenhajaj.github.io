@@ -98,7 +98,7 @@ teaching:
       <li><span class="icon-tile">{% include icon.liquid name="book" %}</span><span class="stat-num num">{{ 'now' | date: '%Y' | minus: 2011 }}</span><span class="stat-label">years teaching, since 2011</span></li>
       <li style="--c: var(--line-medical)"><span class="icon-tile">{% include icon.liquid name="graph" %}</span><span class="stat-num num">{{ all_courses.size }}</span><span class="stat-label">courses, from Python to deep learning</span></li>
       <li style="--c: var(--line-incentives)"><span class="icon-tile">{% include icon.liquid name="student" %}</span><span class="stat-num num">{{ page.teaching.size }}</span><span class="stat-label">universities: Ariel, Vanderbilt, Bar-Ilan</span></li>
-      <li style="--c: var(--line-speech)"><span class="icon-tile">{% include icon.liquid name="cpu" %}</span><span class="stat-num">GPU</span><span class="stat-label">NVIDIA DLI-certified to teach RAPIDS</span></li>
+      <li style="--c: var(--accent)"><span class="icon-tile">{% include icon.liquid name="cpu" %}</span><span class="stat-num">GPU</span><span class="stat-label">NVIDIA DLI-certified to teach RAPIDS</span></li>
     </ul>
     {% include career.liquid data=site.data.teaching_timeline label="Teaching timeline, 2011 to now" %}
   </div>

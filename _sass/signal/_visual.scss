@@ -1000,7 +1000,7 @@
   border-radius: var(--radius-lg);
   color: var(--on-night);
   background:
-    radial-gradient(90% 120% at 100% 0%, color-mix(in srgb, var(--line-speech-bright) 22%, transparent) 0%, transparent 55%),
+    radial-gradient(90% 120% at 100% 0%, color-mix(in srgb, var(--accent-bright) 22%, transparent) 0%, transparent 55%),
     radial-gradient(80% 120% at 0% 100%, color-mix(in srgb, var(--line-traffic-bright) 25%, transparent) 0%, transparent 60%), var(--night);
   box-shadow: inset 0 0 0 1px var(--night-edge);
 }
@@ -1074,7 +1074,7 @@
 
 .course-flow li.is-gpu {
   color: var(--night);
-  background: var(--line-speech-bright);
+  background: var(--accent-bright);
   box-shadow: none;
 }
 

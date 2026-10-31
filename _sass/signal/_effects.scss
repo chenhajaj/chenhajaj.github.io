@@ -92,7 +92,7 @@
   color: var(--line-learning-bright);
 }
 .enc-ch:nth-child(7n)[data-g]::after {
-  color: var(--line-speech-bright);
+  color: var(--accent-bright);
 }
 
 // ------------------------------------------------------- number ticker ----
@@ -215,7 +215,7 @@
   background: var(--line-similarity);
 }
 .marquee-list li:nth-child(7n)::before {
-  background: var(--line-speech);
+  background: var(--accent);
 }
 
 .marquee-list a {

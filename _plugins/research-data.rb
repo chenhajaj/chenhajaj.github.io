@@ -216,8 +216,7 @@ module ResearchData
         ["adversarial", /adversar|attack|malware|security|captcha|intrusion|dos\b|\bapi\b|threat|evasion|anomal|url\b/i],
         ["similarity", /recommend|commerce|pricing|price|fashion|multimodal|product|consumer|similar|funnel|chatbot/i],
         ["incentives", /auction|incentive|game|mechanism|crowd/i],
-        ["learning", /educat|design|studio|feedback|teach|learning environment/i],
-        ["speech", /speech|audio|speaker|emotion|voice/i]
+        ["learning", /educat|design|studio|feedback|teach|learning environment/i]
       ]
       student_line = {}
       students.each_value do |list|
