@@ -77,14 +77,19 @@
   color: var(--on-night);
 }
 
-// The full list of roles sits under the map.
+// Other roles, a short list under the byline beside the name.
 .atlas .hero-roles {
-  flex: 1 1 100%;
-  max-width: 72ch;
+  margin: var(--s-3) 0 0;
+  padding: 0;
+  list-style: none;
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
-  line-height: 1.5;
+  line-height: 1.4;
   color: var(--on-night-2);
+
+  li + li {
+    margin-top: var(--s-1);
+  }
 }
 
 .atlas-actions {
