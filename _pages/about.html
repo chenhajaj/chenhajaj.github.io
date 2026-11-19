@@ -42,6 +42,11 @@ featured:
       </div>
       <div class="atlas-side">
         <p class="hero-byline">Associate Professor at Ariel University and head of the Adaptive AI Lab.</p>
+        <ul class="hero-roles" aria-label="Other roles">
+          <li>Head of the Data Science track, Industrial Engineering and Management (BSc and MSc)</li>
+          <li>Chair, Faculty of Engineering Review Board</li>
+          <li>NVIDIA University Ambassador</li>
+        </ul>
         <div class="actions atlas-actions">
           <a class="button button-bright" href="#research-lines">Explore the research</a>
           <a class="button button-ghost" href="{{ '/people/' | relative_url }}#join">Join the lab</a>
@@ -84,12 +89,6 @@ featured:
     </figure>
 
     <div class="atlas-foot">
-      <p class="hero-roles">
-        The lab studies what happens to models after deployment: encrypted traffic that shifts with every app update, attackers who adapt
-        to the defence, and clinical data that looks different in every hospital. In the Department of Industrial Engineering and Management
-        I also head the Data Science track of the undergraduate and graduate programs, chair the Faculty of Engineering Review Board, and
-        serve as an NVIDIA University Ambassador.
-      </p>
       <dl class="atlas-stats">
         <div><dt>Citations</dt><dd class="num" data-count="{{ site.data.scholar.citations | default: 0 }}">{{ site.data.scholar.citations | default: 0 | thousands }}</dd></div>
         <div><dt>h-index</dt><dd class="num" data-count="{{ site.data.scholar.h_index }}">{{ site.data.scholar.h_index }}</dd></div>
@@ -160,7 +159,7 @@ featured:
   <section class="band band-wide" aria-labelledby="research" id="research-lines">
     <div class="band-head">
       <h2 id="research">Research</h2>
-      <p>Six lines of work, each with its own page and the papers behind it. Some papers belong to two lines.</p>
+      <p>The lab studies what happens to models after deployment: encrypted traffic that shifts with every app update, attackers who adapt to the defence, and clinical data that looks different in every hospital. Six lines of work, each with its own page and the papers behind it.</p>
     </div>
     <div class="band-body">
       {% include line_cards.liquid %}
