@@ -54,7 +54,7 @@ img {{ width: 190px; height: 190px; object-fit: cover; object-position: 50% 22%;
 .side i {{ width: 13px; height: 13px; border-radius: 3px; display: inline-block; }}
 .side .n {{ font-size: 21px; color: #fff; font-weight: 650; margin-bottom: 4px; }}
 </style></head><body><div class="wrap">
-<div><h1>Chen Hajaj</h1><p class="sub"><strong>Adaptive AI Lab</strong> · Ariel University<br>Machine learning that keeps working when<br>data, threats and domains change.</p></div>
+<div><h1>Chen Hajaj</h1><p class="sub"><strong>Adaptive AI Lab</strong> · Ariel University<br>Machine learning that holds up<br>when the world shifts.</p></div>
 <img src="data:image/jpeg;base64,{photo}" alt="">
 <div class="map">{''.join(cells)}<div class="side"><span class="n">{n} papers, one square each</span>{legend}</div></div>
 </div></body></html>"""
