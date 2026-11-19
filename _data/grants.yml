@@ -1,7 +1,8 @@
 # Research grants: full details with role and organization.
 # All amounts are in shekels (NIS). Grants first recorded in US dollars were
 # converted at the Bank of Israel annual average rate for the award year
-# (2019: 3.564, 2021: 3.230), rounded to the nearest thousand; the original
+# (2019: 3.5642, 2021: 3.2305; checked Nov 2026 against the OECD series
+# CCUSMA02ILA618N), rounded to the nearest thousand; the original
 # figure is kept in usd_amount. Fellowships such as the
 # BSF Rahamimoff program are listed on the CV page, not here.
 # line: research line that colours the grant's bar (_data/research_lines.yml).

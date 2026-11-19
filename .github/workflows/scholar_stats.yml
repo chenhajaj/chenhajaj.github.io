@@ -23,7 +23,7 @@ permissions:
 
 jobs:
   update-stats:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -34,7 +34,9 @@ jobs:
           python-version: "3.11"
 
       - name: Install scholarly
-        run: pip install scholarly PyYAML
+        # scholarly imports bibtexparser 1.x (bibtexparser.bibdatabase), which
+        # bibtexparser 2 removed; without the pin every run failed from Sep 2026.
+        run: pip install scholarly "bibtexparser<2" PyYAML
 
       - name: Fetch Scholar stats
         id: stats
@@ -54,6 +56,8 @@ jobs:
               citations = author.get("citedby", 0)
               h_index   = author.get("hindex", 0)
               i10_index = author.get("i10index", 0)
+              if not citations or not h_index:
+                  raise RuntimeError(f"Scholar returned empty stats: {author.get('citedby')}, {author.get('hindex')}")
 
               data = {
                   "citations":    citations,
@@ -77,12 +81,10 @@ jobs:
                       fh.write(f"changed=true\n")
 
           except Exception as e:
-              print(f"ERROR: {e}", file=sys.stderr)
-              # Don't fail the workflow — keep existing values
-              env_file = os.environ.get("GITHUB_OUTPUT", "")
-              if env_file:
-                  with open(env_file, "a") as fh:
-                      fh.write("changed=false\n")
+              # Fail visibly (the old values stay in _data/scholar.yml): a silent
+              # "success" hid this job's errors for two months.
+              print(f"::error::Scholar stats not updated: {e}")
+              sys.exit(1)
           EOF
 
       - name: Commit updated stats
