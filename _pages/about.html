@@ -37,6 +37,7 @@ featured:
           {% include figure.liquid path="assets/img/me.jpeg" alt="Chen Hajaj" sizes="(max-width: 1023px) 72px, 200px" loading="eager" %}
         </div>
         <p class="hero-claim" data-encrypt>Machine learning that holds up when the world shifts.</p>
+        {% include profile_icons.liquid %}
       </div>
       <div class="atlas-side">
         <p class="hero-byline">Associate Professor at Ariel University and head of the Adaptive AI Lab.</p>
@@ -93,15 +94,6 @@ featured:
         <div><dt>Co-authors</dt><dd class="num" data-count="{{ r.collaborators }}">{{ r.collaborators }}</dd></div>
         <div><dt>Students in the lab</dt><dd class="num" data-count="{{ current_students }}">{{ current_students }}</dd></div>
       </dl>
-      <ul class="inline-links atlas-links" aria-label="Contact and profiles">
-        <li><a href="mailto:chenha@g.ariel.ac.il">chenha@g.ariel.ac.il</a></li>
-        <li><a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}">Google Scholar</a></li>
-        <li><a href="https://github.com/{{ site.data.socials.github_username }}">GitHub</a></li>
-        <li><a href="https://orcid.org/{{ site.data.socials.orcid_id }}">ORCID</a></li>
-        <li><a href="{{ site.data.socials.dblp_url }}">DBLP</a></li>
-        <li><a href="https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}">LinkedIn</a></li>
-        <li><a href="{{ '/cv/' | relative_url }}">CV</a></li>
-      </ul>
     </div>
   </div>
 </section>
