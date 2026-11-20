@@ -43,11 +43,27 @@
   gap: var(--s-5) clamp(1.5rem, 3vw, 2.5rem);
 }
 
-// Name with the portrait beside it, like a byline.
-.atlas-title {
-  display: flex;
+// Portrait on the left; the name and the claim stack beside it, so the
+// photo can be as tall as both. On phones the photo sits beside the name
+// and the claim runs full width below (see the media query further down).
+.atlas-text {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    "photo name"
+    "photo claim";
   align-items: center;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+  column-gap: clamp(1rem, 2.2vw, 2rem);
+}
+
+.atlas .hero-name {
+  grid-area: name;
+  align-self: end;
+}
+
+.atlas .hero-claim {
+  grid-area: claim;
+  align-self: start;
 }
 
 .atlas .hero-name {
@@ -124,9 +140,8 @@
 }
 
 .atlas-photo {
-  order: -1;
-  flex: none;
-  width: clamp(4rem, 1.6rem + 5vw, 6.5rem);
+  grid-area: photo;
+  width: clamp(4.5rem, 0.5rem + 11vw, 12.5rem);
 }
 
 .atlas-photo figure {
@@ -353,6 +368,20 @@
   .atlas-intro {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--s-4);
+  }
+
+  .atlas-text {
+    grid-template-areas:
+      "photo name"
+      "claim claim";
+  }
+
+  .atlas-photo {
+    width: 4.5rem;
+  }
+
+  .atlas .hero-name {
+    align-self: center;
   }
 
   .atlas .hero-claim {
