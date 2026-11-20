@@ -58,8 +58,8 @@ featured:
         <div class="atlas-head-text">
           <h2>{{ r.refereed }} refereed journal and conference papers since {{ r.first_year }}</h2>
           <p>
-            Each square is a paper ({{ r.journals }} journal, {{ r.conferences }} conference), coloured by its main research line. Hollow squares are the
-            {{ r.workshops }} short and workshop papers and abstracts, and {{ r.other_items }} preprints, theses, patents and books. Hover or tap one to read it.
+            {{ r.journals }} journal and {{ r.conferences }} conference papers, one pill each, coloured by main research line. Hollow pills are
+            workshop papers, abstracts, preprints and other non-refereed work. Hover or tap one to read it.
           </p>
         </div>
         <dl class="atlas-stats">
@@ -71,6 +71,7 @@ featured:
       </figcaption>
       <div
         class="atlas-canvas paper-map"
+        data-mark="bar"
         id="research-map"
         data-surface="night"
         data-animate="load"

@@ -77,6 +77,9 @@
   }
 
   function PaperMap(el) {
+    // Mark style: "square" (default; two per row) or "bar" (one pill per
+    // paper, stacked into a single column per year; home page).
+    var mark = el.getAttribute("data-mark") || "square";
     var canvas = el.querySelector("canvas");
     var ctx = canvas && canvas.getContext("2d");
     if (!ctx) return;
@@ -189,15 +192,20 @@
       canvas.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       colW = W / years.length;
-      var perRow = colW >= 44 ? 2 : 1;
-      var gap = colW >= 44 ? 4 : 3;
+      var bar = mark === "bar";
+      var perRow = bar ? 1 : colW >= 44 ? 2 : 1;
+      var gap = bar ? 3 : colW >= 44 ? 4 : 3;
       var rows = Math.ceil(maxCount / perRow);
       var maxSize = parseFloat(el.getAttribute("data-max-size")) || 24;
-      var size = Math.min(maxSize, (colW * 0.8 - (perRow - 1) * gap) / perRow, (H - labelH - 6 - (rows - 1) * gap) / rows);
+      var size = Math.min(bar ? Infinity : maxSize, (colW * 0.8 - (perRow - 1) * gap) / perRow, (H - labelH - 6 - (rows - 1) * gap) / rows);
       size = Math.max(4, Math.floor(size));
+      // Pills stay wider than tall: narrow columns (phones) give them more
+      // of the column, and their height never exceeds 60% of their width.
+      var cellW = bar ? Math.max(8, Math.min(Math.floor(colW * (colW < 40 ? 0.72 : 0.42)), 40)) : size;
+      if (bar) size = Math.max(3, Math.min(size, Math.floor(cellW * 0.6)));
       squares = [];
       years.forEach(function (yr, i) {
-        var blockW = perRow * size + (perRow - 1) * gap;
+        var blockW = perRow * cellW + (perRow - 1) * gap;
         var x0 = Math.round(colW * (i + 0.5) - blockW / 2);
         byYear[yr].forEach(function (p, k) {
           var row = Math.floor(k / perRow);
@@ -205,9 +213,10 @@
           squares.push({
             p: p,
             year: yr,
-            x: x0 + col * (size + gap),
+            x: x0 + col * (cellW + gap),
             y: H - labelH - (row + 1) * size - row * gap,
             s: size,
+            w: cellW,
             delay: i * 60 + row * 40,
             a: 1,
           });
@@ -243,30 +252,35 @@
       return refereed ? { fill: c } : { hollow: c };
     }
 
+    function shape(x, y, w, h, r) {
+      roundRect(ctx, x, y, w, h, mark === "bar" ? h / 2 : r);
+    }
+
     function paintSquare(sq, st, y) {
       var r = Math.min(4, sq.s / 4);
+      var w = sq.w || sq.s;
       if (st.hollow) {
         // Preprints, abstracts, theses, patents and books: hollow squares.
         var lw = Math.max(1.5, sq.s / 7);
         ctx.lineWidth = lw;
         ctx.strokeStyle = st.hollow;
-        roundRect(ctx, sq.x + lw / 2, y + lw / 2, sq.s - lw, sq.s - lw, Math.min(3.5, sq.s / 4));
+        shape(sq.x + lw / 2, y + lw / 2, w - lw, sq.s - lw, Math.min(3.5, sq.s / 4));
         ctx.stroke();
         return;
       }
       ctx.fillStyle = st.fill;
-      roundRect(ctx, sq.x, y, sq.s, sq.s, r);
+      shape(sq.x, y, w, sq.s, r);
       ctx.fill();
       if (st.edge) {
         ctx.lineWidth = 1.5;
         ctx.strokeStyle = st.edge;
-        roundRect(ctx, sq.x + 0.75, y + 0.75, sq.s - 1.5, sq.s - 1.5, r);
+        shape(sq.x + 0.75, y + 0.75, w - 1.5, sq.s - 1.5, r);
         ctx.stroke();
       }
       if (st.dot) {
         ctx.fillStyle = st.dot;
         ctx.beginPath();
-        ctx.arc(sq.x + sq.s / 2, y + sq.s / 2, Math.max(1.5, sq.s / 6), 0, Math.PI * 2);
+        ctx.arc(sq.x + w / 2, y + sq.s / 2, Math.max(1.5, sq.s / 6), 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -347,7 +361,7 @@
           ctx.globalAlpha = 1;
           ctx.lineWidth = 2;
           ctx.strokeStyle = ring;
-          roundRect(ctx, sq.x - 2.5, sq.y - 2.5, sq.s + 5, sq.s + 5, Math.min(5, sq.s / 3));
+          roundRect(ctx, sq.x - 2.5, sq.y - 2.5, (sq.w || sq.s) + 5, sq.s + 5, mark === "bar" ? sq.s / 2 + 2.5 : Math.min(5, sq.s / 3));
           ctx.stroke();
         }
       });
@@ -379,9 +393,9 @@
       var bestD = Infinity;
       for (var i = 0; i < squares.length; i++) {
         var sq = squares[i];
-        if (x >= sq.x - 2 && x <= sq.x + sq.s + 2 && y >= sq.y - 2 && y <= sq.y + sq.s + 2) return sq;
+        if (x >= sq.x - 2 && x <= sq.x + (sq.w || sq.s) + 2 && y >= sq.y - 2 && y <= sq.y + sq.s + 2) return sq;
         if (reach > 2) {
-          var dx = Math.max(sq.x - x, 0, x - (sq.x + sq.s));
+          var dx = Math.max(sq.x - x, 0, x - (sq.x + (sq.w || sq.s)));
           var dy = Math.max(sq.y - y, 0, y - (sq.y + sq.s));
           var d = Math.sqrt(dx * dx + dy * dy);
           if (d <= reach && d < bestD) {
@@ -437,7 +451,7 @@
       tip.hidden = false;
       var tw = tip.offsetWidth;
       var th = tip.offsetHeight;
-      var left = Math.min(Math.max(0, sq.x + sq.s / 2 - tw / 2), Math.max(0, W - tw));
+      var left = Math.min(Math.max(0, sq.x + (sq.w || sq.s) / 2 - tw / 2), Math.max(0, W - tw));
       tip.style.left = left + "px";
       var top = sq.y - th - 12;
       var below = top < -60;
@@ -446,7 +460,7 @@
       // First show: rise in from the square (140 ms). While open, moving to
       // another square repositions it instantly.
       if (!tipOpen && !reduceMotion && tip.animate) {
-        tip.style.transformOrigin = Math.round(sq.x + sq.s / 2 - left) + "px " + (below ? "0%" : "100%");
+        tip.style.transformOrigin = Math.round(sq.x + (sq.w || sq.s) / 2 - left) + "px " + (below ? "0%" : "100%");
         tip.animate(
           [
             { opacity: 0, transform: "translateY(" + (below ? -4 : 4) + "px) scale(0.97)" },
