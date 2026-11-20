@@ -51,7 +51,8 @@
   grid-template-columns: auto minmax(0, 1fr);
   grid-template-areas:
     "photo name"
-    "photo claim";
+    "photo claim"
+    "icons icons";
   align-items: center;
   column-gap: clamp(1rem, 2.2vw, 2rem);
 }
@@ -349,12 +350,49 @@
   color: var(--on-night);
 }
 
-.atlas-links a {
-  color: var(--on-night);
-}
+// Contact and profile icons, one row under the portrait, level with the
+// buttons on the right.
+.atlas .profile-icons {
+  grid-area: icons;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: var(--s-4) 0 0;
+  padding: 0;
+  list-style: none;
 
-.atlas-links a:hover {
-  color: #ffffff;
+  a {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--on-night-rule);
+    border-radius: 999px;
+    color: var(--on-night);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  a:hover {
+    background: rgb(255 255 255 / 0.1);
+    border-color: var(--on-night-2);
+  }
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .pi-fill {
+    fill: currentColor;
+  }
+
+  .pi-stroke {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -373,7 +411,8 @@
   .atlas-text {
     grid-template-areas:
       "photo name"
-      "claim claim";
+      "claim claim"
+      "icons icons";
   }
 
   .atlas-photo {
