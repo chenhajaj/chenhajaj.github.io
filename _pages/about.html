@@ -54,12 +54,20 @@ featured:
     </div>
 
     <figure class="atlas-map paper-map-group">
-      <figcaption class="atlas-head">
-        <h2>{{ r.refereed }} refereed journal and conference papers since {{ r.first_year }}</h2>
-        <p>
-          Each square is a paper ({{ r.journals }} journal, {{ r.conferences }} conference), coloured by its main research line. Hollow squares are the
-          {{ r.workshops }} short and workshop papers and abstracts, and {{ r.other_items }} preprints, theses, patents and books. Hover or tap one to read it.
-        </p>
+      <figcaption class="atlas-head atlas-head-stats">
+        <div class="atlas-head-text">
+          <h2>{{ r.refereed }} refereed journal and conference papers since {{ r.first_year }}</h2>
+          <p>
+            Each square is a paper ({{ r.journals }} journal, {{ r.conferences }} conference), coloured by its main research line. Hollow squares are the
+            {{ r.workshops }} short and workshop papers and abstracts, and {{ r.other_items }} preprints, theses, patents and books. Hover or tap one to read it.
+          </p>
+        </div>
+        <dl class="atlas-stats">
+          <div><dt>Citations</dt><dd class="num" data-count="{{ site.data.scholar.citations | default: 0 }}">{{ site.data.scholar.citations | default: 0 | thousands }}</dd></div>
+          <div><dt>h-index</dt><dd class="num" data-count="{{ site.data.scholar.h_index }}">{{ site.data.scholar.h_index }}</dd></div>
+          <div><dt>Co-authors</dt><dd class="num" data-count="{{ r.collaborators }}">{{ r.collaborators }}</dd></div>
+          <div><dt>Students in the lab</dt><dd class="num" data-count="{{ current_students }}">{{ current_students }}</dd></div>
+        </dl>
       </figcaption>
       <div
         class="atlas-canvas paper-map"
@@ -87,14 +95,6 @@ featured:
       {% include research_data.liquid %}
     </figure>
 
-    <div class="atlas-foot">
-      <dl class="atlas-stats">
-        <div><dt>Citations</dt><dd class="num" data-count="{{ site.data.scholar.citations | default: 0 }}">{{ site.data.scholar.citations | default: 0 | thousands }}</dd></div>
-        <div><dt>h-index</dt><dd class="num" data-count="{{ site.data.scholar.h_index }}">{{ site.data.scholar.h_index }}</dd></div>
-        <div><dt>Co-authors</dt><dd class="num" data-count="{{ r.collaborators }}">{{ r.collaborators }}</dd></div>
-        <div><dt>Students in the lab</dt><dd class="num" data-count="{{ current_students }}">{{ current_students }}</dd></div>
-      </dl>
-    </div>
   </div>
 </section>
 

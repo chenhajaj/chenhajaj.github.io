@@ -176,6 +176,32 @@
   gap: var(--s-2) var(--s-5);
 }
 
+// Home map header: the heading and caption on the left, the four
+// record numbers (citations, h-index, co-authors, students) on the right.
+.atlas-head-stats {
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--s-4) clamp(1.5rem, 4vw, 3rem);
+}
+
+.atlas-head-text {
+  flex: 1 1 32rem;
+  min-width: 0;
+
+  p {
+    margin-top: var(--s-2);
+  }
+}
+
+.atlas-head-stats .atlas-stats {
+  flex: 0 1 auto;
+  gap: var(--s-3) clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.atlas-head-stats .atlas-stats dd {
+  font-size: var(--fs-xl);
+}
+
 .atlas-head h2 {
   font-family: var(--font-sans);
   font-size: var(--fs-lg);
@@ -311,15 +337,6 @@
 .chip-count {
   color: var(--on-night-2);
   font-variant-numeric: tabular-nums;
-}
-
-.atlas-foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--s-5) var(--s-7);
-  margin-top: clamp(2rem, 5vw, 3rem);
 }
 
 .atlas-stats {
