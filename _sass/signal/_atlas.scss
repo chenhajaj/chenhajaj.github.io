@@ -904,3 +904,48 @@
     grid-column: 1 / -1;
   }
 }
+
+// Phones: keep the map on the first screen. The roles list is left out
+// (the byline stays; the roles are on the CV page) and the four record
+// numbers sit in one row.
+@media (max-width: 639.98px) {
+  .atlas .hero-roles {
+    display: none;
+  }
+
+  .atlas-head-stats .atlas-stats {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-between;
+    gap: var(--s-2);
+  }
+
+  .atlas-head-stats .atlas-stats dd {
+    font-size: var(--fs-lg);
+  }
+
+  .atlas-head-stats .atlas-stats dt {
+    font-size: 0.75rem;
+  }
+}
+
+// Smallest phones (360px): name on one line, all seven icons in one row.
+@media (max-width: 379.98px) {
+  .atlas-photo {
+    width: 3.75rem;
+  }
+
+  .atlas-text {
+    column-gap: 0.75rem;
+  }
+
+  .atlas .profile-icons {
+    gap: 0.3125rem;
+
+    a {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+}
