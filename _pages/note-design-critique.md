@@ -22,7 +22,7 @@ links:
     url: "/projects/constructivist_learning/"
 ---
 
-Architecture and design students learn largely through the **crit**: a student presents, a tutor responds, and ideas move back and forth. Crits are central to the studio, but they are often tutor-centred and ambiguous, and a negative tone can make students hold back. Until now, crits were judged by the design that came out of them, not by the conversation itself.
+Architecture and design students learn largely through the **crit**: a student presents, a tutor responds, and ideas move back and forth. Crits are central to the studio, but they are often tutor-centred and ambiguous, and it is unclear how the tone of the exchange shapes who contributes ideas. Crits are usually judged by the finished design, not by what happens in the conversation.
 
 We transcribe crits and use natural language processing (software that analyses text) to follow two things over time: the **sentiment**, or tone, of the exchange, and every **first occurrence**, the moment a new design concept enters the conversation and who brought it. In crits with computer science and architecture students, **more of the new ideas came from the students when the tone was positive**.
 

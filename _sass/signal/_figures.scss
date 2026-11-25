@@ -8,12 +8,10 @@
 .note-figure {
   @include card(clamp(1rem, 3vw, 1.75rem), var(--ink));
 
-  max-width: 54rem;
   margin: 0 0 var(--s-7);
 }
 
 .note-figure figcaption {
-  max-width: 62ch;
   margin-top: var(--s-5);
   font-family: var(--font-sans);
   font-size: var(--fs-sm);

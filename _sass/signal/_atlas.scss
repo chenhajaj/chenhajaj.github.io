@@ -89,7 +89,6 @@
 
 .atlas .hero-claim {
   margin-top: var(--s-4);
-  max-width: 38ch;
   font-family: var(--font-serif);
   font-size: clamp(1.25rem, 0.95rem + 1.1vw, 1.875rem);
   line-height: 1.28;
@@ -628,7 +627,6 @@
 }
 
 .band-wide .band-intro p {
-  max-width: 62ch;
   margin-top: var(--s-2);
 }
 
@@ -862,7 +860,6 @@
 
 .project-hero .lead {
   margin-top: var(--s-5);
-  max-width: 52ch;
   color: var(--on-night-2);
 }
 

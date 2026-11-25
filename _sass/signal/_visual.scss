@@ -637,7 +637,6 @@
 .note-summary {
   display: block;
   margin-top: var(--s-2);
-  max-width: 62ch;
   color: var(--ink-2);
   font-size: var(--fs-md);
 }
@@ -1102,7 +1101,6 @@
 }
 
 .spotlight-note {
-  max-width: 60ch;
   font-size: var(--fs-md);
   color: var(--on-night-2);
 }

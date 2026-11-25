@@ -48,9 +48,6 @@ masters_students:
   - name: "Amit Stein"
     program: thesis
     research_area: "Multimodal Recommendation for User and Item Cold Start"
-  - name: "Eylon Yehiel"
-    program: thesis
-    research_area: "Multi-Modal Learning for Product Attributes"
   - name: "Liav Cohen"
     program: project
     institution: "Afeka College"
@@ -70,6 +67,10 @@ masters_students:
     research_area: "Real time cognitive feedback system in design education"
 
 masters_alumni:
+  - name: "Eylon Yehiel"
+    program: thesis
+    graduation_year: "2026"
+    research_area: "Multi-Modal Learning for Product Attributes"
   - name: "Yona Elbar"
     program: thesis
     graduation_year: "2026"

@@ -1,7 +1,7 @@
 # Updated by hand (the scholar_stats.yml schedule is off; it can run manually).
-# 20 Nov 2026: set by hand from Chen's Scholar profile (Google Scholar
-# blocks the GitHub runner); i10 left at its September value.
-citations: 1080
+# 25 Nov 2026: citations set by hand from Chen's Scholar profile (Google
+# Scholar blocks the GitHub runner); i10 left at its September value.
+citations: 1088
 h_index: 19
 i10_index: 31
-last_updated: '2026-11-20'
+last_updated: '2026-11-25'
