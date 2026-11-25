@@ -119,6 +119,26 @@ featured:
 </section>
 
 <div class="wrap">
+  {%- comment -%}
+    Research first: the hero's map and legend introduce the six lines, and
+    the cards right under it say what each one is. News follows.
+  {%- endcomment %}
+  <section class="band band-wide" aria-labelledby="research" id="research-lines">
+    <div class="band-head">
+      <div class="band-intro">
+        <h2 id="research">Research</h2>
+        <p>
+          The lab studies what happens to models after deployment: encrypted traffic that shifts with every app update, attackers who
+          adapt to the defence, and clinical data that looks different in every hospital. Each line has its own page with the papers
+          behind it.
+        </p>
+      </div>
+    </div>
+    <div class="band-body">
+      {% include line_cards.liquid %}
+    </div>
+  </section>
+
   <section class="band" aria-labelledby="now">
     <div class="band-head">
       <h2 id="now">Now</h2>
@@ -147,20 +167,12 @@ featured:
     </div>
   </section>
 
-  <section class="band band-wide" aria-labelledby="research" id="research-lines">
-    <div class="band-head">
-      <h2 id="research">Research</h2>
-      <p>The lab studies what happens to models after deployment: encrypted traffic that shifts with every app update, attackers who adapt to the defence, and clinical data that looks different in every hospital. Six lines of work, each with its own page and the papers behind it.</p>
-    </div>
-    <div class="band-body">
-      {% include line_cards.liquid %}
-    </div>
-  </section>
-
   <section class="band band-wide" aria-labelledby="explainers">
     <div class="band-head">
-      <h2 id="explainers">In plain words</h2>
-      <p>Short explainers of what our papers mean in practice, each with one figure.</p>
+      <div class="band-intro">
+        <h2 id="explainers">In plain words</h2>
+        <p>Short explainers of what our papers mean in practice, each with one figure.</p>
+      </div>
       <p><a href="{{ '/insights/' | relative_url }}">All {{ site.data.research.explainers.size }} explainers</a></p>
     </div>
     <div class="band-body">
@@ -170,8 +182,10 @@ featured:
 
   <section class="band band-wide" aria-labelledby="ours">
     <div class="band-head">
-      <h2 id="ours">From our lab</h2>
-      <p>Recent papers led by Chen or a lab student.</p>
+      <div class="band-intro">
+        <h2 id="ours">From our lab</h2>
+        <p>Recent papers led by Chen or a lab student.</p>
+      </div>
       <p><a href="{{ '/publications/' | relative_url }}">All publications</a></p>
     </div>
     <div class="band-body">
@@ -186,20 +200,23 @@ featured:
     </div>
     <div class="band-body">
       <p class="lead">
-        {{ phd_count }} PhD and {{ msc_count }} MSc students work in the lab today. {{ s.phd_alumni.size }} PhD and
-        {{ msc_thesis_alumni.size }} thesis MSc students have graduated, alongside {{ msc_project_alumni.size }} MSc final projects
-        and {{ former_ra }} research assistants.
+        {{ phd_count }} PhD and {{ msc_count }} MSc students work in the lab today{% if ra_count > 0 %}, with {{ ra_count }} research
+        {% if ra_count == 1 %}assistant{% else %}assistants{% endif %}{% endif %}. Alumni so far: {{ s.phd_alumni.size }} PhD and
+        {{ msc_thesis_alumni.size }} MSc thesis graduates, {{ msc_project_alumni.size }} MSc final projects and {{ former_ra }} research
+        assistants.
       </p>
       {% include lab_faces.liquid %}
-      <div class="join-card">
+      <div class="join-card" id="join">
+        <h3 class="visually-hidden">Join the lab</h3>
         <p class="prose-block">
           We are looking for PhD and MSc students who want to build models that survive contact with
           <span class="flip" data-flip="adversaries|encrypted networks|hospital wards|the real world">the real world<span class="flip-end">.</span></span>
         </p>
-        <p class="prose-block join-topics-lead">Topics we are recruiting for now:</p>
+        <p class="prose-block join-topics-lead">Topics open now:</p>
         <div class="topics-wrap">{% include open_topics.liquid %}</div>
+        <p class="prose-block join-note">Supervision and funding depend on the project, so write first and we will talk it through.</p>
         <div class="actions">
-          <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20graduate%20student">Propose your own topic</a>
+          <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20Student">Propose your own topic</a>
         </div>
       </div>
     </div>

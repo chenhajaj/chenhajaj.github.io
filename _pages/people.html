@@ -2,7 +2,7 @@
 layout: page
 title: The lab
 permalink: /people/
-description: Current students and alumni of the Adaptive AI Lab at Ariel University, and open PhD and MSc topics.
+description: "The Adaptive AI Lab at Ariel University: current students and alumni, lab life, open PhD and MSc topics and how to apply."
 nav: true
 nav_order: 3
 scripts: [coauthor-network]
@@ -15,10 +15,20 @@ scripts: [coauthor-network]
 {%- assign msc_thesis_alumni = s.masters_alumni | where: 'program', 'thesis' -%}
 {%- assign msc_project_alumni = s.masters_alumni | where: 'program', 'project' -%}
 
-<p class="lead lab-lead">
-  The Adaptive AI Lab at Ariel University has {{ phd_count }} PhD and {{ msc_count }} MSc students{% if ra_count > 0 %} and {{ ra_count }} research assistants{% endif %}.
-  {{ s.phd_alumni.size }} PhD students and {{ msc_thesis_alumni.size }} thesis MSc students have graduated, and {{ msc_project_alumni.size }} non-thesis MSc students completed their final projects here.
-</p>
+{%- assign line_count = site.data.research_lines.lines | size -%}
+{%- assign number_words = 'zero,one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve' | split: ',' -%}
+{%- assign line_words = number_words[line_count] | default: line_count -%}
+<div class="lab-intro">
+  <p class="lead">
+    The Adaptive AI Lab at Ariel University builds machine learning that holds up after deployment, across
+    <a href="{{ '/projects/' | relative_url }}">{{ line_words }} research lines</a>.
+    It has {{ phd_count }} PhD and {{ msc_count }} MSc students{% if ra_count > 0 %} and {{ ra_count }} research assistants{% endif %}.
+    So far, {{ s.phd_alumni.size }} PhD and {{ msc_thesis_alumni.size }} thesis MSc students have graduated, and {{ msc_project_alumni.size }} non-thesis MSc students have completed their final projects here.
+  </p>
+  <div class="actions">
+    <a class="button" href="#join">Open topics and how to apply</a>
+  </div>
+</div>
 
 {%- assign r = site.data.research -%}
 <section class="atlas atlas-band" aria-labelledby="network">
@@ -92,13 +102,26 @@ scripts: [coauthor-network]
   <div class="band-body">
     <p class="prose-block">
       We take PhD and MSc students who want to build machine learning that holds up after deployment.
-      These topics are open now. Supervision and funding depend on the project, so write first and we will talk it through.
+      These topics are open now, and you are welcome to propose your own.
     </p>
     <div class="topics-wrap">
       {% include open_topics.liquid %}
     </div>
+
+    <h3 class="subhead" id="apply">How to apply</h3>
+    <ol class="apply-steps">
+      <li>
+        <p><strong>Choose a topic.</strong> Pick one of the open topics above, or bring your own idea that fits one of the <a href="{{ '/projects/' | relative_url }}">research lines</a>.</p>
+      </li>
+      <li>
+        <p><strong>Email Chen.</strong> Send your CV, your grade transcript and a few sentences on which topic interests you and why. A link to code or a project you have built helps. If you are writing about an open topic, its email link puts the topic in the subject line.</p>
+      </li>
+      <li>
+        <p><strong>Talk it through.</strong> Supervision and funding depend on the project. Funding is not guaranteed: it depends on the grants available at the time, so we discuss it openly in our first conversation.</p>
+      </li>
+    </ol>
     <div class="actions">
-      <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20graduate%20student">Propose your own topic</a>
+      <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20Student">Email Chen</a>
       <a class="button button-quiet" href="{{ '/projects/' | relative_url }}">See the research lines</a>
     </div>
   </div>

@@ -110,6 +110,12 @@
   border-color: transparent;
 }
 
+// What the search covers, under the field (linked by aria-describedby).
+.search-hint {
+  margin-top: var(--s-1);
+  font-size: var(--fs-xs);
+}
+
 .choice-list {
   display: grid;
   gap: 1px;
@@ -289,6 +295,18 @@
   margin-bottom: var(--s-3);
 }
 
+// Standfirst: the explainer's summary under its title.
+.note-head .lead {
+  margin-top: var(--s-4);
+  max-width: 58ch;
+}
+
+@media (max-width: 860px) {
+  .note-head .lead {
+    font-size: var(--fs-md);
+  }
+}
+
 // Decorative banner under the explainer title (the explainer's card image).
 .note-banner {
   max-width: 65rem;
@@ -408,16 +426,88 @@
   max-width: var(--measure);
 }
 
-.lab-lead,
+.lab-intro,
 .software-lead {
   margin-bottom: var(--s-6);
 }
 
-.cv-head .actions {
+.cv-head .actions,
+.lab-intro .actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-3);
   margin-top: var(--s-4);
+}
+
+// Lab page: how to apply, three numbered steps under the open topics.
+.apply-steps {
+  display: grid;
+  gap: var(--s-4);
+  max-width: 62ch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: apply-step;
+}
+
+.apply-steps li {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: start;
+  counter-increment: apply-step;
+}
+
+.apply-steps li::before {
+  content: counter(apply-step);
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--cobalt);
+}
+
+.apply-steps p {
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.apply-steps strong {
+  font-family: var(--font-sans);
+  font-weight: 650;
+  color: var(--ink);
+}
+
+// The steps follow the topic grid, so they need a clear break above.
+.topics-wrap + .subhead {
+  margin-top: var(--s-7);
+}
+
+// CV: jump links to each section, under the header.
+.cv-jump {
+  margin-top: var(--s-5);
+}
+
+.cv-jump .inline-links {
+  gap: var(--s-2) var(--s-4);
+}
+
+.cv-roles {
+  display: grid;
+  gap: var(--s-1);
+  max-width: var(--measure);
+  margin: var(--s-3) 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
 }
 
 .line-outcome {

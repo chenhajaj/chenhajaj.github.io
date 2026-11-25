@@ -1,35 +1,29 @@
 ---
 layout: project
-title: Medical Data Science
-description: Machine learning for critical care — predicting ICU feeding complications, phenotyping rare respiratory diseases, and enabling privacy-preserving medical data collaboration.
+title: Medical data science
+description: Machine learning on clinical records, from ICU nutrition and mortality to drug-resistant infections in children, lung infection phenotypes and dementia risk.
 img: assets/img/medical_new.png
 importance: 2
 category: work
-outcome: "Clinical prediction and privacy-preserving collaboration"
+outcome: "ICU mortality predicted from the first 48 hours of nutrition and clinical data (C-index 0.76, 2,942 patients; IEEE Access, 2025)"
 featured_label: "Healthcare AI publications"
 featured_url: "/publications/?line=medical"
 papers_query: "@*[projects~=healthcare|covid-19]*"
 ---
 
-<p class="intro">Critical care patients are among the most vulnerable — yet managing their nutrition, predicting complications, and coordinating care remains largely manual. We build machine learning systems that turn ICU data into actionable clinical decisions, improving patient outcomes through real-time prediction.</p>
+<p class="intro">Critically ill patients are among the most vulnerable, yet decisions about their nutrition and early warning signs are still made largely by hand. We build machine learning on routine clinical records, much of it from the intensive care unit at Beilinson Hospital (Rabin Medical Center), to flag patients at risk early.</p>
 
-<h3>Research Areas</h3>
+<h3>Key results</h3>
 
 <ul>
-  <li><strong>ICU Nutrition &amp; Feeding Complications</strong> — Models trained on a decade of records from <strong>Rabin Medical Center</strong> that predict feeding intolerance and caloric deficit before symptoms appear, optimizing enteral nutrition per patient.</li>
-  <li><strong>Rare Respiratory Disease Phenotyping</strong> — Unsupervised clustering and AI phenotypical analysis for NTM lung infections, accelerating diagnosis and predicting treatment response in pulmonology.</li>
-  <li><strong>Privacy-Preserving Medical Data Collaboration</strong> — Federated learning and crowdsourcing frameworks enabling multi-hospital research without exposing patient records.</li>
+  <li><strong>ICU mortality.</strong> Random survival forests on the first 48 hours of nutrition and clinical data reached a C-index of 0.76 and a 10-day AUC of 0.874 in 2,942 ICU patients (IEEE Access, 2025).</li>
+  <li><strong>Feeding intolerance.</strong> In 1,584 enterally fed ICU patients, models that include early feeding-intolerance markers predicted 90-day mortality (AUC 0.73) and early feeding failure (AUC 0.71); a gastric residual volume above 250 mL on day two mattered for both (Nutrients, 2023).</li>
+  <li><strong>Drug-resistant infections in children.</strong> Five models built on 35,830 pediatric urinary tract infections rule out infections by ESBL-producing bacteria with a negative predictive value of about 0.98, using only data available at presentation (Pediatric Infectious Disease Journal, 2026).</li>
+  <li><strong>Lung infection phenotypes.</strong> In 771 adults with bronchiectasis, older age, lower body mass index and more involved lobes were associated with nontuberculous mycobacterial infection (Respiratory Research, 2024).</li>
+  <li><strong>Dementia risk from routine blood tests.</strong> Routine blood count and chemistry used to predict Alzheimer's dementia risk up to ten years ahead in a community cohort of 504,219 people (AAIC 2025 abstract; US patent application, 2025).</li>
+  <li><strong>Earlier work.</strong> Crowdsourcing the labelling of sensitive medical records and clinical chart reviews (AMIA 2018), and predicting the spread of COVID-19 more than a month ahead (Heliyon, 2021).</li>
 </ul>
 
-<h3>Technical Methods</h3>
+<h3>How the evidence stands</h3>
 
-<p>Our pipeline combines gradient-boosted trees and deep learning for tabular clinical data, time-series models for continuous monitoring streams, and survival analysis for time-to-event outcomes. All models are validated prospectively against held-out hospital cohorts before clinical reporting.</p>
-
-<div class="figure-row">
-  {% include figure.liquid loading="eager" path="assets/img/icu-monitoring.jpg" alt="ICU patient monitoring" title="ICU patient monitoring" class="img-fluid rounded z-depth-1" %}
-  {% include figure.liquid loading="eager" path="assets/img/enteral-feeding.jpg" alt="Enteral feeding setup" title="Enteral feeding setup" class="img-fluid rounded z-depth-1" %}
-  {% include figure.liquid loading="eager" path="assets/img/data-analysis.jpg" alt="Medical data analysis" title="Medical data analysis" class="img-fluid rounded z-depth-1" %}
-</div>
-<div class="caption">
-    Left: Real-time patient monitoring generating continuous data streams. Middle: Critical care enteral nutrition delivery. Right: AI-driven analysis of complex clinical data patterns.
-</div>
+<p>The studies so far are retrospective: models are built on historical records and checked by cross-validation. As the 2023 feeding-intolerance paper notes, prospective and external validation should come before clinical use.</p>

@@ -18,7 +18,7 @@ lines:
     color: ["#2f5bea", "#7d9bff"]
 
   - key: medical
-    name: Medical AI
+    name: Medical data science
     project: icu_nutrition
     tags: [healthcare, covid-19]
     color: ["#0e9384", "#3fd1bd"]

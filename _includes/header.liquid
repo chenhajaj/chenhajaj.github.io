@@ -6,6 +6,12 @@
       {{ site.last_name -}}
     </a>
 
+    {%- comment -%}
+      The menu button comes before the nav it opens, so on phones Tab goes
+      from the button straight into the links. (Hidden on wide screens.)
+    {%- endcomment %}
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" id="menu-toggle">Menu</button>
+
     <nav class="site-nav" id="site-nav" aria-label="Main">
       <ul>
         {% for item in nav %}
@@ -32,8 +38,6 @@
         {% endfor %}
       </ul>
     </nav>
-
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" id="menu-toggle">Menu</button>
 
     <button class="icon-button theme-toggle" type="button" id="theme-toggle" aria-label="Switch colour theme">
       <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">

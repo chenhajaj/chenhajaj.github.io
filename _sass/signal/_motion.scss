@@ -141,6 +141,12 @@
     row-gap: 0;
   }
 
+  // The venue strip's pause button (WCAG 2.2.2) gets a full finger target.
+  .marquee-pause {
+    width: var(--tap);
+    height: var(--tap);
+  }
+
   .network-canvas {
     touch-action: pan-y pinch-zoom;
   }

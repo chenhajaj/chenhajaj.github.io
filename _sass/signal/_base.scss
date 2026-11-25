@@ -103,8 +103,8 @@ a {
   text-underline-offset: 0.18em;
   text-decoration-color: color-mix(in srgb, var(--cobalt) 40%, transparent);
   transition:
-    text-decoration-color 120ms ease,
-    color 120ms ease;
+    text-decoration-color 120ms var(--ease-out),
+    color 120ms var(--ease-out);
 }
 
 a:hover {
@@ -116,6 +116,12 @@ a:hover {
   outline: 2px solid var(--focus);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+// The skip link sends focus to <main> (tabindex="-1"). It is a landmark, not
+// a control, so it gets no ring round the whole page.
+main:focus {
+  outline: none;
 }
 
 strong,

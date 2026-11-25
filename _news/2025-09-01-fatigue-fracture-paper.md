@@ -1,5 +1,6 @@
 ---
 layout: post
+title: "Paper accepted in Fatigue & Fracture of Engineering Materials & Structures"
 date: 2025-09-01 00:00:00+0300
 inline: true
 kind: paper
@@ -7,4 +8,4 @@ line: other
 related_posts: false
 ---
 
-New paper accepted in **Fatigue & Fracture of Engineering Materials & Structures** (Wiley): *Measuring and Analyzing Defects of Additive Manufactured Ti-6Al-4V Specimens through Image Segmentation*. 🔬
+Accepted in **Fatigue & Fracture of Engineering Materials & Structures** (Wiley): *Measuring and Analyzing Defects of Additive Manufactured Ti-6Al-4V Specimens through Image Segmentation*.

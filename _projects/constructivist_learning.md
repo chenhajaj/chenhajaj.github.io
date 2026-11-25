@@ -1,33 +1,23 @@
 ---
 layout: project
-title: Quantifying Constructivist Learning in Studio-Based Education
-description: Data science methods that quantify learning in design studio education — measuring cognitive breakthroughs, engagement, and teaching effectiveness during live critiques.
+title: Design education
+description: Language analysis of design-studio critiques that measures how students learn by making and discussing, and how tutors, sentiment and VR shape it.
 img: assets/img/design-new.png
 importance: 3
 category: work
-outcome: "Live-critique learning signals quantified"
+outcome: "New design concepts appeared at a higher rate in VR critiques than in conventional ones (CAADRIA 2025)"
 featured_label: "Education publications"
 featured_url: "/publications/?line=learning"
 papers_query: "@*[projects~=education]*"
 ---
 
-<p class="intro">Design education is fundamentally different from traditional instruction — learning happens through making, critiquing, and iterating, not through tests. We develop data science methods that quantify these learning moments in real-time, giving educators and students objective insight into creative development.</p>
+<p class="intro">Design students learn by making, critiquing and revising, not by taking tests, so their learning is hard to measure. We apply natural language processing to recorded studio critiques to measure it: when new design concepts appear, who introduces them, and how tutor and student converge.</p>
 
-<h3>Research Focus</h3>
-
-<ul>
-  <li><strong>Measuring Cognitive Breakthroughs</strong> — NLP and speech analysis that detect breakthrough moments in recorded studio sessions, quantifying their frequency, depth, and context.</li>
-  <li><strong>Engagement &amp; Learning Quality Analysis</strong> — Multi-modal signals (speech patterns, interaction turns, topic shifts) that identify conditions correlating with high-quality learning outcomes.</li>
-  <li><strong>Student–Mentor Interaction Modeling</strong> — Analysis of scaffolding dynamics that identifies effective coaching patterns to improve critique structure and mentor training.</li>
-</ul>
-
-<h3>Applications</h3>
+<h3>Key results</h3>
 
 <ul>
-  <li><strong>For Educators</strong> — Session-level dashboards showing which students are disengaged, which topics generate confusion, and where critiques most effectively generate learning.</li>
-  <li><strong>For Students</strong> — Personalized learning path analysis understanding individual growth trajectories based on objective behavioral signals rather than subjective grades.</li>
+  <li><strong>Academic and practitioner tutors.</strong> Tracking the first use of each design concept across five sessions with two groups (30 participants), students taught by academics introduced new concepts at a higher rate and took up more of their tutors' concepts, while practitioner tutors drifted further from their students' concepts (Design, Computing and Cognition, 2026).</li>
+  <li><strong>VR critiques.</strong> In critiques given to ten students in immersive VR and in conventional media, more new concepts were generated in VR, and the rate depended on whether the exchange was positive or negative in tone (CAADRIA 2025).</li>
+  <li><strong>Sentiment in critiques.</strong> Work in progress on how sentiment in tutor-student exchanges affects new concepts, in computer science and architecture studios (IEEE FIE 2024).</li>
+  <li><strong>Online study groups.</strong> In temporary online learning groups, students with lower admission scores used the groups to make up ground, and some members helped raise others' achievements (Journal of Education Culture and Society, 2023).</li>
 </ul>
-
-<h3>Impact</h3>
-
-<p>Methods validated in live architecture and industrial design studios at Israeli universities. The framework is generalizable to other constructivist disciplines — law clinics, medical simulations, and project-based STEM education.</p>

@@ -24,7 +24,7 @@
           <h{{ level }} class="line-card-title">{{ project.title }}</h{{ level }}>
           <p class="line-card-desc">{{ project.description }}</p>
           {%- if include.outcome and project.outcome -%}
-            <p class="line-card-outcome">{{ project.outcome }}</p>
+            <p class="line-card-outcome">{{ project.outcome | escape }}</p>
           {%- endif -%}
         </div>
         {%- if line -%}

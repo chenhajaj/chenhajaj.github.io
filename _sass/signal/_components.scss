@@ -367,6 +367,22 @@
   text-decoration: none;
 }
 
+// Touch screens: a 44px tap area (32px link + 6px above and below) without
+// making each paper taller.
+@media (pointer: coarse) {
+  .pub-actions a,
+  .pub-toggle {
+    position: relative;
+  }
+
+  .pub-actions a::before,
+  .pub-toggle::before {
+    content: "";
+    position: absolute;
+    inset: -6px -8px;
+  }
+}
+
 .pub-actions a:hover,
 .pub-toggle:hover {
   text-decoration: underline;
@@ -428,8 +444,10 @@ ol.bibliography {
   margin: 0;
 }
 
-// Year headings rank below the page title.
-.pub-list h2.bibliography {
+// Year headings rank below the page title. Research pages list papers under
+// a "Papers" h2, so their years are h3 (and titles h4; _layouts/project.liquid).
+.pub-list h2.bibliography,
+.pub-list h3.bibliography {
   padding-top: var(--s-7);
   font-size: var(--fs-xl);
   font-variation-settings: "wdth" 108;
@@ -439,7 +457,13 @@ ol.bibliography {
   letter-spacing: -0.01em;
 }
 
-.pub-list h2.bibliography:first-child {
+.pub-list h3.bibliography {
+  padding-top: var(--s-6);
+  font-size: var(--fs-lg);
+}
+
+.pub-list h2.bibliography:first-child,
+.pub-list h3.bibliography:first-child {
   padding-top: 0;
 }
 

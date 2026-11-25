@@ -1,0 +1,29 @@
+{%- comment -%}
+  One CV section of dated entries (CV page only).
+  key: front matter list on the page and the heading id; title: heading;
+  note: optional line under the heading; timeline: true adds the scroll rail.
+{%- endcomment -%}
+<section class="band" aria-labelledby="{{ include.key }}" id="cv-{{ include.key }}">
+  <div class="band-head">
+    <h2 id="{{ include.key }}">{{ include.title }}</h2>
+    {%- if include.note %}
+      <p>{{ include.note }}</p>
+    {%- endif %}
+  </div>
+  <div class="band-body">
+    <ol class="entries{% if include.timeline %} timeline{% endif %}">
+      {%- for e in page[include.key] %}
+        <li class="entry-row">
+          <span class="entry-when">{{ e.when }}</span>
+          <div>
+            <p class="entry-what">{{ e.what }}</p>
+            <p class="entry-where">{{ e.where }}</p>
+            {%- if e.note %}
+              <p class="entry-note">{{ e.note }}</p>
+            {%- endif %}
+          </div>
+        </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>

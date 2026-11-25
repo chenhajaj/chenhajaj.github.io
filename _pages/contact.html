@@ -5,6 +5,7 @@ title: Contact
 description: Contact Chen Hajaj by email or at his office at Ariel University, with notes for prospective students and collaborators.
 nav: true
 nav_order: 8
+lead: 'Email is the quickest way to reach me. Writing about a <a href="#students">PhD or MSc place</a> or a <a href="#partners">collaboration</a>? The notes below say what to include.'
 ---
 
 <section class="band" aria-labelledby="reach">
@@ -17,12 +18,11 @@ nav_order: 8
         <span class="icon-tile">{% include icon.liquid name="mail" %}</span>
         <h3>Email</h3>
         <p><a href="mailto:chenha@g.ariel.ac.il">chenha@g.ariel.ac.il</a></p>
-        <p class="contact-note">The quickest way to reach me.</p>
       </li>
       <li class="contact-card" style="--c: var(--line-medical)">
         <span class="icon-tile">{% include icon.liquid name="pin" %}</span>
         <h3>Office</h3>
-        <p>Room 58.3.42</p>
+        <p>Building 58, floor 3, office 42</p>
         <p class="contact-note">Ariel University, Ariel, Israel</p>
       </li>
       <li class="contact-card" style="--c: var(--line-similarity)">
@@ -50,17 +50,18 @@ nav_order: 8
         <span class="icon-tile">{% include icon.liquid name="student" %}</span>
         <h3 id="students">Prospective students</h3>
         <p>
-          Send an email with your CV and a short description of your research interests. The
-          <a href="{{ '/people/#open-topics' | relative_url }}">open topics</a> are a good place to start.
+          Email your CV and a short description of your research interests. If one of the
+          <a href="{{ '/people/#join' | relative_url }}">open topics</a> fits, say which one.
+          The Lab page also explains <a href="{{ '/people/#apply' | relative_url }}">how to apply</a>.
         </p>
         <a class="button" href="mailto:chenha@g.ariel.ac.il?subject=Prospective%20Student">Email Chen</a>
       </li>
       <li class="contact-card" style="--c: var(--line-traffic)">
         <span class="icon-tile">{% include icon.liquid name="chat" %}</span>
-        <h3 id="partners">Collaborators</h3>
+        <h3 id="partners">Collaborators and partners</h3>
         <p>
-          For academic or industry collaboration, a short note on the problem and the data you have is the quickest way to start.
-          The <a href="{{ '/projects/' | relative_url }}">research lines</a> show what the lab is working on now.
+          For academic, industry or government collaboration, start with a short note on the problem and the data you have.
+          The <a href="{{ '/projects/' | relative_url }}">research lines</a> show what the lab works on now.
         </p>
         <a class="button button-quiet" href="mailto:chenha@g.ariel.ac.il?subject=Research%20collaboration">Propose a collaboration</a>
       </li>

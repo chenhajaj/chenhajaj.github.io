@@ -1,30 +1,29 @@
 ---
 layout: project
-title: Incentive Design
-description: Mechanism design and game theory for e-commerce platforms, team formation, and kidney exchange — aligning individual incentives with collective outcomes.
+title: Incentive design
+description: Mechanism design and game theory for platforms, crowdsourcing, teams and kidney exchange, so that acting in one's own interest also serves the group.
 img: assets/img/incentive-new.png
 importance: 2
 category: work
-outcome: "Mechanisms for platforms, teams, and kidney exchange"
+outcome: "A strategy-proof, efficient kidney exchange mechanism, tested on data covering 59% of US transplant centres (AAAI 2015)"
 featured_label: "Mechanism design publications"
 featured_url: "/publications/?line=incentives"
 papers_query: "@*[projects~=multi-agent-systems|game-theory|crowdsourcing]*"
 ---
 
-<p class="intro">Rational agents pursue their own interests — but well-designed rules can make selfish behavior lead to good collective outcomes. We apply mechanism design and game theory to build systems where honesty and cooperation are the optimal strategy, from e-commerce to organ donation.</p>
+<p class="intro">People and software agents pursue their own interests, but well-designed rules can make self-interested behaviour lead to good outcomes for everyone. We use mechanism design and game theory to write such rules, from online marketplaces to organ donation.</p>
 
-<h3>Research Areas</h3>
+<h3>Key results</h3>
 
 <ul>
-  <li><strong>Strategic Information Disclosure in E-Commerce</strong> — Disclosure mechanisms that improve buyer decisions and platform welfare simultaneously on platforms like Amazon, without sacrificing honesty or profit.</li>
-  <li><strong>Strategy-Proof Team Formation</strong> — Mechanisms where truth-telling about skills is the dominant strategy, guaranteeing effective team composition even when participants have incentives to misreport.</li>
-  <li><strong>Kidney Exchange Optimization</strong> — Credit-based incentive systems for paired donation programs that prevent strategic withholding of compatible pairs, increasing overall transplant rates while preserving fairness.</li>
+  <li><strong>Kidney exchange.</strong> A credit-based mechanism under which transplant centres do best by reporting all their donor-patient pairs, while the exchange still reaches the maximum overall matching. On data from a national exchange that includes 59% of US transplant centres it gives significant gains (AAAI 2015).</li>
+  <li><strong>Platforms that list less.</strong> A platform can earn more by not listing every opportunity it knows of, even when listing is free, so the listing itself is a design decision (ACM EC 2014; Autonomous Agents and Multi-Agent Systems, 2017).</li>
+  <li><strong>Comparison shopping.</strong> Showing buyers a selected subset of prices makes a comparison-shopping agent more attractive, tested on real data from five such agents and with human participants (Electronic Commerce Research and Applications, 2015; AAAI 2013).</li>
+  <li><strong>Crowdworker attention.</strong> Rewarded dummy events keep workers alert in tasks where the real event is rare (HCOMP 2016; IJCAI 2017).</li>
+  <li><strong>Team formation.</strong> A rotating-proposer mechanism that implements a Pareto-efficient subgame-perfect equilibrium of a team formation game (CoopMAS 2017; arXiv 2022).</li>
+  <li><strong>Tasks under attack.</strong> When an attacker can target workers, the best assignment of identical tasks can be computed efficiently; for varied tasks the problem is NP-hard (IJCAI 2018).</li>
 </ul>
 
-<h3>Technical Approach</h3>
+<h3>Approach</h3>
 
-<p>Our work combines classical mechanism design theory (VCG, strategyproofness, incentive compatibility) with computational methods — simulations, algorithmic game theory, and empirical behavioral analysis. Each mechanism comes with formal proofs and is validated against real-world platform data.</p>
-
-<h3>Impact</h3>
-
-<p>The information disclosure mechanisms have been implemented in real e-commerce settings. Kidney exchange work contributes to national transplant policy discussions. Team formation mechanisms are deployed in organizational settings involving thousands of participants.</p>
+<p>Formal analysis of what a mechanism guarantees (equilibria, strategy-proofness, efficiency), combined with simulations on real market data and experiments with people.</p>

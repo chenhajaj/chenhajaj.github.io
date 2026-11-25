@@ -256,8 +256,19 @@ Dark mode follows the system unless the visitor picks a theme with the toggle
   items of the visual layer (see above). They take a light wash of their line
   colour and a 14px radius. No nested cards, no shadows on cards, no coloured
   side stripes.
+- `.band-wide` (home Research, explainers, showcase): the heading sits above
+  full-width content, so it does not stick. Heading and note on the left, the
+  "All ..." link on the right; a note with no link beside it spans the line.
 - 6px radius for controls; 14px for cards and the portrait.
 - One primary button per section at most.
+- Touch targets are at least 44px (`--tap`) on touch screens: the header
+  buttons, the venue strip's pause button.
+- Header: from 861 to 1023px the nav gaps tighten to 16px so the nine links
+  fit beside the theme toggle; the wordmark and buttons never shrink.
+- The hero name stays on one line at every width: its size comes from the
+  column beside the portrait (`cqi`), not the viewport.
+- Footer: two labelled link columns ("On this site", "Profiles") and the
+  address. Printing forces the light theme and hides navigation.
 
 ## Content sources (edit these, not the templates)
 

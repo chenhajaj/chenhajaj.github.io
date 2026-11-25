@@ -12,7 +12,7 @@ layout: default
         <h1 id="project-title">{{ page.title }}</h1>
         <p class="lead">{{ page.description }}</p>
         {% if page.outcome %}
-          <p class="headline-result"><strong>Headline result:</strong> {{ page.outcome }}.</p>
+          <p class="headline-result"><strong>Headline result:</strong> {{ page.outcome | escape }}.</p>
         {% endif %}
         {%- if line %}
           <dl class="atlas-stats project-stats">
@@ -81,10 +81,20 @@ layout: default
       <div class="band-head">
         <h2 id="papers">Papers</h2>
         <p>{% bibliography_count -f papers -q {{ page.papers_query }} %} publications, newest first.</p>
-        <p><a href="{{ '/publications/' | relative_url }}">All publications</a></p>
+        <p><a href="{{ '/publications/' | relative_url }}?line={{ key }}">Search and filter them on Publications</a></p>
       </div>
       <div class="band-body pub-list">
-        {% bibliography -f papers -q {{ page.papers_query }} --group_by year --group_order descending %}
+        {%- comment -%}
+          Under the "Papers" h2, years become h3 and paper titles h4, so the
+          page outline stays in order (the Publications page keeps h2/h3).
+        {%- endcomment -%}
+        {%- capture line_bib -%}{% bibliography -f papers -q {{ page.papers_query }} --group_by year --group_order descending %}{%- endcapture -%}
+        {{ line_bib
+          | replace: '<h3 class="pub-title">', '<h4 class="pub-title">'
+          | replace: '</h3>', '</h4>'
+          | replace: '<h2 class="bibliography">', '<h3 class="bibliography">'
+          | replace: '</h2>', '</h3>'
+        }}
       </div>
     </section>
   {% endif %}
@@ -94,12 +104,29 @@ layout: default
       <h2 id="collaborate">Work on this</h2>
     </div>
     <div class="band-body">
+      {%- assign line_topics = site.data.open_topics | where: 'line', key %}
       <p class="prose-block">
-        The lab takes on PhD and MSc students and works with academic and industry partners on this line of research. Write with a short note on your
-        background and what you would like to work on.
+        The lab takes PhD and MSc students on this line and works with academic and industry partners.
+        {% if line_topics.size == 1 %}This topic is open now.{% elsif line_topics.size > 1 %}These topics are open now.{% endif %} Write with a short note on your background and what you would like to work on.
       </p>
+      {%- if line_topics.size > 0 %}
+        <div class="topics-wrap">
+          <ul class="topics">
+            {%- for topic in line_topics %}
+              {%- capture subject -%}PhD or MSc topic: {{ topic.title }}{%- endcapture -%}
+              <li style="--c: var(--line-{{ key }})">
+                <strong>{{ topic.title }}</strong>
+                <span>{{ topic.text }}</span>
+                <a class="topic-mail" href="mailto:chenha@g.ariel.ac.il?subject={{ subject | url_encode | replace: '+', '%20' }}"
+                  >Email about this topic<span class="visually-hidden">: {{ topic.title }}</span></a
+                >
+              </li>
+            {%- endfor %}
+          </ul>
+        </div>
+      {%- endif %}
       <div class="actions">
-        <a class="button" href="mailto:chenha@g.ariel.ac.il?subject={{ page.title | uri_escape }}">Email Chen about this project</a>
+        <a class="button" href="mailto:chenha@g.ariel.ac.il?subject={{ page.title | uri_escape }}">Email Chen about this line</a>
         <a class="button button-quiet" href="{{ '/software/' | relative_url }}">Code and datasets</a>
       </div>
     </div>

@@ -1,41 +1,23 @@
 ---
 layout: project
-title: E-commerce and Multimodal AI
-description: Multimodal AI that fuses computer vision and NLP to measure item similarity the way humans do, and studies of how people shop online across devices, for smarter recommendations in tourism, e-commerce, and real estate.
+title: E-commerce and multimodal AI
+description: Multimodal AI that combines images, text and purchase data to judge how alike products and places are, and studies of how people shop online across devices.
 img: assets/img/tourism-new.png
 importance: 3
 category: work
-outcome: "Vision + language + time for product similarity"
+outcome: "Multimodal product embeddings give a 7% relative gain in cold-start hit rate on H&M data (ICIS 2024)"
 featured_label: "Multimodal research"
 featured_url: "/publications/?line=similarity"
 papers_query: "@*[projects~=similarity|consumer-behavior]*"
 ---
 
-<p class="intro">When humans judge similarity, they consider appearance, function, atmosphere, and context simultaneously. Simple text matching or category tags miss most of this. We develop multimodal AI that fuses computer vision and NLP to measure item similarity the way people actually experience it.</p>
+<p class="intro">When people judge whether two items are alike, they weigh appearance, function, atmosphere and context together. Text matching and category tags miss most of this. We combine computer vision, language models and purchase data to measure similarity the way people experience it, and use it for search, recommendation and pricing.</p>
 
-<h3>The Challenge</h3>
-
-<p>Two hotels can look similar in photos but feel completely different in reviews. Two tourist destinations can share atmosphere despite different geographies. Traditional similarity metrics capture one dimension at a time — and fail at the nuanced comparisons that drive real user decisions.</p>
-
-<h3>Our Approach</h3>
+<h3>Key results</h3>
 
 <ul>
-  <li><strong>Visual Feature Extraction</strong> — Deep convolutional networks and vision transformers extract semantic features (architectural style, landscape type, activity level, color palette) directly from images without manual annotation.</li>
-  <li><strong>Textual Semantic Analysis</strong> — Large language models encode review text and descriptions to capture cultural character, climate, offerings, and subjective user sentiment as dense semantic vectors.</li>
-  <li><strong>Multimodal Fusion</strong> — Cross-attention mechanisms align visual and textual embeddings into a unified similarity space, validated against human expert judgments across thousands of item pairs.</li>
+  <li><strong>Destination similarity without expert knowledge.</strong> Using only data from a flight-search website, we compared image, text and product-network similarity measures with human judgements. No single method won on every aspect, so a hybrid combines them (Expert Systems with Applications, 2024).</li>
+  <li><strong>Cold-start recommendations.</strong> A new fashion item gets an embedding from its images, text and attributes, is matched to the most similar existing item, and inherits that item's co-purchase links. Added to collaborative filtering, this gave a 7% relative gain in hit rate for new items on H&amp;M data, with no retraining (ICIS 2024; SIGDSA 2023).</li>
+  <li><strong>Pricing by similarity.</strong> An attention model over image, text and temporal representations that prices products from similar ones (ILAIS 2026, best paper award, second place).</li>
+  <li><strong>Shopping across devices.</strong> Hidden Markov models of the conversion funnel show that mobile and desktop shoppers take different paths to purchase (Electronic Commerce Research and Applications, 2022; SCECR 2020).</li>
 </ul>
-
-<h3>Applications</h3>
-
-<ul>
-  <li><strong>Tourism &amp; Travel Recommendations</strong> — Suggesting alternative destinations when a user's top choice is unavailable, matched on experience rather than category. Validated against real booking patterns.</li>
-  <li><strong>E-commerce &amp; Real Estate</strong> — Finding visually and contextually similar products or properties at different price points, improving discovery and reducing search abandonment.</li>
-  <li><strong>Shopping Across Devices</strong> — How the conversion funnel differs between mobile and desktop consumers, and what that means for online retailers (Electronic Commerce Research and Applications, 2022).</li>
-</ul>
-
-<div class="figure-row">
-  {% include figure.liquid loading="eager" path="assets/img/tourism.webp" alt="Tourism destinations" title="Tourism destinations" class="img-fluid rounded z-depth-1" %}
-</div>
-<div class="caption">
-    Our AI analyzes visual and textual features of destinations to build similarity judgments that match human intuition across diverse travel contexts.
-</div>

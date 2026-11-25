@@ -19,7 +19,7 @@
   backdrop-filter: saturate(140%) blur(10px);
   -webkit-backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid transparent;
-  transition: border-color 160ms ease;
+  transition: border-color 160ms var(--ease-out);
 }
 
 .site-header.is-scrolled {
@@ -43,6 +43,18 @@
   text-decoration: none;
   white-space: nowrap;
   margin-right: auto;
+  // A full-height target for a thumb; the text itself stays where it was.
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+}
+
+// Header controls keep their size however tight the row gets (between 861px
+// and about 930px the nav used to squeeze the theme toggle to nothing).
+.wordmark,
+.site-header .icon-button,
+.menu-toggle {
+  flex: none;
 }
 
 .wordmark:hover {
@@ -71,6 +83,14 @@
   color: var(--ink);
 }
 
+// Desktop: a faint rule under the hovered link, a preview of the cobalt rule
+// that marks the current page.
+@media (min-width: 861px) and (hover: hover) and (pointer: fine) {
+  .site-nav a:hover {
+    border-bottom-color: var(--rule-strong);
+  }
+}
+
 .site-nav a[aria-current="page"] {
   color: var(--ink);
   border-bottom-color: var(--cobalt);
@@ -79,8 +99,8 @@
 .icon-button {
   display: inline-grid;
   place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: var(--tap);
+  height: var(--tap);
   padding: 0;
   border: 1px solid transparent;
   border-radius: var(--radius);
@@ -120,14 +140,28 @@
   display: none;
   align-items: center;
   gap: var(--s-2);
-  min-height: 2.5rem;
-  padding: 0 var(--s-3);
-  border: 1px solid var(--rule);
+  min-height: var(--tap);
+  padding: 0 var(--s-4);
+  border: 1px solid var(--rule-strong);
   border-radius: var(--radius);
   background: transparent;
+  color: var(--ink);
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
-  font-weight: 500;
+  font-weight: 550;
+}
+
+.menu-toggle[aria-expanded="true"] {
+  background: var(--paper-2);
+}
+
+// Nine links fit on one row from 861px, but only with tighter spacing until
+// about 1024px.
+@media (min-width: 861px) and (max-width: 1023px) {
+  .site-header .wrap,
+  .site-nav ul {
+    gap: var(--s-4);
+  }
 }
 
 @media (max-width: 860px) {
@@ -141,12 +175,23 @@
     left: 0;
     right: 0;
     display: none;
+    // A long menu on a short (landscape) phone scrolls inside itself.
+    max-height: calc(100vh - var(--header-h));
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background: var(--paper);
     border-bottom: 1px solid var(--rule);
+    box-shadow: 0 18px 32px -20px rgba(16, 26, 77, 0.35);
   }
 
   .site-nav.is-open {
     display: block;
+  }
+
+  // Opening settles in (180 ms, like the abstract panels); closing is instant.
+  .motion-ok .site-nav.is-open {
+    animation: menu-in 180ms var(--ease-out);
   }
 
   .site-nav ul {
@@ -171,14 +216,30 @@
   .site-nav a[aria-current="page"] {
     border-bottom-color: var(--rule);
     color: var(--cobalt);
+    font-weight: 600;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
   }
 }
 
 // ------------------------------------------------------------------ main ----
 
+// The footer stays at the bottom of the window on short pages.
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
 main {
   display: block;
-  min-height: 60vh;
+  flex: 1 0 auto;
 }
 
 // Every interior page opens the same way: title and a short lead on the left,
@@ -406,11 +467,22 @@ main {
   margin-top: var(--s-3);
 }
 
+// Visible names for the two link columns (they also label the navs).
+.footer-head {
+  margin-bottom: var(--s-3);
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.footer-grid address {
+  font-style: normal;
+}
+
 .footer-grid ul {
   list-style: none;
   padding: 0;
   display: grid;
-  gap: var(--s-2);
+  gap: var(--s-2) var(--s-5);
 }
 
 .footer-grid a {
@@ -433,8 +505,60 @@ main {
   font-size: var(--fs-xs);
 }
 
+// Tablets: the address takes the first row and the two link lists share the
+// second, so neither list is squeezed into wrapping its labels.
+@media (min-width: 761px) and (max-width: 1023px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-grid > address {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 760px) {
   .footer-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// ----------------------------------------------------------------- print ----
+// A printed page (the CV, a paper list) is the content: no menu, theme
+// switch or sticky header, and the footer keeps only the address lines.
+
+@media print {
+  .site-header {
+    position: static;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .site-header .wrap::before,
+  .site-nav,
+  .menu-toggle,
+  .theme-toggle,
+  .skip-link,
+  .site-footer nav {
+    display: none !important;
+  }
+
+  .band > .band-head {
+    position: static;
+  }
+
+  .site-footer {
+    margin-top: var(--s-6);
+    padding-block: var(--s-4) 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-meta {
+    margin-top: var(--s-4);
   }
 }

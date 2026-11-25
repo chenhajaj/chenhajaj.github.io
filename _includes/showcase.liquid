@@ -9,9 +9,8 @@
     <li class="showcase-card" style="--c: var(--line-{{ p.line }})">
       <p class="showcase-meta">
         <span class="num">{{ p.year }}</span> · {{ p.venue_short }}
-        {%- if p.rank -%}
-          <span class="showcase-rank">{{ p.rank }}</span>
-        {%- endif -%}
+        {%- comment -%} The spaces keep the parts apart for screen readers and copying; the flex gap sets the visual spacing. {%- endcomment -%}
+        {%- if p.rank %} <span class="showcase-rank">{{ p.rank }}</span>{% endif -%}
       </p>
       <h3 class="showcase-title">
         <a href="{{ p.url | default: '/publications/' | relative_url }}">{{ p.title }}</a>
@@ -29,9 +28,7 @@
         {%- elsif p.lead == 'student' -%}
           <span class="showcase-tag is-lead">Student first author</span>
         {%- endif -%}
-        {%- if p.team <= 3 -%}
-          <span class="showcase-tag">{{ p.team }} authors</span>
-        {%- endif -%}
+        {%- if p.team <= 3 %} <span class="showcase-tag">{{ p.team }} authors</span>{% endif -%}
       </p>
       {%- assign has_code = false -%}
       {%- if p.code and p.code != '' -%}{%- assign has_code = true -%}{%- endif -%}

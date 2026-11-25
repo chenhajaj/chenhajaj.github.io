@@ -25,6 +25,21 @@
     btn.setAttribute("title", "Switch to " + next + " theme");
   }
 
+  // The browser bar on phones (meta theme-color) follows the system theme by
+  // default; when the visitor picks a theme, it follows that instead.
+  // (The home page's night-blue bar is fixed: data-fixed.)
+  var themeColorMetas = document.querySelectorAll('meta[name="theme-color"]:not([data-fixed])');
+  function syncThemeColor() {
+    var forced = root.getAttribute("data-theme");
+    if (forced !== "dark" && forced !== "light") return;
+    var paper = window.getComputedStyle(root).getPropertyValue("--paper").trim();
+    if (!paper) return;
+    Array.prototype.forEach.call(themeColorMetas, function (m) {
+      m.setAttribute("content", paper);
+    });
+  }
+  syncThemeColor();
+
   // The switch is one deliberate change: .theme-switching turns off every
   // colour transition on the page (otherwise some 160 of them start at once,
   // each at its own pace), and where view transitions exist the old and new
@@ -37,6 +52,7 @@
       var apply = function () {
         root.setAttribute("data-theme", next);
         labelThemeButton(themeBtn);
+        syncThemeColor();
       };
       var done = function () {
         root.classList.remove("theme-switching");
@@ -55,24 +71,47 @@
         });
       }
     });
+    // Following the system: keep the button's label right when it changes.
+    var systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+    if (systemDark && systemDark.addEventListener) {
+      systemDark.addEventListener("change", function () {
+        labelThemeButton(themeBtn);
+      });
+    }
   }
 
+  // Phone menu: the button opens it; Escape, a tap outside it, choosing a
+  // link or widening the window past the phone layout closes it.
   var menuBtn = document.getElementById("menu-toggle");
   var nav = document.getElementById("site-nav");
   if (menuBtn && nav) {
-    menuBtn.addEventListener("click", function () {
-      var open = nav.classList.toggle("is-open");
+    var setMenu = function (open, refocus) {
+      nav.classList.toggle("is-open", open);
       menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
       menuBtn.textContent = open ? "Close" : "Menu";
+      if (!open && refocus) menuBtn.focus();
+    };
+    var menuOpen = function () {
+      return nav.classList.contains("is-open");
+    };
+    menuBtn.addEventListener("click", function () {
+      setMenu(!menuOpen());
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && nav.classList.contains("is-open")) {
-        nav.classList.remove("is-open");
-        menuBtn.setAttribute("aria-expanded", "false");
-        menuBtn.textContent = "Menu";
-        menuBtn.focus();
-      }
+      if (e.key === "Escape" && menuOpen()) setMenu(false, true);
     });
+    document.addEventListener("click", function (e) {
+      if (menuOpen() && !nav.contains(e.target) && !menuBtn.contains(e.target)) setMenu(false);
+    });
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest("a")) setMenu(false);
+    });
+    var wide = window.matchMedia && window.matchMedia("(min-width: 861px)");
+    if (wide && wide.addEventListener) {
+      wide.addEventListener("change", function () {
+        if (wide.matches && menuOpen()) setMenu(false);
+      });
+    }
   }
 
   // The name in the header always leads to the top of the home page. On the

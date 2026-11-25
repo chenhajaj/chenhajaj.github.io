@@ -2,7 +2,7 @@
 layout: note
 title: "Security and clinical ML share a hard problem"
 permalink: /insights/security-clinical-ml/
-description: A research note from the Adaptive AI Lab — cybersecurity and clinical machine learning both face distribution shift, rare high-cost cases, and punished confident mistakes, so they share design requirements.
+description: "Network security and clinical machine learning fail in the same three ways: the world changes after deployment, rare cases cost the most, and confident mistakes are punished. Why the lab builds the same safeguards for both."
 figure: shared_problem
 image: assets/img/explainers/shared-hard-problem.jpg
 og_image: /assets/img/explainers/shared-hard-problem.jpg
@@ -11,12 +11,14 @@ og_image_height: 900
 line: other
 date: 2026-07-01
 topic: "Trustworthy AI"
-summary: "Both domains change after deployment, contain rare high-cost cases, and punish confident mistakes. That makes robustness, out-of-distribution detection, interpretable evidence, and careful validation common design requirements across our cyber and health projects."
+summary: "Network security and clinical machine learning look unrelated, but they fail in the same ways: the world changes after deployment, rare cases cost the most, and confident mistakes are punished. So our cyber and health projects are built to the same requirements."
 links:
   - label: "All research lines"
     url: "/projects/"
 ---
 
-Cybersecurity and clinical machine learning look unrelated, but they fail in the same ways. Both domains **change after deployment** — new attack patterns, new patient populations, new devices. Both contain **rare, high-cost cases** that standard training underweights. And both **punish confident mistakes**: a missed intrusion and a missed diagnosis are not rounding errors.
+Cybersecurity and clinical machine learning (ML) look unrelated, but they fail in the same ways. Both **change after deployment**: new attacks and protocols on one side, new patient populations and devices on the other. Both contain **rare, high-cost cases**, such as a zero-day intrusion or a rare complication, that standard training underweights. And both **punish confident mistakes**: a missed intrusion or a missed diagnosis is not a rounding error.
 
-That makes robustness, out-of-distribution detection, interpretable evidence, and careful validation shared design requirements across our cyber and health projects. Methods we build for one domain — retrieval-based adaptation, uncertainty-aware prediction, prospective validation — transfer directly to the other.
+So the same requirements apply to both. Models must stay **robust** as the data shifts, recognise inputs unlike anything they were trained on (**out-of-distribution detection**), show **evidence** a person can check, and be **validated** carefully before anyone relies on them.
+
+Methods we build for one domain carry over to the other: retrieval-based adaptation, uncertainty-aware prediction and careful validation on data the model has not seen. Two traffic explainers show these ideas at work: [New classes in seconds, without retraining](/insights/classification-by-retrieval/) and [Saying "I don't know" has a price](/insights/saying-i-dont-know/).

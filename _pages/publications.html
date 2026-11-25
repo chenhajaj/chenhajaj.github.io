@@ -3,7 +3,7 @@ layout: page
 permalink: /publications/
 title: Publications
 description: Full list of publications by Chen Hajaj on machine learning, cybersecurity, healthcare AI and multi-agent systems, with abstracts and BibTeX.
-lead: Journal articles, conference papers, preprints and patents, newest first.
+lead: Journal articles, conference papers, preprints and patents, newest first. Filter by research line, type or year; every entry has its BibTeX.
 nav: true
 nav_order: 1
 scripts: [paper-map]
@@ -15,7 +15,8 @@ scripts: [paper-map]
     <form class="filters-panel" id="pub-filters" role="search">
       <div class="filter-group search-wrap">
         <label class="filter-label" for="pub-search">Search</label>
-        <input class="search-field" id="pub-search" type="search" name="q" autocomplete="off" spellcheck="false">
+        <input class="search-field" id="pub-search" type="search" name="q" autocomplete="off" spellcheck="false" aria-describedby="pub-search-hint">
+        <p class="meta search-hint" id="pub-search-hint">Titles, authors, venues and abstracts</p>
       </div>
 
       <fieldset class="filter-group">
@@ -135,10 +136,10 @@ scripts: [paper-map]
         <span
           class="lens-note"
           aria-live="polite"
-          data-note-line="Each square is a paper, coloured by research line; hollow squares are preprints, abstracts and other non-refereed items."
+          data-note-line="Each square is a paper, coloured by its main research line (the legend counts each paper once); hollow squares are preprints, abstracts and other non-refereed items."
           data-note-tier="{{ n_top }} of {{ n_refereed }} refereed papers appeared in CORE A*/A or SJR Q1 venues, and {{ n_mid }} in CORE B or SJR Q2 venues. CORE: rank when the paper appeared; SJR: the journal's quartile that year."
           data-note-lead="{{ n_student }} papers were led by a student of the lab (first author) and {{ n_chen }} by Chen; the other {{ n_others }} were led by a co-author."
-          >Each square is a paper, coloured by research line; hollow squares are preprints, abstracts and other non-refereed items.</span
+          >Each square is a paper, coloured by its main research line (the legend counts each paper once); hollow squares are preprints, abstracts and other non-refereed items.</span
         >
         <span class="when-fine">Click</span><span class="when-touch">Tap</span> a year to show only that year, or a square to jump to the paper.
       </figcaption>

@@ -2,7 +2,7 @@
 layout: page
 permalink: /cv/
 title: Curriculum vitae
-description: Academic CV of Chen Hajaj covering education, academic administration, conference organization, research grants and patents.
+description: "Academic CV of Chen Hajaj, Associate Professor at Ariel University: positions, education, grants, awards, patents, supervision, leadership and reviewing."
 nav: false
 hide_title: true
 
@@ -72,18 +72,18 @@ conferences:
   - when: "2018"
     what: "Workshop Co-chair"
     where: "AI³ Workshop"
-  - when: "2017"
-    what: "Workshop Co-chair"
-    where: "Agent-Mediated Electronic Commerce (AMEC) Workshop"
-  - when: "2016"
-    what: "Workshop Co-chair"
-    where: "Agent-Mediated Electronic Commerce (AMEC) Workshop"
   - when: "2018"
     what: "Organizer"
     where: "Vanderbilt Data Science Symposium"
   - when: "2017"
+    what: "Workshop Co-chair"
+    where: "Agent-Mediated Electronic Commerce (AMEC) Workshop"
+  - when: "2017"
     what: "Organizer"
     where: "Vanderbilt Postdoc Association Symposium"
+  - when: "2016"
+    what: "Workshop Co-chair"
+    where: "Agent-Mediated Electronic Commerce (AMEC) Workshop"
 
 awards:
   - when: "2017"
@@ -133,11 +133,29 @@ patents:
 
 <header class="page-head cv-head">
   <h1>Curriculum vitae</h1>
-  <p class="lead">Chen Hajaj. Associate Professor and Head of the Data Science Track (undergraduate and graduate programs), Department of Industrial Engineering and Management; Chair, Faculty Review Board, Faculty of Engineering, Ariel University.</p>
+  <p class="lead">Chen Hajaj, Associate Professor in the Department of Industrial Engineering and Management at Ariel University.</p>
+  <ul class="cv-roles">
+    <li>Head of the Data Science Track (undergraduate and graduate programs)</li>
+    <li>Chair, Faculty Review Board, Faculty of Engineering</li>
+    <li>Head of the Adaptive AI Lab</li>
+  </ul>
   <div class="actions">
     <a class="button" href="{{ '/assets/pdf/CV.pdf' | relative_url }}">Download CV (PDF)</a>
     <a class="button button-quiet" href="{{ '/publications/' | relative_url }}">Publications</a>
   </div>
+  <nav class="cv-jump" aria-label="CV sections">
+    <ul class="inline-links">
+      <li><a href="#cv-positions">Positions</a></li>
+      <li><a href="#cv-education">Education</a></li>
+      <li><a href="#cv-grants">Grants</a></li>
+      <li><a href="#cv-awards">Awards</a></li>
+      <li><a href="#cv-patents">Patents</a></li>
+      <li><a href="#cv-supervision">Supervision and teaching</a></li>
+      <li><a href="#cv-administration">Leadership</a></li>
+      <li><a href="#cv-conferences">Organizing</a></li>
+      <li><a href="#cv-service">Reviewing</a></li>
+    </ul>
+  </nav>
 </header>
 
 {%- assign r = site.data.research -%}
@@ -162,30 +180,8 @@ patents:
   </div>
 </section>
 
-{% assign sections = "positions|Academic positions,education|Education,administration|Leadership and administration,conferences|Conference and workshop organization" | split: "," %}
-{% for pair in sections %}
-  {% assign parts = pair | split: "|" %}
-  {% assign key = parts[0] %}
-  <section class="band" aria-labelledby="{{ key }}" id="cv-{{ key }}">
-    <div class="band-head">
-      <h2 id="{{ key }}">{{ parts[1] }}</h2>
-    </div>
-    <div class="band-body">
-      <ol class="entries timeline">
-        {% for e in page[key] %}
-          <li class="entry-row">
-            <span class="entry-when">{{ e.when }}</span>
-            <div>
-              <p class="entry-what">{{ e.what }}</p>
-              <p class="entry-where">{{ e.where }}</p>
-              {% if e.note %}<p class="entry-note">{{ e.note }}</p>{% endif %}
-            </div>
-          </li>
-        {% endfor %}
-      </ol>
-    </div>
-  </section>
-{% endfor %}
+{% include cv_section.liquid key="positions" title="Academic positions" timeline=true %}
+{% include cv_section.liquid key="education" title="Education" timeline=true %}
 
 <section class="band" aria-labelledby="grants" id="cv-grants">
   <div class="band-head">
@@ -216,6 +212,43 @@ patents:
   </div>
 </section>
 
+{% include cv_section.liquid key="patents" title="Patents and patent applications" note="Published applications also appear under Publications." %}
+
+<section class="band" aria-labelledby="supervision" id="cv-supervision">
+  <div class="band-head">
+    <h2 id="supervision">Supervision and teaching</h2>
+  </div>
+  <div class="band-body">
+    <ol class="entries">
+      <li class="entry-row">
+        <span class="entry-when">Now</span>
+        <div>
+          <p class="entry-what">{{ st.phd_students.size }} PhD and {{ st.masters_students.size }} MSc students</p>
+          <p class="entry-where">Adaptive AI Lab, Ariel University</p>
+        </div>
+      </li>
+      <li class="entry-row">
+        <span class="entry-when">Graduated</span>
+        <div>
+          <p class="entry-what">{{ st.phd_alumni.size }} PhD, {{ msc_thesis.size }} thesis MSc and {{ msc_project.size }} non-thesis MSc students</p>
+          <p class="entry-where"><a href="{{ '/people/#alumni' | relative_url }}">Names and topics on the Lab page</a></p>
+        </div>
+      </li>
+      <li class="entry-row">
+        <span class="entry-when">2011 to now</span>
+        <div>
+          <p class="entry-what">Machine learning, data science and computer science courses</p>
+          <p class="entry-where">Ariel University (faculty), Vanderbilt University (guest lecturer) and Bar-Ilan University (teaching assistant)</p>
+          <p class="entry-note"><a href="{{ '/teaching/' | relative_url }}">Course list on the Teaching page</a></p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+{% include cv_section.liquid key="administration" title="Leadership and administration" timeline=true %}
+{% include cv_section.liquid key="conferences" title="Conference and workshop organization" timeline=true %}
+
 <section class="band" aria-labelledby="service" id="cv-service">
   <div class="band-head">
     <h2 id="service">Reviewing and program committees</h2>
@@ -230,12 +263,12 @@ patents:
       <h3 class="service-head">Journal reviewing <span class="count">{{ o.reviews_total }} verified reviews</span></h3>
       {%- assign rmax = o.reviews.first.count -%}
       <ol class="review-bars">
-        {%- for r in o.reviews -%}
-          {%- assign w = r.count | times: 100 | divided_by: rmax -%}
+        {%- for rv in o.reviews -%}
+          {%- assign w = rv.count | times: 100 | divided_by: rmax -%}
           <li class="review-row" style="--w: {{ w }}%; --i: {{ forloop.index0 }}">
-            <span class="review-venue">{{ r.venue }}</span>
-            <span class="review-track"><span class="review-fill"></span><span class="review-count num">{{ r.count }}</span></span>
-            <span class="review-years num">{% if r.first == r.last %}{{ r.first }}{% else %}{{ r.first }} to {{ r.last }}{% endif %}</span>
+            <span class="review-venue">{{ rv.venue }}</span>
+            <span class="review-track"><span class="review-fill"></span><span class="review-count num">{{ rv.count }}</span></span>
+            <span class="review-years num">{% if rv.first == rv.last %}{{ rv.first }}{% else %}{{ rv.first }} to {{ rv.last }}{% endif %}</span>
           </li>
         {%- endfor -%}
       </ol>
@@ -251,26 +284,5 @@ patents:
       <h3 class="service-head">Journal reviewing</h3>
       <ul class="tag-list">{% for j in page.service.journals %}<li>{{ j }}</li>{% endfor %}</ul>
     {%- endif -%}
-  </div>
-</section>
-
-<section class="band" aria-labelledby="patents" id="cv-patents">
-  <div class="band-head">
-    <h2 id="patents">Patents and patent applications</h2>
-    <p>Published applications also appear under Publications.</p>
-  </div>
-  <div class="band-body">
-    <ol class="entries">
-      {% for e in page.patents %}
-        <li class="entry-row">
-          <span class="entry-when">{{ e.when }}</span>
-          <div>
-            <p class="entry-what">{{ e.what }}</p>
-            <p class="entry-where">{{ e.where }}</p>
-            <p class="entry-note">{{ e.note }}</p>
-          </div>
-        </li>
-      {% endfor %}
-    </ol>
   </div>
 </section>

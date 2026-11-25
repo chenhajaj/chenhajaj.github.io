@@ -1,5 +1,6 @@
 ---
 layout: post
+title: "FALCON accepted at IEEE CAMAD 2026"
 date: 2026-07-14 00:00:00+0300
 inline: true
 kind: paper
@@ -7,4 +8,4 @@ line: traffic
 related_posts: false
 ---
 
-Paper accepted at **IEEE CAMAD 2026**: *FALCON: Few-shot ANN for Low-latency Classification in O-RAN Networks* — with Liav Cohen and Amit Dvir. Will be presented in the AI-Driven 6G Cloud, O-RAN and Network Orchestration session. 🎉
+Accepted at **IEEE CAMAD 2026**: *FALCON: Few-shot ANN for Low-latency Classification in O-RAN Networks*, with Liav Cohen and Amit Dvir. To be presented in the AI-Driven 6G Cloud, O-RAN and Network Orchestration session.

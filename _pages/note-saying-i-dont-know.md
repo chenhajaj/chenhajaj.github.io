@@ -2,7 +2,7 @@
 layout: note
 title: "Saying \"I don't know\" has a price"
 permalink: /insights/saying-i-dont-know/
-description: An explainer from the Adaptive AI Lab — how the rejection rate of an out-of-distribution detector trades caught unknown traffic against wrongly rejected known traffic.
+description: "A traffic classifier that may reject unfamiliar traffic catches more unknown apps but turns away some good traffic. How the rejection rate sets that trade, from our FedCSIS 2025 study."
 figure: rejection
 image: assets/img/explainers/saying-i-dont-know.jpg
 og_image: /assets/img/explainers/saying-i-dont-know.jpg
@@ -20,7 +20,7 @@ links:
     url: "/projects/encrypted_traffic/"
 ---
 
-Classic deep packet inspection had a safe fallback: whatever it did not recognise, it called "other". An AI classifier has no such habit. Shown traffic from an app it never trained on, it confidently picks one of the classes it knows. With encrypted DNS and encrypted server names spreading, AI classifiers are replacing inspection engines, so this matters.
+Classic deep packet inspection, which identifies traffic by reading its contents, had a safe fallback: whatever it did not recognise, it called "other". An AI classifier has no such habit. Shown traffic from an app it never trained on, it confidently picks one of the classes it knows. Encrypted DNS and encrypted server names are making inspection engines obsolete, and AI classifiers are taking their place, so this gap matters.
 
 **Out-of-distribution (OOD) detection** lets the model say "I don't know". The catch is the threshold: how much traffic it should be willing to reject. Reject too little and unknown apps slip through as known ones; reject too much and good traffic is turned away. We compared state-of-the-art OOD techniques for traffic classification across rejection rates, and found that the best technique **changes with the threshold**.
 
